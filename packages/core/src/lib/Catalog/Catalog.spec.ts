@@ -8,7 +8,9 @@ describe('Catalog', () => {
   it('should register block', () => {
     const Title = () => null;
 
-    register('Title', Title);
+    register('Title', {
+      component: Title,
+    });
 
     expect(get('Title')).toBeTruthy();
   });

@@ -3,7 +3,6 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Canvas } from '../Canvas';
 import { DraggableStyle } from '../DraggableStyle';
-import { Droppable } from '../Droppable';
 import { DroppableStyle } from '../DroppableStyle';
 import { EditingProvider } from '../EditingContext';
 import { Library } from '../Library';
@@ -23,7 +22,6 @@ export const Editor: FC<Props> = ({ source }) => (
           <Canvas />
         </div>
       </div>
-      <Droppable />
     </EditingProvider>
   </DndProvider>
 );

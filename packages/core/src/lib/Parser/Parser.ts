@@ -94,14 +94,14 @@ const parseAttribute = (expression: any): any => {
   }
 };
 
-const parseNode = (node: any) => {
+const parseNode = (node: any): Node => {
   const children = (node.children ?? []).map(parseNode).filter(Boolean);
 
   switch (node.type) {
     case 'JSXElement':
-      return [
-        node.openingElement.name.name,
-        node.openingElement.attributes.reduce((properties: Record<string, any>, attribute: any) => {
+      return {
+        type: node.openingElement.name.name,
+        props: node.openingElement.attributes.reduce((properties: Record<string, any>, attribute: any) => {
           const key = attribute.name.name;
           const value = parseAttribute(attribute.value);
 
@@ -114,9 +114,14 @@ const parseNode = (node: any) => {
             [key]: value,
           };
         }, {}),
-      ].concat(children);
+        children,
+      };
     case 'JSXFragment':
-      return ['Fragment', {}].concat(children);
+      return {
+        type: 'Fragment',
+        props: {},
+        children,
+      };
     case 'JSXText':
       return node.value.trim();
     default:
@@ -124,7 +129,12 @@ const parseNode = (node: any) => {
   }
 };
 
-export type Node = [string, Record<string, any>, ...Node[]];
+// export type Node = [string, Record<string, any>, ...Node[]];
+export type Node = {
+  type: string;
+  props: Record<string, any>;
+  children: Node[];
+};
 
 export const parse = (source: string): Node => {
   const parsed = parser.parse(source, {

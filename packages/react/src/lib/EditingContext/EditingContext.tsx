@@ -6,7 +6,11 @@ type EditingContextValues = {
 };
 
 const EditingContext = createContext<EditingContextValues>({
-  source: ['Fragment', {}],
+  source: {
+    type: 'Fragment',
+    props: {},
+    children: [],
+  },
 });
 
 type Props = {

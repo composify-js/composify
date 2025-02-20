@@ -1,20 +1,34 @@
 import { Catalog, Parser } from '@composify/core';
 import { createElement, FC, ReactNode, useMemo } from 'react';
 
+export const KEY_COMPOSIFY_TYPE = 'composify-type';
+
 export type Pragma = {
   jsx: (type: string, props: Record<string, unknown>, ...children: ReactNode[]) => ReactNode;
 };
 
 const renderElement = (node: Parser.Node, pragma: Pragma): ReactNode => {
-  const [type, props, ...children] = node;
-
-  const { component } = Catalog.get(type);
+  const { component } = Catalog.get(node.type);
 
   return pragma.jsx(
     component,
-    props,
-    children.map((child, index) =>
-      Array.isArray(child) ? renderElement([child[0], { ...child[1], key: index }, child[2]], pragma) : child
+    {
+      ...node.props,
+      [KEY_COMPOSIFY_TYPE]: node.type,
+    },
+    ...node.children.map((child, index) =>
+      typeof child === 'object'
+        ? renderElement(
+            {
+              ...child,
+              props: {
+                ...child.props,
+                key: index,
+              },
+            },
+            pragma
+          )
+        : child
     )
   );
 };
