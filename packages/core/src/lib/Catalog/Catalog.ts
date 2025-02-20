@@ -1,7 +1,9 @@
-const components = new Map<string, any>();
+import { ComponentSpec } from './Specification';
 
-export const register = (name: string, component: any) => {
-  components.set(name, component);
+const catalog = new Map<string, ComponentSpec<any>>();
+
+export const register = <Props>(name: string, spec: ComponentSpec<Props>) => {
+  catalog.set(name, spec);
 };
 
 export const get = (name: string) => {
@@ -11,19 +13,17 @@ export const get = (name: string) => {
     };
   }
 
-  const component = components.get(name);
+  const spec = catalog.get(name);
 
-  if (!component) {
+  if (!spec) {
     throw new Error(`Component "${name}" is not registered`);
   }
 
-  return {
-    component,
-  };
+  return spec;
 };
 
-export const getAll = () => [...components.values()];
+export const getAll = () => [...catalog.values()];
 
 export const clear = () => {
-  components.clear();
+  catalog.clear();
 };
