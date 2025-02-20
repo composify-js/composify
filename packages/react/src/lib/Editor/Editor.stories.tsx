@@ -1,20 +1,17 @@
 import { Catalog } from '@composify/core';
+import { ComponentProps } from 'react';
+import { Stack } from '../Stack';
 import { Editor } from './Editor';
 
-const Stack = ({ width, height, ...props }: { width: number; height: number }) => (
-  <div
-    style={{
-      width: width ?? 'auto',
-      height: height ?? 'auto',
-      minWidth: 100,
-      minHeight: 100,
-      background: '#C3C3C3',
-    }}
-    {...props}
-  />
-);
-
-Catalog.register('Stack', Stack);
+Catalog.register<ComponentProps<typeof Stack>>('Stack', {
+  component: Stack,
+  props: {
+    children: {
+      label: 'Children',
+      type: 'node',
+    },
+  },
+});
 
 export const BasicUsage = () => {
   const source = `

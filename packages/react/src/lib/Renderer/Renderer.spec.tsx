@@ -54,7 +54,15 @@ describe('Renderer', () => {
   it('should render React component', () => {
     const Title = (props: { children: string }) => <h1>{props.children}</h1>;
 
-    Catalog.register('Title', Title);
+    Catalog.register('Title', {
+      component: Title,
+      props: {
+        children: {
+          label: 'children',
+          type: 'text',
+        },
+      },
+    });
 
     const source = `
       <Title>

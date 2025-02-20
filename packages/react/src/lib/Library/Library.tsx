@@ -15,8 +15,8 @@ const pragma: Pragma = {
 
 export const Library = () => (
   <div>
-    {Catalog.getAll().map(component => (
-      <Renderer source={`<${component.name} />`} key={component.name} pragma={pragma} />
+    {Catalog.getAll().map(spec => (
+      <Renderer source={`<${spec.component.name} />`} key={spec.component.name} pragma={pragma} />
     ))}
   </div>
 );
