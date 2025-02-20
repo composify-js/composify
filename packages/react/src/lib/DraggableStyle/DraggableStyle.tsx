@@ -18,7 +18,7 @@ export const DraggableStyle = () => (
         left: 0;
         right: 0;
         bottom: 0;
-        border: 2px solid #376DFA;
+        border: 2px dashed #376DFA;
         z-index: 1;
         pointer-events: none;
       }

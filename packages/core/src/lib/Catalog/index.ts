@@ -1,1 +1,1 @@
-export { register, get, clear } from './Catalog';
+export { register, get, getAll, clear } from './Catalog';

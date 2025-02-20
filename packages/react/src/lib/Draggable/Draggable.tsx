@@ -1,36 +1,31 @@
-import { FC, PropsWithChildren, useEffect } from 'react';
+import { FC, PropsWithChildren, useRef } from 'react';
 import { useDrag } from 'react-dnd';
 import { ClassNames, TargetType } from '../Constants';
-import { useEditing } from '../EditingContext';
 
 type Props = {
   type: TargetType;
 };
 
 export const Draggable: FC<PropsWithChildren<Props>> = ({ type, ...props }) => {
-  const { setIsDragging } = useEditing();
+  const targetRef = useRef<HTMLElement>(null);
 
-  const [{ isDragging, opacity }, dragRef] = useDrag(() => ({
+  const [, dragRef] = useDrag(() => ({
     type,
-    collect: monitor => ({
-      isDragging: monitor.isDragging(),
-      opacity: monitor.isDragging() ? 0.5 : 1,
-    }),
+    collect: monitor => {
+      targetRef.current?.style.setProperty('visibility', monitor.isDragging() ? 'hidden' : 'visible');
+    },
   }));
-
-  useEffect(() => {
-    setIsDragging(isDragging);
-  }, [isDragging, setIsDragging]);
 
   return (
     <div
       ref={node => {
         if (node?.firstChild) {
-          dragRef(node?.firstChild as Element);
+          dragRef(node.firstChild as Element);
+
+          targetRef.current = node.firstChild as HTMLElement;
         }
       }}
       className={ClassNames.Draggable}
-      style={{ opacity }}
       {...props}
     />
   );

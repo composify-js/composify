@@ -1,24 +1,26 @@
+import { NodeManager, Parser } from '@composify/core';
 import { createContext, FC, PropsWithChildren, useContext, useMemo, useState } from 'react';
 
 type EditingContextValues = {
-  isDragging: boolean;
-  setIsDragging: (isDragging: boolean) => void;
+  source: Parser.Node;
 };
 
 const EditingContext = createContext<EditingContextValues>({
-  isDragging: false,
-  setIsDragging: () => null,
+  source: ['Fragment', {}],
 });
 
-export const EditingProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [isDragging, setIsDragging] = useState(false);
+type Props = {
+  source: string;
+};
+
+export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialSource, children }) => {
+  const [source] = useState(NodeManager.attachId(Parser.parse(initialSource)));
 
   const contextValues = useMemo(
     () => ({
-      isDragging,
-      setIsDragging,
+      source,
     }),
-    [isDragging]
+    [source]
   );
 
   return <EditingContext.Provider value={contextValues}>{children}</EditingContext.Provider>;

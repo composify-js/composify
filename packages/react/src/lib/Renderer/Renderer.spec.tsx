@@ -1,9 +1,9 @@
 import { Catalog } from '@composify/core';
-import { cleanup, render as testRender } from '@testing-library/react';
-import { Attributes, createElement, ReactNode } from 'react';
-import { render } from './render';
+import { cleanup, render } from '@testing-library/react';
+import { createElement, ReactNode } from 'react';
+import { Renderer } from './Renderer';
 
-describe('render', () => {
+describe('Renderer', () => {
   afterEach(cleanup);
 
   it('should render basic element', () => {
@@ -13,27 +13,27 @@ describe('render', () => {
       </div>
     `;
 
-    const { getByText } = testRender(render(source));
+    const { getByText } = render(<Renderer source={source} />);
 
     expect(getByText('Hello world!')).toBeTruthy();
   });
 
   it('with custom pragma', () => {
     const source = `
-      <div>
-        Hello world!
-      </div>
-    `;
+        <div>
+          Hello world!
+        </div>
+      `;
 
     const pragma = {
-      jsx: (type: string, props: Attributes | null, ...children: ReactNode[]) =>
+      jsx: (type: string, props: Record<string, unknown>, ...children: ReactNode[]) =>
         createElement('div', null, [
           createElement('div', { key: 1 }, 'custom pragma'),
           createElement(type, { ...props, key: 2 }, children),
         ]),
     };
 
-    const { getByText } = testRender(render(source, pragma));
+    const { getByText } = render(<Renderer source={source} pragma={pragma} />);
 
     expect(getByText('Hello world!')).toBeTruthy();
     expect(getByText('custom pragma')).toBeTruthy();
@@ -46,7 +46,7 @@ describe('render', () => {
       </div>
     `;
 
-    const { getByText } = testRender(render(source));
+    const { getByText } = render(<Renderer source={source} />);
 
     expect(getByText('Hello world!')).toBeTruthy();
   });
@@ -62,7 +62,7 @@ describe('render', () => {
       </Title>
     `;
 
-    const { getByText } = testRender(render(source));
+    const { getByText } = render(<Renderer source={source} />);
 
     expect(getByText('Hello world!')).toBeTruthy();
   });

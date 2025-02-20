@@ -1,8 +1,8 @@
 import { Catalog, Parser } from '@composify/core';
-import { Attributes, createElement, ReactNode } from 'react';
+import { createElement, FC, ReactNode, useMemo } from 'react';
 
 export type Pragma = {
-  jsx: (type: string, props: Attributes | null, ...children: ReactNode[]) => ReactNode;
+  jsx: (type: string, props: Record<string, unknown>, ...children: ReactNode[]) => ReactNode;
 };
 
 const renderElement = (node: Parser.Node, pragma: Pragma): ReactNode => {
@@ -19,8 +19,13 @@ const renderElement = (node: Parser.Node, pragma: Pragma): ReactNode => {
   );
 };
 
-export const render = (source: string, pragma: Pragma = { jsx: createElement }): ReactNode => {
-  const content = Parser.parse(source);
+type Props = {
+  source: string | Parser.Node;
+  pragma?: Pragma;
+};
+
+export const Renderer: FC<Props> = ({ source, pragma = { jsx: createElement } }) => {
+  const content = useMemo(() => (typeof source === 'string' ? Parser.parse(source) : source), [source]);
 
   return renderElement(content, pragma);
 };

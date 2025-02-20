@@ -1,7 +1,7 @@
-const catalog = new Map<string, any>();
+const components = new Map<string, any>();
 
 export const register = (name: string, component: any) => {
-  catalog.set(name, component);
+  components.set(name, component);
 };
 
 export const get = (name: string) => {
@@ -11,7 +11,7 @@ export const get = (name: string) => {
     };
   }
 
-  const component = catalog.get(name);
+  const component = components.get(name);
 
   if (!component) {
     throw new Error(`Component "${name}" is not registered`);
@@ -22,6 +22,8 @@ export const get = (name: string) => {
   };
 };
 
+export const getAll = () => [...components.values()];
+
 export const clear = () => {
-  catalog.clear();
+  components.clear();
 };

@@ -116,7 +116,7 @@ const parseNode = (node: any) => {
         }, {}),
       ].concat(children);
     case 'JSXFragment':
-      return ['Fragment', null].concat(children);
+      return ['Fragment', {}].concat(children);
     case 'JSXText':
       return node.value.trim();
     default:
@@ -124,7 +124,7 @@ const parseNode = (node: any) => {
   }
 };
 
-export type Node = [string, Record<string, any> | null, ...Node[]];
+export type Node = [string, Record<string, any>, ...Node[]];
 
 export const parse = (source: string): Node => {
   const parsed = parser.parse(source, {

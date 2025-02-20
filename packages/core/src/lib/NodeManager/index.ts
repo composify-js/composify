@@ -1,0 +1,1 @@
+export { attachId } from './NodeManager';

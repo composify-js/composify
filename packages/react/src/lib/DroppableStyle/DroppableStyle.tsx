@@ -3,16 +3,10 @@ import { ClassNames } from '../Constants';
 export const DroppableStyle = () => (
   <style>
     {`
-      .${ClassNames.DroppableContainer} {
-        position: relative;
-        display: flex;
-        flex-grow: 0;
-        flex-shrink: 0;
-        align-self: stretch;
-      }
-
-      .${ClassNames.Droppable} {
-        position: absolute;
+      .${ClassNames.Droppable}:empty {
+        content: '';
+        min-width: 16px;
+        min-height: 16px;
       }
     `}
   </style>
