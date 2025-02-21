@@ -23,9 +23,10 @@ const pragma: Pragma = {
         item: info as PopulatedNodeInfo,
       },
       createElement(type, props, [
-        createElement(childrenPropSpec?.type === 'node' ? Droppable : Droppable, {
+        createElement(Droppable, {
           key: info.id,
           item: info as PopulatedNodeInfo,
+          nested: childrenPropSpec?.type === 'node',
         }),
         ...children,
       ])
