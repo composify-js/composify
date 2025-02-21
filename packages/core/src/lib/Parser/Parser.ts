@@ -1,5 +1,6 @@
 import { Parser } from 'acorn';
 import jsx from 'acorn-jsx';
+import { Node } from '../NodeManager';
 
 const parser = Parser.extend(jsx({ allowNamespaces: false }));
 
@@ -33,7 +34,7 @@ const parseAttribute = (expression: any): any => {
           [key]: value,
         };
       }, {});
-    case 'BinaryExpresseion':
+    case 'BinaryExpression':
       switch (expression.operator) {
         case '+':
           return parseAttribute(expression.left) + parseAttribute(expression.right);
@@ -114,12 +115,18 @@ const parseNode = (node: any): Node => {
             [key]: value,
           };
         }, {}),
+        info: {
+          type: node.openingElement.name.name,
+        },
         children,
       };
     case 'JSXFragment':
       return {
         type: 'Fragment',
         props: {},
+        info: {
+          type: 'Fragment',
+        },
         children,
       };
     case 'JSXText':
@@ -127,13 +134,6 @@ const parseNode = (node: any): Node => {
     default:
       throw new SyntaxError(`${node.type} is not supported`);
   }
-};
-
-// export type Node = [string, Record<string, any>, ...Node[]];
-export type Node = {
-  type: string;
-  props: Record<string, any>;
-  children: Node[];
 };
 
 export const parse = (source: string): Node => {

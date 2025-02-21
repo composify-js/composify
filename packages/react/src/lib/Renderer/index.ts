@@ -1,1 +1,1 @@
-export { Renderer, KEY_COMPOSIFY_TYPE, type Pragma } from './Renderer';
+export { Renderer, type Pragma } from './Renderer';

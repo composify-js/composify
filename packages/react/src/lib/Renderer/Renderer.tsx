@@ -1,21 +1,21 @@
-import { Catalog, Parser } from '@composify/core';
+import { Catalog, Node, Parser } from '@composify/core';
 import { createElement, FC, ReactNode, useMemo } from 'react';
 
-export const KEY_COMPOSIFY_TYPE = 'composify-type';
-
 export type Pragma = {
-  jsx: (type: string, props: Record<string, unknown>, ...children: ReactNode[]) => ReactNode;
+  jsx: (type: string, props: Record<string, unknown>, info: Node['info'], ...children: ReactNode[]) => ReactNode;
 };
 
-const renderElement = (node: Parser.Node, pragma: Pragma): ReactNode => {
+const DEFAULT_PRAGMA: Pragma = {
+  jsx: (type, props, _, ...children) => createElement(type, props, ...children),
+};
+
+const renderElement = (node: Node, pragma: Pragma): ReactNode => {
   const { component } = Catalog.get(node.type);
 
   return pragma.jsx(
     component,
-    {
-      ...node.props,
-      [KEY_COMPOSIFY_TYPE]: node.type,
-    },
+    node.props,
+    node.info,
     ...node.children.map((child, index) =>
       typeof child === 'object'
         ? renderElement(
@@ -23,7 +23,7 @@ const renderElement = (node: Parser.Node, pragma: Pragma): ReactNode => {
               ...child,
               props: {
                 ...child.props,
-                key: index,
+                key: node.info.id ?? index,
               },
             },
             pragma
@@ -34,11 +34,11 @@ const renderElement = (node: Parser.Node, pragma: Pragma): ReactNode => {
 };
 
 type Props = {
-  source: string | Parser.Node;
+  source: string | Node;
   pragma?: Pragma;
 };
 
-export const Renderer: FC<Props> = ({ source, pragma = { jsx: createElement } }) => {
+export const Renderer: FC<Props> = ({ source, pragma = DEFAULT_PRAGMA }) => {
   const content = useMemo(() => (typeof source === 'string' ? Parser.parse(source) : source), [source]);
 
   return renderElement(content, pragma);

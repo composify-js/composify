@@ -1,8 +1,20 @@
-import { NodeManager, Parser } from '@composify/core';
-import { createContext, FC, PropsWithChildren, useContext, useMemo, useState } from 'react';
+import { NodeManager, Node, Parser } from '@composify/core';
+import {
+  createContext,
+  FC,
+  PropsWithChildren,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+  useSyncExternalStore,
+} from 'react';
 
 type EditingContextValues = {
-  source: Parser.Node;
+  source: Node;
+  isDragging: boolean;
+  swapNode: (originId: string, targetId: string) => void;
+  setIsDragging: (value: boolean) => void;
 };
 
 const EditingContext = createContext<EditingContextValues>({
@@ -10,7 +22,13 @@ const EditingContext = createContext<EditingContextValues>({
     type: 'Fragment',
     props: {},
     children: [],
+    info: {
+      type: 'Fragment',
+    },
   },
+  isDragging: false,
+  swapNode: () => null,
+  setIsDragging: () => null,
 });
 
 type Props = {
@@ -18,13 +36,29 @@ type Props = {
 };
 
 export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialSource, children }) => {
-  const [source] = useState(NodeManager.attachId(Parser.parse(initialSource)));
+  const nodeManager = useMemo(() => new NodeManager(Parser.parse(initialSource)), [initialSource]);
+
+  const source = useSyncExternalStore(
+    nodeManager.subscribe.bind(nodeManager),
+    () => nodeManager.root,
+    () => nodeManager.root
+  );
+
+  const [isDragging, setIsDragging] = useState(false);
+
+  const swapNode = useCallback(
+    (originId: string, targetId: string) => nodeManager.swap(originId, targetId),
+    [nodeManager]
+  );
 
   const contextValues = useMemo(
     () => ({
       source,
+      isDragging,
+      swapNode,
+      setIsDragging,
     }),
-    [source]
+    [source, isDragging]
   );
 
   return <EditingContext.Provider value={contextValues}>{children}</EditingContext.Provider>;

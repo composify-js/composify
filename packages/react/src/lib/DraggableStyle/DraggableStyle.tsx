@@ -1,27 +1,39 @@
 import { ClassNames } from '../Constants';
+import { useEditing } from '../EditingContext';
 
-export const DraggableStyle = () => (
-  <style>
-    {`
-    .${ClassNames.Draggable} {
-      display: contents;
-    }
+export const DraggableStyle = () => {
+  const { isDragging } = useEditing();
 
-    .${ClassNames.Draggable} > * {
-      position: relative;
-    }
+  return (
+    <>
+      <style>
+        {`
+        .${ClassNames.Draggable} {
+          display: contents;
+        }
 
-    .${ClassNames.Draggable} > *:hover:not(:has(.${ClassNames.Draggable}:hover))::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border: 2px dashed #376DFA;
-      z-index: 1;
-      pointer-events: none;
-    }
-    `}
-  </style>
-);
+        .${ClassNames.Draggable} > * {
+          position: relative;
+        }
+        `}
+      </style>
+      {!isDragging && (
+        <style>
+          {`
+        .${ClassNames.Draggable} > *:hover:not(:has(.${ClassNames.Draggable}:hover))::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border: 2px dashed #376DFA;
+          z-index: 1;
+          pointer-events: none;
+        }
+        `}
+        </style>
+      )}
+    </>
+  );
+};

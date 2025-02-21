@@ -1,22 +1,32 @@
-import { Catalog } from '@composify/core';
+import { Catalog, PopulatedNodeInfo } from '@composify/core';
 import { createElement } from 'react';
 import { TargetType } from '../Constants';
 import { Draggable } from '../Draggable';
 import { Droppable } from '../Droppable';
-import { DroppableMoveOnly } from '../DroppableMoveOnly';
 import { useEditing } from '../EditingContext';
-import { KEY_COMPOSIFY_TYPE, Pragma, Renderer } from '../Renderer';
+import { Pragma, Renderer } from '../Renderer';
 
 const pragma: Pragma = {
-  jsx: (type, props, ...children) => {
-    const spec = Catalog.get(props[KEY_COMPOSIFY_TYPE] as string);
+  jsx: (type, props, info, ...children) => {
+    const spec = Catalog.get(info.type);
     const childrenPropSpec = (spec.props ?? {}).children;
+
+    if (info.id === undefined) {
+      throw new Error(`Node not populated: ${JSON.stringify(info)}`);
+    }
 
     return createElement(
       Draggable,
-      { type: TargetType.Canvas, key: props.key as string | undefined },
+      {
+        type: TargetType.Canvas,
+        key: info.id,
+        item: info as PopulatedNodeInfo,
+      },
       createElement(type, props, [
-        createElement(childrenPropSpec?.type === 'node' ? Droppable : DroppableMoveOnly, { key: Droppable.name }),
+        createElement(childrenPropSpec?.type === 'node' ? Droppable : Droppable, {
+          key: info.id,
+          item: info as PopulatedNodeInfo,
+        }),
         ...children,
       ])
     );

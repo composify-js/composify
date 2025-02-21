@@ -1,1 +1,1 @@
-export { parse, type Node } from './Parser';
+export { parse } from './Parser';

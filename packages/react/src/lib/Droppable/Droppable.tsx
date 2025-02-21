@@ -1,21 +1,26 @@
-import { FC, PropsWithChildren, useMemo } from 'react';
+import { PopulatedNodeInfo } from '@composify/core';
+import { FC } from 'react';
 import { useDrop } from 'react-dnd';
 import { ClassNames, TargetType } from '../Constants';
+import { useEditing } from '../EditingContext';
 
-export const Droppable: FC<PropsWithChildren> = props => {
-  const [{ isOver }, dropRef] = useDrop({
+type Props = {
+  item: PopulatedNodeInfo;
+};
+
+export const Droppable: FC<Props> = ({ item, ...props }) => {
+  const { swapNode } = useEditing();
+
+  const [, dropRef] = useDrop<Props['item']>({
     accept: [TargetType.Canvas, TargetType.Library],
-    collect: monitor => ({
-      isOver: monitor.isOver(),
-    }),
-  });
+    hover: target => {
+      if (target.id === item.id || target.parent?.id !== item.parent?.id) {
+        return;
+      }
 
-  const droppableStyle = useMemo(
-    () => ({
-      backgroundColor: isOver ? '#376DFAAA' : 'transparent',
-    }),
-    [isOver]
-  );
+      swapNode(target.id, item.id);
+    },
+  });
 
   return (
     <div
@@ -23,7 +28,6 @@ export const Droppable: FC<PropsWithChildren> = props => {
         dropRef(node);
       }}
       className={ClassNames.Droppable}
-      style={droppableStyle}
       {...props}
     />
   );
