@@ -5,22 +5,37 @@ import { Draggable } from '../Draggable';
 import { Pragma, Renderer } from '../Renderer';
 
 const pragma: Pragma = {
-  jsx: (type, props, info, ...children) =>
-    createElement(
+  jsx: (type, props, info, ...children) => {
+    const spec = Catalog.get(info.type);
+    const specProps = spec.props ?? {};
+
+    const defaultProps = Object.entries(specProps).reduce(
+      (acc, [key, value]) =>
+        value?.default
+          ? {
+              ...acc,
+              [key]: value.default,
+            }
+          : acc,
+      {} as Record<string, unknown>
+    );
+
+    return createElement(
       Draggable,
       {
         type: TargetType.Library,
         key: props.key as string,
         item: info as PopulatedNodeInfo,
       },
-      createElement(type, props, children)
-    ),
+      createElement(type, defaultProps, children)
+    );
+  },
 };
 
 export const Library = () => (
   <div>
-    {Catalog.getAll().map(spec => (
-      <Renderer source={`<${spec.component.name} />`} key={spec.component.name} pragma={pragma} />
+    {Catalog.getAll().map(([name]) => (
+      <Renderer source={`<${name} />`} key={name} pragma={pragma} />
     ))}
   </div>
 );

@@ -3,7 +3,7 @@
   "display": "Default",
   "compilerOptions": {
     "jsx": "react-jsx",
-    "lib": ["DOM", "ES2015"],
+    "lib": ["DOM", "ES2017"],
     "module": "ESNext",
     "target": "es2015",
     "composite": false,

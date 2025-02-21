@@ -7,7 +7,9 @@ type Props = {
   flexWrap?: 'wrap' | 'nowrap';
   gap?: number;
   width?: number | string;
+  minWidth?: number | string;
   height?: number | string;
+  minHeight?: number | string;
   padding?: {
     top: number;
     right: number;
@@ -37,7 +39,9 @@ export const Stack: FC<PropsWithChildren<Props>> = ({
   flexWrap,
   gap,
   width,
+  minWidth,
   height,
+  minHeight,
   padding,
   margin,
   overflow,
@@ -107,7 +111,9 @@ export const Stack: FC<PropsWithChildren<Props>> = ({
       flexWrap,
       gap,
       width,
+      minWidth,
       height,
+      minHeight,
       paddingLeft: padding?.left,
       paddingRight: padding?.right,
       paddingTop: padding?.top,
@@ -130,7 +136,9 @@ export const Stack: FC<PropsWithChildren<Props>> = ({
       flexWrap,
       gap,
       width,
+      minWidth,
       height,
+      minHeight,
       padding,
       margin,
       overflow,

@@ -10,6 +10,25 @@ Catalog.register<ComponentProps<typeof Stack>>('Stack', {
       label: 'Children',
       type: 'node',
     },
+    direction: {
+      label: 'Direction',
+      type: 'radio',
+      options: [
+        { label: 'Horizontal', value: 'horizontal' },
+        { label: 'Vertical', value: 'vertical' },
+      ],
+      default: 'horizontal',
+    },
+    width: {
+      label: 'Width',
+      type: 'text',
+      default: '100%',
+    },
+    height: {
+      label: 'Height',
+      type: 'text',
+      default: '96',
+    },
   },
 });
 

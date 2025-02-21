@@ -10,6 +10,7 @@ export const get = (name: string) => {
   if (name.toLowerCase() === name) {
     return {
       component: name,
+      props: {},
     };
   }
 
@@ -22,7 +23,7 @@ export const get = (name: string) => {
   return spec;
 };
 
-export const getAll = () => [...catalog.values()];
+export const getAll = () => [...catalog];
 
 export const clear = () => {
   catalog.clear();

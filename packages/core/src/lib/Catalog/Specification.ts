@@ -75,7 +75,7 @@ export type PropertySpec<Value> = {
 
 export type ComponentSpec<Props, Key extends keyof Props = keyof Props> = {
   component: any;
-  props?: {
+  props: {
     [key in Key]?: PropertySpec<Props[key]>;
   };
 };
