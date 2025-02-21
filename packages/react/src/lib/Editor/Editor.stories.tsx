@@ -16,14 +16,14 @@ Catalog.register<ComponentProps<typeof Stack>>('Stack', {
 export const BasicUsage = () => {
   const source = `
     <Stack direction="vertical">
-      <Stack direction="horizontal" backgroundColor="lightgray">
-        <Stack width={100} height={100} backgroundColor="darkgray" />
-        <Stack width={100} height={100} backgroundColor="white" />
+      <Stack direction="horizontal" backgroundColor="#ECEFF1">
+        <Stack width={100} height={100} backgroundColor="#E1F5FE" />
+        <Stack width={100} height={100} backgroundColor="#B3E5FC" />
       </Stack>
-      <Stack direction="horizontal" backgroundColor="lightblue">
-        <Stack width={100} height={100} backgroundColor="darkblue" />
+      <Stack direction="horizontal" backgroundColor="#CFD8DC">
+        <Stack width={100} height={100} backgroundColor="#81D4FA" />
       </Stack>
-      <Stack direction="horizontal" backgroundColor="lightgreen" />
+      <Stack direction="horizontal" backgroundColor="#B0BEC5" />
     </Stack>
   `;
 

@@ -11,7 +11,7 @@ export const DraggableStyle = () => (
       position: relative;
     }
 
-    .${ClassNames.Draggable} > *:hover::before {
+    .${ClassNames.Draggable} > *:hover:not(:has(.${ClassNames.Draggable}:hover))::before {
       content: '';
       position: absolute;
       top: 0;
