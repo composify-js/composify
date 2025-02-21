@@ -28,15 +28,32 @@ export class NodeManager {
     this.root = this.populate(source);
   }
 
-  public swap = (originId: string, targetId: string) => {
-    const originNode = this.find(originId);
-    const targetNode = this.find(targetId);
+  public swap = (leftId: string, rightId: string) => {
+    const leftNode = this.find(leftId);
+    const rightNode = this.find(rightId);
 
-    if (!originNode || !targetNode) {
+    if (!leftNode || !rightNode) {
       return this.root;
     }
 
-    this.root = this.swapInternal(originNode, targetNode);
+    this.root = this.swapInternal(leftNode, rightNode);
+    this.notify();
+  };
+
+  public move = (originId: string, targetId: string) => {
+    const originNode = this.find(originId);
+
+    if (!originNode) {
+      return this.root;
+    }
+
+    const temp = this.remove(originId);
+
+    if (!temp) {
+      throw new Error('Cannot relocate the root node');
+    }
+
+    this.root = this.insert(originNode, targetId, temp);
     this.notify();
   };
 
@@ -105,20 +122,60 @@ export class NodeManager {
     return null;
   };
 
-  private swapInternal(from: PopulatedNode, to: PopulatedNode, source?: PopulatedNode): PopulatedNode {
+  private remove = (id: string, source?: PopulatedNode): PopulatedNode | null => {
     const node = source ?? this.root;
 
-    if (node.info.id === from.info.id) {
-      return to;
-    }
-
-    if (node.info.id === to.info.id) {
-      return from;
+    if (node.info.id === id) {
+      return null;
     }
 
     return {
       ...node,
-      children: node.children.map(child => this.swapInternal(from, to, child)),
+      children: node.children.map(child => this.remove(id, child)).filter(Boolean) as PopulatedNode[],
+    };
+  };
+
+  private insert = (origin: PopulatedNode, targetId: string, source?: PopulatedNode): PopulatedNode => {
+    const node = source ?? this.root;
+
+    if (node.info.id === targetId) {
+      return {
+        ...node,
+        children: [
+          ...node.children,
+          {
+            ...origin,
+            info: {
+              ...origin.info,
+              parent: {
+                id: targetId,
+              },
+            },
+          },
+        ],
+      };
+    }
+
+    return {
+      ...node,
+      children: node.children.map(child => this.insert(origin, targetId, child)),
+    };
+  };
+
+  private swapInternal(left: PopulatedNode, right: PopulatedNode, source?: PopulatedNode): PopulatedNode {
+    const node = source ?? this.root;
+
+    if (node.info.id === left.info.id) {
+      return right;
+    }
+
+    if (node.info.id === right.info.id) {
+      return left;
+    }
+
+    return {
+      ...node,
+      children: node.children.map(child => this.swapInternal(left, right, child)),
     };
   }
 }

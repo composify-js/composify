@@ -14,7 +14,8 @@ type EditingContextValues = {
   source: Node;
   isDragging: boolean;
   isAltDown: boolean;
-  swapNode: (originId: string, targetId: string) => void;
+  reorderNode: (leftId: string, rightId: string) => void;
+  relocateNode: (originId: string, targetId: string) => void;
   setIsDragging: (value: boolean) => void;
   setIsAltDown: (value: boolean) => void;
 };
@@ -30,7 +31,8 @@ const EditingContext = createContext<EditingContextValues>({
   },
   isDragging: false,
   isAltDown: false,
-  swapNode: () => null,
+  reorderNode: () => null,
+  relocateNode: () => null,
   setIsDragging: () => null,
   setIsAltDown: () => null,
 });
@@ -51,8 +53,13 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
   const [isDragging, setIsDragging] = useState(false);
   const [isAltDown, setIsAltDown] = useState(false);
 
-  const swapNode = useCallback(
-    (originId: string, targetId: string) => nodeManager.swap(originId, targetId),
+  const reorderNode = useCallback(
+    (leftId: string, rightId: string) => nodeManager.swap(leftId, rightId),
+    [nodeManager]
+  );
+
+  const relocateNode = useCallback(
+    (originId: string, targetId: string) => nodeManager.move(originId, targetId),
     [nodeManager]
   );
 
@@ -61,11 +68,12 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
       source,
       isDragging,
       isAltDown,
-      swapNode,
+      reorderNode,
+      relocateNode,
       setIsDragging,
       setIsAltDown,
     }),
-    [source, isDragging, isAltDown, swapNode]
+    [source, isDragging, isAltDown, reorderNode]
   );
 
   return <EditingContext.Provider value={contextValues}>{children}</EditingContext.Provider>;

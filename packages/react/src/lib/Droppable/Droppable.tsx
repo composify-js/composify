@@ -10,7 +10,7 @@ type Props = {
 };
 
 export const Droppable: FC<Props> = ({ item, nested, ...props }) => {
-  const { isAltDown, swapNode } = useEditing();
+  const { isAltDown, reorderNode, relocateNode } = useEditing();
 
   const [{ isRelocating }, dropRef] = useDrop<Props['item'], unknown, { isRelocating: boolean }>({
     accept: [TargetType.Canvas, TargetType.Library],
@@ -19,8 +19,9 @@ export const Droppable: FC<Props> = ({ item, nested, ...props }) => {
         return;
       }
 
-      swapNode(target.id, item.id);
+      reorderNode(target.id, item.id);
     },
+    drop: target => relocateNode(target.id, item.id),
     canDrop: target => target.id !== item.id && target.parent?.id !== item.id && nested && isAltDown,
     collect: monitor => ({
       isRelocating: monitor.isOver() && monitor.canDrop(),
