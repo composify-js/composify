@@ -13,8 +13,10 @@ import {
 type EditingContextValues = {
   source: Node;
   isDragging: boolean;
+  isAltDown: boolean;
   swapNode: (originId: string, targetId: string) => void;
   setIsDragging: (value: boolean) => void;
+  setIsAltDown: (value: boolean) => void;
 };
 
 const EditingContext = createContext<EditingContextValues>({
@@ -27,8 +29,10 @@ const EditingContext = createContext<EditingContextValues>({
     },
   },
   isDragging: false,
+  isAltDown: false,
   swapNode: () => null,
   setIsDragging: () => null,
+  setIsAltDown: () => null,
 });
 
 type Props = {
@@ -45,6 +49,7 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
   );
 
   const [isDragging, setIsDragging] = useState(false);
+  const [isAltDown, setIsAltDown] = useState(false);
 
   const swapNode = useCallback(
     (originId: string, targetId: string) => nodeManager.swap(originId, targetId),
@@ -55,10 +60,12 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
     () => ({
       source,
       isDragging,
+      isAltDown,
       swapNode,
       setIsDragging,
+      setIsAltDown,
     }),
-    [source, isDragging]
+    [source, isDragging, isAltDown, swapNode]
   );
 
   return <EditingContext.Provider value={contextValues}>{children}</EditingContext.Provider>;

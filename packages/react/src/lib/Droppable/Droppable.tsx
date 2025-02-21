@@ -9,12 +9,12 @@ type Props = {
 };
 
 export const Droppable: FC<Props> = ({ item, ...props }) => {
-  const { swapNode } = useEditing();
+  const { isAltDown, swapNode } = useEditing();
 
   const [, dropRef] = useDrop<Props['item']>({
     accept: [TargetType.Canvas, TargetType.Library],
     hover: target => {
-      if (target.id === item.id || target.parent?.id !== item.parent?.id) {
+      if (target.id === item.id || target.parent?.id !== item.parent?.id || isAltDown) {
         return;
       }
 

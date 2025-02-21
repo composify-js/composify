@@ -5,6 +5,7 @@ import { Canvas } from '../Canvas';
 import { DraggableStyle } from '../DraggableStyle';
 import { DroppableStyle } from '../DroppableStyle';
 import { EditingProvider } from '../EditingContext';
+import { KeyDownDetector } from '../KeyDownDetector';
 import { Library } from '../Library';
 
 type Props = {
@@ -22,6 +23,7 @@ export const Editor: FC<Props> = ({ source }) => (
           <Canvas />
         </div>
       </div>
+      <KeyDownDetector />
     </EditingProvider>
   </DndProvider>
 );
