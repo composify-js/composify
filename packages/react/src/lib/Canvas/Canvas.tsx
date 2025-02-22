@@ -1,5 +1,5 @@
 import { Catalog, PopulatedNodeInfo } from '@composify/core';
-import { createElement } from 'react';
+import { Children, createElement } from 'react';
 import { TargetType } from '../Constants';
 import { Draggable } from '../Draggable';
 import { Droppable } from '../Droppable';
@@ -10,6 +10,7 @@ const pragma: Pragma = {
   jsx: (type, props, info, ...children) => {
     const spec = Catalog.get(info.type);
     const childrenPropSpec = (spec.props ?? {}).children;
+    const acceptsChildren = childrenPropSpec?.type === 'node';
 
     if (info.id === undefined) {
       throw new Error(`Node not populated: ${JSON.stringify(info)}`);
@@ -24,11 +25,31 @@ const pragma: Pragma = {
       },
       createElement(type, props, [
         createElement(Droppable, {
-          key: info.id,
+          key: `${info.id}-default`,
           item: info as PopulatedNodeInfo,
-          nested: childrenPropSpec?.type === 'node',
+          index: 0,
+          nested: acceptsChildren,
         }),
-        ...children,
+        ...(acceptsChildren && children?.length > 0
+          ? (Children.map(children, (child, index) => [
+              createElement(Droppable, {
+                key: `${info.id}-${index}`,
+                item: info as PopulatedNodeInfo,
+                index,
+                nested: acceptsChildren,
+              }),
+              child,
+            ])
+              ?.flat()
+              .concat(
+                createElement(Droppable, {
+                  key: `${info.id}-${children.length}`,
+                  item: info as PopulatedNodeInfo,
+                  index: children.length,
+                  nested: acceptsChildren,
+                })
+              ) ?? [])
+          : children),
       ])
     );
   },

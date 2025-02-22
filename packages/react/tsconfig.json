@@ -3,9 +3,9 @@
   "display": "Default",
   "compilerOptions": {
     "jsx": "react-jsx",
-    "lib": ["DOM", "ES2017"],
+    "lib": ["DOM", "ES2019"],
     "module": "ESNext",
-    "target": "es2015",
+    "target": "ES2019",
     "composite": false,
     "declaration": true,
     "declarationMap": true,

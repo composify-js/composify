@@ -16,7 +16,7 @@ type EditingContextValues = {
   isAltDown: boolean;
   findNode: (id: string) => PopulatedNodeInfo | null;
   reorderNode: (leftId: string, rightId: string) => void;
-  relocateNode: (originId: string, targetId: string) => void;
+  relocateNode: (originId: string, targetId: string, index: number) => void;
   setIsDragging: (value: boolean) => void;
   setIsAltDown: (value: boolean) => void;
 };
@@ -63,7 +63,7 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
   );
 
   const relocateNode = useCallback(
-    (originId: string, targetId: string) => nodeManager.move(originId, targetId),
+    (originId: string, targetId: string, index: number) => nodeManager.move(originId, targetId, index),
     [nodeManager]
   );
 

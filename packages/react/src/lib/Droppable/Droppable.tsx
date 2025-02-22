@@ -7,10 +7,11 @@ import { useEditing } from '../EditingContext';
 
 type Props = {
   item: PopulatedNodeInfo;
+  index: number;
   nested: boolean;
 };
 
-export const Droppable: FC<Props> = ({ item, nested, ...props }) => {
+export const Droppable: FC<Props> = ({ item, index, nested, ...props }) => {
   const { isAltDown, findNode, reorderNode, relocateNode } = useEditing();
 
   const [, dropRef] = useDrop<Props['item']>({
@@ -28,7 +29,7 @@ export const Droppable: FC<Props> = ({ item, nested, ...props }) => {
       }
 
       if (latestTarget?.parent?.id !== item.id && nested) {
-        relocateNode(target.id, item.id);
+        relocateNode(target.id, item.id, index);
       }
     }, 300),
   });

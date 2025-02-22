@@ -58,7 +58,7 @@ export class NodeManager {
     this.notify();
   };
 
-  public move = (originId: string, targetId: string) => {
+  public move = (originId: string, targetId: string, index: number) => {
     const originNode = this.find(originId);
 
     if (!originNode) {
@@ -71,7 +71,7 @@ export class NodeManager {
       throw new Error('Cannot relocate the root node');
     }
 
-    this.root = this.insert(originNode, targetId, temp);
+    this.root = this.insert(originNode, targetId, index, temp);
     this.notify();
   };
 
@@ -135,14 +135,14 @@ export class NodeManager {
     };
   };
 
-  private insert = (origin: PopulatedNode, targetId: string, source?: PopulatedNode): PopulatedNode => {
+  private insert = (origin: PopulatedNode, targetId: string, index: number, source?: PopulatedNode): PopulatedNode => {
     const node = source ?? this.root;
 
     if (node.info.id === targetId) {
       return {
         ...node,
         children: [
-          ...node.children,
+          ...node.children.slice(0, index),
           {
             ...origin,
             info: {
@@ -152,13 +152,14 @@ export class NodeManager {
               },
             },
           },
+          ...node.children.slice(index),
         ],
       };
     }
 
     return {
       ...node,
-      children: node.children.map(child => this.insert(origin, targetId, child)),
+      children: node.children.map(child => this.insert(origin, targetId, index, child)),
     };
   };
 
