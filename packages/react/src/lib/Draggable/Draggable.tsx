@@ -1,7 +1,8 @@
 import { PopulatedNodeInfo } from '@composify/core';
-import { FC, PropsWithChildren, useEffect, useRef } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import { useDrag } from 'react-dnd';
 import { ClassNames, TargetType } from '../Constants';
+import { useEditing } from '../EditingContext';
 
 type Props = {
   type: TargetType;
@@ -9,27 +10,24 @@ type Props = {
 };
 
 export const Draggable: FC<PropsWithChildren<Props>> = ({ type, item, ...props }) => {
-  const targetRef = useRef<HTMLElement>(null);
+  const { setTargetId } = useEditing();
 
-  const [{ isDragging }, dragRef] = useDrag(() => ({
+  const [, dragRef] = useDrag(() => ({
     type,
-    item: () => item,
-    collect: monitor => ({
-      isDragging: monitor.isDragging(),
-    }),
+    item,
+    collect: monitor => {
+      if (monitor.isDragging()) {
+        setTargetId(item.id);
+      }
+    },
   }));
-
-  useEffect(() => {
-    targetRef.current?.style.setProperty('visibility', isDragging ? 'hidden' : 'visible');
-  }, [isDragging]);
 
   return (
     <div
+      data-item-id={item.id}
       ref={node => {
         if (node?.firstChild) {
           dragRef(node.firstChild as Element);
-
-          targetRef.current = node.firstChild as HTMLElement;
         }
       }}
       className={ClassNames.Draggable}

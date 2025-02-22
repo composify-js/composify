@@ -1,4 +1,4 @@
-import { NodeManager, Node, Parser, PopulatedNodeInfo } from '@composify/core';
+import { NodeManager, Node, Parser } from '@composify/core';
 import {
   createContext,
   FC,
@@ -12,13 +12,11 @@ import {
 
 type EditingContextValues = {
   source: Node;
+  targetId?: string;
   isDragging: boolean;
-  isAltDown: boolean;
-  findNode: (id: string) => PopulatedNodeInfo | null;
-  reorderNode: (leftId: string, rightId: string) => void;
   relocateNode: (originId: string, targetId: string, index: number) => void;
+  setTargetId: (value?: string) => void;
   setIsDragging: (value: boolean) => void;
-  setIsAltDown: (value: boolean) => void;
 };
 
 const EditingContext = createContext<EditingContextValues>({
@@ -30,13 +28,11 @@ const EditingContext = createContext<EditingContextValues>({
       type: 'Fragment',
     },
   },
+  targetId: undefined,
   isDragging: false,
-  isAltDown: false,
-  findNode: () => null,
-  reorderNode: () => null,
   relocateNode: () => null,
+  setTargetId: () => null,
   setIsDragging: () => null,
-  setIsAltDown: () => null,
 });
 
 type Props = {
@@ -53,14 +49,7 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
   );
 
   const [isDragging, setIsDragging] = useState(false);
-  const [isAltDown, setIsAltDown] = useState(false);
-
-  const findNode = useCallback((id: string) => nodeManager.find(id)?.info ?? null, [nodeManager]);
-
-  const reorderNode = useCallback(
-    (leftId: string, rightId: string) => nodeManager.swap(leftId, rightId),
-    [nodeManager]
-  );
+  const [targetId, setTargetId] = useState<string>();
 
   const relocateNode = useCallback(
     (originId: string, targetId: string, index: number) => nodeManager.move(originId, targetId, index),
@@ -70,15 +59,13 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
   const contextValues = useMemo(
     () => ({
       source,
+      targetId,
       isDragging,
-      isAltDown,
-      findNode,
-      reorderNode,
       relocateNode,
+      setTargetId,
       setIsDragging,
-      setIsAltDown,
     }),
-    [source, isDragging, isAltDown, reorderNode]
+    [source, isDragging, relocateNode]
   );
 
   return <EditingContext.Provider value={contextValues}>{children}</EditingContext.Provider>;

@@ -1,6 +1,6 @@
 import { PopulatedNodeInfo } from '@composify/core';
 import { throttle } from 'es-toolkit';
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { useDrop } from 'react-dnd';
 import { ClassNames, TargetType } from '../Constants';
 import { useEditing } from '../EditingContext';
@@ -8,38 +8,40 @@ import { useEditing } from '../EditingContext';
 type Props = {
   item: PopulatedNodeInfo;
   index: number;
-  nested: boolean;
 };
 
-export const Droppable: FC<Props> = ({ item, index, nested, ...props }) => {
-  const { isAltDown, findNode, reorderNode, relocateNode } = useEditing();
+export const Droppable: FC<Props> = ({ item, index, ...props }) => {
+  const { relocateNode } = useEditing();
 
-  const [, dropRef] = useDrop<Props['item']>({
+  const [{ isOver }, dropRef] = useDrop<Props['item'], unknown, { isOver: boolean }>({
     accept: [TargetType.Canvas, TargetType.Library],
     hover: throttle((target: PopulatedNodeInfo) => {
       if (target.id === item.id) {
         return;
       }
 
-      const latestTarget = findNode(target.id);
-
-      if (latestTarget?.parent?.id === item.parent?.id && !isAltDown) {
-        reorderNode(target.id, item.id);
-        return;
-      }
-
-      if (latestTarget?.parent?.id !== item.id && nested) {
-        relocateNode(target.id, item.id, index);
-      }
+      relocateNode(target.id, item.id, index);
     }, 300),
+    collect: monitor => ({
+      isOver: monitor.isOver(),
+    }),
   });
+
+  const droppableStyle = useMemo(
+    () => ({
+      backgroundColor: isOver ? '#376DFAAA' : 'transparent',
+    }),
+    [isOver]
+  );
 
   return (
     <div
+      data-item-id={item.id}
       ref={node => {
         dropRef(node);
       }}
       className={ClassNames.Droppable}
+      style={droppableStyle}
       {...props}
     />
   );

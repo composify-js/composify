@@ -28,7 +28,6 @@ const pragma: Pragma = {
           key: `${info.id}-default`,
           item: info as PopulatedNodeInfo,
           index: 0,
-          nested: acceptsChildren,
         }),
         ...(acceptsChildren && children?.length > 0
           ? (Children.map(children, (child, index) => [
@@ -36,7 +35,6 @@ const pragma: Pragma = {
                 key: `${info.id}-${index}`,
                 item: info as PopulatedNodeInfo,
                 index,
-                nested: acceptsChildren,
               }),
               child,
             ])
@@ -46,7 +44,6 @@ const pragma: Pragma = {
                   key: `${info.id}-${children.length}`,
                   item: info as PopulatedNodeInfo,
                   index: children.length,
-                  nested: acceptsChildren,
                 })
               ) ?? [])
           : children),

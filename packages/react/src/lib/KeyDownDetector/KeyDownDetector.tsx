@@ -1,59 +1,63 @@
-import { useEffect } from 'react';
+import { useEffect, startTransition } from 'react';
 import { useEditing } from '../EditingContext';
 
 export const KeyDownDetector = () => {
-  const { setIsAltDown, setIsDragging } = useEditing();
+  const { setIsDragging, setTargetId } = useEditing();
 
   useEffect(() => {
-    const handleKeyDown = ({ key }: KeyboardEvent) => {
-      if (key === 'Alt') {
-        setIsAltDown(true);
-      }
-    };
+    let isDragging = false;
 
-    const handleKeyUp = ({ key }: KeyboardEvent) => {
-      if (key === 'Alt') {
-        setIsAltDown(false);
-      }
-    };
+    const handleMouseUp = () => {
+      startTransition(() => {
+        isDragging = false;
 
-    const handleMouseUp = (event: MouseEvent) => {
-      setIsAltDown(event.altKey);
-    };
-
-    const handleDrag = (event: DragEvent) => {
-      setIsAltDown(event.altKey);
+        setIsDragging(false);
+        setTargetId(undefined);
+      });
     };
 
     const handleDragStart = () => {
-      setIsDragging(true);
+      startTransition(() => {
+        isDragging = true;
+
+        setIsDragging(true);
+      });
     };
 
     const handleDragEnd = () => {
-      setIsDragging(false);
+      startTransition(() => {
+        isDragging = false;
+
+        setIsDragging(false);
+        setTargetId(undefined);
+      });
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    window.addEventListener('keyup', handleKeyUp);
+    const handleMouseMove = (event: MouseEvent) => {
+      if (event.buttons === 0 && isDragging) {
+        startTransition(() => {
+          isDragging = false;
+
+          setIsDragging(false);
+          setTargetId(undefined);
+        });
+      }
+    };
+
     window.addEventListener('mouseup', handleMouseUp);
-    window.addEventListener('drag', handleDrag);
-    window.addEventListener('dragover', handleDrag);
+    window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('dragstart', handleDragStart);
     window.addEventListener('dragend', handleDragEnd);
     window.addEventListener('drop', handleDragEnd);
 
     return () => {
-      console.log('cleanup');
-      window.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('keyup', handleKeyUp);
       window.removeEventListener('mouseup', handleMouseUp);
-      window.removeEventListener('drag', handleDrag);
-      window.removeEventListener('dragover', handleDrag);
+      window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('dragstart', handleDragStart);
       window.removeEventListener('dragend', handleDragEnd);
       window.removeEventListener('drop', handleDragEnd);
     };
-  }, [setIsAltDown, setIsDragging]);
+  }, [setIsDragging, setTargetId]);
 
   return null;
 };

@@ -3,6 +3,13 @@ import { ComponentProps } from 'react';
 import { Stack } from '../Stack';
 import { Editor } from './Editor';
 
+const Text = () => <p>Hello world!</p>;
+
+Catalog.register<ComponentProps<typeof Text>>('Text', {
+  component: Text,
+  props: {},
+});
+
 Catalog.register<ComponentProps<typeof Stack>>('Stack', {
   component: Stack,
   props: {
@@ -37,6 +44,7 @@ export const BasicUsage = () => {
     <Stack direction="vertical">
       <Stack direction="horizontal" backgroundColor="#ECEFF1">
         <Stack width={200} height={100} backgroundColor="#E1F5FE" />
+        <Text />
         <Stack width={150} height={100} backgroundColor="#B3E5FC" />
       </Stack>
       <Stack direction="horizontal" backgroundColor="#CFD8DC">

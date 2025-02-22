@@ -2,7 +2,7 @@ import { ClassNames } from '../Constants';
 import { useEditing } from '../EditingContext';
 
 export const DroppableStyle = () => {
-  const { isDragging, isAltDown } = useEditing();
+  const { targetId, isDragging } = useEditing();
 
   return (
     <style>
@@ -32,13 +32,15 @@ export const DroppableStyle = () => {
             min-height: 16px;
           }
 
+          .${ClassNames.Droppable}[data-item-id="${targetId}"],
+          .${ClassNames.Draggable}[data-item-id="${targetId}"] .${ClassNames.Droppable} {
+            display: none !important;
+          }
+
           .${ClassNames.Droppable}:not(:first-child) {
             border: 1px dotted #376DFA;
           }
-        `}
-      {isDragging &&
-        isAltDown &&
-        `
+
           .${ClassNames.Droppable}:first-child:not(:only-child) {
             display: none;
           }

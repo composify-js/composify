@@ -60,13 +60,16 @@ export class NodeManager {
 
   public move = (originId: string, targetId: string, index: number) => {
     const originNode = this.find(originId);
-
     if (!originNode) {
       return this.root;
     }
 
-    const temp = this.remove(originId);
+    const innerTargetNode = this.find(targetId, originNode);
+    if (innerTargetNode) {
+      return this.root;
+    }
 
+    const temp = this.remove(originId);
     if (!temp) {
       throw new Error('Cannot relocate the root node');
     }
@@ -78,12 +81,13 @@ export class NodeManager {
   public stringify = (source?: PopulatedNode): string => {
     const node = source ?? this.root;
     const children = node.children.map(this.stringify);
+    const name = `${node.info.type}:${node.info.id}`;
 
     if (children.length > 0) {
-      return `[${node.info.id}, [${children.join(', ')}]]`;
+      return `[${name}, [${children.join(', ')}]]`;
     }
 
-    return node.info.id ?? '';
+    return name;
   };
 
   public subscribe = (callback: () => void): (() => void) => {

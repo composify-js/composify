@@ -1,10 +1,9 @@
 import { FC } from 'react';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Canvas } from '../Canvas';
 import { DraggableStyle } from '../DraggableStyle';
 import { DroppableStyle } from '../DroppableStyle';
 import { EditingProvider } from '../EditingContext';
+import { IsolatedDndProvider } from '../IsolatedDndProvider';
 import { KeyDownDetector } from '../KeyDownDetector';
 import { Library } from '../Library';
 
@@ -13,7 +12,7 @@ type Props = {
 };
 
 export const Editor: FC<Props> = ({ source }) => (
-  <DndProvider backend={HTML5Backend}>
+  <IsolatedDndProvider>
     <EditingProvider source={source}>
       <DraggableStyle />
       <DroppableStyle />
@@ -25,5 +24,5 @@ export const Editor: FC<Props> = ({ source }) => (
       </div>
       <KeyDownDetector />
     </EditingProvider>
-  </DndProvider>
+  </IsolatedDndProvider>
 );
