@@ -28,6 +28,24 @@ export class NodeManager {
     this.root = this.populate(source);
   }
 
+  public find = (id: string, source?: PopulatedNode): PopulatedNode | null => {
+    const node = source ?? this.root;
+
+    if (node.info.id === id) {
+      return node;
+    }
+
+    for (const child of node.children) {
+      const result = this.find(id, child);
+
+      if (result) {
+        return result;
+      }
+    }
+
+    return null;
+  };
+
   public swap = (leftId: string, rightId: string) => {
     const leftNode = this.find(leftId);
     const rightNode = this.find(rightId);
@@ -102,24 +120,6 @@ export class NodeManager {
 
   private generateRandomId = () => {
     return Date.now() + Math.random().toString(36).slice(2);
-  };
-
-  private find = (id: string, source?: PopulatedNode): PopulatedNode | null => {
-    const node = source ?? this.root;
-
-    if (node.info.id === id) {
-      return node;
-    }
-
-    for (const child of node.children) {
-      const result = this.find(id, child);
-
-      if (result) {
-        return result;
-      }
-    }
-
-    return null;
   };
 
   private remove = (id: string, source?: PopulatedNode): PopulatedNode | null => {

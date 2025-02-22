@@ -15,7 +15,7 @@ export const Draggable: FC<PropsWithChildren<Props>> = ({ type, item, ...props }
   const { setIsDragging } = useEditing();
   const [{ isDragging }, dragRef] = useDrag(() => ({
     type,
-    item,
+    item: () => item,
     collect: monitor => ({
       isDragging: monitor.isDragging(),
     }),

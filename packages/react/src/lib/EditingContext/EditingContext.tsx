@@ -1,4 +1,4 @@
-import { NodeManager, Node, Parser } from '@composify/core';
+import { NodeManager, Node, Parser, PopulatedNodeInfo } from '@composify/core';
 import {
   createContext,
   FC,
@@ -14,6 +14,7 @@ type EditingContextValues = {
   source: Node;
   isDragging: boolean;
   isAltDown: boolean;
+  findNode: (id: string) => PopulatedNodeInfo | null;
   reorderNode: (leftId: string, rightId: string) => void;
   relocateNode: (originId: string, targetId: string) => void;
   setIsDragging: (value: boolean) => void;
@@ -31,6 +32,7 @@ const EditingContext = createContext<EditingContextValues>({
   },
   isDragging: false,
   isAltDown: false,
+  findNode: () => null,
   reorderNode: () => null,
   relocateNode: () => null,
   setIsDragging: () => null,
@@ -53,6 +55,8 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
   const [isDragging, setIsDragging] = useState(false);
   const [isAltDown, setIsAltDown] = useState(false);
 
+  const findNode = useCallback((id: string) => nodeManager.find(id)?.info ?? null, [nodeManager]);
+
   const reorderNode = useCallback(
     (leftId: string, rightId: string) => nodeManager.swap(leftId, rightId),
     [nodeManager]
@@ -68,6 +72,7 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
       source,
       isDragging,
       isAltDown,
+      findNode,
       reorderNode,
       relocateNode,
       setIsDragging,

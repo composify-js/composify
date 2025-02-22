@@ -17,20 +17,26 @@ export const KeyDownDetector = () => {
       }
     };
 
-    const handleMouse = (event: MouseEvent) => {
+    const handleMouseUp = (event: MouseEvent) => {
+      setIsAltDown(event.altKey);
+    };
+
+    const handleDrag = (event: DragEvent) => {
       setIsAltDown(event.altKey);
     };
 
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('keyup', handleKeyUp);
-    window.addEventListener('mouseup', handleMouse);
-    window.addEventListener('mousemove', handleMouse);
+    window.addEventListener('mouseup', handleMouseUp);
+    window.addEventListener('drag', handleDrag);
+    window.addEventListener('dragover', handleDrag);
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
-      window.removeEventListener('mouseup', handleMouse);
-      window.removeEventListener('mousemove', handleMouse);
+      window.removeEventListener('mouseup', handleMouseUp);
+      window.removeEventListener('drag', handleDrag);
+      window.removeEventListener('dragover', handleDrag);
     };
   }, [setIsAltDown]);
 
