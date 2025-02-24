@@ -39,12 +39,23 @@ export class NodeManager {
     return null;
   };
 
-  public add = (origin: Node, targetId: string, index: number) => {
-    this.root = this.insert(origin, targetId, index);
+  public insert = (origin: Node, targetId: string, index: number) => {
+    this.root = this.insertInternal(origin, targetId, index);
     this.notify();
   };
 
-  public move = (originId: string, targetId: string, index: number) => {
+  public remove = (id: string) => {
+    const temp = this.removeInternal(id);
+
+    if (!temp) {
+      throw new Error(`Node with id ${id} not found`);
+    }
+
+    this.root = temp;
+    this.notify();
+  };
+
+  public relocate = (originId: string, targetId: string, index: number) => {
     const originNode = this.find(originId);
     if (!originNode) {
       return this.root;
@@ -55,12 +66,12 @@ export class NodeManager {
       return this.root;
     }
 
-    const temp = this.remove(originId);
+    const temp = this.removeInternal(originId);
     if (!temp) {
       throw new Error('Cannot relocate the root node');
     }
 
-    this.root = this.insert(originNode, targetId, index, temp);
+    this.root = this.insertInternal(originNode, targetId, index, temp);
     this.notify();
   };
 
@@ -103,7 +114,7 @@ export class NodeManager {
     return Date.now() + Math.random().toString(36).slice(2);
   };
 
-  private insert = (origin: Node, targetId: string, index: number, source?: PopulatedNode): PopulatedNode => {
+  private insertInternal = (origin: Node, targetId: string, index: number, source?: PopulatedNode): PopulatedNode => {
     const root = source ?? this.root;
     const node = 'id' in origin ? (origin as PopulatedNode) : this.populate(origin);
 
@@ -123,11 +134,11 @@ export class NodeManager {
 
     return {
       ...root,
-      children: root.children.map(child => this.insert(node, targetId, index, child)),
+      children: root.children.map(child => this.insertInternal(node, targetId, index, child)),
     };
   };
 
-  private remove = (id: string, source?: PopulatedNode): PopulatedNode | null => {
+  private removeInternal = (id: string, source?: PopulatedNode): PopulatedNode | null => {
     const root = source ?? this.root;
 
     if (root.id === id) {
@@ -136,7 +147,7 @@ export class NodeManager {
 
     return {
       ...root,
-      children: root.children.map(child => this.remove(id, child)).filter(Boolean) as PopulatedNode[],
+      children: root.children.map(child => this.removeInternal(id, child)).filter(Boolean) as PopulatedNode[],
     };
   };
 }
