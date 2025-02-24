@@ -1,4 +1,4 @@
-import { Catalog } from '@composify/core';
+import { Catalog, Node } from '@composify/core';
 import { cleanup, render } from '@testing-library/react';
 import { createElement, ReactNode } from 'react';
 import { Renderer } from './Renderer';
@@ -26,7 +26,7 @@ describe('Renderer', () => {
       `;
 
     const pragma = {
-      jsx: (type: string, props: Record<string, unknown>, ...children: ReactNode[]) =>
+      jsx: (type: string, props: Record<string, unknown>, _: Node['info'], ...children: ReactNode[]) =>
         createElement('div', null, [
           createElement('div', { key: 1 }, 'custom pragma'),
           createElement(type, { ...props, key: 2 }, children),

@@ -1,10 +1,10 @@
 import { Catalog, PopulatedNodeInfo } from '@composify/core';
 import { Children, createElement } from 'react';
+import { Pragma, Renderer } from '../../renderer/Renderer';
 import { TargetType } from '../Constants';
 import { Draggable } from '../Draggable';
 import { Droppable } from '../Droppable';
 import { useEditing } from '../EditingContext';
-import { Pragma, Renderer } from '../Renderer';
 
 const pragma: Pragma = {
   jsx: (type, props, info, ...children) => {

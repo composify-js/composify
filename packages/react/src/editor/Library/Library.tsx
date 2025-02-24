@@ -1,8 +1,8 @@
 import { Catalog, PopulatedNodeInfo } from '@composify/core';
 import { createElement } from 'react';
+import { Pragma, Renderer } from '../../renderer/Renderer';
 import { TargetType } from '../Constants';
 import { Draggable } from '../Draggable';
-import { Pragma, Renderer } from '../Renderer';
 
 const pragma: Pragma = {
   jsx: (type, props, info, ...children) => {
