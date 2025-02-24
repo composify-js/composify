@@ -1,14 +1,17 @@
-export type Node = {
+type SparseNode = {
+  id?: never;
   parent?: string;
   type: string;
   props: Record<string, any>;
   children: Node[];
 };
 
-export type PopulatedNode = Omit<Node, 'children'> & {
+type PopulatedNode = Omit<SparseNode, 'id' | 'children'> & {
   id: string;
   children: PopulatedNode[];
 };
+
+export type Node = SparseNode | PopulatedNode;
 
 export class NodeManager {
   public root: PopulatedNode;
@@ -56,12 +59,7 @@ export class NodeManager {
     this.notify();
   };
 
-  public insert = (
-    origin: PopulatedNode | Node,
-    targetId: string,
-    index: number,
-    source?: PopulatedNode
-  ): PopulatedNode => {
+  public insert = (origin: Node, targetId: string, index: number, source?: PopulatedNode): PopulatedNode => {
     const root = source ?? this.root;
     const node = 'id' in origin ? (origin as PopulatedNode) : this.populate(origin);
 
@@ -107,8 +105,8 @@ export class NodeManager {
     this.subscribers.forEach(callback => callback());
   };
 
-  private populate = (node: Node | PopulatedNode, parent?: string): PopulatedNode => {
-    const id = 'id' in node ? node.id : this.generateRandomId();
+  private populate = (node: Node, parent?: string): PopulatedNode => {
+    const id = node.id ?? this.generateRandomId();
 
     const children = node.children.map(child => this.populate(child, id));
 

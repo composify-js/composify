@@ -1,4 +1,4 @@
-import { Catalog, PopulatedNode } from '@composify/core';
+import { Catalog } from '@composify/core';
 import { Children, createElement } from 'react';
 import { Pragma, Renderer } from '../../renderer/Renderer';
 import { TargetType } from '../Constants';
@@ -12,30 +12,28 @@ const pragma: Pragma = {
     const childrenPropSpec = (spec.props ?? {}).children;
     const acceptsChildren = childrenPropSpec?.type === 'node';
 
-    if (!('id' in node)) {
+    if (!node.id) {
       throw new Error(`Node not populated: ${JSON.stringify(node)}`);
     }
-
-    const populatedNode = node as unknown as PopulatedNode;
 
     return createElement(
       Draggable,
       {
         type: TargetType.Canvas,
-        key: populatedNode.id,
-        item: populatedNode,
+        key: node.id,
+        item: node,
       },
       createElement(type, props, [
         createElement(Droppable, {
-          key: `${populatedNode.id}-default`,
-          item: populatedNode,
+          key: `${node.id}-default`,
+          item: node,
           index: 0,
         }),
         ...(acceptsChildren && children?.length > 0
           ? (Children.map(children, (child, index) => [
               createElement(Droppable, {
-                key: `${populatedNode.id}-${index}`,
-                item: populatedNode,
+                key: `${node.id}-${index}`,
+                item: node,
                 index,
               }),
               child,
@@ -43,8 +41,8 @@ const pragma: Pragma = {
               ?.flat()
               .concat(
                 createElement(Droppable, {
-                  key: `${populatedNode.id}-${children.length}`,
-                  item: populatedNode,
+                  key: `${node.id}-${children.length}`,
+                  item: node,
                   index: children.length,
                 })
               ) ?? [])

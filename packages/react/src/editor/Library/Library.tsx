@@ -1,4 +1,4 @@
-import { Catalog, PopulatedNode } from '@composify/core';
+import { Catalog } from '@composify/core';
 import { createElement } from 'react';
 import { Pragma, Renderer } from '../../renderer/Renderer';
 import { TargetType } from '../Constants';
@@ -25,7 +25,10 @@ const pragma: Pragma = {
       {
         type: TargetType.Library,
         key: props.key as string,
-        item: node as unknown as PopulatedNode,
+        item: {
+          ...node,
+          props: defaultProps,
+        },
       },
       createElement(type, defaultProps, children)
     );

@@ -1,4 +1,4 @@
-import { PopulatedNode } from '@composify/core';
+import { Node } from '@composify/core';
 import { FC, PropsWithChildren } from 'react';
 import { useDrag } from 'react-dnd';
 import { ClassNames, TargetType } from '../Constants';
@@ -6,7 +6,7 @@ import { useEditing } from '../EditingContext';
 
 type Props = {
   type: TargetType;
-  item: PopulatedNode;
+  item: Node;
 };
 
 export const Draggable: FC<PropsWithChildren<Props>> = ({ type, item, ...props }) => {
@@ -16,7 +16,7 @@ export const Draggable: FC<PropsWithChildren<Props>> = ({ type, item, ...props }
     type,
     item,
     collect: monitor => {
-      if (monitor.isDragging()) {
+      if (monitor.isDragging() && item.id) {
         setTargetId(item.id);
       }
     },

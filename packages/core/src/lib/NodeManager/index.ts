@@ -1,1 +1,1 @@
-export { NodeManager, type Node, type PopulatedNode } from './NodeManager';
+export { NodeManager, type Node } from './NodeManager';
