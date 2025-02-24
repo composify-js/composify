@@ -33,8 +33,13 @@ Catalog.register<ComponentProps<typeof Stack>>('Stack', {
     },
     height: {
       label: 'Height',
+      type: 'number',
+      default: 96,
+    },
+    backgroundColor: {
+      label: 'Background',
       type: 'text',
-      default: '96',
+      default: 'lightgray',
     },
   },
 });
