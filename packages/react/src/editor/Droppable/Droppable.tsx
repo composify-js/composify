@@ -28,7 +28,7 @@ export const Droppable: FC<Props> = ({ item, index, ...props }) => {
       }
     },
     collect: monitor => ({
-      isOver: monitor.isOver(),
+      isOver: monitor.isOver() && monitor.getItemType() === TargetType.Library,
     }),
   });
 
