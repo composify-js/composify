@@ -1,4 +1,4 @@
-import { PopulatedNodeInfo } from '@composify/core';
+import { PopulatedNode } from '@composify/core';
 import { FC, PropsWithChildren } from 'react';
 import { useDrag } from 'react-dnd';
 import { ClassNames, TargetType } from '../Constants';
@@ -6,7 +6,7 @@ import { useEditing } from '../EditingContext';
 
 type Props = {
   type: TargetType;
-  item: PopulatedNodeInfo;
+  item: PopulatedNode;
 };
 
 export const Draggable: FC<PropsWithChildren<Props>> = ({ type, item, ...props }) => {

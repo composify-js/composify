@@ -2,7 +2,7 @@ import { Catalog, Node, Parser } from '@composify/core';
 import { createElement, FC, ReactNode, useMemo } from 'react';
 
 export type Pragma = {
-  jsx: (type: string, props: Record<string, unknown>, info: Node['info'], ...children: ReactNode[]) => ReactNode;
+  jsx: (type: string, props: Record<string, unknown>, info: Node, ...children: ReactNode[]) => ReactNode;
 };
 
 const DEFAULT_PRAGMA: Pragma = {
@@ -15,7 +15,7 @@ const renderElement = (node: Node, pragma: Pragma): ReactNode => {
   return pragma.jsx(
     component,
     node.props,
-    node.info,
+    node,
     ...node.children.map((child, index) =>
       typeof child === 'object'
         ? renderElement(
@@ -23,7 +23,7 @@ const renderElement = (node: Node, pragma: Pragma): ReactNode => {
               ...child,
               props: {
                 ...child.props,
-                key: node.info.id ?? index,
+                key: node.id ?? index,
               },
             },
             pragma

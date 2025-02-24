@@ -115,18 +115,12 @@ const parseNode = (node: any): Node => {
             [key]: value,
           };
         }, {}),
-        info: {
-          type: node.openingElement.name.name,
-        },
         children,
       };
     case 'JSXFragment':
       return {
         type: 'Fragment',
         props: {},
-        info: {
-          type: 'Fragment',
-        },
         children,
       };
     case 'JSXText':

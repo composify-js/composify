@@ -1,4 +1,4 @@
-import { NodeManager, Node, Parser } from '@composify/core';
+import { NodeManager, Parser, PopulatedNode } from '@composify/core';
 import {
   createContext,
   FC,
@@ -11,7 +11,7 @@ import {
 } from 'react';
 
 type EditingContextValues = {
-  source: Node;
+  source: PopulatedNode;
   targetId?: string;
   isDragging: boolean;
   relocateNode: (originId: string, targetId: string, index: number) => void;
@@ -21,12 +21,10 @@ type EditingContextValues = {
 
 const EditingContext = createContext<EditingContextValues>({
   source: {
+    id: '',
     type: 'Fragment',
     props: {},
     children: [],
-    info: {
-      type: 'Fragment',
-    },
   },
   targetId: undefined,
   isDragging: false,

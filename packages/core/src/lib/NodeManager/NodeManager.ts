@@ -1,23 +1,13 @@
-export type NodeInfo = {
-  id?: string;
-  type: string;
-  parent?: {
-    id: string;
-  };
-};
-
-export type PopulatedNodeInfo = Required<Pick<NodeInfo, 'id'>> & Omit<NodeInfo, 'id'>;
-
 export type Node = {
+  parent?: string;
   type: string;
   props: Record<string, any>;
   children: Node[];
-  info: NodeInfo;
 };
 
-export type PopulatedNode = Omit<Node, 'children' | 'info'> & {
+export type PopulatedNode = Omit<Node, 'children'> & {
+  id: string;
   children: PopulatedNode[];
-  info: PopulatedNodeInfo;
 };
 
 export class NodeManager {
@@ -29,13 +19,13 @@ export class NodeManager {
   }
 
   public find = (id: string, source?: PopulatedNode): PopulatedNode | null => {
-    const node = source ?? this.root;
+    const root = source ?? this.root;
 
-    if (node.info.id === id) {
-      return node;
+    if (root.id === id) {
+      return root;
     }
 
-    for (const child of node.children) {
+    for (const child of root.children) {
       const result = this.find(id, child);
 
       if (result) {
@@ -44,18 +34,6 @@ export class NodeManager {
     }
 
     return null;
-  };
-
-  public swap = (leftId: string, rightId: string) => {
-    const leftNode = this.find(leftId);
-    const rightNode = this.find(rightId);
-
-    if (!leftNode || !rightNode) {
-      return this.root;
-    }
-
-    this.root = this.swapInternal(leftNode, rightNode);
-    this.notify();
   };
 
   public move = (originId: string, targetId: string, index: number) => {
@@ -78,10 +56,39 @@ export class NodeManager {
     this.notify();
   };
 
+  public insert = (
+    origin: PopulatedNode | Node,
+    targetId: string,
+    index: number,
+    source?: PopulatedNode
+  ): PopulatedNode => {
+    const root = source ?? this.root;
+    const node = 'id' in origin ? (origin as PopulatedNode) : this.populate(origin);
+
+    if (root.id === targetId) {
+      return {
+        ...root,
+        children: [
+          ...root.children.slice(0, index),
+          {
+            ...node,
+            parent: targetId,
+          },
+          ...root.children.slice(index),
+        ],
+      };
+    }
+
+    return {
+      ...root,
+      children: root.children.map(child => this.insert(origin, targetId, index, child)),
+    };
+  };
+
   public stringify = (source?: PopulatedNode): string => {
-    const node = source ?? this.root;
-    const children = node.children.map(this.stringify);
-    const name = `${node.info.type}:${node.info.id}`;
+    const root = source ?? this.root;
+    const children = root.children.map(this.stringify);
+    const name = `${root.type}:${root.id}`;
 
     if (children.length > 0) {
       return `[${name}, [${children.join(', ')}]]`;
@@ -100,24 +107,15 @@ export class NodeManager {
     this.subscribers.forEach(callback => callback());
   };
 
-  private populate = (node: Node, parent?: { id: string }): PopulatedNode => {
-    const info = node.info.id
-      ? (node.info as PopulatedNodeInfo)
-      : {
-          id: this.generateRandomId(),
-          type: node.type,
-          parent,
-        };
+  private populate = (node: Node | PopulatedNode, parent?: string): PopulatedNode => {
+    const id = 'id' in node ? node.id : this.generateRandomId();
 
-    const children = node.children.map(child =>
-      this.populate(child, {
-        id: info.id as string,
-      })
-    );
+    const children = node.children.map(child => this.populate(child, id));
 
     return {
       ...node,
-      info,
+      id,
+      parent,
       children,
     };
   };
@@ -127,60 +125,15 @@ export class NodeManager {
   };
 
   private remove = (id: string, source?: PopulatedNode): PopulatedNode | null => {
-    const node = source ?? this.root;
+    const root = source ?? this.root;
 
-    if (node.info.id === id) {
+    if (root.id === id) {
       return null;
     }
 
     return {
-      ...node,
-      children: node.children.map(child => this.remove(id, child)).filter(Boolean) as PopulatedNode[],
+      ...root,
+      children: root.children.map(child => this.remove(id, child)).filter(Boolean) as PopulatedNode[],
     };
   };
-
-  private insert = (origin: PopulatedNode, targetId: string, index: number, source?: PopulatedNode): PopulatedNode => {
-    const node = source ?? this.root;
-
-    if (node.info.id === targetId) {
-      return {
-        ...node,
-        children: [
-          ...node.children.slice(0, index),
-          {
-            ...origin,
-            info: {
-              ...origin.info,
-              parent: {
-                id: targetId,
-              },
-            },
-          },
-          ...node.children.slice(index),
-        ],
-      };
-    }
-
-    return {
-      ...node,
-      children: node.children.map(child => this.insert(origin, targetId, index, child)),
-    };
-  };
-
-  private swapInternal(left: PopulatedNode, right: PopulatedNode, source?: PopulatedNode): PopulatedNode {
-    const node = source ?? this.root;
-
-    if (node.info.id === left.info.id) {
-      return right;
-    }
-
-    if (node.info.id === right.info.id) {
-      return left;
-    }
-
-    return {
-      ...node,
-      children: node.children.map(child => this.swapInternal(left, right, child)),
-    };
-  }
 }

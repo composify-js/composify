@@ -1,12 +1,12 @@
-import { Catalog, PopulatedNodeInfo } from '@composify/core';
+import { Catalog, PopulatedNode } from '@composify/core';
 import { createElement } from 'react';
 import { Pragma, Renderer } from '../../renderer/Renderer';
 import { TargetType } from '../Constants';
 import { Draggable } from '../Draggable';
 
 const pragma: Pragma = {
-  jsx: (type, props, info, ...children) => {
-    const spec = Catalog.get(info.type);
+  jsx: (type, props, node, ...children) => {
+    const spec = Catalog.get(node.type);
     const specProps = spec.props ?? {};
 
     const defaultProps = Object.entries(specProps).reduce(
@@ -25,7 +25,7 @@ const pragma: Pragma = {
       {
         type: TargetType.Library,
         key: props.key as string,
-        item: info as PopulatedNodeInfo,
+        item: node as unknown as PopulatedNode,
       },
       createElement(type, defaultProps, children)
     );

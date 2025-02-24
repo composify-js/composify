@@ -1,4 +1,4 @@
-import { PopulatedNodeInfo } from '@composify/core';
+import { PopulatedNode } from '@composify/core';
 import { throttle } from 'es-toolkit';
 import { FC, useMemo } from 'react';
 import { useDrop } from 'react-dnd';
@@ -6,7 +6,7 @@ import { ClassNames, TargetType } from '../Constants';
 import { useEditing } from '../EditingContext';
 
 type Props = {
-  item: PopulatedNodeInfo;
+  item: PopulatedNode;
   index: number;
 };
 
@@ -15,13 +15,18 @@ export const Droppable: FC<Props> = ({ item, index, ...props }) => {
 
   const [{ isOver }, dropRef] = useDrop<Props['item'], unknown, { isOver: boolean }>({
     accept: [TargetType.Canvas, TargetType.Library],
-    hover: throttle((target: PopulatedNodeInfo) => {
+    hover: throttle((target: PopulatedNode) => {
       if (target.id === item.id) {
         return;
       }
 
       relocateNode(target.id, item.id, index);
     }, 300),
+    drop: (target, monitor) => {
+      if (monitor.getItemType() !== TargetType.Library) {
+        return;
+      }
+    },
     collect: monitor => ({
       isOver: monitor.isOver(),
     }),
