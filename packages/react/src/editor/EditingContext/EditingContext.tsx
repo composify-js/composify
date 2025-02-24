@@ -15,6 +15,7 @@ type EditingContextValues = {
   targetId?: string;
   isDragging: boolean;
   relocateNode: (originId: string, targetId: string, index: number) => void;
+  insertNode: (origin: Node, targetId: string, index: number) => void;
   setTargetId: (value?: string) => void;
   setIsDragging: (value: boolean) => void;
 };
@@ -29,6 +30,7 @@ const EditingContext = createContext<EditingContextValues>({
   targetId: undefined,
   isDragging: false,
   relocateNode: () => null,
+  insertNode: () => null,
   setTargetId: () => null,
   setIsDragging: () => null,
 });
@@ -54,16 +56,22 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
     [nodeManager]
   );
 
+  const insertNode = useCallback(
+    (origin: Node, targetId: string, index: number) => nodeManager.add(origin, targetId, index),
+    [nodeManager]
+  );
+
   const contextValues = useMemo(
     () => ({
       source,
       targetId,
       isDragging,
       relocateNode,
+      insertNode,
       setTargetId,
       setIsDragging,
     }),
-    [source, isDragging, relocateNode]
+    [source, isDragging, relocateNode, insertNode]
   );
 
   return <EditingContext.Provider value={contextValues}>{children}</EditingContext.Provider>;

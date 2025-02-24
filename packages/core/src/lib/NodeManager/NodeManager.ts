@@ -39,6 +39,11 @@ export class NodeManager {
     return null;
   };
 
+  public add = (origin: Node, targetId: string, index: number) => {
+    this.root = this.insert(origin, targetId, index);
+    this.notify();
+  };
+
   public move = (originId: string, targetId: string, index: number) => {
     const originNode = this.find(originId);
     if (!originNode) {
@@ -57,30 +62,6 @@ export class NodeManager {
 
     this.root = this.insert(originNode, targetId, index, temp);
     this.notify();
-  };
-
-  public insert = (origin: Node, targetId: string, index: number, source?: PopulatedNode): PopulatedNode => {
-    const root = source ?? this.root;
-    const node = 'id' in origin ? (origin as PopulatedNode) : this.populate(origin);
-
-    if (root.id === targetId) {
-      return {
-        ...root,
-        children: [
-          ...root.children.slice(0, index),
-          {
-            ...node,
-            parent: targetId,
-          },
-          ...root.children.slice(index),
-        ],
-      };
-    }
-
-    return {
-      ...root,
-      children: root.children.map(child => this.insert(origin, targetId, index, child)),
-    };
   };
 
   public stringify = (source?: PopulatedNode): string => {
@@ -120,6 +101,30 @@ export class NodeManager {
 
   private generateRandomId = () => {
     return Date.now() + Math.random().toString(36).slice(2);
+  };
+
+  private insert = (origin: Node, targetId: string, index: number, source?: PopulatedNode): PopulatedNode => {
+    const root = source ?? this.root;
+    const node = 'id' in origin ? (origin as PopulatedNode) : this.populate(origin);
+
+    if (root.id === targetId) {
+      return {
+        ...root,
+        children: [
+          ...root.children.slice(0, index),
+          {
+            ...node,
+            parent: targetId,
+          },
+          ...root.children.slice(index),
+        ],
+      };
+    }
+
+    return {
+      ...root,
+      children: root.children.map(child => this.insert(node, targetId, index, child)),
+    };
   };
 
   private remove = (id: string, source?: PopulatedNode): PopulatedNode | null => {

@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const Droppable: FC<Props> = ({ item, index, ...props }) => {
-  const { relocateNode } = useEditing();
+  const { relocateNode, insertNode } = useEditing();
 
   const [{ isOver }, dropRef] = useDrop<Props['item'], unknown, { isOver: boolean }>({
     accept: [TargetType.Canvas, TargetType.Library],
@@ -23,9 +23,11 @@ export const Droppable: FC<Props> = ({ item, index, ...props }) => {
       relocateNode(target.id, item.id, index);
     }, 300),
     drop: (target, monitor) => {
-      if (monitor.getItemType() !== TargetType.Library) {
+      if (monitor.getItemType() !== TargetType.Library || !item.id) {
         return;
       }
+
+      insertNode(target, item.id, index);
     },
     collect: monitor => ({
       isOver: monitor.isOver() && monitor.getItemType() === TargetType.Library,
