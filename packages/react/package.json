@@ -8,13 +8,9 @@
   },
   "license": "MIT",
   "sideEffects": false,
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
   "exports": {
     ".": {
       "import": {
@@ -26,15 +22,49 @@
         "default": "./dist/index.js"
       }
     },
+    "./editor": {
+      "import": {
+        "types": "./dist/editor/index.d.mts",
+        "default": "./dist/editor/index.mjs"
+      },
+      "require": {
+        "types": "./dist/editor/index.d.ts",
+        "default": "./dist/editor/index.js"
+      }
+    },
+    "./preset": {
+      "import": {
+        "types": "./dist/preset/index.d.mts",
+        "default": "./dist/preset/index.mjs"
+      },
+      "require": {
+        "types": "./dist/preset/index.d.ts",
+        "default": "./dist/preset/index.js"
+      }
+    },
+    "./renderer": {
+      "import": {
+        "types": "./dist/renderer/index.d.mts",
+        "default": "./dist/renderer/index.mjs"
+      },
+      "require": {
+        "types": "./dist/renderer/index.d.ts",
+        "default": "./dist/renderer/index.js"
+      }
+    },
     "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "build": "tsup",
     "storybook": "ladle serve",
     "test": "jest"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "dependencies": {
     "es-toolkit": "1.32.0",
