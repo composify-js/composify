@@ -1,11 +1,12 @@
 import { Catalog } from '@composify/core';
 import { createElement } from 'react';
-import { Pragma, Renderer } from '../../renderer/Renderer';
-import { TargetType } from '../Constants';
+import { Pragma, Renderer } from '../../renderer';
+import { ClassNames, TargetType } from '../Constants';
 import { Draggable } from '../Draggable';
+import { SearchForm } from '../SearchForm';
 
 const pragma: Pragma = {
-  jsx: (type, props, node, ...children) => {
+  jsx: (_, props, node) => {
     const spec = Catalog.get(node.type);
     const specProps = spec.props ?? {};
 
@@ -17,7 +18,7 @@ const pragma: Pragma = {
               [key]: value.default,
             }
           : acc,
-      {} as Record<string, unknown>
+      { key: node.type } as Record<string, unknown>
     );
 
     return createElement(
@@ -30,15 +31,24 @@ const pragma: Pragma = {
           props: defaultProps,
         },
       },
-      createElement(type, defaultProps, children)
+      createElement(
+        'p',
+        {
+          className: ClassNames.SpecItem,
+        },
+        node.type
+      )
     );
   },
 };
 
 export const Library = () => (
-  <div>
-    {Catalog.getAll().map(([name]) => (
-      <Renderer source={`<${name} />`} key={name} pragma={pragma} />
-    ))}
+  <div className={ClassNames.Library}>
+    <SearchForm />
+    <div className={ClassNames.SpecList}>
+      {Catalog.getAll().map(([name]) => (
+        <Renderer source={`<${name} />`} key={name} pragma={pragma} />
+      ))}
+    </div>
   </div>
 );

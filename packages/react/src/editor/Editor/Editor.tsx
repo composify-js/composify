@@ -1,8 +1,10 @@
 import { FC } from 'react';
 import { Canvas } from '../Canvas';
+import { ClassNames } from '../Constants';
 import { DraggableStyle } from '../DraggableStyle';
 import { DroppableStyle } from '../DroppableStyle';
 import { EditingProvider } from '../EditingContext';
+import { EditorStyle } from '../EditorStyle';
 import { IsolatedDndProvider } from '../IsolatedDndProvider';
 import { KeyDownDetector } from '../KeyDownDetector';
 import { Library } from '../Library';
@@ -16,12 +18,11 @@ export const Editor: FC<Props> = ({ source }) => (
     <EditingProvider source={source}>
       <DraggableStyle />
       <DroppableStyle />
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
+      <EditorStyle />
+      <main className={ClassNames.Editor}>
         <Library />
-        <div style={{ flex: 1 }}>
-          <Canvas />
-        </div>
-      </div>
+        <Canvas />
+      </main>
       <KeyDownDetector />
     </EditingProvider>
   </IsolatedDndProvider>

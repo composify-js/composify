@@ -1,7 +1,7 @@
 import { Catalog } from '@composify/core';
 import { Children, createElement } from 'react';
 import { Pragma, Renderer } from '../../renderer/Renderer';
-import { TargetType } from '../Constants';
+import { ClassNames, TargetType } from '../Constants';
 import { Draggable } from '../Draggable';
 import { Droppable } from '../Droppable';
 import { useEditing } from '../EditingContext';
@@ -55,5 +55,9 @@ const pragma: Pragma = {
 export const Canvas = () => {
   const { source } = useEditing();
 
-  return <Renderer source={source} pragma={pragma} />;
+  return (
+    <section className={ClassNames.Canvas}>
+      <Renderer source={source} pragma={pragma} />
+    </section>
+  );
 };
