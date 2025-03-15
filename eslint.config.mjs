@@ -1,3 +1,3 @@
-import config from '@hills-inc/eslint-config';
+import { createConfig } from '@hills-inc/eslint-config';
 
-export default config;
+export default createConfig(['react']);
