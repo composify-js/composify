@@ -10,6 +10,7 @@ describe('Catalog', () => {
 
     register('Title', {
       component: Title,
+      props: {},
     });
 
     expect(get('Title')).toBeTruthy();

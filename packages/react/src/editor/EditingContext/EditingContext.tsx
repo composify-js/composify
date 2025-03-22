@@ -71,7 +71,7 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
       setTargetId,
       setIsDragging,
     }),
-    [source, isDragging, relocateNode, insertNode]
+    [source, targetId, isDragging, relocateNode, insertNode, setTargetId, setIsDragging]
   );
 
   return <EditingContext.Provider value={contextValues}>{children}</EditingContext.Provider>;

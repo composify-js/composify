@@ -15,63 +15,68 @@ export type Node = SparseNode | PopulatedNode;
 
 export class NodeManager {
   public root: PopulatedNode;
+
+  private references = new Map<string, PopulatedNode>();
   private subscribers = new Set<() => void>();
 
   constructor(source: Node) {
     this.root = this.populate(source);
   }
 
-  public find = (id: string, source?: PopulatedNode): PopulatedNode | null => {
-    const root = source ?? this.root;
-
-    if (root.id === id) {
-      return root;
-    }
-
-    for (const child of root.children) {
-      const result = this.find(id, child);
-
-      if (result) {
-        return result;
-      }
-    }
-
-    return null;
+  public find = (id: string): PopulatedNode | undefined => {
+    return this.references.get(id);
   };
 
-  public insert = (origin: Node, targetId: string, index: number) => {
-    this.root = this.insertInternal(origin, targetId, index);
+  public insert = (node: Node, targetId: string, index: number) => {
+    const child = 'id' in node ? (node as PopulatedNode) : this.populate(node);
+    const parent = this.find(targetId);
+
+    if (!parent) {
+      return;
+    }
+
+    child.parent = targetId;
+    parent.children = [...parent.children.slice(0, index), child, ...parent.children.slice(index)];
+
     this.notify();
   };
 
-  public remove = (id: string) => {
-    const temp = this.removeInternal(id);
+  public remove = (id: string, permanent = true) => {
+    const node = this.find(id);
 
-    if (!temp) {
+    if (!node || !node.parent) {
       throw new Error(`Node with id ${id} not found`);
     }
 
-    this.root = temp;
+    const parent = this.find(node.parent);
+
+    if (!parent) {
+      throw new Error('Cannot remove root node');
+    }
+
+    parent.children = parent.children.filter(child => child.id !== id);
+
+    if (permanent) {
+      this.references.delete(id);
+    }
+
     this.notify();
   };
 
-  public relocate = (originId: string, targetId: string, index: number) => {
-    const originNode = this.find(originId);
-    if (!originNode) {
-      return this.root;
+  public relocate = (sourceId: string, targetId: string, index: number) => {
+    const sourceNode = this.find(sourceId);
+
+    if (!sourceNode) {
+      return;
     }
 
-    const innerTargetNode = this.find(targetId, originNode);
-    if (innerTargetNode) {
-      return this.root;
+    if (this.hasChild(targetId, sourceNode)) {
+      return;
     }
 
-    const temp = this.removeInternal(originId);
-    if (!temp) {
-      throw new Error('Cannot relocate the root node');
-    }
+    this.remove(sourceId, false);
+    this.insert(sourceNode, targetId, index);
 
-    this.root = this.insertInternal(originNode, targetId, index, temp);
     this.notify();
   };
 
@@ -94,60 +99,48 @@ export class NodeManager {
   };
 
   private notify = () => {
+    this.root = { ...this.root };
+    this.references.set(this.root.id, this.root);
     this.subscribers.forEach(callback => callback());
   };
 
   private populate = (node: Node, parent?: string): PopulatedNode => {
     const id = node.id ?? this.generateRandomId();
-
     const children = node.children.map(child => this.populate(child, id));
 
-    return {
+    const populatedNode = {
       ...node,
       id,
       parent,
       children,
     };
+
+    this.references.set(id, populatedNode);
+
+    return populatedNode;
   };
 
   private generateRandomId = () => {
     return Date.now() + Math.random().toString(36).slice(2);
   };
 
-  private insertInternal = (origin: Node, targetId: string, index: number, source?: PopulatedNode): PopulatedNode => {
-    const root = source ?? this.root;
-    const node = 'id' in origin ? (origin as PopulatedNode) : this.populate(origin);
+  private hasChild = (id: string, node: PopulatedNode): boolean => {
+    const stack = [node];
 
-    if (root.id === targetId) {
-      return {
-        ...root,
-        children: [
-          ...root.children.slice(0, index),
-          {
-            ...node,
-            parent: targetId,
-          },
-          ...root.children.slice(index),
-        ],
-      };
+    while (stack.length) {
+      const current = stack.pop();
+
+      if (!current) {
+        break;
+      }
+
+      if (current.id === id) {
+        return true;
+      }
+
+      stack.push(...current.children);
     }
 
-    return {
-      ...root,
-      children: root.children.map(child => this.insertInternal(node, targetId, index, child)),
-    };
-  };
-
-  private removeInternal = (id: string, source?: PopulatedNode): PopulatedNode | null => {
-    const root = source ?? this.root;
-
-    if (root.id === id) {
-      return null;
-    }
-
-    return {
-      ...root,
-      children: root.children.map(child => this.removeInternal(id, child)).filter(Boolean) as PopulatedNode[],
-    };
+    return false;
   };
 }
