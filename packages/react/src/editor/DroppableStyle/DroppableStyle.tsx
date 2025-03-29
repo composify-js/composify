@@ -2,7 +2,7 @@ import { ClassNames } from '../Constants';
 import { useEditing } from '../EditingContext';
 
 export const DroppableStyle = () => {
-  const { targetId, isDragging } = useEditing();
+  const { draggingNodeId, isDragging } = useEditing();
 
   return (
     <style>
@@ -32,10 +32,10 @@ export const DroppableStyle = () => {
             min-height: 16px;
           }
 
-          .${ClassNames.Droppable}[data-item-id="${targetId}"]:not(:only-child),
-          .${ClassNames.Draggable}[data-item-id="${targetId}"] .${ClassNames.Droppable}:not(:only-child),
-          .${ClassNames.Draggable}[data-item-id="${targetId}"]+.${ClassNames.Droppable},
-          .${ClassNames.Droppable}:not(:only-child):has(+ .${ClassNames.Draggable}[data-item-id="${targetId}"]) {
+          .${ClassNames.Droppable}[data-item-id="${draggingNodeId}"]:not(:only-child),
+          .${ClassNames.Draggable}[data-item-id="${draggingNodeId}"] .${ClassNames.Droppable}:not(:only-child),
+          .${ClassNames.Draggable}[data-item-id="${draggingNodeId}"]+.${ClassNames.Droppable},
+          .${ClassNames.Droppable}:not(:only-child):has(+ .${ClassNames.Draggable}[data-item-id="${draggingNodeId}"]) {
             display: none;
           }
 

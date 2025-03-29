@@ -12,11 +12,13 @@ import {
 
 type EditingContextValues = {
   source: Node;
-  targetId?: string;
+  selectedNodeId?: string;
+  draggingNodeId?: string;
   isDragging: boolean;
   relocateNode: (originId: string, targetId: string, index: number) => void;
   insertNode: (origin: Node, targetId: string, index: number) => void;
-  setTargetId: (value?: string) => void;
+  setSelectedNodeId: (value?: string) => void;
+  setDraggingNodeId: (value?: string) => void;
   setIsDragging: (value: boolean) => void;
 };
 
@@ -27,11 +29,13 @@ const EditingContext = createContext<EditingContextValues>({
     props: {},
     children: [],
   },
-  targetId: undefined,
+  selectedNodeId: undefined,
+  draggingNodeId: undefined,
   isDragging: false,
   relocateNode: () => null,
   insertNode: () => null,
-  setTargetId: () => null,
+  setSelectedNodeId: () => null,
+  setDraggingNodeId: () => null,
   setIsDragging: () => null,
 });
 
@@ -48,8 +52,9 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
     () => nodeManager.root
   );
 
+  const [selectedNodeId, setSelectedNodeId] = useState<string>();
+  const [draggingNodeId, setDraggingNodeId] = useState<string>();
   const [isDragging, setIsDragging] = useState(false);
-  const [targetId, setTargetId] = useState<string>();
 
   const relocateNode = useCallback(
     (originId: string, targetId: string, index: number) => nodeManager.relocate(originId, targetId, index),
@@ -64,14 +69,26 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
   const contextValues = useMemo(
     () => ({
       source,
-      targetId,
+      selectedNodeId,
+      draggingNodeId,
       isDragging,
       relocateNode,
       insertNode,
-      setTargetId,
+      setSelectedNodeId,
+      setDraggingNodeId,
       setIsDragging,
     }),
-    [source, targetId, isDragging, relocateNode, insertNode, setTargetId, setIsDragging]
+    [
+      source,
+      selectedNodeId,
+      draggingNodeId,
+      isDragging,
+      relocateNode,
+      insertNode,
+      setSelectedNodeId,
+      setDraggingNodeId,
+      setIsDragging,
+    ]
   );
 
   return <EditingContext.Provider value={contextValues}>{children}</EditingContext.Provider>;

@@ -2,7 +2,7 @@ import { useEffect, startTransition } from 'react';
 import { useEditing } from '../EditingContext';
 
 export const KeyDownDetector = () => {
-  const { setIsDragging, setTargetId } = useEditing();
+  const { setIsDragging, setDraggingNodeId } = useEditing();
 
   useEffect(() => {
     let isDragging = false;
@@ -12,7 +12,7 @@ export const KeyDownDetector = () => {
         isDragging = false;
 
         setIsDragging(false);
-        setTargetId(undefined);
+        setDraggingNodeId(undefined);
       });
     };
 
@@ -29,7 +29,7 @@ export const KeyDownDetector = () => {
         isDragging = false;
 
         setIsDragging(false);
-        setTargetId(undefined);
+        setDraggingNodeId(undefined);
       });
     };
 
@@ -39,7 +39,7 @@ export const KeyDownDetector = () => {
           isDragging = false;
 
           setIsDragging(false);
-          setTargetId(undefined);
+          setDraggingNodeId(undefined);
         });
       }
     };
@@ -57,7 +57,7 @@ export const KeyDownDetector = () => {
       window.removeEventListener('dragend', handleDragEnd);
       window.removeEventListener('drop', handleDragEnd);
     };
-  }, [setIsDragging, setTargetId]);
+  }, [setIsDragging, setDraggingNodeId]);
 
   return null;
 };

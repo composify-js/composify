@@ -1,5 +1,5 @@
 import { Node } from '@composify/core';
-import { FC, PropsWithChildren } from 'react';
+import { MouseEvent, FC, PropsWithChildren, useCallback } from 'react';
 import { useDrag } from 'react-dnd';
 import { ClassNames, TargetType } from '../Constants';
 import { useEditing } from '../EditingContext';
@@ -10,17 +10,28 @@ type Props = {
 };
 
 export const Draggable: FC<PropsWithChildren<Props>> = ({ type, item, ...props }) => {
-  const { setTargetId } = useEditing();
+  const { setSelectedNodeId, setDraggingNodeId } = useEditing();
 
   const [, dragRef] = useDrag(() => ({
     type,
     item,
     collect: monitor => {
       if (monitor.isDragging() && item.id) {
-        setTargetId(item.id);
+        setDraggingNodeId(item.id);
       }
     },
   }));
+
+  const handleClick = useCallback(
+    (event: MouseEvent<HTMLDivElement>) => {
+      event.stopPropagation();
+
+      if (item.id) {
+        setSelectedNodeId(item.id);
+      }
+    },
+    [item.id, setSelectedNodeId]
+  );
 
   return (
     <div
@@ -31,6 +42,7 @@ export const Draggable: FC<PropsWithChildren<Props>> = ({ type, item, ...props }
         }
       }}
       className={ClassNames.Draggable}
+      onClick={handleClick}
       {...props}
     />
   );
