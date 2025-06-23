@@ -27,13 +27,13 @@ export const EditorStyle = () => (
         background-color: #FFFFFF;
       }
 
-      .${ClassNames.SpecList} {
+      .${ClassNames.ComponentSpecList} {
         display: flex;
         flex-direction: column;
         padding: 1rem;
       }
 
-      .${ClassNames.SpecItem} {
+      .${ClassNames.ComponentSpecItem} {
         margin: 0;
         padding: 0.5rem;
         font-size: 0.875rem;

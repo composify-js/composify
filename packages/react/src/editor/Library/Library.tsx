@@ -34,7 +34,7 @@ const pragma: Pragma = {
       createElement(
         'p',
         {
-          className: ClassNames.SpecItem,
+          className: ClassNames.ComponentSpecItem,
         },
         node.type
       )
@@ -45,7 +45,7 @@ const pragma: Pragma = {
 export const Library = () => (
   <div className={ClassNames.Library}>
     <SearchForm />
-    <div className={ClassNames.SpecList}>
+    <div className={ClassNames.ComponentSpecList}>
       {Catalog.getAll().map(([name]) => (
         <Renderer source={`<${name} />`} key={name} pragma={pragma} />
       ))}

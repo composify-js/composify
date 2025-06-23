@@ -13,7 +13,7 @@ type Props = {
 export const Droppable: FC<Props> = ({ item, index, ...props }) => {
   const { relocateNode, insertNode } = useEditing();
 
-  const [{ isOver }, dropRef] = useDrop<Props['item'], unknown, { isOver: boolean }>({
+  const [{ isOver }, dropRef] = useDrop<Node, unknown, { isOver: boolean }>({
     accept: [TargetType.Canvas, TargetType.Library],
     hover: throttle((target: Node) => {
       if (target.id === item.id || !target.id || !item.id) {

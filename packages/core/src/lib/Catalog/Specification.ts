@@ -1,31 +1,37 @@
-type NodePropertySpec = {
+type DefaultPropertySpec<Value> = {
+  label: string;
+  list?: boolean;
+  default?: Value;
+};
+
+export type NodePropertySpec = DefaultPropertySpec<any> & {
   type: 'node';
 };
 
-type BooleanPropertySpec = {
+export type BooleanPropertySpec = DefaultPropertySpec<boolean> & {
   type: 'boolean';
 };
 
-type DatePropertySpec = {
+export type DatePropertySpec = DefaultPropertySpec<Date> & {
   type: 'date';
 };
 
-type ImagePropertySpec = {
+export type ImagePropertySpec = DefaultPropertySpec<string> & {
   type: 'image';
 };
 
-type NumberPropertySpec = {
+export type NumberPropertySpec = DefaultPropertySpec<number> & {
   type: 'number';
 };
 
-type ObjectPropertySpec<Value, Key extends keyof Value> = {
+export type ObjectPropertySpec<Value, Key extends keyof Value> = DefaultPropertySpec<Value> & {
   type: 'object';
   fields: {
     [key in Key]: PropertySpec<Value[key]>;
   };
 };
 
-type RadioPropertySpec = {
+export type RadioPropertySpec = DefaultPropertySpec<any> & {
   type: 'radio';
   options: (
     | {
@@ -39,7 +45,7 @@ type RadioPropertySpec = {
   )[];
 };
 
-type SelectPropertySpec = {
+export type SelectPropertySpec = DefaultPropertySpec<any> & {
   type: 'select';
   options: (
     | {
@@ -53,15 +59,11 @@ type SelectPropertySpec = {
   )[];
 };
 
-type TextPropertySpec = {
+export type TextPropertySpec = DefaultPropertySpec<string> & {
   type: 'text';
 };
 
-export type PropertySpec<Value> = {
-  label: string;
-  list?: boolean;
-  default?: Value;
-} & (
+export type PropertySpec<Value> =
   | NodePropertySpec
   | BooleanPropertySpec
   | DatePropertySpec
@@ -70,8 +72,7 @@ export type PropertySpec<Value> = {
   | ObjectPropertySpec<Value, keyof Value>
   | RadioPropertySpec
   | SelectPropertySpec
-  | TextPropertySpec
-);
+  | TextPropertySpec;
 
 export type ComponentSpec<Props, Key extends keyof Props = keyof Props> = {
   component: any;

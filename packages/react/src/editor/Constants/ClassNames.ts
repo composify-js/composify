@@ -4,7 +4,7 @@ export enum ClassNames {
   Editor = 'composify-editor',
   Library = 'composify-editor-library',
   SearchForm = 'composify-editor-search-form',
-  SpecList = 'composify-editor-spec-list',
-  SpecItem = 'composify-editor-spec-item',
+  ComponentSpecList = 'composify-editor-spec-list',
+  ComponentSpecItem = 'composify-editor-spec-item',
   Canvas = 'composify-editor-canvas',
 }
