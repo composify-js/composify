@@ -1,8 +1,6 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
-module.exports = {
+
+export default {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
-  moduleNameMapper: {
-    '@composify/(.*)': '<rootDir>/../$1/src',
-  },
 };
