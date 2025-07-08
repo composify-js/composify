@@ -44,19 +44,24 @@ export class NodeManager {
   public remove = (id: string, permanent = true) => {
     const node = this.find(id);
 
-    if (!node || !node.parent) {
+    if (!node) {
       throw new Error(`Node with id ${id} not found`);
+    }
+
+    if (!node.parent) {
+      throw new Error('Cannot remove root node');
     }
 
     const parent = this.find(node.parent);
 
     if (!parent) {
-      throw new Error('Cannot remove root node');
+      throw new Error('Parent node not found');
     }
 
     parent.children = parent.children.filter(child => child.id !== id);
 
     if (permanent) {
+      node.children.forEach(child => this.remove(child.id, true));
       this.references.delete(id);
     }
 
