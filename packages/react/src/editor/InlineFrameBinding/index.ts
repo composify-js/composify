@@ -1,0 +1,1 @@
+export { InlineFrameBinding } from './InlineFrameBinding';

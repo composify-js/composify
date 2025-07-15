@@ -1,7 +1,9 @@
 import { useEffect, startTransition } from 'react';
 import { useEditing } from '../EditingContext';
+import { useWindow } from '../WindowContext';
 
 export const KeyDownDetector = () => {
+  const { windows } = useWindow();
   const { setIsDragging, setDraggingNodeId } = useEditing();
 
   useEffect(() => {
@@ -44,20 +46,24 @@ export const KeyDownDetector = () => {
       }
     };
 
-    window.addEventListener('mouseup', handleMouseUp);
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('dragstart', handleDragStart);
-    window.addEventListener('dragend', handleDragEnd);
-    window.addEventListener('drop', handleDragEnd);
+    windows.forEach(window => {
+      window.addEventListener('mouseup', handleMouseUp);
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('dragstart', handleDragStart);
+      window.addEventListener('dragend', handleDragEnd);
+      window.addEventListener('drop', handleDragEnd);
+    });
 
     return () => {
-      window.removeEventListener('mouseup', handleMouseUp);
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('dragstart', handleDragStart);
-      window.removeEventListener('dragend', handleDragEnd);
-      window.removeEventListener('drop', handleDragEnd);
+      windows.forEach(window => {
+        window.removeEventListener('mouseup', handleMouseUp);
+        window.removeEventListener('mousemove', handleMouseMove);
+        window.removeEventListener('dragstart', handleDragStart);
+        window.removeEventListener('dragend', handleDragEnd);
+        window.removeEventListener('drop', handleDragEnd);
+      });
     };
-  }, [setIsDragging, setDraggingNodeId]);
+  }, [windows, setIsDragging, setDraggingNodeId]);
 
   return null;
 };

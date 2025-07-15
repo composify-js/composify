@@ -18,7 +18,7 @@ export const HStack: FC<PropsWithChildren<Props>> = ({ alignHorizontal, alignVer
       case 'stretch':
         return 'stretch';
     }
-  }, [alignHorizontal]);
+  }, [alignVertical]);
 
   const justifyContent = useMemo(() => {
     switch (alignHorizontal) {
@@ -31,7 +31,7 @@ export const HStack: FC<PropsWithChildren<Props>> = ({ alignHorizontal, alignVer
       case 'start':
         return 'flex-start' as const;
     }
-  }, [alignVertical]);
+  }, [alignHorizontal]);
 
   return <Stack flexDirection="row" alignItems={alignItems} justifyContent={justifyContent} {...props} />;
 };
