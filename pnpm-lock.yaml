@@ -57,6 +57,9 @@ importers:
       '@composify/core':
         specifier: workspace:*
         version: link:../core
+      '@composify/utils':
+        specifier: workspace:*
+        version: link:../utils
       '@ladle/react':
         specifier: 5.0.3
         version: 5.0.3(@types/node@22.13.4)(@types/react@19.1.8)(acorn@8.15.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3)
@@ -75,6 +78,8 @@ importers:
       react-dom:
         specifier: 19.1.0
         version: 19.1.0(react@19.1.0)
+
+  packages/utils: {}
 
 packages:
 
