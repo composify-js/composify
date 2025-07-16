@@ -41,6 +41,10 @@ export const EditorStyle = () => (
         overflow: hidden;
       }
 
+      .${ClassNames.Viewport} {
+        border: none;
+      }
+
       .${ClassNames.Canvas} {
         flex: 1;
         margin: 1rem;

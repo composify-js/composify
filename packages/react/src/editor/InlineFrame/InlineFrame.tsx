@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, IframeHTMLAttributes, PropsWithChildren, FC, useCallback } from 'react';
 import ReactDOM from 'react-dom';
+import { ClassNames } from '../Constants';
 import { InlineFrameProvider } from './InlineFrameContext';
 
 type Props = IframeHTMLAttributes<HTMLIFrameElement> &
@@ -71,7 +72,13 @@ export const InlineFrame: FC<Props> = props => {
   }, []);
 
   return (
-    <iframe {...rest} srcDoc={initialContent} ref={iframeRef} onLoad={() => setIframeLoaded(true)}>
+    <iframe
+      {...rest}
+      className={ClassNames.Viewport}
+      srcDoc={initialContent}
+      ref={iframeRef}
+      onLoad={() => setIframeLoaded(true)}
+    >
       {iframeLoaded && renderFrameContents()}
     </iframe>
   );
