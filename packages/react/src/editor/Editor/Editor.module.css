@@ -1,0 +1,16 @@
+:root {
+  --composify-palette-bg-surface: #FFFFFF;
+  --composify-palette-bg-surfaceContainer: #F9FAFB;
+
+  --composify-palette-border: #E5E7EB;
+
+  --composify-palette-gray-900: #1A1A1A;
+
+  --composify-palette-black: #000000;
+}
+
+.Editor {
+  display: flex;
+  min-height: 100vh;
+  background-color: #F5F5F5;
+}

@@ -3,12 +3,6 @@ import { ClassNames } from '../Constants';
 export const EditorStyle = () => (
   <style>
     {`
-      .${ClassNames.Editor} {
-        display: flex;
-        min-height: 100vh;
-        background-color: #F5F5F5;
-      }
-
       .${ClassNames.Library} {
         display: flex;
         flex-direction: column;

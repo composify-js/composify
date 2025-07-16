@@ -1,6 +1,6 @@
+import { getClassNameFactory } from '@composify/utils';
 import { FC } from 'react';
 import { Canvas } from '../Canvas';
-import { ClassNames } from '../Constants';
 import { DraggableStyle } from '../DraggableStyle';
 import { DroppableStyle } from '../DroppableStyle';
 import { EditingProvider } from '../EditingContext';
@@ -11,11 +11,15 @@ import { InlineFrameWindow } from '../InlineFrameWindow';
 import { IsolatedDndProvider } from '../IsolatedDndProvider';
 import { KeyDownDetector } from '../KeyDownDetector';
 import { Library } from '../Library';
+import { ViewportControl } from '../ViewportControl';
 import { WindowProvider } from '../WindowContext';
+import styles from './Editor.module.css';
 
 type Props = {
   source: string;
 };
+
+const getClassName = getClassNameFactory('Editor', styles);
 
 export const Editor: FC<Props> = ({ source }) => (
   <WindowProvider>
@@ -25,7 +29,7 @@ export const Editor: FC<Props> = ({ source }) => (
         <DroppableStyle />
         <EditorStyle />
         <KeyDownDetector />
-        <main className={ClassNames.Editor}>
+        <main className={getClassName()}>
           <Library />
           <InlineFrame>
             <InlineFrameWindow />
@@ -33,6 +37,7 @@ export const Editor: FC<Props> = ({ source }) => (
             <DraggableStyle />
             <DroppableStyle />
             <EditorStyle />
+            <ViewportControl />
             <Canvas />
           </InlineFrame>
         </main>
