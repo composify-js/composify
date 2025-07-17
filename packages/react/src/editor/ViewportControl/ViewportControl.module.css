@@ -23,8 +23,3 @@
 .ViewportControl-item:active {
   opacity: 0.9;
 }
-
-.ViewportControl-item > svg {
-  width: 0.875rem;
-  height: 0.875rem;
-}

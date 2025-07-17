@@ -13,7 +13,7 @@ import { KeyDownDetector } from '../KeyDownDetector';
 import { Library } from '../Library';
 import { ViewportControl } from '../ViewportControl';
 import { WindowProvider } from '../WindowContext';
-import * as styles from './Editor.module.css';
+import styles from './Editor.module.css';
 
 type Props = {
   source: string;

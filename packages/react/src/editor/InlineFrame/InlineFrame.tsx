@@ -1,104 +1,57 @@
 import { getClassNameFactory } from '@composify/utils';
-import {
-  useCallback,
-  useEffect,
-  useState,
-  useRef,
-  FC,
-  IframeHTMLAttributes,
-  PropsWithChildren,
-  ReactNode,
-} from 'react';
-import ReactDOM from 'react-dom';
-import * as styles from './InlineFrame.module.css';
+import { useCallback, useEffect, useState, useRef, FC, IframeHTMLAttributes, PropsWithChildren } from 'react';
+import { createPortal } from 'react-dom';
+import styles from './InlineFrame.module.css';
 import { InlineFrameProvider } from './InlineFrameContext';
 
-type Props = IframeHTMLAttributes<HTMLIFrameElement> &
-  PropsWithChildren<{
-    head?: ReactNode;
-    initialContent?: string;
-    mountTarget?: string;
-  }>;
+const SRC_DOC = '<!DOCTYPE html><html><head></head><body></body></html>';
+
+type Props = IframeHTMLAttributes<HTMLIFrameElement> & PropsWithChildren<unknown>;
 
 const getClassName = getClassNameFactory('InlineFrame', styles);
 
-export const InlineFrame: FC<Props> = ({
-  head,
-  initialContent = '<!DOCTYPE html><html><head></head><body><div class="frame-root"></div></body></html>',
-  mountTarget = '.frame-root',
-  children,
-  ...rest
-}) => {
+export const InlineFrame: FC<Props> = ({ children, ...rest }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [iframeLoaded, setIframeLoaded] = useState(false);
 
-  const getDoc = useCallback(() => iframeRef.current?.contentDocument, []);
-  const getMountTarget = useCallback(() => getDoc()?.querySelector(mountTarget), [mountTarget, getDoc]);
-
-  const renderFrameContents = useCallback(() => {
-    const doc = getDoc();
-    if (!doc) {
-      return null;
-    }
-
-    const win = doc.defaultView ?? window;
-    const target = getMountTarget();
-    if (!target) {
-      return null;
-    }
-
-    const contents = (
-      <InlineFrameProvider value={{ document: doc, window: win }}>
-        <div className="frame-content">{children}</div>
-      </InlineFrameProvider>
-    );
-
-    return (
-      <>
-        {ReactDOM.createPortal(head, doc.head)}
-        {ReactDOM.createPortal(contents, target)}
-      </>
-    );
-  }, [head, children, getDoc, getMountTarget]);
+  const getInlineDocument = useCallback(() => iframeRef.current?.contentDocument, []);
 
   const syncStyles = useCallback(() => {
-    const doc = getDoc();
-    if (!doc) {
+    const inlineDocument = getInlineDocument();
+
+    if (inlineDocument) {
+      inlineDocument.head.innerHTML = document.head.innerHTML;
+    }
+  }, [getInlineDocument]);
+
+  const renderFrameContents = useCallback(() => {
+    const inlineDocument = getInlineDocument();
+
+    if (!inlineDocument) {
       return null;
     }
 
-    doc.head.innerHTML = '';
+    const inlineWindow = inlineDocument.defaultView ?? window;
 
-    const parentStyles = document.head.querySelectorAll('style, link[rel="stylesheet"]');
+    inlineDocument.head.innerHTML = document.head.innerHTML;
 
-    parentStyles.forEach(element => {
-      const clonedElement = element.cloneNode(true);
-
-      doc.head.appendChild(clonedElement);
-    });
-  }, [getDoc]);
-
-  useEffect(() => {
-    const node = iframeRef.current;
-    if (!node) {
-      return;
-    }
-
-    const handleLoad = () => setIframeLoaded(true);
-
-    node.addEventListener('load', handleLoad);
-
-    return () => {
-      node.removeEventListener('load', handleLoad);
-    };
-  }, []);
+    return createPortal(
+      <InlineFrameProvider
+        value={{
+          document: inlineDocument,
+          window: inlineWindow,
+        }}
+      >
+        {children}
+      </InlineFrameProvider>,
+      inlineDocument.body
+    );
+  }, [children, getInlineDocument]);
 
   useEffect(() => {
     if (!iframeLoaded) {
       return;
     }
-
-    syncStyles();
 
     const observer = new MutationObserver(syncStyles);
 
@@ -113,13 +66,7 @@ export const InlineFrame: FC<Props> = ({
   }, [iframeLoaded, syncStyles]);
 
   return (
-    <iframe
-      {...rest}
-      className={getClassName()}
-      srcDoc={initialContent}
-      ref={iframeRef}
-      onLoad={() => setIframeLoaded(true)}
-    >
+    <iframe {...rest} ref={iframeRef} srcDoc={SRC_DOC} className={getClassName()} onLoad={() => setIframeLoaded(true)}>
       {iframeLoaded && renderFrameContents()}
     </iframe>
   );
