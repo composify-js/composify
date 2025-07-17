@@ -14,5 +14,6 @@
   ],
   "cSpell.words": [
     "composify"
-  ]
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
