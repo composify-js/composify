@@ -21,7 +21,7 @@
 
 .ViewportControl-item:hover,
 .ViewportControl-item:active {
-  background-color: darken(var(--composify-palette-bg-surface), 10%);
+  opacity: 0.9;
 }
 
 .ViewportControl-item > svg {

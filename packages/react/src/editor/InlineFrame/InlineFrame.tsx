@@ -10,7 +10,7 @@ import {
   ReactNode,
 } from 'react';
 import ReactDOM from 'react-dom';
-import styles from './InlineFrame.module.css';
+import * as styles from './InlineFrame.module.css';
 import { InlineFrameProvider } from './InlineFrameContext';
 
 type Props = IframeHTMLAttributes<HTMLIFrameElement> &

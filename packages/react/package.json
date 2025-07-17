@@ -52,6 +52,7 @@
         "default": "./dist/renderer/index.js"
       }
     },
+    "./style.css": "./dist/index.css",
     "./package.json": "./package.json"
   },
   "files": [

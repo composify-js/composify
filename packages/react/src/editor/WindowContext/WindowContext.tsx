@@ -11,7 +11,7 @@ const WindowContext = createContext<WindowContextValues>({
 });
 
 export const WindowProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
-  const [windows, setWindows] = useState<Window[]>([window]);
+  const [windows, setWindows] = useState<Window[]>(typeof window !== 'undefined' ? [window] : []);
 
   const addWindow = useCallback((item: Window) => {
     setWindows(prev => (prev.includes(item) ? prev : [...prev, item]));
