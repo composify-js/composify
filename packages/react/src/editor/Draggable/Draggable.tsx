@@ -1,16 +1,20 @@
 import { Node } from '@composify/core';
+import { getClassNameFactory } from '@composify/utils';
 import { MouseEvent, FC, PropsWithChildren, useCallback } from 'react';
 import { useDrag } from 'react-dnd';
-import { ClassNames, TargetType } from '../Constants';
+import { TargetType } from '../Constants';
 import { useEditing } from '../EditingContext';
+import styles from './Draggable.module.css';
 
 type Props = {
   type: TargetType;
   item: Node;
 };
 
+const getClassName = getClassNameFactory('Draggable', styles);
+
 export const Draggable: FC<PropsWithChildren<Props>> = ({ type, item, ...props }) => {
-  const { setSelectedNodeId, setDraggingNodeId } = useEditing();
+  const { isDragging, setSelectedNodeId, setDraggingNodeId } = useEditing();
 
   const [, dragRef] = useDrag(() => ({
     type,
@@ -35,13 +39,14 @@ export const Draggable: FC<PropsWithChildren<Props>> = ({ type, item, ...props }
 
   return (
     <div
+      data-composify-role="draggable"
       data-item-id={item.id}
       ref={node => {
         if (node?.firstChild) {
           dragRef(node.firstChild as Element);
         }
       }}
-      className={ClassNames.Draggable}
+      className={getClassName({ idle: !isDragging })}
       onClick={handleClick}
       {...props}
     />
