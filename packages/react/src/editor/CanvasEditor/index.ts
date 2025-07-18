@@ -1,1 +1,0 @@
-export { CanvasEditor } from './CanvasEditor';

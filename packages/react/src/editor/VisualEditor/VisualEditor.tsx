@@ -6,11 +6,11 @@ import { InlineFrameWindow } from '../InlineFrameWindow';
 import { Library } from '../Library';
 import { Preview } from '../Preview';
 import { ViewportManager } from '../ViewportManager';
-import styles from './CanvasEditor.module.css';
+import styles from './VisualEditor.module.css';
 
-const getClassName = getClassNameFactory('CanvasEditor', styles);
+const getClassName = getClassNameFactory('VisualEditor', styles);
 
-export const CanvasEditor: FC<unknown> = () => (
+export const VisualEditor: FC<unknown> = () => (
   <main className={getClassName()}>
     <Library />
     <ViewportManager>

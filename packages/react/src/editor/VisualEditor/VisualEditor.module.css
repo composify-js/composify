@@ -1,4 +1,4 @@
-.CanvasEditor {
+.VisualEditor {
   display: flex;
   min-height: 100vh;
   background-color: var(--composify-palette-bg-surfaceContainer);

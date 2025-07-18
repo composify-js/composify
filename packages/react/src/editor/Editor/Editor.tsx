@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import { CanvasEditor } from '../CanvasEditor';
 import { EditingProvider } from '../EditingContext';
 import { IsolatedDndProvider } from '../IsolatedDndProvider';
 import { KeyDownDetector } from '../KeyDownDetector';
+import { VisualEditor } from '../VisualEditor';
 import { WindowProvider } from '../WindowContext';
 import './Editor.module.css';
 
@@ -15,7 +15,7 @@ export const Editor: FC<Props> = ({ source }) => (
     <IsolatedDndProvider>
       <EditingProvider source={source}>
         <KeyDownDetector />
-        <CanvasEditor />
+        <VisualEditor />
       </EditingProvider>
     </IsolatedDndProvider>
   </WindowProvider>
