@@ -14,7 +14,7 @@ type Props = {
 const getClassName = getClassNameFactory('Draggable', styles);
 
 export const Draggable: FC<PropsWithChildren<Props>> = ({ type, item, ...props }) => {
-  const { isDragging, setSelectedNodeId, setDraggingNodeId } = useEditing();
+  const { isDragging, draggingNodeId, setSelectedNodeId, setDraggingNodeId } = useEditing();
 
   const [, dragRef] = useDrag(() => ({
     type,
@@ -40,7 +40,7 @@ export const Draggable: FC<PropsWithChildren<Props>> = ({ type, item, ...props }
   return (
     <div
       data-composify-role="draggable"
-      data-item-id={item.id}
+      data-composify-dragging={isDragging && draggingNodeId == item.id}
       ref={node => {
         if (node?.firstChild) {
           dragRef(node.firstChild as Element);

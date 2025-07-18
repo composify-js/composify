@@ -41,15 +41,14 @@ export const Droppable: FC<Props> = ({ item, index, ...props }) => {
   const droppableStyle = useMemo(
     () => ({
       backgroundColor: isOver ? '#376DFAAA' : 'transparent',
-      '--dragging-node-id': draggingNodeId ? `"${draggingNodeId}"` : '""',
     }),
-    [isOver, draggingNodeId]
+    [isOver]
   );
 
   return (
     <div
       data-composify-role="droppable"
-      data-item-id={item.id}
+      data-composify-dragging={isDragging && draggingNodeId == item.id}
       ref={node => {
         dropRef(node);
       }}
