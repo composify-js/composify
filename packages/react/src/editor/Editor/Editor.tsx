@@ -11,7 +11,7 @@ import { InlineFrameWindow } from '../InlineFrameWindow';
 import { IsolatedDndProvider } from '../IsolatedDndProvider';
 import { KeyDownDetector } from '../KeyDownDetector';
 import { Library } from '../Library';
-import { ViewportControl } from '../ViewportControl';
+import { ViewportManager } from '../ViewportManager';
 import { WindowProvider } from '../WindowContext';
 import styles from './Editor.module.css';
 
@@ -31,15 +31,16 @@ export const Editor: FC<Props> = ({ source }) => (
         <KeyDownDetector />
         <main className={getClassName()}>
           <Library />
-          <InlineFrame>
-            <InlineFrameWindow />
-            <InlineFrameBinding />
-            <DraggableStyle />
-            <DroppableStyle />
-            <EditorStyle />
-            <ViewportControl />
-            <Canvas />
-          </InlineFrame>
+          <ViewportManager>
+            <InlineFrame>
+              <InlineFrameWindow />
+              <InlineFrameBinding />
+              <DraggableStyle />
+              <DroppableStyle />
+              <EditorStyle />
+              <Canvas />
+            </InlineFrame>
+          </ViewportManager>
         </main>
       </EditingProvider>
     </IsolatedDndProvider>

@@ -1,0 +1,13 @@
+.ViewportManager-Container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.ViewportManager-Target {
+  display: flex;
+  flex: 1;
+  transform-origin: center top;
+}

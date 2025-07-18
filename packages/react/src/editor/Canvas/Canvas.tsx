@@ -56,8 +56,8 @@ export const Canvas = () => {
   const { source } = useEditing();
 
   return (
-    <section className={ClassNames.Canvas}>
+    <div className={ClassNames.Canvas}>
       <Renderer source={source} pragma={pragma} />
-    </section>
+    </div>
   );
 };
