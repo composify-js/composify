@@ -9,9 +9,3 @@
 
   --composify-palette-black: #000000;
 }
-
-.Editor {
-  display: flex;
-  min-height: 100vh;
-  background-color: #F5F5F5;
-}

@@ -47,12 +47,12 @@ const pragma: Pragma = {
 };
 
 export const Library = () => (
-  <div className={getClassName()}>
+  <section className={getClassName()}>
     <SearchForm />
     <div className={getClassName('SpecList')}>
       {Catalog.getAll().map(([name]) => (
         <Renderer source={`<${name} />`} key={name} pragma={pragma} />
       ))}
     </div>
-  </div>
+  </section>
 );
