@@ -1,0 +1,6 @@
+.Preview {
+  flex: 1;
+  margin: 1rem;
+  border: 1px solid var(--composify-palette-border);
+  background-color: var(--composify-palette-bg-surface);
+}

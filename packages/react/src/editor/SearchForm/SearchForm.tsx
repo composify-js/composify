@@ -1,12 +1,15 @@
+import { getClassNameFactory } from '@composify/utils';
 import { useState } from 'react';
-import { ClassNames } from '../Constants';
+import styles from './SearchForm.module.css';
+
+const getClassName = getClassNameFactory('SearchForm', styles);
 
 export const SearchForm = () => {
   const [query, setQuery] = useState('');
 
   return (
     <input
-      className={ClassNames.SearchForm}
+      className={getClassName()}
       type="text"
       value={query}
       onChange={e => setQuery(e.target.value)}

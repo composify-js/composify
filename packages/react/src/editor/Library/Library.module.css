@@ -1,0 +1,22 @@
+.Library {
+  display: flex;
+  flex-direction: column;
+  max-width: 296px;
+  width: 100%;
+  border-right: 1px solid var(--composify-palette-border);
+  background-color: var(--composify-palette-bg-surface);
+}
+
+.Library-SpecList {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.Library-SpecItem {
+  margin: 0;
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}

@@ -36,7 +36,7 @@ export const ViewportManager: FC<Props> = ({ children }) => {
   }, [autoScale]);
 
   return (
-    <div ref={containerRef} className={getClassName('Container')}>
+    <section ref={containerRef} className={getClassName('Container')}>
       <ViewportControl onClick={setWidth} />
       <div
         className={getClassName('Target')}
@@ -48,6 +48,6 @@ export const ViewportManager: FC<Props> = ({ children }) => {
       >
         {children}
       </div>
-    </div>
+    </section>
   );
 };

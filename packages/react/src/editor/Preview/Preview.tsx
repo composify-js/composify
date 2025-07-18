@@ -1,10 +1,12 @@
 import { Catalog } from '@composify/core';
+import { getClassNameFactory } from '@composify/utils';
 import { Children, createElement } from 'react';
 import { Pragma, Renderer } from '../../renderer/Renderer';
-import { ClassNames, TargetType } from '../Constants';
+import { TargetType } from '../Constants';
 import { Draggable } from '../Draggable';
 import { Droppable } from '../Droppable';
 import { useEditing } from '../EditingContext';
+import styles from './Preview.module.css';
 
 const pragma: Pragma = {
   jsx: (type, props, node, ...children) => {
@@ -58,11 +60,13 @@ const pragma: Pragma = {
   },
 };
 
-export const Canvas = () => {
+const getClassName = getClassNameFactory('Preview', styles);
+
+export const Preview = () => {
   const { source } = useEditing();
 
   return (
-    <div className={ClassNames.Canvas}>
+    <div className={getClassName()}>
       <Renderer source={source} pragma={pragma} />
     </div>
   );

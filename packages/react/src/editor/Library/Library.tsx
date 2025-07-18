@@ -1,9 +1,13 @@
 import { Catalog } from '@composify/core';
+import { getClassNameFactory } from '@composify/utils';
 import { createElement } from 'react';
 import { Pragma, Renderer } from '../../renderer';
-import { ClassNames, TargetType } from '../Constants';
+import { TargetType } from '../Constants';
 import { Draggable } from '../Draggable';
 import { SearchForm } from '../SearchForm';
+import styles from './Library.module.css';
+
+const getClassName = getClassNameFactory('Library', styles);
 
 const pragma: Pragma = {
   jsx: (_, props, node) => {
@@ -34,7 +38,7 @@ const pragma: Pragma = {
       createElement(
         'p',
         {
-          className: ClassNames.ComponentSpecItem,
+          className: getClassName('SpecItem'),
         },
         node.type
       )
@@ -43,9 +47,9 @@ const pragma: Pragma = {
 };
 
 export const Library = () => (
-  <div className={ClassNames.Library}>
+  <div className={getClassName()}>
     <SearchForm />
-    <div className={ClassNames.ComponentSpecList}>
+    <div className={getClassName('SpecList')}>
       {Catalog.getAll().map(([name]) => (
         <Renderer source={`<${name} />`} key={name} pragma={pragma} />
       ))}
