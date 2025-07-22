@@ -14,7 +14,7 @@ type Props = {
 const getClassName = getClassNameFactory('Draggable', styles);
 
 export const Draggable: FC<PropsWithChildren<Props>> = ({ type, item, ...props }) => {
-  const { isDragging, draggingNodeId, setSelectedNodeId, setDraggingNodeId } = useEditing();
+  const { isDragging, selectedNode, draggingNodeId, setSelectedNodeId, setDraggingNodeId } = useEditing();
 
   const [, dragRef] = useDrag(() => ({
     type,
@@ -22,6 +22,7 @@ export const Draggable: FC<PropsWithChildren<Props>> = ({ type, item, ...props }
     collect: monitor => {
       if (monitor.isDragging() && item.id) {
         setDraggingNodeId(item.id);
+        setSelectedNodeId(item.id);
       }
     },
   }));
@@ -46,7 +47,10 @@ export const Draggable: FC<PropsWithChildren<Props>> = ({ type, item, ...props }
           dragRef(node.firstChild as Element);
         }
       }}
-      className={getClassName({ idle: !isDragging })}
+      className={getClassName({
+        idle: !isDragging,
+        selected: selectedNode?.id === item.id,
+      })}
       onClick={handleClick}
       {...props}
     />
