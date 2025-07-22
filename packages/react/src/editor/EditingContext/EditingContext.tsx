@@ -12,7 +12,7 @@ import {
 
 type EditingContextValues = {
   source: Node;
-  selectedNodeId?: string;
+  selectedNode?: Node;
   draggingNodeId?: string;
   isDragging: boolean;
   relocateNode: (originId: string, targetId: string, index: number) => void;
@@ -29,7 +29,7 @@ const EditingContext = createContext<EditingContextValues>({
     props: {},
     children: [],
   },
-  selectedNodeId: undefined,
+  selectedNode: undefined,
   draggingNodeId: undefined,
   isDragging: false,
   relocateNode: () => null,
@@ -47,7 +47,7 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
   const nodeManager = useMemo(() => new NodeManager(Parser.parse(initialSource)), [initialSource]);
 
   const source = useSyncExternalStore(
-    nodeManager.subscribe.bind(nodeManager),
+    nodeManager.subscribe,
     () => nodeManager.root,
     () => nodeManager.root
   );
@@ -55,6 +55,11 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
   const [selectedNodeId, setSelectedNodeId] = useState<string>();
   const [draggingNodeId, setDraggingNodeId] = useState<string>();
   const [isDragging, setIsDragging] = useState(false);
+
+  const selectedNode = useMemo(
+    () => (selectedNodeId ? nodeManager.find(selectedNodeId) : undefined),
+    [nodeManager, selectedNodeId]
+  );
 
   const relocateNode = useCallback(
     (originId: string, targetId: string, index: number) => nodeManager.relocate(originId, targetId, index),
@@ -69,7 +74,7 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
   const contextValues = useMemo(
     () => ({
       source,
-      selectedNodeId,
+      selectedNode,
       draggingNodeId,
       isDragging,
       relocateNode,
@@ -80,7 +85,7 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
     }),
     [
       source,
-      selectedNodeId,
+      selectedNode,
       draggingNodeId,
       isDragging,
       relocateNode,

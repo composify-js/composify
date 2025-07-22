@@ -20,6 +20,17 @@ export class NodeManager {
   private subscribers = new Set<() => void>();
 
   constructor(source: Node) {
+    this.find = this.find.bind(this);
+    this.insert = this.insert.bind(this);
+    this.remove = this.remove.bind(this);
+    this.relocate = this.relocate.bind(this);
+    this.stringify = this.stringify.bind(this);
+    this.subscribe = this.subscribe.bind(this);
+    this.notify = this.notify.bind(this);
+    this.populate = this.populate.bind(this);
+    this.generateRandomId = this.generateRandomId.bind(this);
+    this.hasChild = this.hasChild.bind(this);
+
     this.root = this.populate(source);
   }
 
