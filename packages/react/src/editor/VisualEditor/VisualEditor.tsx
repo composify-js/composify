@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { InlineFrame } from '../InlineFrame';
 import { InlineFrameBinding } from '../InlineFrameBinding';
 import { InlineFrameWindow } from '../InlineFrameWindow';
-import { Library } from '../Library';
+import { LibraryPanel } from '../LibraryPanel';
 import { Preview } from '../Preview';
 import { ViewportManager } from '../ViewportManager';
 import styles from './VisualEditor.module.css';
@@ -12,7 +12,7 @@ const getClassName = getClassNameFactory('VisualEditor', styles);
 
 export const VisualEditor: FC<unknown> = () => (
   <main className={getClassName()}>
-    <Library />
+    <LibraryPanel />
     <ViewportManager>
       <InlineFrame>
         <InlineFrameWindow />

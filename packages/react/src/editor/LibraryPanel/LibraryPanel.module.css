@@ -1,19 +1,19 @@
-.Library {
+.LibraryPanel {
   display: flex;
   flex-direction: column;
-  max-width: 296px;
+  max-width: 256px;
   width: 100%;
   border-right: 1px solid var(--composify-palette-border);
   background-color: var(--composify-palette-bg-surface);
 }
 
-.Library-SpecList {
+.LibraryPanel-ComponentSpecList {
   display: flex;
   flex-direction: column;
   padding: 1rem;
 }
 
-.Library-SpecItem {
+.LibraryPanel-ComponentSpecItem {
   margin: 0;
   padding: 0.5rem;
   font-size: 0.875rem;

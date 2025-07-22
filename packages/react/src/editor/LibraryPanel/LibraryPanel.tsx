@@ -5,9 +5,9 @@ import { Pragma, Renderer } from '../../renderer';
 import { TargetType } from '../Constants';
 import { Draggable } from '../Draggable';
 import { SearchForm } from '../SearchForm';
-import styles from './Library.module.css';
+import styles from './LibraryPanel.module.css';
 
-const getClassName = getClassNameFactory('Library', styles);
+const getClassName = getClassNameFactory('LibraryPanel', styles);
 
 const pragma: Pragma = {
   jsx: (_, props, node) => {
@@ -38,7 +38,7 @@ const pragma: Pragma = {
       createElement(
         'p',
         {
-          className: getClassName('SpecItem'),
+          className: getClassName('ComponentSpecItem'),
         },
         node.type
       )
@@ -46,10 +46,10 @@ const pragma: Pragma = {
   },
 };
 
-export const Library = () => (
+export const LibraryPanel = () => (
   <section className={getClassName()}>
     <SearchForm />
-    <div className={getClassName('SpecList')}>
+    <div className={getClassName('ComponentSpecList')}>
       {Catalog.getAll().map(([name]) => (
         <Renderer source={`<${name} />`} key={name} pragma={pragma} />
       ))}
