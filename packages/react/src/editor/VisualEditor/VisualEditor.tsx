@@ -5,6 +5,7 @@ import { InlineFrameBinding } from '../InlineFrameBinding';
 import { InlineFrameWindow } from '../InlineFrameWindow';
 import { LibraryPanel } from '../LibraryPanel';
 import { Preview } from '../Preview';
+import { PropertyPanel } from '../PropertyPanel';
 import { ViewportManager } from '../ViewportManager';
 import styles from './VisualEditor.module.css';
 
@@ -20,5 +21,6 @@ export const VisualEditor: FC<unknown> = () => (
         <Preview />
       </InlineFrame>
     </ViewportManager>
+    <PropertyPanel />
   </main>
 );

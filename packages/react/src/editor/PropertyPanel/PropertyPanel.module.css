@@ -1,0 +1,20 @@
+.PropertyPanel {
+  display: flex;
+  flex-direction: column;
+  max-width: 256px;
+  width: 100%;
+  border-left: 1px solid var(--composify-palette-border);
+  background-color: var(--composify-palette-bg-surface);
+}
+
+.PropertyPanel-Header {
+  padding: 1rem;
+  border-bottom: 1px solid var(--composify-palette-border);
+}
+
+.PropertyPanel-HeaderTitle {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--composify-palette-on-surface-1);
+}

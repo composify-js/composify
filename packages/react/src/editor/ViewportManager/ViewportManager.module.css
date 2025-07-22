@@ -10,4 +10,5 @@
   display: flex;
   flex: 1;
   transform-origin: center top;
+  transition: all 0.1s linear;
 }

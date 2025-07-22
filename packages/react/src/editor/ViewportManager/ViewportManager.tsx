@@ -43,7 +43,6 @@ export const ViewportManager: FC<Props> = ({ children }) => {
         style={{
           width,
           transform: `scale(${scale})`,
-          transition: 'all 0.1s linear',
         }}
       >
         {children}
