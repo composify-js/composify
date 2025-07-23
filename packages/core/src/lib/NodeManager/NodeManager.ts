@@ -24,6 +24,7 @@ export class NodeManager {
     this.insert = this.insert.bind(this);
     this.remove = this.remove.bind(this);
     this.relocate = this.relocate.bind(this);
+    this.duplicate = this.duplicate.bind(this);
     this.stringify = this.stringify.bind(this);
     this.subscribe = this.subscribe.bind(this);
     this.notify = this.notify.bind(this);
@@ -96,6 +97,32 @@ export class NodeManager {
     this.notify();
   };
 
+  public duplicate = (id: string) => {
+    const node = this.find(id);
+
+    if (!node) {
+      throw new Error(`Node with id ${id} not found`);
+    }
+
+    if (!node.parent) {
+      throw new Error('Cannot duplicate root node');
+    }
+
+    const parent = this.find(node.parent);
+
+    if (!parent) {
+      throw new Error('Parent node not found');
+    }
+
+    const index = parent.children.findIndex(child => child.id === id);
+    const duplicatedNode = this.populate(node);
+
+    this.insert(duplicatedNode, parent.id, index + 1);
+    this.notify();
+
+    return duplicatedNode.id;
+  };
+
   public stringify = (source?: PopulatedNode): string => {
     const root = source ?? this.root;
     const children = root.children.map(this.stringify);
@@ -121,7 +148,7 @@ export class NodeManager {
   };
 
   private populate = (node: Node, parent?: string): PopulatedNode => {
-    const id = node.id ?? this.generateRandomId();
+    const id = this.generateRandomId();
     const children = node.children.map(child => this.populate(child, id));
 
     const populatedNode = {

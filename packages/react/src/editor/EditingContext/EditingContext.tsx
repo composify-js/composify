@@ -18,6 +18,7 @@ type EditingContextValues = {
   relocateNode: (originId: string, targetId: string, index: number) => void;
   insertNode: (origin: Node, targetId: string, index: number) => void;
   removeNode: (targetId: string) => void;
+  duplicateNode: (targetId: string) => string;
   setSelectedNodeId: (value?: string) => void;
   setDraggingNodeId: (value?: string) => void;
   setIsDragging: (value: boolean) => void;
@@ -36,6 +37,7 @@ const EditingContext = createContext<EditingContextValues>({
   relocateNode: () => null,
   insertNode: () => null,
   removeNode: () => null,
+  duplicateNode: () => null,
   setSelectedNodeId: () => null,
   setDraggingNodeId: () => null,
   setIsDragging: () => null,
@@ -75,6 +77,8 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
 
   const removeNode = useCallback((targetId: string) => nodeManager.remove(targetId, true), [nodeManager]);
 
+  const duplicateNode = useCallback((targetId: string) => nodeManager.duplicate(targetId), [nodeManager]);
+
   const contextValues = useMemo(
     () => ({
       source,
@@ -84,6 +88,7 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
       relocateNode,
       insertNode,
       removeNode,
+      duplicateNode,
       setSelectedNodeId,
       setDraggingNodeId,
       setIsDragging,
@@ -96,6 +101,7 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
       relocateNode,
       insertNode,
       removeNode,
+      duplicateNode,
       setSelectedNodeId,
       setDraggingNodeId,
       setIsDragging,

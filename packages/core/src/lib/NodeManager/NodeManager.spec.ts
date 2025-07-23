@@ -214,6 +214,72 @@ describe('NodeManager', () => {
     });
   });
 
+  describe('duplicate', () => {
+    it('should duplicate a node and insert it after the original', () => {
+      const nodeId = nodeManager.root.children[0].id;
+      const initialChildrenCount = nodeManager.root.children.length;
+
+      nodeManager.duplicate(nodeId);
+
+      expect(nodeManager.root.children).toHaveLength(initialChildrenCount + 1);
+
+      const originalNode = nodeManager.find(nodeId);
+
+      if (!originalNode) {
+        throw new Error('Original node not found');
+      }
+
+      const originalNodeIndex = nodeManager.root.children.findIndex(c => c.id === nodeId);
+      const duplicatedNode = nodeManager.root.children[originalNodeIndex + 1];
+
+      expect(duplicatedNode).toBeDefined();
+      expect(duplicatedNode.id).not.toBe(originalNode.id);
+      expect(duplicatedNode.type).toBe(originalNode.type);
+      expect(duplicatedNode.props).toEqual(originalNode.props);
+    });
+
+    it('should duplicate a node with its children, giving new ids', () => {
+      const deepNode: Node = {
+        type: 'Container',
+        props: {},
+        children: [
+          {
+            type: 'Text',
+            props: {},
+            children: [],
+          },
+        ],
+      };
+      nodeManager.insert(deepNode, nodeManager.root.id, 0);
+
+      const node = nodeManager.root.children[0];
+      const originalChildId = node.children[0].id;
+
+      nodeManager.duplicate(node.id);
+
+      const duplicatedNode = nodeManager.root.children[1];
+
+      expect(duplicatedNode.id).not.toBe(node.id);
+      expect(duplicatedNode.children).toHaveLength(1);
+      expect(duplicatedNode.children[0].id).not.toBe(originalChildId);
+      expect(duplicatedNode.children[0].type).toBe('Text');
+    });
+
+    it('should throw an error if trying to duplicate the root node', () => {
+      const rootId = nodeManager.root.id;
+
+      expect(() => {
+        nodeManager.duplicate(rootId);
+      }).toThrow('Cannot duplicate root node');
+    });
+
+    it('should throw an error if node to duplicate does not exist', () => {
+      expect(() => {
+        nodeManager.duplicate('non-existent-id');
+      }).toThrow('Node with id non-existent-id not found');
+    });
+  });
+
   describe('stringify', () => {
     it('should return string representation of the tree', () => {
       const result = nodeManager.stringify();
