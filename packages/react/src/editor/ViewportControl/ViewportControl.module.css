@@ -12,6 +12,7 @@
   align-items: center;
   cursor: pointer;
   padding: 0.75rem;
+  color: var(--composify-palette-on-surface);
   border: 1px solid var(--composify-palette-border);
   border-radius: 0.5rem;
   background-color: var(--composify-palette-bg-surface);
@@ -19,5 +20,5 @@
 
 .ViewportControl-ViewportItem:hover,
 .ViewportControl-ViewportItem:active {
-  opacity: 0.9;
+  opacity: 0.7;
 }

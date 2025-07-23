@@ -1,4 +1,5 @@
 import { getClassNameFactory } from '@composify/utils';
+import { BlockActions } from '../BlockActions';
 import { useEditing } from '../EditingContext';
 import styles from './PropertyPanel.module.css';
 
@@ -11,6 +12,7 @@ export const PropertyPanel = () => {
     <section className={getClassName()}>
       <div className={getClassName('Header')}>
         <h2 className={getClassName('HeaderTitle')}>{selectedNode?.type}</h2>
+        <BlockActions />
       </div>
     </section>
   );

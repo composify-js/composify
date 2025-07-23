@@ -1,0 +1,20 @@
+.BlockActions {
+  display: flex;
+  align-items: center;
+}
+
+.BlockActions-ActionItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--composify-color-on-surface);
+  padding: 0.5rem 0.5rem;
+  border: none;
+  background-color: transparent;
+}
+
+.BlockActions-ActionItem:hover,
+.BlockActions-ActionItem:active {
+  opacity: 0.7;
+}

@@ -49,7 +49,7 @@ export const Draggable: FC<PropsWithChildren<Props>> = ({ type, item, ...props }
       }}
       className={getClassName({
         idle: !isDragging,
-        selected: selectedNode?.id === item.id,
+        selected: !!selectedNode && selectedNode.id === item.id,
       })}
       onClick={handleClick}
       {...props}
