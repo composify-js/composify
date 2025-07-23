@@ -17,6 +17,7 @@ type EditingContextValues = {
   isDragging: boolean;
   relocateNode: (originId: string, targetId: string, index: number) => void;
   insertNode: (origin: Node, targetId: string, index: number) => void;
+  removeNode: (targetId: string) => void;
   setSelectedNodeId: (value?: string) => void;
   setDraggingNodeId: (value?: string) => void;
   setIsDragging: (value: boolean) => void;
@@ -34,6 +35,7 @@ const EditingContext = createContext<EditingContextValues>({
   isDragging: false,
   relocateNode: () => null,
   insertNode: () => null,
+  removeNode: () => null,
   setSelectedNodeId: () => null,
   setDraggingNodeId: () => null,
   setIsDragging: () => null,
@@ -71,6 +73,8 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
     [nodeManager]
   );
 
+  const removeNode = useCallback((targetId: string) => nodeManager.remove(targetId, true), [nodeManager]);
+
   const contextValues = useMemo(
     () => ({
       source,
@@ -79,6 +83,7 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
       isDragging,
       relocateNode,
       insertNode,
+      removeNode,
       setSelectedNodeId,
       setDraggingNodeId,
       setIsDragging,
@@ -90,6 +95,7 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
       isDragging,
       relocateNode,
       insertNode,
+      removeNode,
       setSelectedNodeId,
       setDraggingNodeId,
       setIsDragging,
