@@ -20,18 +20,6 @@ export class NodeManager {
   private subscribers = new Set<() => void>();
 
   constructor(source: Node) {
-    this.find = this.find.bind(this);
-    this.insert = this.insert.bind(this);
-    this.remove = this.remove.bind(this);
-    this.relocate = this.relocate.bind(this);
-    this.duplicate = this.duplicate.bind(this);
-    this.stringify = this.stringify.bind(this);
-    this.subscribe = this.subscribe.bind(this);
-    this.notify = this.notify.bind(this);
-    this.populate = this.populate.bind(this);
-    this.generateRandomId = this.generateRandomId.bind(this);
-    this.hasChild = this.hasChild.bind(this);
-
     this.root = this.populate(source);
   }
 
@@ -121,6 +109,18 @@ export class NodeManager {
     this.notify();
 
     return duplicatedNode.id;
+  };
+
+  public update = <Value>(id: string, prop: { key: string; value: Value }) => {
+    const node = this.find(id);
+
+    if (!node) {
+      throw new Error(`Node with id ${id} not found`);
+    }
+
+    node.props[prop.key] = prop.value;
+
+    this.notify();
   };
 
   public stringify = (source?: PopulatedNode): string => {

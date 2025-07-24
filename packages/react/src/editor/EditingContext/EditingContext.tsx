@@ -17,8 +17,9 @@ type EditingContextValues = {
   isDragging: boolean;
   relocateNode: (originId: string, targetId: string, index: number) => void;
   insertNode: (origin: Node, targetId: string, index: number) => void;
-  removeNode: (targetId: string) => void;
-  duplicateNode: (targetId: string) => string;
+  removeNode: () => void;
+  duplicateNode: () => string;
+  updateNode: (key: string, value: unknown) => void;
   setSelectedNodeId: (value?: string) => void;
   setDraggingNodeId: (value?: string) => void;
   setIsDragging: (value: boolean) => void;
@@ -37,7 +38,8 @@ const EditingContext = createContext<EditingContextValues>({
   relocateNode: () => null,
   insertNode: () => null,
   removeNode: () => null,
-  duplicateNode: () => null,
+  duplicateNode: () => '',
+  updateNode: () => null,
   setSelectedNodeId: () => null,
   setDraggingNodeId: () => null,
   setIsDragging: () => null,
@@ -75,9 +77,32 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
     [nodeManager]
   );
 
-  const removeNode = useCallback((targetId: string) => nodeManager.remove(targetId, true), [nodeManager]);
+  const removeNode = useCallback(() => {
+    if (!selectedNodeId) {
+      throw new Error('No node selected to remove');
+    }
 
-  const duplicateNode = useCallback((targetId: string) => nodeManager.duplicate(targetId), [nodeManager]);
+    nodeManager.remove(selectedNodeId, true);
+  }, [selectedNodeId, nodeManager]);
+
+  const duplicateNode = useCallback(() => {
+    if (!selectedNodeId) {
+      throw new Error('No node selected to duplicate');
+    }
+
+    return nodeManager.duplicate(selectedNodeId);
+  }, [selectedNodeId, nodeManager]);
+
+  const updateNode = useCallback(
+    (key: string, value: unknown) => {
+      if (!selectedNodeId) {
+        throw new Error('No node selected to update');
+      }
+
+      nodeManager.update(selectedNodeId, { key, value });
+    },
+    [nodeManager, selectedNodeId]
+  );
 
   const contextValues = useMemo(
     () => ({
@@ -89,6 +114,7 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
       insertNode,
       removeNode,
       duplicateNode,
+      updateNode,
       setSelectedNodeId,
       setDraggingNodeId,
       setIsDragging,
@@ -102,6 +128,7 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
       insertNode,
       removeNode,
       duplicateNode,
+      updateNode,
       setSelectedNodeId,
       setDraggingNodeId,
       setIsDragging,

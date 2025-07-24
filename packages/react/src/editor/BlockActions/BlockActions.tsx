@@ -6,21 +6,17 @@ import styles from './BlockActions.module.css';
 const getClassName = getClassNameFactory('BlockActions', styles);
 
 export const BlockActions = () => {
-  const { selectedNode, duplicateNode, removeNode, setSelectedNodeId } = useEditing();
+  const { duplicateNode, removeNode, setSelectedNodeId } = useEditing();
 
   const handleClickDuplicate = useCallback(() => {
-    if (selectedNode?.id) {
-      const id = duplicateNode(selectedNode.id);
+    const id = duplicateNode();
 
-      setSelectedNodeId(id);
-    }
-  }, [selectedNode, duplicateNode, setSelectedNodeId]);
+    setSelectedNodeId(id);
+  }, [duplicateNode, setSelectedNodeId]);
 
   const handleClickRemove = useCallback(() => {
-    if (selectedNode?.id) {
-      removeNode(selectedNode.id);
-    }
-  }, [selectedNode, removeNode]);
+    removeNode();
+  }, [removeNode]);
 
   return (
     <div className={getClassName()}>

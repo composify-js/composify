@@ -1,6 +1,3 @@
-export * as Catalog from './lib/Catalog';
-export * as Parser from './lib/Parser';
-export { NodeManager, type Node } from './lib/NodeManager';
 export {
   type NodePropertySpec,
   type BooleanPropertySpec,
@@ -12,4 +9,4 @@ export {
   type SelectPropertySpec,
   type TextPropertySpec,
   type PropertySpec,
-} from './lib/PropertySpec';
+} from './PropertySpec';

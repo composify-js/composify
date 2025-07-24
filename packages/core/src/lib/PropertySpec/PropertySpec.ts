@@ -73,10 +73,3 @@ export type PropertySpec<Value> =
   | RadioPropertySpec
   | SelectPropertySpec
   | TextPropertySpec;
-
-export type ComponentSpec<Props, Key extends keyof Props = keyof Props> = {
-  component: any;
-  props: {
-    [key in Key]?: PropertySpec<Props[key]>;
-  };
-};

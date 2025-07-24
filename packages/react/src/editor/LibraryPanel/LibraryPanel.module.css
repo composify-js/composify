@@ -7,13 +7,13 @@
   background-color: var(--composify-palette-bg-surface);
 }
 
-.LibraryPanel-ComponentSpecList {
+.LibraryPanel-BlockList {
   display: flex;
   flex-direction: column;
   padding: 1rem;
 }
 
-.LibraryPanel-ComponentSpecItem {
+.LibraryPanel-BlockItem {
   margin: 0;
   padding: 0.5rem;
   font-size: 0.875rem;

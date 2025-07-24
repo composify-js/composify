@@ -11,10 +11,10 @@ const getClassName = getClassNameFactory('LibraryPanel', styles);
 
 const pragma: Pragma = {
   jsx: (_, props, node) => {
-    const spec = Catalog.get(node.type);
-    const specProps = spec.props ?? {};
+    const block = Catalog.get(node.type);
+    const propertySpecs = block.props ?? {};
 
-    const defaultProps = Object.entries(specProps).reduce(
+    const defaultProps = Object.entries(propertySpecs).reduce(
       (acc, [key, value]) =>
         value?.default
           ? {
@@ -38,7 +38,7 @@ const pragma: Pragma = {
       createElement(
         'p',
         {
-          className: getClassName('ComponentSpecItem'),
+          className: getClassName('BlockItem'),
         },
         node.type
       )
@@ -49,7 +49,7 @@ const pragma: Pragma = {
 export const LibraryPanel = () => (
   <section className={getClassName()}>
     <SearchForm />
-    <div className={getClassName('ComponentSpecList')}>
+    <div className={getClassName('BlockList')}>
       {Catalog.getAll().map(([name]) => (
         <Renderer source={`<${name} />`} key={name} pragma={pragma} />
       ))}
