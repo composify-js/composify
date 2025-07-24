@@ -27,16 +27,20 @@ export class NodeManager {
     return this.references.get(id);
   };
 
-  public insert = (node: Node, targetId: string, index: number) => {
+  public insert = (node: Node, destination: { id: string; index: number }) => {
     const child = 'id' in node ? (node as PopulatedNode) : this.populate(node);
-    const parent = this.find(targetId);
+    const parent = this.find(destination.id);
 
     if (!parent) {
       return;
     }
 
-    child.parent = targetId;
-    parent.children = [...parent.children.slice(0, index), child, ...parent.children.slice(index)];
+    child.parent = parent.id;
+    parent.children = [
+      ...parent.children.slice(0, destination.index),
+      child,
+      ...parent.children.slice(destination.index),
+    ];
 
     this.notify();
   };
@@ -68,19 +72,19 @@ export class NodeManager {
     this.notify();
   };
 
-  public relocate = (sourceId: string, targetId: string, index: number) => {
-    const sourceNode = this.find(sourceId);
+  public relocate = (id: string, destination: { id: string; index: number }) => {
+    const node = this.find(id);
 
-    if (!sourceNode) {
+    if (!node) {
+      throw new Error(`Node with id ${id} not found`);
+    }
+
+    if (this.hasChild(node, destination.id)) {
       return;
     }
 
-    if (this.hasChild(targetId, sourceNode)) {
-      return;
-    }
-
-    this.remove(sourceId, false);
-    this.insert(sourceNode, targetId, index);
+    this.remove(id, false);
+    this.insert(node, destination);
 
     this.notify();
   };
@@ -103,12 +107,16 @@ export class NodeManager {
     }
 
     const index = parent.children.findIndex(child => child.id === id);
-    const duplicatedNode = this.populate(node);
+    const duplicated = this.populate(node);
 
-    this.insert(duplicatedNode, parent.id, index + 1);
+    this.insert(duplicated, {
+      id: parent.id,
+      index: index + 1,
+    });
+
     this.notify();
 
-    return duplicatedNode.id;
+    return duplicated.id;
   };
 
   public update = <Value>(id: string, prop: { key: string; value: Value }) => {
@@ -167,8 +175,8 @@ export class NodeManager {
     return Date.now() + Math.random().toString(36).slice(2);
   };
 
-  private hasChild = (id: string, node: PopulatedNode): boolean => {
-    const stack = [node];
+  private hasChild = (parent: PopulatedNode, id: string): boolean => {
+    const stack = [parent];
 
     while (stack.length) {
       const current = stack.pop();

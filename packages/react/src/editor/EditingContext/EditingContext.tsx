@@ -68,12 +68,12 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
   );
 
   const relocateNode = useCallback(
-    (originId: string, targetId: string, index: number) => nodeManager.relocate(originId, targetId, index),
+    (originId: string, targetId: string, index: number) => nodeManager.relocate(originId, { id: targetId, index }),
     [nodeManager]
   );
 
   const insertNode = useCallback(
-    (origin: Node, targetId: string, index: number) => nodeManager.insert(origin, targetId, index),
+    (origin: Node, targetId: string, index: number) => nodeManager.insert(origin, { id: targetId, index }),
     [nodeManager]
   );
 
