@@ -21,7 +21,7 @@ type EditingContextValues = {
   relocateFocusedBlock: (destination: { id: string; index: number }) => void;
   removeActiveBlock: () => void;
   duplicateActiveBlock: () => void;
-  updateActiveBlock: (key: string, value: unknown) => void;
+  updateActiveBlock: (key: string, reducer: (prev: unknown) => unknown) => void;
 };
 
 const EditingContext = createContext<EditingContextValues>({
@@ -106,12 +106,15 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
   }, [activeBlock, nodeManager]);
 
   const updateActiveBlock = useCallback(
-    (key: string, value: unknown) => {
+    (key: string, reducer: (prev: unknown) => unknown) => {
       if (!activeBlock) {
         throw new Error('No block selected to update');
       }
 
-      nodeManager.update(activeBlock.id, { key, value });
+      nodeManager.update(activeBlock.id, {
+        key,
+        value: reducer(activeBlock.props[key]),
+      });
     },
     [activeBlock, nodeManager]
   );

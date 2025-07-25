@@ -1,0 +1,4 @@
+.PropertyControlText {
+  display: flex;
+  flex-direction: column;
+}

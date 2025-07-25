@@ -1,39 +1,25 @@
 type DefaultPropertySpec<Value> = {
   label: string;
   default?: Value;
-} & (Value extends any[] ? { list: true } : unknown);
+} & (Value extends readonly any[] ? { list: true } : { list?: never });
 
-export type BooleanPropertySpec<Value extends boolean | boolean[]> = DefaultPropertySpec<Value> & {
-  type: 'boolean';
-};
-
-export type DatePropertySpec<Value extends Date | Date[]> = DefaultPropertySpec<Value> & {
-  type: 'date';
-};
-
-export type ImagePropertySpec<Value extends string | string[]> = DefaultPropertySpec<Value> & {
-  type: 'image';
-};
-
-export type NumberPropertySpec<Value extends number | number[]> = DefaultPropertySpec<Value> & {
-  type: 'number';
-};
-
-export type NodePropertySpec<Value extends any | any[]> = DefaultPropertySpec<Value> & {
-  type: 'node';
-};
+export type BooleanPropertySpec<Value> = DefaultPropertySpec<Value> & { type: 'boolean' };
+export type DatePropertySpec<Value> = DefaultPropertySpec<Value> & { type: 'date' };
+export type ImagePropertySpec<Value> = DefaultPropertySpec<Value> & { type: 'image' };
+export type NumberPropertySpec<Value> = DefaultPropertySpec<Value> & { type: 'number' };
+export type NodePropertySpec<Value> = DefaultPropertySpec<Value> & { type: 'node' };
 
 export type ObjectPropertySpec<
-  Value extends any | any[],
+  Value extends Record<string, any>,
   Key extends keyof Value = keyof Value,
 > = DefaultPropertySpec<Value> & {
   type: 'object';
   fields: {
-    [key in Key]: PropertySpec<Value[key]>;
+    [K in Key]: PropertySpec<Value[K]>;
   };
 };
 
-export type RadioPropertySpec<Value extends any | any[]> = DefaultPropertySpec<Value> & {
+export type RadioPropertySpec<Value> = DefaultPropertySpec<Value> & {
   type: 'radio';
   options: (
     | {
@@ -47,7 +33,7 @@ export type RadioPropertySpec<Value extends any | any[]> = DefaultPropertySpec<V
   )[];
 };
 
-export type SelectPropertySpec<Value extends any | any[]> = DefaultPropertySpec<Value> & {
+export type SelectPropertySpec<Value> = DefaultPropertySpec<Value> & {
   type: 'select';
   options: (
     | {
@@ -61,16 +47,29 @@ export type SelectPropertySpec<Value extends any | any[]> = DefaultPropertySpec<
   )[];
 };
 
-export type TextPropertySpec = DefaultPropertySpec<string> & {
+export type TextPropertySpec<Value> = DefaultPropertySpec<Value> & {
   type: 'text';
 };
 
 export type PropertySpec<Value> =
-  | (Value extends boolean | boolean[] ? BooleanPropertySpec<Value> : never)
-  | (Value extends Date | Date[] ? DatePropertySpec<Value> : never)
-  | (Value extends string | string[] ? TextPropertySpec | ImagePropertySpec<Value> : never)
-  | (Value extends number | number[] ? NumberPropertySpec<Value> : never)
-  | (Value extends object | object[] ? ObjectPropertySpec<Value> : never)
+  | (Value extends boolean | boolean[]
+      ? BooleanPropertySpec<Value>
+      : Value extends Date | Date[]
+        ? DatePropertySpec<Value>
+        : Value extends number | number[]
+          ? NumberPropertySpec<Value>
+          : Value extends string | string[]
+            ? TextPropertySpec<Value> | ImagePropertySpec<Value>
+            : Value extends Record<string, any> | Record<string, any>[]
+              ? ObjectPropertySpec<
+                  Value extends (infer E)[]
+                    ? E extends Record<string, any>
+                      ? E
+                      : never
+                    : Value extends Record<string, any>
+                      ? Value
+                      : never
+                >
+              : NodePropertySpec<Value>)
   | RadioPropertySpec<Value>
-  | SelectPropertySpec<Value>
-  | NodePropertySpec<Value>;
+  | SelectPropertySpec<Value>;

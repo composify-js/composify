@@ -10,7 +10,7 @@ export type Block<Props, Key extends keyof Props = keyof Props> = {
 const blocks = new Map<string, Block<any>>();
 
 export const register = <Props>(name: string, block: Block<Props>) => {
-  blocks.set(name, block);
+  blocks.set(name, block as Block<any>);
 };
 
 export const get = (name: string) => {
