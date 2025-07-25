@@ -4,10 +4,6 @@ type DefaultPropertySpec<Value> = {
   default?: Value;
 };
 
-export type NodePropertySpec = DefaultPropertySpec<any> & {
-  type: 'node';
-};
-
 export type BooleanPropertySpec = DefaultPropertySpec<boolean> & {
   type: 'boolean';
 };
@@ -22,6 +18,10 @@ export type ImagePropertySpec = DefaultPropertySpec<string> & {
 
 export type NumberPropertySpec = DefaultPropertySpec<number> & {
   type: 'number';
+};
+
+export type NodePropertySpec = DefaultPropertySpec<any> & {
+  type: 'node';
 };
 
 export type ObjectPropertySpec<Value, Key extends keyof Value> = DefaultPropertySpec<Value> & {
@@ -64,12 +64,11 @@ export type TextPropertySpec = DefaultPropertySpec<string> & {
 };
 
 export type PropertySpec<Value> =
-  | NodePropertySpec
-  | BooleanPropertySpec
-  | DatePropertySpec
-  | ImagePropertySpec
-  | NumberPropertySpec
-  | ObjectPropertySpec<Value, keyof Value>
+  | (Value extends boolean ? BooleanPropertySpec : never)
+  | (Value extends Date ? DatePropertySpec : never)
+  | (Value extends string ? TextPropertySpec | ImagePropertySpec : never)
+  | (Value extends number ? NumberPropertySpec : never)
+  | (Value extends object ? ObjectPropertySpec<Value, keyof Value> : never)
   | RadioPropertySpec
   | SelectPropertySpec
-  | TextPropertySpec;
+  | NodePropertySpec;
