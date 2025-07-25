@@ -1,10 +1,11 @@
 import { useEffect, startTransition } from 'react';
+import { TargetType } from '../Constants';
 import { useEditing } from '../EditingContext';
 import { useWindow } from '../WindowContext';
 
 export const KeyDownDetector = () => {
   const { windows } = useWindow();
-  const { setIsDragging, setDraggingNodeId } = useEditing();
+  const { focusBlock } = useEditing();
 
   useEffect(() => {
     let isDragging = false;
@@ -13,8 +14,7 @@ export const KeyDownDetector = () => {
       startTransition(() => {
         isDragging = false;
 
-        setIsDragging(false);
-        setDraggingNodeId(undefined);
+        focusBlock(undefined);
       });
     };
 
@@ -22,7 +22,7 @@ export const KeyDownDetector = () => {
       startTransition(() => {
         isDragging = true;
 
-        setIsDragging(true);
+        focusBlock(TargetType.Library);
       });
     };
 
@@ -30,8 +30,7 @@ export const KeyDownDetector = () => {
       startTransition(() => {
         isDragging = false;
 
-        setIsDragging(false);
-        setDraggingNodeId(undefined);
+        focusBlock(undefined);
       });
     };
 
@@ -40,8 +39,7 @@ export const KeyDownDetector = () => {
         startTransition(() => {
           isDragging = false;
 
-          setIsDragging(false);
-          setDraggingNodeId(undefined);
+          focusBlock(undefined);
         });
       }
     };
@@ -63,7 +61,7 @@ export const KeyDownDetector = () => {
         window.removeEventListener('drop', handleDragEnd);
       });
     };
-  }, [windows, setIsDragging, setDraggingNodeId]);
+  }, [windows, focusBlock]);
 
   return null;
 };

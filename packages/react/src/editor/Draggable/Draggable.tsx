@@ -14,15 +14,15 @@ type Props = {
 const getClassName = getClassNameFactory('Draggable', styles);
 
 export const Draggable: FC<PropsWithChildren<Props>> = ({ type, item, ...props }) => {
-  const { isDragging, selectedNode, draggingNodeId, setSelectedNodeId, setDraggingNodeId } = useEditing();
+  const { isDragging, focusedBlock, activeBlock, focusBlock, selectBlock } = useEditing();
 
   const [, dragRef] = useDrag(() => ({
     type,
     item,
     collect: monitor => {
       if (monitor.isDragging() && item.id) {
-        setDraggingNodeId(item.id);
-        setSelectedNodeId(item.id);
+        focusBlock(item.id);
+        selectBlock(item.id);
       }
     },
   }));
@@ -32,16 +32,16 @@ export const Draggable: FC<PropsWithChildren<Props>> = ({ type, item, ...props }
       event.stopPropagation();
 
       if (item.id) {
-        setSelectedNodeId(item.id);
+        selectBlock(item.id);
       }
     },
-    [item.id, setSelectedNodeId]
+    [item.id, selectBlock]
   );
 
   return (
     <div
       data-composify-role="draggable"
-      data-composify-dragging={isDragging && draggingNodeId == item.id}
+      data-composify-dragging={focusedBlock?.id == item.id}
       ref={node => {
         if (node?.firstChild) {
           dragRef(node.firstChild as Element);
@@ -49,7 +49,7 @@ export const Draggable: FC<PropsWithChildren<Props>> = ({ type, item, ...props }
       }}
       className={getClassName({
         idle: !isDragging,
-        selected: !!selectedNode && selectedNode.id === item.id,
+        selected: !!activeBlock && activeBlock.id === item.id,
       })}
       onClick={handleClick}
       {...props}

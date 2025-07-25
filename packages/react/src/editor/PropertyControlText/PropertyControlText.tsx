@@ -8,19 +8,19 @@ type Props = {
 };
 
 export const PropertyControlText = ({ name, spec }: Props) => {
-  const { selectedNode, updateNode } = useEditing();
+  const { activeBlock, updateActiveBlock } = useEditing();
 
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      updateNode(name, event.target.value);
+      updateActiveBlock(name, event.target.value);
     },
-    [name, updateNode]
+    [name, updateActiveBlock]
   );
 
   return (
     <div>
       <label>{spec.label}</label>
-      <input type="text" value={selectedNode?.props[name]} onChange={handleChange} />
+      <input type="text" value={activeBlock?.props[name]} onChange={handleChange} />
     </div>
   );
 };

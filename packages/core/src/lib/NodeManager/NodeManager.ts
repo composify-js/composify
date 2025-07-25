@@ -43,6 +43,8 @@ export class NodeManager {
     ];
 
     this.notify();
+
+    return child.id;
   };
 
   public remove = (id: string, permanent = true) => {

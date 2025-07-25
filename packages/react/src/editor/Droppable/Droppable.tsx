@@ -1,7 +1,7 @@
 import { Node } from '@composify/core';
 import { getClassNameFactory } from '@composify/utils';
 import { throttle } from 'es-toolkit';
-import { FC, useMemo } from 'react';
+import { FC } from 'react';
 import { useDrop } from 'react-dnd';
 import { TargetType } from '../Constants';
 import { useEditing } from '../EditingContext';
@@ -15,7 +15,7 @@ type Props = {
 const getClassName = getClassNameFactory('Droppable', styles);
 
 export const Droppable: FC<Props> = ({ item, index, ...props }) => {
-  const { isDragging, draggingNodeId, relocateNode, insertNode } = useEditing();
+  const { isDragging, focusedBlock, relocateFocusedBlock, insertBlock } = useEditing();
 
   const [{ isOver }, dropRef] = useDrop<Node, unknown, { isOver: boolean }>({
     accept: [TargetType.Canvas, TargetType.Library],
@@ -24,36 +24,31 @@ export const Droppable: FC<Props> = ({ item, index, ...props }) => {
         return;
       }
 
-      relocateNode(target.id, item.id, index);
+      relocateFocusedBlock({ id: item.id, index });
     }, 300),
     drop: (target, monitor) => {
       if (monitor.getItemType() !== TargetType.Library || !item.id) {
         return;
       }
 
-      insertNode(target, item.id, index);
+      insertBlock(target, { id: item.id, index });
     },
     collect: monitor => ({
       isOver: monitor.isOver() && monitor.getItemType() === TargetType.Library,
     }),
   });
 
-  const droppableStyle = useMemo(
-    () => ({
-      backgroundColor: isOver ? '#376DFAAA' : 'transparent',
-    }),
-    [isOver]
-  );
-
   return (
     <div
       data-composify-role="droppable"
-      data-composify-dragging={isDragging && draggingNodeId == item.id}
+      data-composify-dragging={focusedBlock?.id == item.id}
       ref={node => {
         dropRef(node);
       }}
-      className={getClassName({ active: isDragging })}
-      style={droppableStyle}
+      className={getClassName({
+        active: isDragging,
+        over: isOver,
+      })}
       {...props}
     />
   );

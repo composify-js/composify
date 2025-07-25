@@ -8,18 +8,18 @@ import styles from './PropertyPanel.module.css';
 const getClassName = getClassNameFactory('PropertyPanel', styles);
 
 export const PropertyPanel = () => {
-  const { selectedNode } = useEditing();
+  const { activeBlock } = useEditing();
 
-  if (!selectedNode) {
+  if (!activeBlock) {
     return null;
   }
 
-  const block = Catalog.get(selectedNode.type);
+  const block = Catalog.get(activeBlock.type);
 
   return (
     <section className={getClassName()}>
       <div className={getClassName('Header')}>
-        <h2 className={getClassName('HeaderTitle')}>{selectedNode?.type}</h2>
+        <h2 className={getClassName('HeaderTitle')}>{activeBlock?.type}</h2>
         <BlockActions />
       </div>
       {Object.entries(block.props).map(([name, spec]) => {

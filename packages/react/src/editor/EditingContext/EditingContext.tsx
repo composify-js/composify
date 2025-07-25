@@ -1,28 +1,27 @@
-import { NodeManager, Parser, Node } from '@composify/core';
+import { Node, NodeManager, Parser } from '@composify/core';
 import {
   createContext,
-  FC,
-  PropsWithChildren,
   useCallback,
   useContext,
   useMemo,
   useState,
   useSyncExternalStore,
+  FC,
+  PropsWithChildren,
 } from 'react';
 
 type EditingContextValues = {
   source: Node;
-  selectedNode?: Node;
-  draggingNodeId?: string;
+  focusedBlock?: Node;
+  activeBlock?: Node;
   isDragging: boolean;
-  relocateNode: (originId: string, targetId: string, index: number) => void;
-  insertNode: (origin: Node, targetId: string, index: number) => void;
-  removeNode: () => void;
-  duplicateNode: () => string;
-  updateNode: (key: string, value: unknown) => void;
-  setSelectedNodeId: (value?: string) => void;
-  setDraggingNodeId: (value?: string) => void;
-  setIsDragging: (value: boolean) => void;
+  focusBlock: (id?: string) => void;
+  selectBlock: (id: string) => void;
+  insertBlock: (node: Node, destination: { id: string; index: number }) => void;
+  relocateFocusedBlock: (destination: { id: string; index: number }) => void;
+  removeActiveBlock: () => void;
+  duplicateActiveBlock: () => void;
+  updateActiveBlock: (key: string, value: unknown) => void;
 };
 
 const EditingContext = createContext<EditingContextValues>({
@@ -32,17 +31,16 @@ const EditingContext = createContext<EditingContextValues>({
     props: {},
     children: [],
   },
-  selectedNode: undefined,
-  draggingNodeId: undefined,
+  focusedBlock: undefined,
+  activeBlock: undefined,
   isDragging: false,
-  relocateNode: () => null,
-  insertNode: () => null,
-  removeNode: () => null,
-  duplicateNode: () => '',
-  updateNode: () => null,
-  setSelectedNodeId: () => null,
-  setDraggingNodeId: () => null,
-  setIsDragging: () => null,
+  focusBlock: () => null,
+  selectBlock: () => null,
+  insertBlock: () => null,
+  relocateFocusedBlock: () => null,
+  removeActiveBlock: () => null,
+  duplicateActiveBlock: () => null,
+  updateActiveBlock: () => null,
 });
 
 type Props = {
@@ -58,80 +56,90 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
     () => nodeManager.root
   );
 
-  const [selectedNodeId, setSelectedNodeId] = useState<string>();
-  const [draggingNodeId, setDraggingNodeId] = useState<string>();
-  const [isDragging, setIsDragging] = useState(false);
+  const [focusedBlockId, setFocusedBlockId] = useState<string>();
+  const [activeBlockId, setActiveBlockId] = useState<string>();
 
-  const selectedNode = useMemo(
-    () => (selectedNodeId ? nodeManager.find(selectedNodeId) : undefined),
-    [nodeManager, selectedNodeId]
+  const focusedBlock = useMemo(
+    () => (focusedBlockId ? nodeManager.find(focusedBlockId) : undefined),
+    [focusedBlockId, nodeManager]
   );
 
-  const relocateNode = useCallback(
-    (originId: string, targetId: string, index: number) => nodeManager.relocate(originId, { id: targetId, index }),
+  const activeBlock = useMemo(
+    () => (activeBlockId ? nodeManager.find(activeBlockId) : undefined),
+    [activeBlockId, nodeManager]
+  );
+
+  const isDragging = useMemo(() => typeof focusedBlockId !== 'undefined', [focusedBlockId]);
+
+  const insertBlock = useCallback(
+    (node: Node, destination: { id: string; index: number }) => {
+      const id = nodeManager.insert(node, destination);
+
+      setActiveBlockId(id);
+    },
     [nodeManager]
   );
 
-  const insertNode = useCallback(
-    (origin: Node, targetId: string, index: number) => nodeManager.insert(origin, { id: targetId, index }),
-    [nodeManager]
+  const relocateFocusedBlock = useCallback(
+    (destination: { id: string; index: number }) => {
+      if (focusedBlock) {
+        nodeManager.relocate(focusedBlock.id, destination);
+      }
+    },
+    [focusedBlock, nodeManager]
   );
 
-  const removeNode = useCallback(() => {
-    if (!selectedNodeId) {
-      throw new Error('No node selected to remove');
+  const removeActiveBlock = useCallback(() => {
+    if (activeBlock) {
+      nodeManager.remove(activeBlock.id, true);
+
+      setActiveBlockId(undefined);
     }
+  }, [activeBlock, nodeManager]);
 
-    nodeManager.remove(selectedNodeId, true);
-  }, [selectedNodeId, nodeManager]);
+  const duplicateActiveBlock = useCallback(() => {
+    if (activeBlock) {
+      const id = nodeManager.duplicate(activeBlock.id);
 
-  const duplicateNode = useCallback(() => {
-    if (!selectedNodeId) {
-      throw new Error('No node selected to duplicate');
+      setActiveBlockId(id);
     }
+  }, [activeBlock, nodeManager]);
 
-    return nodeManager.duplicate(selectedNodeId);
-  }, [selectedNodeId, nodeManager]);
-
-  const updateNode = useCallback(
+  const updateActiveBlock = useCallback(
     (key: string, value: unknown) => {
-      if (!selectedNodeId) {
-        throw new Error('No node selected to update');
+      if (!activeBlock) {
+        throw new Error('No block selected to update');
       }
 
-      nodeManager.update(selectedNodeId, { key, value });
+      nodeManager.update(activeBlock.id, { key, value });
     },
-    [nodeManager, selectedNodeId]
+    [activeBlock, nodeManager]
   );
 
   const contextValues = useMemo(
     () => ({
       source,
-      selectedNode,
-      draggingNodeId,
+      focusedBlock,
+      activeBlock,
       isDragging,
-      relocateNode,
-      insertNode,
-      removeNode,
-      duplicateNode,
-      updateNode,
-      setSelectedNodeId,
-      setDraggingNodeId,
-      setIsDragging,
+      focusBlock: setFocusedBlockId,
+      selectBlock: setActiveBlockId,
+      insertBlock,
+      relocateFocusedBlock,
+      removeActiveBlock,
+      duplicateActiveBlock,
+      updateActiveBlock,
     }),
     [
       source,
-      selectedNode,
-      draggingNodeId,
+      focusedBlock,
+      activeBlock,
       isDragging,
-      relocateNode,
-      insertNode,
-      removeNode,
-      duplicateNode,
-      updateNode,
-      setSelectedNodeId,
-      setDraggingNodeId,
-      setIsDragging,
+      insertBlock,
+      relocateFocusedBlock,
+      removeActiveBlock,
+      duplicateActiveBlock,
+      updateActiveBlock,
     ]
   );
 
