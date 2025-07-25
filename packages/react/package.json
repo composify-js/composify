@@ -67,6 +67,7 @@
   },
   "scripts": {
     "build": "tsup",
+    "typecheck": "tsc --noEmit",
     "storybook": "ladle serve",
     "test": "jest"
   },

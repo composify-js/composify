@@ -1,6 +1,6 @@
 import { Catalog, Node } from '@composify/core';
 import { cleanup, render } from '@testing-library/react';
-import { createElement, ReactNode } from 'react';
+import { ComponentProps, createElement, ReactNode } from 'react';
 import { Renderer } from './Renderer';
 
 describe('Renderer', () => {
@@ -54,7 +54,7 @@ describe('Renderer', () => {
   it('should render React component', () => {
     const Title = (props: { children: string }) => <h1>{props.children}</h1>;
 
-    Catalog.register('Title', {
+    Catalog.register<ComponentProps<typeof Title>>('Title', {
       component: Title,
       props: {
         children: {

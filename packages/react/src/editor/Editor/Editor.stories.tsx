@@ -16,7 +16,7 @@ Catalog.register<ComponentProps<typeof HStack>>('HStack', {
   props: {
     children: {
       label: 'Children',
-      type: 'node',
+      type: 'boolean',
     },
     width: {
       label: 'Width',
