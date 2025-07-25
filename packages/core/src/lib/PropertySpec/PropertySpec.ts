@@ -1,7 +1,14 @@
 type DefaultPropertySpec<Value> = {
   label: string;
-  default?: Value;
-} & (Value extends readonly any[] ? { list: true } : { list?: never });
+} & (Value extends readonly any[]
+  ? {
+      default?: Value;
+      list: true;
+    }
+  : {
+      default?: Value;
+      list?: never;
+    });
 
 export type BooleanPropertySpec<Value> = DefaultPropertySpec<Value> & { type: 'boolean' };
 export type DatePropertySpec<Value> = DefaultPropertySpec<Value> & { type: 'date' };

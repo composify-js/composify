@@ -25,7 +25,7 @@ export const PropertyPanel = () => {
       {Object.entries(block.props).map(([name, spec]) => {
         switch (spec.type) {
           case 'text':
-            return <PropertyControlText name={name} spec={spec} />;
+            return <PropertyControlText key={name} name={name} spec={spec} />;
           default:
             return null;
         }
