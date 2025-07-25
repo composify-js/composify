@@ -3,6 +3,6 @@
   padding: 1rem;
   outline: none;
   border: none;
-  border-bottom: 1px solid var(--composify-palette-border);
-  background-color: var(--composify-palette-bg-surface);
+  border-bottom: 1px solid var(--composify-palette-outline);
+  background-color: var(--composify-palette-surface);
 }

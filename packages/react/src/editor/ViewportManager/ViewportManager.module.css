@@ -4,6 +4,7 @@
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+  background-color: var(--composify-palette-surface-container);
 }
 
 .ViewportManager-Target {

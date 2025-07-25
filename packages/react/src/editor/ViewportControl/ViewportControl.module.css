@@ -13,9 +13,9 @@
   cursor: pointer;
   padding: 0.75rem;
   color: var(--composify-palette-on-surface);
-  border: 1px solid var(--composify-palette-border);
+  border: 1px solid var(--composify-palette-outline);
   border-radius: 0.5rem;
-  background-color: var(--composify-palette-bg-surface);
+  background-color: var(--composify-palette-surface);
 }
 
 .ViewportControl-ViewportItem:hover,

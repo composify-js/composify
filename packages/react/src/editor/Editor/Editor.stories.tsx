@@ -4,11 +4,17 @@ import { HStack } from '../../preset/HStack';
 import { VStack } from '../../preset/VStack';
 import { Editor } from './Editor';
 
-const Text = () => <p>Hello world!</p>;
+const Text = ({ content }: { content: string }) => <p>{content}</p>;
 
 Catalog.register<ComponentProps<typeof Text>>('Text', {
   component: Text,
-  props: {},
+  props: {
+    content: {
+      label: 'Content',
+      type: 'text',
+      default: 'Hello world!',
+    },
+  },
 });
 
 Catalog.register<ComponentProps<typeof HStack>>('HStack', {
@@ -66,7 +72,7 @@ export const BasicUsage = () => {
     <VStack>
       <HStack backgroundColor="#ECEFF1">
         <HStack width={200} height={100} backgroundColor="#E1F5FE" />
-        <Text />
+        <Text content="Hello world!" />
         <HStack width={150} height={100} backgroundColor="#B3E5FC" />
       </HStack>
       <HStack backgroundColor="#CFD8DC">

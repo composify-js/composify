@@ -25,8 +25,10 @@ export const PropertyControlTextSingle = ({ name, spec }: Props) => {
 
   return (
     <div className={getClassName()}>
-      <label>{spec.label}</label>
-      <input type="text" value={value} onChange={handleChange} />
+      <label htmlFor={name} className={getClassName('Label')}>
+        {spec.label}
+      </label>
+      <input type="text" id={name} value={value} onChange={handleChange} className={getClassName('Input')} />
     </div>
   );
 };

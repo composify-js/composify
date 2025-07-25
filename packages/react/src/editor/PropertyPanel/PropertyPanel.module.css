@@ -3,8 +3,8 @@
   flex-direction: column;
   max-width: 256px;
   width: 100%;
-  border-left: 1px solid var(--composify-palette-border);
-  background-color: var(--composify-palette-bg-surface);
+  border-left: 1px solid var(--composify-palette-outline);
+  background-color: var(--composify-palette-surface);
 }
 
 .PropertyPanel-Header {
@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 0.5rem 0.5rem 1rem;
-  border-bottom: 1px solid var(--composify-palette-border);
+  border-bottom: 1px solid var(--composify-palette-outline);
 }
 
 .PropertyPanel-HeaderTitle {

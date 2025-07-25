@@ -1,11 +1,43 @@
 :root {
-  --composify-palette-bg-surface: #FFFFFF;
-  --composify-palette-bg-surfaceContainer: #F9FAFB;
+  --composify-palette-primary: rgb(59, 130, 246);
+  --composify-palette-on-primary: rgb(255, 255, 255);
+  --composify-palette-secondary: rgb(60, 60, 60);
+  --composify-palette-on-secondary: rgb(255, 255, 255);
+  --composify-palette-surface: rgb(255, 255, 255);
+  --composify-palette-on-surface: rgb(30, 30, 30);
+  --composify-palette-surface-container: rgb(245, 245, 245);
+  --composify-palette-outline: rgb(229, 229, 229);
 
-  --composify-palette-border: #E5E7EB;
-  --composify-palette-active: #3B82F6;
-
-  --composify-palette-on-surface: #1A1A1A;
-
-  --composify-palette-black: #000000;
+  --composify-palette-surface-tint: rgb(64, 95, 144);
+  --composify-palette-primary-container: rgb(214, 227, 255);
+  --composify-palette-on-primary-container: rgb(38, 71, 119);
+  --composify-palette-secondary-container: rgb(217, 227, 249);
+  --composify-palette-on-secondary-container: rgb(62, 71, 88);
+  --composify-palette-error: rgb(186, 26, 26);
+  --composify-palette-on-error: rgb(255, 255, 255);
+  --composify-palette-error-container: rgb(255, 218, 214);
+  --composify-palette-on-error-container: rgb(147, 0, 10);
+  --composify-palette-background: rgb(249, 249, 255);
+  --composify-palette-on-background: rgb(25, 28, 32);
+  --composify-palette-surface-variant: rgb(224, 226, 236);
+  --composify-palette-on-surface-variant: rgb(68, 71, 78);
+  --composify-palette-shadow: rgb(0, 0, 0);
+  --composify-palette-scrim: rgb(0, 0, 0);
+  --composify-palette-inverse-surface: rgb(46, 48, 54);
+  --composify-palette-inverse-on-surface: rgb(240, 240, 247);
+  --composify-palette-inverse-primary: rgb(169, 199, 255);
+  --composify-palette-primary-fixed: rgb(214, 227, 255);
+  --composify-palette-on-primary-fixed: rgb(23, 23, 24);
+  --composify-palette-primary-fixed-dim: rgb(169, 199, 255);
+  --composify-palette-on-primary-fixed-variant: rgb(38, 71, 119);
+  --composify-palette-secondary-fixed: rgb(217, 227, 249);
+  --composify-palette-on-secondary-fixed: rgb(18, 28, 43);
+  --composify-palette-secondary-fixed-dim: rgb(189, 199, 220);
+  --composify-palette-on-secondary-fixed-variant: rgb(62, 71, 88);
+  --composify-palette-surface-dim: rgb(217, 217, 224);
+  --composify-palette-surface-bright: rgb(249, 249, 255);
+  --composify-palette-surface-container-lowest: rgb(255, 255, 255);
+  --composify-palette-surface-container-low: rgb(243, 243, 250);
+  --composify-palette-surface-container-high: rgb(231, 232, 238);
+  --composify-palette-surface-container-highest: rgb(226, 226, 233);
 }

@@ -20,7 +20,7 @@
 }
 
 .Droppable--active:not(:first-child) {
-  border: 0.0625rem dotted var(--composify-palette-active);
+  border: 0.0625rem dotted var(--composify-palette-primary);
 }
 
 .Droppable--active:last-child:not(:only-child) {
@@ -39,6 +39,6 @@
 }
 
 .Droppable--over {
-  background-color: var(--composify-palette-active);
+  background-color: var(--composify-palette-primary);
   opacity: 0.8;
 }
