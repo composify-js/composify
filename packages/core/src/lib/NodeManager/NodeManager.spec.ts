@@ -82,7 +82,7 @@ describe('NodeManager', () => {
       const rootId = nodeManager.root.id;
       const initialChildrenCount = nodeManager.root.children.length;
 
-      nodeManager.insert(newNode, rootId, 1);
+      nodeManager.insert(newNode, { id: rootId, index: 1 });
 
       expect(nodeManager.root.children).toHaveLength(initialChildrenCount + 1);
       expect(nodeManager.root.children[1].type).toBe(newNode.type);
@@ -95,7 +95,7 @@ describe('NodeManager', () => {
       const rootId = nodeManager.root.id;
 
       nodeManager.remove(existingChild.id);
-      nodeManager.insert(existingChild, rootId, 0);
+      nodeManager.insert(existingChild, { id: rootId, index: 0 });
 
       expect(nodeManager.root.children[0].id).toBe(existingChild.id);
       expect(nodeManager.root.children[0].type).toBe(existingChild.type);
@@ -110,7 +110,7 @@ describe('NodeManager', () => {
 
       const rootId = nodeManager.root.id;
 
-      nodeManager.insert(newNode, rootId, 0);
+      nodeManager.insert(newNode, { id: rootId, index: 0 });
 
       expect(nodeManager.root.children[0].type).toBe(newNode.type);
     });
@@ -125,7 +125,7 @@ describe('NodeManager', () => {
       const rootId = nodeManager.root.id;
       const childrenCount = nodeManager.root.children.length;
 
-      nodeManager.insert(newNode, rootId, childrenCount + 10);
+      nodeManager.insert(newNode, { id: rootId, index: childrenCount + 10 });
 
       expect(nodeManager.root.children[nodeManager.root.children.length - 1].type).toBe(newNode.type);
     });
@@ -138,7 +138,7 @@ describe('NodeManager', () => {
       };
 
       const initialChildrenCount = nodeManager.root.children.length;
-      nodeManager.insert(newNode, 'non-existent-id', 0);
+      nodeManager.insert(newNode, { id: 'non-existent-id', index: 0 });
 
       expect(nodeManager.root.children).toHaveLength(initialChildrenCount);
     });
@@ -183,11 +183,11 @@ describe('NodeManager', () => {
   describe('relocate', () => {
     it('should move a node to a new parent at specified index', () => {
       const sourceId = nodeManager.root.children[0].id;
-      const targetId = nodeManager.root.children[1].id;
+      const destinationId = nodeManager.root.children[1].id;
 
-      nodeManager.relocate(sourceId, targetId, 0);
+      nodeManager.relocate(sourceId, { id: destinationId, index: 0 });
 
-      const targetNode = nodeManager.find(targetId);
+      const targetNode = nodeManager.find(destinationId);
 
       expect(targetNode?.children).toHaveLength(1);
       expect(targetNode?.children[0].id).toBe(sourceId);
@@ -195,10 +195,10 @@ describe('NodeManager', () => {
     });
 
     it('should do nothing if source node does not exist', () => {
-      const targetId = nodeManager.root.children[0].id;
+      const destinationId = nodeManager.root.children[0].id;
       const initialRootChildrenCount = nodeManager.root.children.length;
 
-      nodeManager.relocate('non-existent-id', targetId, 0);
+      nodeManager.relocate('non-existent-id', { id: destinationId, index: 0 });
 
       expect(nodeManager.root.children).toHaveLength(initialRootChildrenCount);
     });
@@ -207,7 +207,7 @@ describe('NodeManager', () => {
       const parentId = nodeManager.root.id;
       const childId = nodeManager.root.children[0].id;
 
-      nodeManager.relocate(parentId, childId, 0);
+      nodeManager.relocate(parentId, { id: childId, index: 0 });
 
       const childNode = nodeManager.find(childId);
       expect(childNode?.children).toHaveLength(0);
@@ -250,7 +250,7 @@ describe('NodeManager', () => {
           },
         ],
       };
-      nodeManager.insert(deepNode, nodeManager.root.id, 0);
+      nodeManager.insert(deepNode, { id: nodeManager.root.id, index: 0 });
 
       const node = nodeManager.root.children[0];
       const originalChildId = node.children[0].id;
@@ -320,7 +320,7 @@ describe('NodeManager', () => {
         children: [],
       };
 
-      nodeManager.insert(newNode, nodeManager.root.id, 0);
+      nodeManager.insert(newNode, { id: nodeManager.root.id, index: 0 });
 
       expect(callback).toHaveBeenCalled();
 
@@ -339,7 +339,7 @@ describe('NodeManager', () => {
         children: [],
       };
 
-      nodeManager.insert(newNode, nodeManager.root.id, 0);
+      nodeManager.insert(newNode, { id: nodeManager.root.id, index: 0 });
 
       expect(callback).not.toHaveBeenCalled();
     });
@@ -357,7 +357,7 @@ describe('NodeManager', () => {
         children: [],
       };
 
-      nodeManager.insert(newNode, nodeManager.root.id, 0);
+      nodeManager.insert(newNode, { id: nodeManager.root.id, index: 0 });
 
       expect(callback1).toHaveBeenCalled();
       expect(callback2).toHaveBeenCalled();
@@ -384,7 +384,7 @@ describe('NodeManager', () => {
         ],
       };
 
-      nodeManager.insert(deepNode, nodeManager.root.id, 0);
+      nodeManager.insert(deepNode, { id: nodeManager.root.id, index: 0 });
 
       const level1 = nodeManager.root.children[0];
       const level2 = level1.children[0];
@@ -400,13 +400,13 @@ describe('NodeManager', () => {
       const nodeA: Node = { type: 'A', props: {}, children: [] };
       const nodeB: Node = { type: 'B', props: {}, children: [] };
 
-      nodeManager.insert(nodeA, nodeManager.root.id, 0);
-      nodeManager.insert(nodeB, nodeManager.root.id, 1);
+      nodeManager.insert(nodeA, { id: nodeManager.root.id, index: 0 });
+      nodeManager.insert(nodeB, { id: nodeManager.root.id, index: 1 });
 
       const nodeAId = nodeManager.root.children[0].id;
       const nodeBId = nodeManager.root.children[1].id;
 
-      nodeManager.relocate(nodeAId, nodeBId, 0);
+      nodeManager.relocate(nodeAId, { id: nodeBId, index: 0 });
 
       const nodeBAfterMove = nodeManager.find(nodeBId);
 
