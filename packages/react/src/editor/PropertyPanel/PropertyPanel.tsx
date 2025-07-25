@@ -11,7 +11,7 @@ export const PropertyPanel = () => {
   const { activeBlock } = useEditing();
 
   if (!activeBlock) {
-    return null;
+    return <section className={getClassName()} />;
   }
 
   const block = Catalog.get(activeBlock.type);
