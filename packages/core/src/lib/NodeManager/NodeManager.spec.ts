@@ -194,13 +194,12 @@ describe('NodeManager', () => {
       expect(nodeManager.root.children).toHaveLength(1);
     });
 
-    it('should do nothing if source node does not exist', () => {
-      const destinationId = nodeManager.root.children[0].id;
-      const initialRootChildrenCount = nodeManager.root.children.length;
+    it('should throw an error if node to relocate does not exist', () => {
+      expect(() => {
+        const destinationId = nodeManager.root.children[0].id;
 
-      nodeManager.relocate('non-existent-id', { id: destinationId, index: 0 });
-
-      expect(nodeManager.root.children).toHaveLength(initialRootChildrenCount);
+        nodeManager.relocate('non-existent-id', { id: destinationId, index: 0 });
+      }).toThrow('Node with id non-existent-id not found');
     });
 
     it('should prevent circular references', () => {

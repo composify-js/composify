@@ -1,23 +1,23 @@
-import { TextPropertySpec } from '@composify/core';
+import { NumberPropertySpec } from '@composify/core';
 import { getClassNameFactory } from '@composify/utils';
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { useEditing } from '../EditingContext';
-import styles from './PropertyControlText.module.css';
+import styles from './PropertyControlNumber.module.css';
 
 type Props = {
   name: string;
-  spec: TextPropertySpec<string[]>;
+  spec: NumberPropertySpec<number[]>;
 };
 
-const getClassName = getClassNameFactory('PropertyControlText', styles);
+const getClassName = getClassNameFactory('PropertyControlNumber', styles);
 
-export const PropertyControlTextMultiple = ({ name, spec }: Props) => {
+export const PropertyControlNumberMultiple = ({ name, spec }: Props) => {
   const { activeBlock, updateActiveBlock } = useEditing();
 
-  const [values, setValues] = useState<string[]>(activeBlock?.props[name] ?? ['']);
+  const [values, setValues] = useState<number[]>(activeBlock?.props[name] ?? [0]);
 
   const handleClickAdd = useCallback(() => {
-    setValues(prev => [...prev, '']);
+    setValues(prev => [...prev, 0]);
   }, []);
 
   const handleClickRemove = useCallback(
@@ -29,7 +29,7 @@ export const PropertyControlTextMultiple = ({ name, spec }: Props) => {
 
   const handleChange = useCallback(
     (index: number) => (event: ChangeEvent<HTMLInputElement>) => {
-      setValues(prev => [...prev.slice(0, index), event.target.value, ...prev.slice(index + 1)]);
+      setValues(prev => [...prev.slice(0, index), Number(event.target.value), ...prev.slice(index + 1)]);
     },
     []
   );
@@ -45,8 +45,8 @@ export const PropertyControlTextMultiple = ({ name, spec }: Props) => {
         {values.map((value, index) => (
           <div key={`${name}-${index}`} className={getClassName('InputItem')}>
             <input
-              type="text"
               id={`${name}-${index}`}
+              type="number"
               value={value}
               onChange={handleChange(index)}
               className={getClassName('Input')}

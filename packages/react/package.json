@@ -67,6 +67,7 @@
   },
   "scripts": {
     "build": "tsup",
+    "lint": "eslint **/*.ts{,x} --fix",
     "typecheck": "tsc --noEmit",
     "storybook": "ladle serve",
     "test": "jest"

@@ -2,6 +2,7 @@ import { Catalog } from '@composify/core';
 import { getClassNameFactory } from '@composify/utils';
 import { BlockActions } from '../BlockActions';
 import { useEditing } from '../EditingContext';
+import { PropertyControlNumber } from '../PropertyControlNumber';
 import { PropertyControlText } from '../PropertyControlText';
 import styles from './PropertyPanel.module.css';
 
@@ -26,6 +27,8 @@ export const PropertyPanel = () => {
         switch (spec.type) {
           case 'text':
             return <PropertyControlText key={name} name={name} spec={spec} />;
+          case 'number':
+            return <PropertyControlNumber key={name} name={name} spec={spec} />;
           default:
             return null;
         }
