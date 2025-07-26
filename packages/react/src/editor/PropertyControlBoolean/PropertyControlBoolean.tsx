@@ -5,18 +5,18 @@ import styles from './PropertyControlBoolean.module.css';
 
 type Props = {
   name: string;
-  spec: BooleanPropertySpec<boolean | boolean[]>;
-  value?: boolean | boolean[];
-  onChange?: (name: string, value: boolean | boolean[]) => void;
+  spec: BooleanPropertySpec<boolean>;
+  value?: boolean;
+  onChange?: (name: string, value: boolean) => void;
 };
 
 const getClassName = getClassNameFactory('PropertyControlBoolean', styles);
 
 export const PropertyControlBoolean = ({ name, spec, value, onChange }: Props) => (
-  <PropertyControl<boolean | boolean[]>
+  <PropertyControl<boolean>
     name={name}
     spec={spec}
-    defaultValue={[spec.default].flat()[0] ?? false}
+    defaultValue={spec.default ?? false}
     value={value}
     onChange={onChange}
     renderInput={(_, value, onChange) => (

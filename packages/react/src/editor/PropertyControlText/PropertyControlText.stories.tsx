@@ -1,13 +1,13 @@
 import { Theme } from '../Theme';
-import { PropertyControlTextArea } from './PropertyControlTextArea';
+import { PropertyControlText } from './PropertyControlText';
 
 export const BasicUsage = () => (
   <>
     <Theme />
-    <PropertyControlTextArea
+    <PropertyControlText
       name="example"
       spec={{
-        type: 'textarea',
+        type: 'text',
         label: 'Content',
       }}
     />

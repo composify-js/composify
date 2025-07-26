@@ -14,18 +14,3 @@ export const BasicUsage = () => (
     />
   </>
 );
-
-export const WithArray = () => (
-  <>
-    <Theme />
-    <PropertyControlBoolean
-      name="example"
-      spec={{
-        type: 'boolean',
-        label: 'Visible',
-        default: [false],
-        list: true,
-      }}
-    />
-  </>
-);

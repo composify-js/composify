@@ -5,18 +5,18 @@ import styles from './PropertyControlTextArea.module.css';
 
 type Props = {
   name: string;
-  spec: TextAreaPropertySpec<string | string[]>;
-  value?: string | string[];
-  onChange?: (name: string, value: string | string[]) => void;
+  spec: TextAreaPropertySpec<string>;
+  value?: string;
+  onChange?: (name: string, value: string) => void;
 };
 
 const getClassName = getClassNameFactory('PropertyControlTextArea', styles);
 
 export const PropertyControlTextArea = ({ name, spec, value, onChange }: Props) => (
-  <PropertyControl<string | string[]>
+  <PropertyControl<string>
     name={name}
     spec={spec}
-    defaultValue={[spec.default].flat()[0] ?? ''}
+    defaultValue={spec.default ?? ''}
     value={value}
     onChange={onChange}
     renderInput={(id, value, onChange) => (

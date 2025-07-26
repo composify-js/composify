@@ -1,29 +1,36 @@
 import { PropertySpec } from '@composify/core';
 import { getClassNameFactory } from '@composify/utils';
-import { ReactNode } from 'react';
+import { ReactNode, useCallback } from 'react';
+import { useEditing } from '../EditingContext';
 import styles from './PropertyControl.module.css';
-import { PropertyControlMultiple } from './PropertyControlMultiple';
-import { PropertyControlSingle } from './PropertyControlSingle';
 
-type Props<Value, ElementValue = Value extends (infer Element)[] ? Element : Value> = {
+type Props<Value> = {
   name: string;
   spec: PropertySpec<Value>;
-  defaultValue: ElementValue;
+  defaultValue: Value;
   value?: Value;
   onChange?: (name: string, value: Value) => void;
-  renderInput: (id: string, value: ElementValue, onChange: (value: ElementValue) => void) => ReactNode;
+  renderInput: (id: string, value: Value, onChange: (value: Value) => void) => ReactNode;
 };
 
 const getClassName = getClassNameFactory('PropertyControl', styles);
 
-export const PropertyControl = <Value,>({ spec, ...props }: Props<Value>) => (
-  <div className={getClassName()}>
-    <span className={getClassName('Label')}>{spec.label}</span>
-    {'list' in spec && spec.list ? (
-      <PropertyControlMultiple {...props} />
-    ) : (
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      <PropertyControlSingle {...(props as any)} />
-    )}
-  </div>
-);
+export const PropertyControl = <Value,>({ name, spec, defaultValue, value, onChange, renderInput }: Props<Value>) => {
+  const { activeBlock, updateActiveBlock } = useEditing();
+
+  const effectiveValue = value ?? activeBlock?.props[name] ?? defaultValue;
+
+  const handleChange = useCallback(
+    (value: Value) => {
+      (onChange ?? updateActiveBlock)(name, value);
+    },
+    [name, onChange, updateActiveBlock]
+  );
+
+  return (
+    <div className={getClassName()}>
+      <span className={getClassName('Label')}>{spec.label}</span>
+      {renderInput(name, effectiveValue, handleChange)}
+    </div>
+  );
+};

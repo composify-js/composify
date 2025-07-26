@@ -10,18 +10,18 @@ import styles from './PropertyControlObject.module.css';
 
 type Props = {
   name: string;
-  spec: ObjectPropertySpec<any | any[]>;
-  value?: any | any[];
-  onChange?: (name: string, value: any) => void;
+  spec: ObjectPropertySpec<Record<string, any>>;
+  value?: Record<string, any>;
+  onChange?: (name: string, value: Record<string, any>) => void;
 };
 
 const getClassName = getClassNameFactory('PropertyControlObject', styles);
 
 export const PropertyControlObject = ({ name, spec, value, onChange }: Props) => (
-  <PropertyControl<any | any[]>
+  <PropertyControl<Record<string, any>>
     name={name}
     spec={spec}
-    defaultValue={[spec.default].flat()[0] ?? {}}
+    defaultValue={spec.default ?? {}}
     value={value}
     onChange={onChange}
     renderInput={(_, value, onChange) => {
