@@ -6,15 +6,19 @@ import styles from './PropertyControlBoolean.module.css';
 type Props = {
   name: string;
   spec: BooleanPropertySpec<boolean | boolean[]>;
+  value?: boolean | boolean[];
+  onChange?: (name: string, value: boolean | boolean[]) => void;
 };
 
 const getClassName = getClassNameFactory('PropertyControlBoolean', styles);
 
-export const PropertyControlBoolean = ({ name, spec }: Props) => (
+export const PropertyControlBoolean = ({ name, spec, value, onChange }: Props) => (
   <PropertyControl<boolean | boolean[]>
     name={name}
     spec={spec}
-    defaultValue={false}
+    defaultValue={[spec.default].flat()[0] ?? false}
+    value={value}
+    onChange={onChange}
     renderInput={(_, value, onChange) => (
       <div className={getClassName('ButtonGroup')}>
         <button

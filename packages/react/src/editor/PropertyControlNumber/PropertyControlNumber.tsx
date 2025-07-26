@@ -6,15 +6,19 @@ import styles from './PropertyControlNumber.module.css';
 type Props = {
   name: string;
   spec: NumberPropertySpec<number | number[]>;
+  value?: number | number[];
+  onChange?: (name: string, value: number | number[]) => void;
 };
 
 const getClassName = getClassNameFactory('PropertyControlNumber', styles);
 
-export const PropertyControlNumber = ({ name, spec }: Props) => (
+export const PropertyControlNumber = ({ name, spec, value, onChange }: Props) => (
   <PropertyControl<number | number[]>
     name={name}
     spec={spec}
-    defaultValue={0}
+    value={value}
+    defaultValue={[spec.default].flat()[0] ?? 0}
+    onChange={onChange}
     renderInput={(id, value, onChange) => (
       <input
         type="number"

@@ -73,9 +73,9 @@ export type PropertySpec<Value> =
             ? TextPropertySpec<Value> | TextAreaPropertySpec<Value> | ImagePropertySpec<Value>
             : Value extends Record<string, any> | Record<string, any>[]
               ? ObjectPropertySpec<
-                  Value extends (infer E)[]
-                    ? E extends Record<string, any>
-                      ? E
+                  Value extends (infer Element)[]
+                    ? Element extends Record<string, any>
+                      ? Element
                       : never
                     : Value extends Record<string, any>
                       ? Value

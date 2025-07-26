@@ -4,7 +4,19 @@ import { HStack } from '../../preset/HStack';
 import { VStack } from '../../preset/VStack';
 import { Editor } from './Editor';
 
-const Text = ({ content }: { content: string }) => <p>{content}</p>;
+const Text = ({
+  content,
+  decorate = { prefix: '', suffix: 0 },
+}: {
+  content: string;
+  decorate: { prefix: string; suffix: number };
+}) => (
+  <p>
+    {decorate.prefix}
+    {content}
+    {decorate.suffix}
+  </p>
+);
 
 Catalog.register<ComponentProps<typeof Text>>('Text', {
   component: Text,
@@ -13,6 +25,26 @@ Catalog.register<ComponentProps<typeof Text>>('Text', {
       label: 'Content',
       type: 'textarea',
       default: 'Hello world!',
+    },
+    decorate: {
+      label: 'Decorate',
+      type: 'object',
+      default: {
+        prefix: '',
+        suffix: 0,
+      },
+      fields: {
+        prefix: {
+          label: 'Prefix',
+          type: 'text',
+          default: '',
+        },
+        suffix: {
+          label: 'Suffix',
+          type: 'number',
+          default: 0,
+        },
+      },
     },
   },
 });

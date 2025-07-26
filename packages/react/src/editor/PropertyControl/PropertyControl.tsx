@@ -9,6 +9,8 @@ type Props<Value, ElementValue = Value extends (infer Element)[] ? Element : Val
   name: string;
   spec: PropertySpec<Value>;
   defaultValue: ElementValue;
+  value?: Value;
+  onChange?: (name: string, value: Value) => void;
   renderInput: (id: string, value: ElementValue, onChange: (value: ElementValue) => void) => ReactNode;
 };
 
@@ -17,6 +19,11 @@ const getClassName = getClassNameFactory('PropertyControl', styles);
 export const PropertyControl = <Value,>({ spec, ...props }: Props<Value>) => (
   <div className={getClassName()}>
     <span className={getClassName('Label')}>{spec.label}</span>
-    {'list' in spec && spec.list ? <PropertyControlMultiple {...props} /> : <PropertyControlSingle {...props} />}
+    {'list' in spec && spec.list ? (
+      <PropertyControlMultiple {...props} />
+    ) : (
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      <PropertyControlSingle {...(props as any)} />
+    )}
   </div>
 );

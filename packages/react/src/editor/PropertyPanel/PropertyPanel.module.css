@@ -25,6 +25,6 @@
 .PropertyPanel-Content {
   display: flex;
   flex-direction: column;
-  padding: 0.5rem 0;
-  gap: 0.5rem;
+  gap: 1rem;
+  padding: 1rem;
 }

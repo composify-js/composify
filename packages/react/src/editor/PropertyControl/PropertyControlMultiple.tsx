@@ -6,6 +6,8 @@ import styles from './PropertyControl.module.css';
 type Props<Value, ElementValue = Value extends (infer Element)[] ? Element : never> = {
   name: string;
   defaultValue: ElementValue;
+  value?: Value;
+  onChange?: (name: string, value: Value) => void;
   renderInput: (id: string, value: ElementValue, onChange: (value: ElementValue) => void) => ReactNode;
 };
 
@@ -14,11 +16,13 @@ const getClassName = getClassNameFactory('PropertyControl', styles);
 export const PropertyControlMultiple = <Value, ElementValue = Value extends (infer Element)[] ? Element : never>({
   name,
   defaultValue,
+  value,
+  onChange,
   renderInput,
 }: Props<Value, ElementValue>) => {
   const { activeBlock, updateActiveBlock } = useEditing();
 
-  const [values, setValues] = useState<ElementValue[]>(activeBlock?.props[name] ?? [defaultValue]);
+  const [values, setValues] = useState<ElementValue[]>(value ?? activeBlock?.props[name] ?? [defaultValue]);
 
   const handleClickAdd = useCallback(() => {
     setValues(prev => [...prev, defaultValue]);
@@ -39,8 +43,8 @@ export const PropertyControlMultiple = <Value, ElementValue = Value extends (inf
   );
 
   useEffect(() => {
-    updateActiveBlock(name, values);
-  }, [name, values, updateActiveBlock]);
+    (onChange ?? updateActiveBlock)(name, values as unknown as Value);
+  }, [name, values, onChange, updateActiveBlock]);
 
   return (
     <div className={getClassName('InputList')}>

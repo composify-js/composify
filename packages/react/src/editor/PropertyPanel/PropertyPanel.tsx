@@ -4,6 +4,7 @@ import { BlockActions } from '../BlockActions';
 import { useEditing } from '../EditingContext';
 import { PropertyControlBoolean } from '../PropertyControlBoolean';
 import { PropertyControlNumber } from '../PropertyControlNumber';
+import { PropertyControlObject } from '../PropertyControlObject';
 import { PropertyControlText } from '../PropertyControlText';
 import { PropertyControlTextArea } from '../PropertyControlTextArea';
 import styles from './PropertyPanel.module.css';
@@ -36,6 +37,8 @@ export const PropertyPanel = () => {
               return <PropertyControlTextArea key={name} name={name} spec={spec} />;
             case 'number':
               return <PropertyControlNumber key={name} name={name} spec={spec} />;
+            case 'object':
+              return <PropertyControlObject key={name} name={name} spec={spec} />;
             default:
               return null;
           }

@@ -1,13 +1,12 @@
 .PropertyControl {
   display: flex;
   flex-direction: column;
-  padding: 0 1rem;
 }
 
 .PropertyControl-Label {
   color: var(--composify-palette-on-surface-variant);
   font-size: 0.75rem;
-  margin: 0.5rem 0;
+  margin-bottom: 0.5rem;
 }
 
 .PropertyControl-InputList {
