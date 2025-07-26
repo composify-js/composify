@@ -21,3 +21,10 @@
   font-weight: 600;
   color: var(--composify-palette-on-surface);
 }
+
+.PropertyPanel-Content {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0;
+  gap: 0.5rem;
+}

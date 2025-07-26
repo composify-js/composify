@@ -25,20 +25,22 @@ export const PropertyPanel = () => {
         <h2 className={getClassName('HeaderTitle')}>{activeBlock?.type}</h2>
         <BlockActions />
       </div>
-      {Object.entries(block.props).map(([name, spec]) => {
-        switch (spec.type) {
-          case 'boolean':
-            return <PropertyControlBoolean key={name} name={name} spec={spec} />;
-          case 'text':
-            return <PropertyControlText key={name} name={name} spec={spec} />;
-          case 'textarea':
-            return <PropertyControlTextArea key={name} name={name} spec={spec} />;
-          case 'number':
-            return <PropertyControlNumber key={name} name={name} spec={spec} />;
-          default:
-            return null;
-        }
-      })}
+      <div className={getClassName('Content')}>
+        {Object.entries(block.props).map(([name, spec]) => {
+          switch (spec.type) {
+            case 'boolean':
+              return <PropertyControlBoolean key={name} name={name} spec={spec} />;
+            case 'text':
+              return <PropertyControlText key={name} name={name} spec={spec} />;
+            case 'textarea':
+              return <PropertyControlTextArea key={name} name={name} spec={spec} />;
+            case 'number':
+              return <PropertyControlNumber key={name} name={name} spec={spec} />;
+            default:
+              return null;
+          }
+        })}
+      </div>
     </section>
   );
 };
