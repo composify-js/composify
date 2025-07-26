@@ -1,16 +1,23 @@
+import { useState } from 'react';
 import { Theme } from '../Theme';
 import { PropertyControlBoolean } from './PropertyControlBoolean';
 
-export const BasicUsage = () => (
-  <>
-    <Theme />
-    <PropertyControlBoolean
-      name="example"
-      spec={{
-        type: 'boolean',
-        label: 'Visible',
-        default: false,
-      }}
-    />
-  </>
-);
+export const BasicUsage = () => {
+  const [value, setValue] = useState(false);
+
+  return (
+    <>
+      <Theme />
+      <PropertyControlBoolean
+        name="example"
+        spec={{
+          type: 'boolean',
+          label: 'Visible',
+          default: false,
+        }}
+        value={value}
+        onChange={(_, next) => setValue(next)}
+      />
+    </>
+  );
+};
