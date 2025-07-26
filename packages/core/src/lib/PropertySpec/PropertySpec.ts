@@ -1,20 +1,18 @@
 type DefaultPropertySpec<Value> = {
   label: string;
-} & (Value extends readonly any[]
-  ? {
-      default?: Value;
-      list: true;
-    }
-  : {
-      default?: Value;
-      list?: never;
-    });
+  default?: Value;
+};
 
 export type BooleanPropertySpec<Value> = DefaultPropertySpec<Value> & { type: 'boolean' };
 export type DatePropertySpec<Value> = DefaultPropertySpec<Value> & { type: 'date' };
 export type ImagePropertySpec<Value> = DefaultPropertySpec<Value> & { type: 'image' };
-export type NumberPropertySpec<Value> = DefaultPropertySpec<Value> & { type: 'number' };
 export type NodePropertySpec<Value> = DefaultPropertySpec<Value> & { type: 'node' };
+export type NumberPropertySpec<Value> = DefaultPropertySpec<Value> & { type: 'number' };
+
+export type ArrayPropertySpec<Value extends any[]> = DefaultPropertySpec<Value> & {
+  type: 'array';
+  item: PropertySpec<Value[number]>;
+};
 
 export type ObjectPropertySpec<
   Value extends Record<string, any>,
@@ -62,25 +60,19 @@ export type TextAreaPropertySpec<Value> = DefaultPropertySpec<Value> & {
   type: 'textarea';
 };
 
-export type PropertySpec<Value> =
-  | (Value extends boolean | boolean[]
-      ? BooleanPropertySpec<Value>
-      : Value extends Date | Date[]
-        ? DatePropertySpec<Value>
-        : Value extends number | number[]
-          ? NumberPropertySpec<Value>
-          : Value extends string | string[]
-            ? TextPropertySpec<Value> | TextAreaPropertySpec<Value> | ImagePropertySpec<Value>
-            : Value extends Record<string, any> | Record<string, any>[]
-              ? ObjectPropertySpec<
-                  Value extends (infer Element)[]
-                    ? Element extends Record<string, any>
-                      ? Element
-                      : never
-                    : Value extends Record<string, any>
-                      ? Value
-                      : never
-                >
-              : NodePropertySpec<Value>)
-  | RadioPropertySpec<Value>
-  | SelectPropertySpec<Value>;
+export type PropertySpec<Value> = Value extends unknown[]
+  ? ArrayPropertySpec<Value>
+  :
+      | (Value extends boolean
+          ? BooleanPropertySpec<Value>
+          : Value extends Date
+            ? DatePropertySpec<Value>
+            : Value extends number
+              ? NumberPropertySpec<Value>
+              : Value extends string
+                ? TextPropertySpec<Value> | TextAreaPropertySpec<Value> | ImagePropertySpec<Value>
+                : Value extends Record<string, any>
+                  ? ObjectPropertySpec<Value>
+                  : NodePropertySpec<Value>)
+      | RadioPropertySpec<Value>
+      | SelectPropertySpec<Value>;

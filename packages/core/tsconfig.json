@@ -3,6 +3,7 @@
   "display": "Default",
   "compilerOptions": {
     "target": "es2015",
+    "lib": ["ES2019"],
     "composite": false,
     "declaration": true,
     "declarationMap": true,
