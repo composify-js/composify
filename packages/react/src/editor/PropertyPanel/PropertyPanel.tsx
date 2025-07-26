@@ -2,6 +2,7 @@ import { Catalog } from '@composify/core';
 import { getClassNameFactory } from '@composify/utils';
 import { BlockActions } from '../BlockActions';
 import { useEditing } from '../EditingContext';
+import { PropertyControlArray } from '../PropertyControlArray';
 import { PropertyControlBoolean } from '../PropertyControlBoolean';
 import { PropertyControlNumber } from '../PropertyControlNumber';
 import { PropertyControlObject } from '../PropertyControlObject';
@@ -29,6 +30,8 @@ export const PropertyPanel = () => {
       <div className={getClassName('Content')}>
         {Object.entries(block.props).map(([name, spec]) => {
           switch (spec.type) {
+            case 'array':
+              return <PropertyControlArray key={name} name={name} spec={spec} />;
             case 'boolean':
               return <PropertyControlBoolean key={name} name={name} spec={spec} />;
             case 'text':

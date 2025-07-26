@@ -2,6 +2,7 @@
 import { ObjectPropertySpec } from '@composify/core';
 import { getClassNameFactory } from '@composify/utils';
 import { PropertyControl } from '../PropertyControl';
+import { PropertyControlArray } from '../PropertyControlArray';
 import { PropertyControlBoolean } from '../PropertyControlBoolean';
 import { PropertyControlNumber } from '../PropertyControlNumber';
 import { PropertyControlText } from '../PropertyControlText';
@@ -12,19 +13,18 @@ type Props = {
   name: string;
   spec: ObjectPropertySpec<Record<string, any>>;
   value?: Record<string, any>;
+  compact?: boolean;
   onChange?: (name: string, value: Record<string, any>) => void;
 };
 
 const getClassName = getClassNameFactory('PropertyControlObject', styles);
 
-export const PropertyControlObject = ({ name, spec, value, onChange }: Props) => (
+export const PropertyControlObject = ({ spec, ...props }: Props) => (
   <PropertyControl<Record<string, any>>
-    name={name}
+    {...props}
     spec={spec}
     defaultValue={spec.default ?? {}}
-    value={value}
-    onChange={onChange}
-    renderInput={(_, value, onChange) => {
+    renderInput={(value, onChange) => {
       const handleChange = (fieldName: string, fieldValue: any) => {
         onChange({
           ...value,
@@ -36,6 +36,16 @@ export const PropertyControlObject = ({ name, spec, value, onChange }: Props) =>
         <div className={getClassName()}>
           {Object.entries(spec.fields).map(([fieldName, fieldSpec]) => {
             switch (fieldSpec.type) {
+              case 'array':
+                return (
+                  <PropertyControlArray
+                    key={fieldName}
+                    name={fieldName}
+                    spec={fieldSpec}
+                    value={value[fieldName]}
+                    onChange={handleChange}
+                  />
+                );
               case 'boolean':
                 return (
                   <PropertyControlBoolean

@@ -7,19 +7,18 @@ type Props = {
   name: string;
   spec: BooleanPropertySpec<boolean>;
   value?: boolean;
+  compact?: boolean;
   onChange?: (name: string, value: boolean) => void;
 };
 
 const getClassName = getClassNameFactory('PropertyControlBoolean', styles);
 
-export const PropertyControlBoolean = ({ name, spec, value, onChange }: Props) => (
+export const PropertyControlBoolean = ({ spec, ...props }: Props) => (
   <PropertyControl<boolean>
-    name={name}
+    {...props}
     spec={spec}
     defaultValue={spec.default ?? false}
-    value={value}
-    onChange={onChange}
-    renderInput={(_, value, onChange) => (
+    renderInput={(value, onChange) => (
       <div className={getClassName('ButtonGroup')}>
         <button
           type="button"

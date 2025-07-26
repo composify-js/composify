@@ -9,16 +9,25 @@ type Props<Value> = {
   spec: PropertySpec<Value>;
   defaultValue: Value;
   value?: Value;
+  compact?: boolean;
   onChange?: (name: string, value: Value) => void;
-  renderInput: (id: string, value: Value, onChange: (value: Value) => void) => ReactNode;
+  renderInput: (value: Value, onChange: (value: Value) => void) => ReactNode;
 };
 
 const getClassName = getClassNameFactory('PropertyControl', styles);
 
-export const PropertyControl = <Value,>({ name, spec, defaultValue, value, onChange, renderInput }: Props<Value>) => {
+export const PropertyControl = <Value,>({
+  name,
+  spec,
+  defaultValue,
+  value,
+  compact,
+  onChange,
+  renderInput,
+}: Props<Value>) => {
   const { activeBlock, updateActiveBlock } = useEditing();
 
-  const effectiveValue = value ?? activeBlock?.props[name] ?? defaultValue;
+  const effectiveValue = (onChange ? value : activeBlock?.props[name]) ?? defaultValue;
 
   const handleChange = useCallback(
     (value: Value) => {
@@ -29,8 +38,8 @@ export const PropertyControl = <Value,>({ name, spec, defaultValue, value, onCha
 
   return (
     <div className={getClassName()}>
-      <span className={getClassName('Label')}>{spec.label}</span>
-      {renderInput(name, effectiveValue, handleChange)}
+      {compact ? null : <span className={getClassName('Label')}>{spec.label}</span>}
+      {renderInput(effectiveValue, handleChange)}
     </div>
   );
 };

@@ -7,26 +7,19 @@ type Props = {
   name: string;
   spec: TextPropertySpec<string>;
   value?: string;
+  compact?: boolean;
   onChange?: (name: string, value: string) => void;
 };
 
 const getClassName = getClassNameFactory('PropertyControlText', styles);
 
-export const PropertyControlText = ({ name, spec, value, onChange }: Props) => (
+export const PropertyControlText = ({ spec, ...props }: Props) => (
   <PropertyControl<string>
-    name={name}
+    {...props}
     spec={spec}
     defaultValue={spec.default ?? ''}
-    value={value}
-    onChange={onChange}
-    renderInput={(id, value, onChange) => (
-      <input
-        type="text"
-        id={id}
-        value={value}
-        onChange={event => onChange(event.target.value)}
-        className={getClassName()}
-      />
+    renderInput={(value, onChange) => (
+      <input type="text" value={value} onChange={event => onChange(event.target.value)} className={getClassName()} />
     )}
   />
 );

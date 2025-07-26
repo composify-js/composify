@@ -7,22 +7,20 @@ type Props = {
   name: string;
   spec: NumberPropertySpec<number>;
   value?: number;
+  compact?: boolean;
   onChange?: (name: string, value: number) => void;
 };
 
 const getClassName = getClassNameFactory('PropertyControlNumber', styles);
 
-export const PropertyControlNumber = ({ name, spec, value, onChange }: Props) => (
+export const PropertyControlNumber = ({ spec, ...props }: Props) => (
   <PropertyControl<number>
-    name={name}
+    {...props}
     spec={spec}
-    value={value}
     defaultValue={spec.default ?? 0}
-    onChange={onChange}
-    renderInput={(id, value, onChange) => (
+    renderInput={(value, onChange) => (
       <input
         type="number"
-        id={id}
         value={value}
         onChange={event => onChange(Number(event.target.value))}
         className={getClassName()}

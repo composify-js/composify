@@ -7,26 +7,19 @@ type Props = {
   name: string;
   spec: TextAreaPropertySpec<string>;
   value?: string;
+  compact?: boolean;
   onChange?: (name: string, value: string) => void;
 };
 
 const getClassName = getClassNameFactory('PropertyControlTextArea', styles);
 
-export const PropertyControlTextArea = ({ name, spec, value, onChange }: Props) => (
+export const PropertyControlTextArea = ({ spec, ...props }: Props) => (
   <PropertyControl<string>
-    name={name}
+    {...props}
     spec={spec}
     defaultValue={spec.default ?? ''}
-    value={value}
-    onChange={onChange}
-    renderInput={(id, value, onChange) => (
-      <textarea
-        id={id}
-        value={value}
-        rows={3}
-        onChange={event => onChange(event.target.value)}
-        className={getClassName()}
-      />
+    renderInput={(value, onChange) => (
+      <textarea value={value} rows={3} onChange={event => onChange(event.target.value)} className={getClassName()} />
     )}
   />
 );
