@@ -1,0 +1,1 @@
+export { PropertyControlTextArea } from './PropertyControlTextArea';

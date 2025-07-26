@@ -58,6 +58,10 @@ export type TextPropertySpec<Value> = DefaultPropertySpec<Value> & {
   type: 'text';
 };
 
+export type TextAreaPropertySpec<Value> = DefaultPropertySpec<Value> & {
+  type: 'textarea';
+};
+
 export type PropertySpec<Value> =
   | (Value extends boolean | boolean[]
       ? BooleanPropertySpec<Value>
@@ -66,7 +70,7 @@ export type PropertySpec<Value> =
         : Value extends number | number[]
           ? NumberPropertySpec<Value>
           : Value extends string | string[]
-            ? TextPropertySpec<Value> | ImagePropertySpec<Value>
+            ? TextPropertySpec<Value> | TextAreaPropertySpec<Value> | ImagePropertySpec<Value>
             : Value extends Record<string, any> | Record<string, any>[]
               ? ObjectPropertySpec<
                   Value extends (infer E)[]

@@ -11,5 +11,6 @@ export {
   type RadioPropertySpec,
   type SelectPropertySpec,
   type TextPropertySpec,
+  type TextAreaPropertySpec,
   type PropertySpec,
 } from './lib/PropertySpec';

@@ -11,7 +11,7 @@ Catalog.register<ComponentProps<typeof Text>>('Text', {
   props: {
     content: {
       label: 'Content',
-      type: 'text',
+      type: 'textarea',
       default: 'Hello world!',
     },
   },
