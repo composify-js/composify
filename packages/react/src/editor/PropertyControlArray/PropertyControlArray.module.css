@@ -10,6 +10,11 @@
   gap: 0.5rem;
 }
 
+.PropertyControlArray-Item--object {
+  flex-direction: column;
+  align-items: stretch;
+}
+
 .PropertyControlArray-ItemContent {
   flex: 1;
 }
@@ -29,6 +34,16 @@
 
 .PropertyControlArray-RemoveButton:hover {
   background-color: var(--composify-palette-surface-container);
+}
+
+.PropertyControlArray-RemoveButton--object {
+  padding: 0.5rem;
+  background-color: var(--composify-palette-surface-container);
+  fill: var(--composify-palette-on-surface-container);
+}
+
+.PropertyControlArray-RemoveButton--object:hover {
+  background-color: var(--composify-palette-surface-container-high);
 }
 
 .PropertyControlArray-AddButton {
