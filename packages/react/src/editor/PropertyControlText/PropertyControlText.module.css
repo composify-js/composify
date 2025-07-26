@@ -1,28 +1,4 @@
 .PropertyControlText {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-}
-
-.PropertyControlText-Label {
-  color: var(--composify-palette-on-surface-variant);
-  font-size: 0.875rem;
-  margin: 0.5rem 0;
-}
-
-.PropertyControlText-InputList {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.PropertyControlText-InputItem {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.PropertyControlText-Input {
   flex: 1;
   padding: 0.5rem;
   font-size: 0.875rem;
@@ -30,39 +6,9 @@
   border: 0.0625rem solid var(--composify-palette-outline);
   border-radius: 0.25rem;
   color: var(--composify-palette-on-surface);
-  background-color: var(--composify-palette-surface-container);
+  background-color: var(--composify-palette-surface-container-low);
 }
 
-.PropertyControlText-Input:focus {
+.PropertyControlText:focus {
   border-color: var(--composify-palette-primary);
-}
-
-.PropertyControlText-RemoveButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: 0.25rem;
-  outline: none;
-  border: none;
-  border-radius: 0.25rem;
-  background-color: transparent;
-  fill: var(--composify-palette-secondary);
-}
-
-.PropertyControlText-RemoveButton:hover {
-  background-color: var(--composify-palette-surface-container);
-}
-
-.PropertyControlText-Button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 2.125rem;
-  font-size: 0.875rem;
-  cursor: pointer;
-  border: 1px solid var(--composify-palette-secondary);
-  border-radius: 0.25rem;
-  fill: var(--composify-palette-on-secondary);
-  background-color: var(--composify-palette-secondary);
 }

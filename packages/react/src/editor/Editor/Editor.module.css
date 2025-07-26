@@ -6,6 +6,7 @@
   --composify-palette-surface: rgb(255, 255, 255);
   --composify-palette-on-surface: rgb(30, 30, 30);
   --composify-palette-surface-container: rgb(245, 245, 245);
+  --composify-palette-surface-container-low: rgb(250, 250, 250);
   --composify-palette-outline: rgb(229, 229, 229);
 
   --composify-palette-surface-tint: rgb(64, 95, 144);
@@ -37,7 +38,6 @@
   --composify-palette-surface-dim: rgb(217, 217, 224);
   --composify-palette-surface-bright: rgb(249, 249, 255);
   --composify-palette-surface-container-lowest: rgb(255, 255, 255);
-  --composify-palette-surface-container-low: rgb(243, 243, 250);
   --composify-palette-surface-container-high: rgb(231, 232, 238);
   --composify-palette-surface-container-highest: rgb(226, 226, 233);
 }

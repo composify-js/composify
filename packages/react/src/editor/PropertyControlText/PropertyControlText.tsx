@@ -1,15 +1,28 @@
 import { TextPropertySpec } from '@composify/core';
-import { PropertyControlTextMultiple } from './PropertyControlTextMultiple';
-import { PropertyControlTextSingle } from './PropertyControlTextSingle';
+import { getClassNameFactory } from '@composify/utils';
+import { PropertyControl } from '../PropertyControl';
+import styles from './PropertyControlText.module.css';
 
 type Props = {
   name: string;
   spec: TextPropertySpec<string | string[]>;
 };
 
-export const PropertyControlText = ({ name, spec }: Props) =>
-  spec.list ? (
-    <PropertyControlTextMultiple name={name} spec={spec} />
-  ) : (
-    <PropertyControlTextSingle name={name} spec={spec} />
-  );
+const getClassName = getClassNameFactory('PropertyControlText', styles);
+
+export const PropertyControlText = ({ name, spec }: Props) => (
+  <PropertyControl<string | string[]>
+    name={name}
+    spec={spec}
+    defaultValue=""
+    renderInput={(id, value, onChange) => (
+      <input
+        type="text"
+        id={id}
+        value={value}
+        onChange={event => onChange(event.target.value)}
+        className={getClassName()}
+      />
+    )}
+  />
+);
