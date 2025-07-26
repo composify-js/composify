@@ -22,7 +22,7 @@ Catalog.register<ComponentProps<typeof HStack>>('HStack', {
   props: {
     children: {
       label: 'Children',
-      type: 'boolean',
+      type: 'node',
     },
     width: {
       label: 'Width',

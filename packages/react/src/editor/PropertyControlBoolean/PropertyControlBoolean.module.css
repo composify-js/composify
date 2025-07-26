@@ -1,0 +1,23 @@
+.PropertyControlBoolean-ButtonGroup {
+  flex: 1;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.PropertyControlBoolean-Button {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  outline: none;
+  border: 0.0625rem solid var(--composify-palette-outline);
+  border-radius: 0.25rem;
+  color: var(--composify-palette-on-surface);
+  background-color: var(--composify-palette-surface-container-low);
+}
+
+.PropertyControlBoolean-Button--active {
+  border-color: var(--composify-palette-secondary);
+  background-color: var(--composify-palette-secondary);
+  color: var(--composify-palette-on-secondary);
+}
