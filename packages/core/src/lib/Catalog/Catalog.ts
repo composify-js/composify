@@ -70,8 +70,10 @@ const setSpecDefault = (spec: PropertySpec<any>): void => {
       spec.default ??= Object.fromEntries(Object.entries(spec.fields).map(([key, field]) => [key, field.default]));
       break;
     case 'radio':
+      spec.default ??= 'value' in spec.options[0] ? spec.options[0].value : spec.options[0];
+      break;
     case 'select':
-      spec.default ??= spec.options[0]?.value || '';
+      spec.default ??= spec.options[0]?.value;
       break;
     case 'text':
     case 'textarea':

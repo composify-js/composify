@@ -27,17 +27,18 @@ export type ObjectPropertySpec<
 
 export type RadioPropertySpec<Value> = DefaultPropertySpec<Value> & {
   type: 'radio';
-  options: (
+} & (
     | {
-        label: string;
-        value: Value;
+        options: {
+          label: string;
+          value: Value;
+        }[];
       }
     | {
-        render: (value: Value, onClick: () => void) => any;
-        value: Value;
+        options: Value[];
+        render: (value: Value, onChange: (value: Value) => void) => any;
       }
-  )[];
-};
+  );
 
 export type SelectPropertySpec<Value> = DefaultPropertySpec<Value> & {
   type: 'select';
