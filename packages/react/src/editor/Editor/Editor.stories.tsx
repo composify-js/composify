@@ -4,7 +4,9 @@ import { HStack } from '../../preset/HStack';
 import { VStack } from '../../preset/VStack';
 import { Editor } from './Editor';
 
-const Text = ({ content }: { content: string }) => <p>{content}</p>;
+const Text = ({ content, textAlign }: { content: string; textAlign: 'left' | 'center' | 'right' }) => (
+  <p style={{ textAlign }}>{content}</p>
+);
 
 Catalog.register<ComponentProps<typeof Text>>('Text', {
   component: Text,
@@ -13,6 +15,15 @@ Catalog.register<ComponentProps<typeof Text>>('Text', {
       label: 'Content',
       type: 'textarea',
       default: 'Hello world!',
+    },
+    textAlign: {
+      label: 'Text Align',
+      type: 'radio',
+      options: [
+        { label: 'Left', value: 'left' },
+        { label: 'Center', value: 'center' },
+        { label: 'Right', value: 'right' },
+      ],
     },
   },
 });

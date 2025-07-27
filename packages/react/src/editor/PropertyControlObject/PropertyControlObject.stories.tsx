@@ -9,6 +9,7 @@ export const BasicUsage = () => {
     summary: '',
     description: '',
     list: ['Item 1', 'Item 2'],
+    textAlign: 'left',
   });
 
   return (
@@ -44,6 +45,15 @@ export const BasicUsage = () => {
                 label: 'Item',
               },
               default: ['Item 1', 'Item 2'],
+            },
+            textAlign: {
+              label: 'Text Align',
+              type: 'radio',
+              options: [
+                { label: 'Left', value: 'left' },
+                { label: 'Center', value: 'center' },
+                { label: 'Right', value: 'right' },
+              ],
             },
           },
         }}

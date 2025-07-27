@@ -33,7 +33,7 @@ export type RadioPropertySpec<Value> = DefaultPropertySpec<Value> & {
         value: Value;
       }
     | {
-        render: (value: Value) => any;
+        render: (value: Value, onClick: () => void) => any;
         value: Value;
       }
   )[];
@@ -41,16 +41,10 @@ export type RadioPropertySpec<Value> = DefaultPropertySpec<Value> & {
 
 export type SelectPropertySpec<Value> = DefaultPropertySpec<Value> & {
   type: 'select';
-  options: (
-    | {
-        label: string;
-        value: Value;
-      }
-    | {
-        render: (value: Value) => any;
-        value: Value;
-      }
-  )[];
+  options: {
+    label: string;
+    value: Value;
+  }[];
 };
 
 export type TextPropertySpec<Value> = DefaultPropertySpec<Value> & {
@@ -61,19 +55,19 @@ export type TextAreaPropertySpec<Value> = DefaultPropertySpec<Value> & {
   type: 'textarea';
 };
 
-export type PropertySpec<Value> = Value extends unknown[]
-  ? ArrayPropertySpec<Value>
-  :
-      | (Value extends boolean
-          ? BooleanPropertySpec<Value>
-          : Value extends Date
-            ? DatePropertySpec<Value>
-            : Value extends number
-              ? NumberPropertySpec<Value>
-              : Value extends string
-                ? TextPropertySpec<Value> | TextAreaPropertySpec<Value> | ImagePropertySpec<Value>
-                : Value extends Record<string, any>
-                  ? ObjectPropertySpec<Value>
-                  : NodePropertySpec<Value>)
-      | RadioPropertySpec<Value>
-      | SelectPropertySpec<Value>;
+export type PropertySpec<Value> =
+  | RadioPropertySpec<Value>
+  | SelectPropertySpec<Value>
+  | (Value extends unknown[]
+      ? ArrayPropertySpec<Value>
+      : Value extends boolean
+        ? BooleanPropertySpec<Value>
+        : Value extends Date
+          ? DatePropertySpec<Value>
+          : Value extends number
+            ? NumberPropertySpec<Value>
+            : Value extends string
+              ? TextPropertySpec<Value> | TextAreaPropertySpec<Value> | ImagePropertySpec<Value>
+              : Value extends Record<string, any>
+                ? ObjectPropertySpec<Value>
+                : NodePropertySpec<Value>);

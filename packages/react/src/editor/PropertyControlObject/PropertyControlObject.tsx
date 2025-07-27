@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable import/no-cycle */
 import { ObjectPropertySpec } from '@composify/core';
 import { getClassNameFactory } from '@composify/utils';
 import { PropertyControl } from '../PropertyControl';
 import { PropertyControlArray } from '../PropertyControlArray';
 import { PropertyControlBoolean } from '../PropertyControlBoolean';
 import { PropertyControlNumber } from '../PropertyControlNumber';
+import { PropertyControlRadio } from '../PropertyControlRadio';
 import { PropertyControlText } from '../PropertyControlText';
 import { PropertyControlTextArea } from '../PropertyControlTextArea';
 import styles from './PropertyControlObject.module.css';
@@ -89,6 +91,16 @@ export const PropertyControlObject = ({ spec, ...props }: Props) => (
               case 'object':
                 return (
                   <PropertyControlObject
+                    key={fieldName}
+                    name={fieldName}
+                    spec={fieldSpec}
+                    value={value[fieldName]}
+                    onChange={handleChange}
+                  />
+                );
+              case 'radio':
+                return (
+                  <PropertyControlRadio
                     key={fieldName}
                     name={fieldName}
                     spec={fieldSpec}
