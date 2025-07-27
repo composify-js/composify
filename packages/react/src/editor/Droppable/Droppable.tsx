@@ -39,7 +39,7 @@ export const Droppable: FC<Props> = ({ item, index, ...props }) => {
   });
 
   return (
-    <div
+    <span
       data-composify-role="droppable"
       data-composify-dragging={focusedBlock?.id == item.id}
       ref={node => {

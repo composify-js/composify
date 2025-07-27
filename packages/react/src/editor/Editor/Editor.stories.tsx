@@ -1,19 +1,22 @@
 import { Catalog } from '@composify/core';
-import { ComponentProps } from 'react';
+import { ComponentProps, ReactNode } from 'react';
 import { HStack } from '../../preset/HStack';
 import { VStack } from '../../preset/VStack';
 import { Editor } from './Editor';
 
-const Text = ({ content, textAlign }: { content: string; textAlign: 'left' | 'center' | 'right' }) => (
-  <p style={{ textAlign }}>{content}</p>
+const Text = ({ children, textAlign }: { children: ReactNode; textAlign: 'left' | 'center' | 'right' }) => (
+  <div>
+    <p style={{ textAlign }}>Hello world!</p>
+    {children}
+  </div>
 );
 
 Catalog.register<ComponentProps<typeof Text>>('Text', {
   component: Text,
   props: {
-    content: {
+    children: {
       label: 'Content',
-      type: 'textarea',
+      type: 'node',
       default: 'Hello world!',
     },
     textAlign: {
@@ -43,6 +46,7 @@ Catalog.register<ComponentProps<typeof HStack>>('HStack', {
     height: {
       label: 'Height',
       type: 'number',
+      default: 100,
     },
     backgroundColor: {
       label: 'Background',
@@ -68,7 +72,7 @@ Catalog.register<ComponentProps<typeof VStack>>('VStack', {
     height: {
       label: 'Height',
       type: 'number',
-      default: 96,
+      default: 100,
     },
     backgroundColor: {
       label: 'Background',
@@ -84,7 +88,7 @@ export const BasicUsage = () => {
     <VStack>
       <HStack backgroundColor="#ECEFF1">
         <HStack width={200} height={100} backgroundColor="#E1F5FE" />
-        <Text content="Hello world!" />
+        <Text />
         <HStack width={150} height={100} backgroundColor="#B3E5FC" />
       </HStack>
       <HStack backgroundColor="#CFD8DC">

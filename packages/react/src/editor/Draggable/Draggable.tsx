@@ -28,7 +28,7 @@ export const Draggable: FC<PropsWithChildren<Props>> = ({ type, item, ...props }
   }));
 
   const handleClick = useCallback(
-    (event: MouseEvent<HTMLDivElement>) => {
+    (event: MouseEvent<HTMLSpanElement>) => {
       event.stopPropagation();
 
       if (item.id) {
@@ -39,7 +39,7 @@ export const Draggable: FC<PropsWithChildren<Props>> = ({ type, item, ...props }
   );
 
   return (
-    <div
+    <span
       data-composify-role="draggable"
       data-composify-dragging={focusedBlock?.id == item.id}
       ref={node => {

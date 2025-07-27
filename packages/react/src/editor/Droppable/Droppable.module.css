@@ -14,6 +14,7 @@
 }
 
 .Droppable--active {
+  display: block;
   position: static;
   min-width: 1rem;
   min-height: 1rem;
@@ -27,7 +28,7 @@
   flex: 1;
 }
 
-.Droppable--active:first-child:not(:only-child) {
+.Droppable--active:first-of-type:not(:only-of-type) {
   display: none;
 }
 
