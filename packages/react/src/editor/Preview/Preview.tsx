@@ -37,21 +37,13 @@ const pragma: Pragma = {
               }),
               ...(children?.length > 0
                 ? (Children.map(children, (child, index) => [
-                    createElement(Droppable, {
-                      key: `${node.id}-${index}`,
-                      item: node,
-                      index,
-                    }),
                     child,
-                  ])
-                    ?.flat()
-                    .concat(
-                      createElement(Droppable, {
-                        key: `${node.id}-${children.length}`,
-                        item: node,
-                        index: children.length,
-                      })
-                    ) ?? [])
+                    createElement(Droppable, {
+                      key: `${node.id}-${index + 1}`,
+                      item: node,
+                      index: index + 1,
+                    }),
+                  ])?.flat() ?? [])
                 : children),
             ]
           : children

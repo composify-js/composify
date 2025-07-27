@@ -1,12 +1,3 @@
-.Droppable:first-child {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
 .Droppable:only-child {
   position: static;
   width: 100%;
@@ -20,16 +11,8 @@
   min-height: 1rem;
 }
 
-.Droppable--active:not(:first-child) {
+.Droppable--active {
   border: 0.0625rem dotted var(--composify-palette-primary);
-}
-
-.Droppable--active:last-child:not(:only-child) {
-  flex: 1;
-}
-
-.Droppable--active:first-of-type:not(:only-of-type) {
-  display: none;
 }
 
 .Droppable--active[data-composify-dragging="true"]:not(:only-child),
