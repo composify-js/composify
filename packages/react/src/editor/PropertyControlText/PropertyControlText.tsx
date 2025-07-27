@@ -8,7 +8,7 @@ type Props = {
   spec: TextPropertySpec<string>;
   value?: string;
   compact?: boolean;
-  onChange?: (name: string, value: string) => void;
+  onChange?: (name: string, value?: string) => void;
 };
 
 const getClassName = getClassNameFactory('PropertyControlText', styles);

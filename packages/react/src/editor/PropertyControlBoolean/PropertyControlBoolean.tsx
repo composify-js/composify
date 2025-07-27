@@ -8,7 +8,7 @@ type Props = {
   spec: BooleanPropertySpec<boolean>;
   value?: boolean;
   compact?: boolean;
-  onChange?: (name: string, value: boolean) => void;
+  onChange?: (name: string, value?: boolean) => void;
 };
 
 const getClassName = getClassNameFactory('PropertyControlBoolean', styles);

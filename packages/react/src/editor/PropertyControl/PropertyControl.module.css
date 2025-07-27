@@ -3,10 +3,31 @@
   flex-direction: column;
 }
 
+.PropertyControl-Header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 2rem;
+}
+
 .PropertyControl-Label {
-  color: var(--composify-palette-on-surface-variant);
+  color: var(--composify-palette-on-surface);
   font-size: 0.75rem;
-  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.PropertyControl-OptionalButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-right: -0.5rem;
+  outline: none;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: transparent;
+  fill: var(--composify-palette-secondary);
 }
 
 .PropertyControl-InputList {

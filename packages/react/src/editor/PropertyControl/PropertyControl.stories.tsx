@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Theme } from '../Theme';
-import { PropertyControlTextArea } from './PropertyControlTextArea';
+import { PropertyControl } from './PropertyControl';
 
 export const BasicUsage = () => {
   const [value, setValue] = useState<string | undefined>('');
@@ -8,14 +8,19 @@ export const BasicUsage = () => {
   return (
     <>
       <Theme />
-      <PropertyControlTextArea
+      <PropertyControl
         name="example"
         spec={{
-          type: 'textarea',
-          label: 'Content',
+          type: 'text',
+          label: 'File',
+          default: '',
         }}
         value={value}
         onChange={(_, next) => setValue(next)}
+        defaultValue=""
+        renderInput={(_, onChange) => (
+          <input type="file" onChange={event => onChange(event.target.files?.[0]?.name || '')} />
+        )}
       />
     </>
   );

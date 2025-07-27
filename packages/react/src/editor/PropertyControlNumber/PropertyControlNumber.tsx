@@ -8,7 +8,7 @@ type Props = {
   spec: NumberPropertySpec<number>;
   value?: number;
   compact?: boolean;
-  onChange?: (name: string, value: number) => void;
+  onChange?: (name: string, value?: number) => void;
 };
 
 const getClassName = getClassNameFactory('PropertyControlNumber', styles);

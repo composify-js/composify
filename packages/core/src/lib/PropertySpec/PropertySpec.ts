@@ -1,6 +1,7 @@
 type DefaultPropertySpec<Value> = {
   label: string;
   default?: Value;
+  optional?: boolean;
 };
 
 export type BooleanPropertySpec<Value> = DefaultPropertySpec<Value> & { type: 'boolean' };

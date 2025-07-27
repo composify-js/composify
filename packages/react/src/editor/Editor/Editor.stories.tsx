@@ -32,12 +32,12 @@ Catalog.register<ComponentProps<typeof HStack>>('HStack', {
     height: {
       label: 'Height',
       type: 'number',
-      default: 96,
     },
     backgroundColor: {
       label: 'Background',
       type: 'text',
       default: 'lightgray',
+      optional: true,
     },
   },
 });
@@ -63,6 +63,7 @@ Catalog.register<ComponentProps<typeof VStack>>('VStack', {
       label: 'Background',
       type: 'text',
       default: 'lightgray',
+      optional: true,
     },
   },
 });

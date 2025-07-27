@@ -3,7 +3,7 @@ import { Theme } from '../Theme';
 import { PropertyControlArray } from './PropertyControlArray';
 
 export const BasicUsage = () => {
-  const [value, setValue] = useState<string[]>([]);
+  const [value, setValue] = useState<string[] | undefined>([]);
 
   return (
     <>

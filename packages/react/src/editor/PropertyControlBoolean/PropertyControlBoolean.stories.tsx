@@ -3,7 +3,7 @@ import { Theme } from '../Theme';
 import { PropertyControlBoolean } from './PropertyControlBoolean';
 
 export const BasicUsage = () => {
-  const [value, setValue] = useState(false);
+  const [value, setValue] = useState<boolean | undefined>(false);
 
   return (
     <>

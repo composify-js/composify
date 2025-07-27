@@ -14,7 +14,7 @@ type Props = {
   spec: ObjectPropertySpec<Record<string, any>>;
   value?: Record<string, any>;
   compact?: boolean;
-  onChange?: (name: string, value: Record<string, any>) => void;
+  onChange?: (name: string, value?: Record<string, any>) => void;
 };
 
 const getClassName = getClassNameFactory('PropertyControlObject', styles);

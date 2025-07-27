@@ -3,7 +3,7 @@ import { Theme } from '../Theme';
 import { PropertyControlText } from './PropertyControlText';
 
 export const BasicUsage = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<string | undefined>('');
 
   return (
     <>
