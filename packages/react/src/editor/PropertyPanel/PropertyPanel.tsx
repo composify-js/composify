@@ -7,6 +7,7 @@ import { PropertyControlBoolean } from '../PropertyControlBoolean';
 import { PropertyControlNumber } from '../PropertyControlNumber';
 import { PropertyControlObject } from '../PropertyControlObject';
 import { PropertyControlRadio } from '../PropertyControlRadio';
+import { PropertyControlSelect } from '../PropertyControlSelect';
 import { PropertyControlText } from '../PropertyControlText';
 import { PropertyControlTextArea } from '../PropertyControlTextArea';
 import styles from './PropertyPanel.module.css';
@@ -45,6 +46,8 @@ export const PropertyPanel = () => {
               return <PropertyControlObject key={name} name={name} spec={spec} />;
             case 'radio':
               return <PropertyControlRadio key={name} name={name} spec={spec} />;
+            case 'select':
+              return <PropertyControlSelect key={name} name={name} spec={spec} />;
             default:
               return null;
           }

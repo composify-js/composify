@@ -7,6 +7,7 @@ import { PropertyControlBoolean } from '../PropertyControlBoolean';
 import { PropertyControlNumber } from '../PropertyControlNumber';
 import { PropertyControlObject } from '../PropertyControlObject';
 import { PropertyControlRadio } from '../PropertyControlRadio';
+import { PropertyControlSelect } from '../PropertyControlSelect';
 import { PropertyControlText } from '../PropertyControlText';
 import { PropertyControlTextArea } from '../PropertyControlTextArea';
 import styles from './PropertyControlArray.module.css';
@@ -111,6 +112,16 @@ export const PropertyControlArray = ({ name, spec, ...props }: Props) => (
                     case 'radio':
                       return (
                         <PropertyControlRadio
+                          name={name}
+                          spec={spec.item}
+                          value={value}
+                          onChange={handleChange(index)}
+                          compact={true}
+                        />
+                      );
+                    case 'select':
+                      return (
+                        <PropertyControlSelect
                           name={name}
                           spec={spec.item}
                           value={value}
