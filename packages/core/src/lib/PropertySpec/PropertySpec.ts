@@ -59,6 +59,7 @@ export type TextAreaPropertySpec<Value> = DefaultPropertySpec<Value> & {
 export type PropertySpec<Value> =
   | RadioPropertySpec<Value>
   | SelectPropertySpec<Value>
+  | NodePropertySpec<Value>
   | (Value extends unknown[]
       ? ArrayPropertySpec<Value>
       : Value extends boolean
@@ -71,4 +72,4 @@ export type PropertySpec<Value> =
               ? TextPropertySpec<Value> | TextAreaPropertySpec<Value> | ImagePropertySpec<Value>
               : Value extends Record<string, any>
                 ? ObjectPropertySpec<Value>
-                : NodePropertySpec<Value>);
+                : never);

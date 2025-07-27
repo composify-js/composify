@@ -3,12 +3,12 @@ type SparseNode = {
   parent?: string;
   type: string;
   props: Record<string, any>;
-  children: Node[];
+  children: (Node | string)[];
 };
 
 type PopulatedNode = Omit<SparseNode, 'id' | 'children'> & {
   id: string;
-  children: PopulatedNode[];
+  children: (PopulatedNode | string)[];
 };
 
 export type Node = SparseNode | PopulatedNode;
@@ -64,10 +64,16 @@ export class NodeManager {
       throw new Error('Parent node not found');
     }
 
-    parent.children = parent.children.filter(child => child.id !== id);
+    parent.children = parent.children.filter(child => typeof child === 'string' || child.id !== id);
 
     if (permanent) {
-      node.children.forEach(child => this.remove(child.id, true));
+      node.children.forEach(child => {
+        if (typeof child === 'string') {
+          return;
+        }
+
+        this.remove(child.id, true);
+      });
       this.references.delete(id);
     }
 
@@ -108,7 +114,7 @@ export class NodeManager {
       throw new Error('Parent node not found');
     }
 
-    const index = parent.children.findIndex(child => child.id === id);
+    const index = parent.children.findIndex(child => typeof child !== 'string' && child.id === id);
     const duplicated = this.populate(node);
 
     this.insert(duplicated, {
@@ -135,7 +141,7 @@ export class NodeManager {
 
   public stringify = (source?: PopulatedNode): string => {
     const root = source ?? this.root;
-    const children = root.children.map(this.stringify);
+    const children = root.children.map(child => (typeof child === 'string' ? child : this.stringify(child)));
     const name = `${root.type}:${root.id}`;
 
     if (children.length > 0) {
@@ -159,9 +165,9 @@ export class NodeManager {
 
   private populate = (node: Node, parent?: string): PopulatedNode => {
     const id = this.generateRandomId();
-    const children = node.children.map(child => this.populate(child, id));
+    const children = node.children.map(child => (typeof child === 'string' ? child : this.populate(child, id)));
 
-    const populatedNode = {
+    const populatedNode: PopulatedNode = {
       ...node,
       id,
       parent,
@@ -191,7 +197,9 @@ export class NodeManager {
         return true;
       }
 
-      stack.push(...current.children);
+      const nodeTypeChildren = current.children.filter(child => typeof child !== 'string');
+
+      stack.push(...nodeTypeChildren);
     }
 
     return false;
