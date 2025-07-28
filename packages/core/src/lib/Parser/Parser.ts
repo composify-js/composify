@@ -14,6 +14,8 @@ const parseAttribute = (expression: any): any => {
       return expression.value;
     case 'Identifier':
       return expression.name;
+    case 'JSXElement':
+      return parseNode(expression);
     case 'JSXExpressionContainer':
       return parseAttribute(expression.expression);
     case 'ArrayExpression':
@@ -101,6 +103,7 @@ const parseNode = (node: any): Node => {
   switch (node.type) {
     case 'JSXElement':
       return {
+        __composify__: true,
         type: node.openingElement.name.name,
         props: node.openingElement.attributes.reduce((properties: Record<string, any>, attribute: any) => {
           const key = attribute.name.name;
@@ -119,6 +122,7 @@ const parseNode = (node: any): Node => {
       };
     case 'JSXFragment':
       return {
+        __composify__: true,
         type: 'Fragment',
         props: {},
         children,

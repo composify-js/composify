@@ -1,4 +1,5 @@
 type SparseNode = {
+  __composify__: true;
   id?: never;
   parent?: string;
   type: string;
