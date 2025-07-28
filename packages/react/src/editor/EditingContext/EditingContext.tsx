@@ -26,6 +26,7 @@ type EditingContextValues = {
 
 const EditingContext = createContext<EditingContextValues>({
   source: {
+    __composify__: true,
     id: '',
     type: 'Fragment',
     props: {},

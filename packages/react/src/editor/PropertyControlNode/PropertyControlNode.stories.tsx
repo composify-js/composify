@@ -1,9 +1,10 @@
-import { ReactNode, useState } from 'react';
+import { Node } from '@composify/core';
+import { useState } from 'react';
 import { Theme } from '../Theme';
 import { PropertyControlNode } from './PropertyControlNode';
 
 export const BasicUsage = () => {
-  const [value, setValue] = useState<ReactNode>(null);
+  const [value, setValue] = useState<Node>();
 
   return (
     <>
@@ -13,7 +14,6 @@ export const BasicUsage = () => {
         spec={{
           type: 'node',
           label: 'Header',
-          default: null,
         }}
         value={value}
         onChange={(_, next) => setValue(next)}

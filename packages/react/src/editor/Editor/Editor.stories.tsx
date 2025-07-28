@@ -17,7 +17,6 @@ Catalog.register<ComponentProps<typeof Text>>('Text', {
     content: {
       label: 'Content',
       type: 'node',
-      default: 'Hello world!',
       optional: true,
     },
     textAlign: {

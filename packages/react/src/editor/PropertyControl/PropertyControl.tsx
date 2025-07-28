@@ -4,9 +4,9 @@ import { ReactNode, useCallback } from 'react';
 import { useEditing } from '../EditingContext';
 import styles from './PropertyControl.module.css';
 
-type Props<Value> = {
+type Props<SpecValue, Value = SpecValue> = {
   name: string;
-  spec: PropertySpec<Value>;
+  spec: PropertySpec<SpecValue>;
   defaultValue: Value;
   value?: Value;
   compact?: boolean;
@@ -16,7 +16,7 @@ type Props<Value> = {
 
 const getClassName = getClassNameFactory('PropertyControl', styles);
 
-export const PropertyControl = <Value,>({
+export const PropertyControl = <SpecValue, Value = SpecValue>({
   name,
   spec,
   defaultValue,
@@ -24,7 +24,7 @@ export const PropertyControl = <Value,>({
   compact,
   onChange,
   renderInput,
-}: Props<Value>) => {
+}: Props<SpecValue, Value>) => {
   const { activeBlock, updateActiveBlock } = useEditing();
 
   const effectiveValue = (onChange ? value : activeBlock?.props[name]) ?? (spec.optional ? undefined : defaultValue);

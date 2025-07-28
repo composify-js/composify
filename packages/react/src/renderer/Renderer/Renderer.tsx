@@ -14,7 +14,15 @@ const renderElement = (node: Node, pragma: Pragma): ReactNode => {
 
   return pragma.jsx(
     component,
-    node.props,
+    {
+      ...Object.entries(node.props).reduce(
+        (acc, [key, value]) => ({
+          ...acc,
+          [key]: value && typeof value === 'object' && '__composify__' in value ? <Renderer source={value} /> : value,
+        }),
+        {} as typeof node.props
+      ),
+    },
     node,
     ...node.children.map((child, index) =>
       typeof child === 'object'
