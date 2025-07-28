@@ -4,6 +4,7 @@ import { BlockActions } from '../BlockActions';
 import { useEditing } from '../EditingContext';
 import { PropertyControlArray } from '../PropertyControlArray';
 import { PropertyControlBoolean } from '../PropertyControlBoolean';
+import { PropertyControlNode } from '../PropertyControlNode';
 import { PropertyControlNumber } from '../PropertyControlNumber';
 import { PropertyControlObject } from '../PropertyControlObject';
 import { PropertyControlRadio } from '../PropertyControlRadio';
@@ -36,10 +37,8 @@ export const PropertyPanel = () => {
               return <PropertyControlArray key={name} name={name} spec={spec} />;
             case 'boolean':
               return <PropertyControlBoolean key={name} name={name} spec={spec} />;
-            case 'text':
-              return <PropertyControlText key={name} name={name} spec={spec} />;
-            case 'textarea':
-              return <PropertyControlTextArea key={name} name={name} spec={spec} />;
+            case 'node':
+              return <PropertyControlNode key={name} name={name} spec={spec} />;
             case 'number':
               return <PropertyControlNumber key={name} name={name} spec={spec} />;
             case 'object':
@@ -48,6 +47,10 @@ export const PropertyPanel = () => {
               return <PropertyControlRadio key={name} name={name} spec={spec} />;
             case 'select':
               return <PropertyControlSelect key={name} name={name} spec={spec} />;
+            case 'text':
+              return <PropertyControlText key={name} name={name} spec={spec} />;
+            case 'textarea':
+              return <PropertyControlTextArea key={name} name={name} spec={spec} />;
             default:
               return null;
           }

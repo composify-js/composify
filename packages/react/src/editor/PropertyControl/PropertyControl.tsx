@@ -29,6 +29,7 @@ export const PropertyControl = <Value,>({
 
   const effectiveValue = (onChange ? value : activeBlock?.props[name]) ?? (spec.optional ? undefined : defaultValue);
   const isEffectiveValueDefined = typeof effectiveValue !== 'undefined';
+
   const effectiveChangeHandler = onChange ?? updateActiveBlock;
 
   const handleClickOptional = useCallback(() => {
