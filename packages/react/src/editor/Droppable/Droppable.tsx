@@ -1,17 +1,17 @@
 import { Node } from '@composify/core';
 import { getClassNameFactory } from '@composify/utils';
 import { throttle } from 'es-toolkit';
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import { useDrop } from 'react-dnd';
 import { TargetType } from '../Constants';
 import { useEditing } from '../EditingContext';
 import styles from './Droppable.module.css';
 
-type Props = {
+type Props = PropsWithChildren<{
   item: Node;
   index: number;
   onDrop?: (item: Node) => void;
-};
+}>;
 
 const getClassName = getClassNameFactory('Droppable', styles);
 

@@ -10,6 +10,16 @@
   background-color: var(--composify-palette-surface-container-low);
 }
 
+.PropertyControlNode-Placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--composify-palette-on-surface-variant);
+}
+
 .PropertyControlNode-RemoveButton {
   position: absolute;
   top: 0.25rem;

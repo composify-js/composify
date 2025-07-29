@@ -32,7 +32,13 @@ export const PropertyControlNode = ({ spec, ...props }: Props) => {
       defaultValue={spec.default ? Parser.parse(toJsxString(spec.default)) : null}
       renderInput={(value, onChange) => (
         <div className={getClassName()}>
-          {value ? <Renderer source={value} /> : <Droppable item={activeBlock} index={0} onDrop={onChange} />}
+          {value ? (
+            <Renderer source={value} />
+          ) : (
+            <Droppable item={activeBlock} index={0} onDrop={onChange}>
+              <p className={getClassName('Placeholder')}>Drop here</p>
+            </Droppable>
+          )}
           {value && (
             <button className={getClassName('RemoveButton')} onClick={() => onChange(null)}>
               <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} viewBox="0 0 640 640">
