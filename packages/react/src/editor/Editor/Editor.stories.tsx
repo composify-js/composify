@@ -4,19 +4,20 @@ import { HStack } from '../../preset/HStack';
 import { VStack } from '../../preset/VStack';
 import { Editor } from './Editor';
 
-const Text = ({ content, textAlign }: { content?: ReactNode; textAlign: 'left' | 'center' | 'right' }) => (
+const Text = ({ children, textAlign }: { children?: ReactNode; textAlign: 'left' | 'center' | 'right' }) => (
   <div>
     <p style={{ textAlign }}>Hello world!</p>
-    {content}
+    {children}
   </div>
 );
 
 Catalog.register<ComponentProps<typeof Text>>('Text', {
   component: Text,
   props: {
-    content: {
-      label: 'Content',
+    children: {
+      label: 'children',
       type: 'node',
+      default: <HStack width={200} height={100} backgroundColor="#E1F5FE" />,
     },
     textAlign: {
       label: 'Text Align',
