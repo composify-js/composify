@@ -1,4 +1,4 @@
-type SparseNode = {
+export type SparseNode = {
   __composify__: true;
   id?: never;
   parent?: string;
@@ -7,9 +7,13 @@ type SparseNode = {
   children: (Node | string)[];
 };
 
-type PopulatedNode = Omit<SparseNode, 'id' | 'children'> & {
+export type PopulatedNode = Omit<SparseNode, 'id' | 'children'> & {
   id: string;
   children: (PopulatedNode | string)[];
+  implicit: {
+    parent?: string;
+    children: Record<string, PopulatedNode | string>;
+  };
 };
 
 export type Node = SparseNode | PopulatedNode;
@@ -135,7 +139,10 @@ export class NodeManager {
       throw new Error(`Node with id ${id} not found`);
     }
 
-    node.props[prop.key] = prop.value;
+    node.props[prop.key] =
+      prop.value && typeof prop.value === 'object' && '__composify__' in prop.value
+        ? this.populate(prop.value as unknown as Node, id)
+        : prop.value;
 
     this.notify();
   };
@@ -166,6 +173,9 @@ export class NodeManager {
 
   private populate = (node: Node, parent?: string): PopulatedNode => {
     const id = this.generateRandomId();
+    const implicit = {
+      children: {},
+    };
     const children = node.children.map(child => (typeof child === 'string' ? child : this.populate(child, id)));
 
     const populatedNode: PopulatedNode = {
@@ -173,6 +183,7 @@ export class NodeManager {
       id,
       parent,
       children,
+      implicit,
     };
 
     this.references.set(id, populatedNode);

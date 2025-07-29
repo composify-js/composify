@@ -1,6 +1,6 @@
 import { Parser } from 'acorn';
 import jsx from 'acorn-jsx';
-import { Node } from '../NodeManager';
+import { SparseNode } from '../NodeManager';
 
 const parser = Parser.extend(jsx({ allowNamespaces: false }));
 
@@ -97,7 +97,7 @@ const parseAttribute = (expression: any): any => {
   }
 };
 
-const parseNode = (node: any): Node => {
+const parseNode = (node: any): SparseNode => {
   const children = (node.children ?? []).map(parseNode).filter(Boolean);
 
   switch (node.type) {
@@ -134,7 +134,7 @@ const parseNode = (node: any): Node => {
   }
 };
 
-export const parse = (source: string): Node => {
+export const parse = (source: string): SparseNode => {
   const parsed = parser.parse(source, {
     ecmaVersion: 2015,
   });

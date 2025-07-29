@@ -1,18 +1,21 @@
-import { NodeManager, Node } from './NodeManager';
+import { NodeManager, Node, PopulatedNode } from './NodeManager';
 
 describe('NodeManager', () => {
   let nodeManager: NodeManager;
 
   const mockSparseNode: Node = {
+    __composify__: true,
     type: 'Container',
     props: { width: '100%' },
     children: [
       {
+        __composify__: true,
         type: 'Text',
-        props: { text: 'Hello' },
-        children: [],
+        props: {},
+        children: ['Hello'],
       },
       {
+        __composify__: true,
         type: 'Button',
         props: { label: 'Click me' },
         children: [],
@@ -31,23 +34,27 @@ describe('NodeManager', () => {
       expect(nodeManager.root.props).toEqual({ width: '100%' });
     });
 
-    it('should populate all children with ids', () => {
+    it('should populate node type children with ids', () => {
       expect(nodeManager.root.children).toHaveLength(2);
-      expect(nodeManager.root.children[0].id).toBeDefined();
-      expect(nodeManager.root.children[1].id).toBeDefined();
+      expect((nodeManager.root.children[0] as PopulatedNode).id).toBeDefined();
+      expect((nodeManager.root.children[1] as PopulatedNode).id).toBeDefined();
+    });
+
+    it('should populate string type children', () => {
+      expect(typeof (nodeManager.root.children[0] as PopulatedNode).children[0]).toEqual('string');
     });
 
     it('should set parent references correctly', () => {
       const rootId = nodeManager.root.id;
 
-      expect(nodeManager.root.children[0].parent).toBe(rootId);
-      expect(nodeManager.root.children[1].parent).toBe(rootId);
+      expect((nodeManager.root.children[0] as PopulatedNode).parent).toBe(rootId);
+      expect((nodeManager.root.children[1] as PopulatedNode).parent).toBe(rootId);
     });
   });
 
   describe('find', () => {
     it('should find a node by id', () => {
-      const firstChild = nodeManager.root.children[0];
+      const firstChild = nodeManager.root.children[0] as PopulatedNode;
       const foundNode = nodeManager.find(firstChild.id);
 
       expect(foundNode).toBeDefined();
@@ -74,6 +81,7 @@ describe('NodeManager', () => {
   describe('insert', () => {
     it('should insert a sparse node at the specified index', () => {
       const newNode: Node = {
+        __composify__: true,
         type: 'Image',
         props: { src: 'image.jpg' },
         children: [],
@@ -82,27 +90,35 @@ describe('NodeManager', () => {
       const rootId = nodeManager.root.id;
       const initialChildrenCount = nodeManager.root.children.length;
 
-      nodeManager.insert(newNode, { id: rootId, index: 1 });
+      nodeManager.insert(newNode, {
+        id: rootId,
+        index: 1,
+      });
+
+      const insertedChild = nodeManager.root.children[1] as PopulatedNode;
 
       expect(nodeManager.root.children).toHaveLength(initialChildrenCount + 1);
-      expect(nodeManager.root.children[1].type).toBe(newNode.type);
-      expect(nodeManager.root.children[1].props).toEqual(newNode.props);
-      expect(nodeManager.root.children[1].parent).toBe(rootId);
+      expect(insertedChild.type).toBe(newNode.type);
+      expect(insertedChild.props).toEqual(newNode.props);
+      expect(insertedChild.parent).toBe(rootId);
     });
 
     it('should insert a populated node', () => {
-      const existingChild = nodeManager.root.children[0];
+      const existingChild = nodeManager.root.children[0] as PopulatedNode;
       const rootId = nodeManager.root.id;
 
       nodeManager.remove(existingChild.id);
       nodeManager.insert(existingChild, { id: rootId, index: 0 });
 
-      expect(nodeManager.root.children[0].id).toBe(existingChild.id);
-      expect(nodeManager.root.children[0].type).toBe(existingChild.type);
+      const insertedChild = nodeManager.root.children[0] as PopulatedNode;
+
+      expect(insertedChild.id).toBe(existingChild.id);
+      expect(insertedChild.type).toBe(existingChild.type);
     });
 
     it('should insert at the beginning when index is 0', () => {
       const newNode: Node = {
+        __composify__: true,
         type: 'Header',
         props: { title: 'Header' },
         children: [],
@@ -112,11 +128,12 @@ describe('NodeManager', () => {
 
       nodeManager.insert(newNode, { id: rootId, index: 0 });
 
-      expect(nodeManager.root.children[0].type).toBe(newNode.type);
+      expect((nodeManager.root.children[0] as PopulatedNode).type).toBe(newNode.type);
     });
 
     it('should insert at the end when index is greater than children length', () => {
       const newNode: Node = {
+        __composify__: true,
         type: 'Footer',
         props: { text: 'Footer' },
         children: [],
@@ -127,17 +144,21 @@ describe('NodeManager', () => {
 
       nodeManager.insert(newNode, { id: rootId, index: childrenCount + 10 });
 
-      expect(nodeManager.root.children[nodeManager.root.children.length - 1].type).toBe(newNode.type);
+      expect((nodeManager.root.children[nodeManager.root.children.length - 1] as PopulatedNode).type).toBe(
+        newNode.type
+      );
     });
 
     it('should do nothing if target id does not exist', () => {
       const newNode: Node = {
+        __composify__: true,
         type: 'Image',
         props: { src: 'image.jpg' },
         children: [],
       };
 
       const initialChildrenCount = nodeManager.root.children.length;
+
       nodeManager.insert(newNode, { id: 'non-existent-id', index: 0 });
 
       expect(nodeManager.root.children).toHaveLength(initialChildrenCount);
@@ -146,7 +167,7 @@ describe('NodeManager', () => {
 
   describe('remove', () => {
     it('should remove a node by id', () => {
-      const childId = nodeManager.root.children[0].id;
+      const childId = (nodeManager.root.children[0] as PopulatedNode).id;
       const initialChildrenCount = nodeManager.root.children.length;
 
       nodeManager.remove(childId);
@@ -170,7 +191,7 @@ describe('NodeManager', () => {
     });
 
     it('should not permanently delete when permanent is false', () => {
-      const childId = nodeManager.root.children[0].id;
+      const childId = (nodeManager.root.children[0] as PopulatedNode).id;
       const initialChildrenCount = nodeManager.root.children.length;
 
       nodeManager.remove(childId, false);
@@ -182,21 +203,21 @@ describe('NodeManager', () => {
 
   describe('relocate', () => {
     it('should move a node to a new parent at specified index', () => {
-      const sourceId = nodeManager.root.children[0].id;
-      const destinationId = nodeManager.root.children[1].id;
+      const sourceId = (nodeManager.root.children[0] as PopulatedNode).id;
+      const destinationId = (nodeManager.root.children[1] as PopulatedNode).id;
 
       nodeManager.relocate(sourceId, { id: destinationId, index: 0 });
 
       const targetNode = nodeManager.find(destinationId);
 
       expect(targetNode?.children).toHaveLength(1);
-      expect(targetNode?.children[0].id).toBe(sourceId);
+      expect((targetNode?.children[0] as PopulatedNode).id).toBe(sourceId);
       expect(nodeManager.root.children).toHaveLength(1);
     });
 
     it('should throw an error if node to relocate does not exist', () => {
       expect(() => {
-        const destinationId = nodeManager.root.children[0].id;
+        const destinationId = (nodeManager.root.children[0] as PopulatedNode).id;
 
         nodeManager.relocate('non-existent-id', { id: destinationId, index: 0 });
       }).toThrow('Node with id non-existent-id not found');
@@ -204,18 +225,19 @@ describe('NodeManager', () => {
 
     it('should prevent circular references', () => {
       const parentId = nodeManager.root.id;
-      const childId = nodeManager.root.children[0].id;
+      const childId = (nodeManager.root.children[0] as PopulatedNode).id;
+      const childrenCount = (nodeManager.root.children[0] as PopulatedNode).children.length;
 
       nodeManager.relocate(parentId, { id: childId, index: 0 });
 
       const childNode = nodeManager.find(childId);
-      expect(childNode?.children).toHaveLength(0);
+      expect(childNode?.children).toHaveLength(childrenCount);
     });
   });
 
   describe('duplicate', () => {
     it('should duplicate a node and insert it after the original', () => {
-      const nodeId = nodeManager.root.children[0].id;
+      const nodeId = (nodeManager.root.children[0] as PopulatedNode).id;
       const initialChildrenCount = nodeManager.root.children.length;
 
       nodeManager.duplicate(nodeId);
@@ -228,8 +250,8 @@ describe('NodeManager', () => {
         throw new Error('Original node not found');
       }
 
-      const originalNodeIndex = nodeManager.root.children.findIndex(c => c.id === nodeId);
-      const duplicatedNode = nodeManager.root.children[originalNodeIndex + 1];
+      const originalNodeIndex = nodeManager.root.children.findIndex(c => typeof c !== 'string' && c.id === nodeId);
+      const duplicatedNode = nodeManager.root.children[originalNodeIndex + 1] as PopulatedNode;
 
       expect(duplicatedNode).toBeDefined();
       expect(duplicatedNode.id).not.toBe(originalNode.id);
@@ -239,10 +261,12 @@ describe('NodeManager', () => {
 
     it('should duplicate a node with its children, giving new ids', () => {
       const deepNode: Node = {
+        __composify__: true,
         type: 'Container',
         props: {},
         children: [
           {
+            __composify__: true,
             type: 'Text',
             props: {},
             children: [],
@@ -251,17 +275,18 @@ describe('NodeManager', () => {
       };
       nodeManager.insert(deepNode, { id: nodeManager.root.id, index: 0 });
 
-      const node = nodeManager.root.children[0];
-      const originalChildId = node.children[0].id;
+      const node = nodeManager.root.children[0] as PopulatedNode;
+      const originalChildId = (node.children[0] as PopulatedNode).id;
 
       nodeManager.duplicate(node.id);
 
-      const duplicatedNode = nodeManager.root.children[1];
+      const duplicatedNode = nodeManager.root.children[1] as PopulatedNode;
+      const duplicatedNodeChild = duplicatedNode.children[0] as PopulatedNode;
 
       expect(duplicatedNode.id).not.toBe(node.id);
       expect(duplicatedNode.children).toHaveLength(1);
-      expect(duplicatedNode.children[0].id).not.toBe(originalChildId);
-      expect(duplicatedNode.children[0].type).toBe('Text');
+      expect(duplicatedNodeChild.id).not.toBe(originalChildId);
+      expect(duplicatedNodeChild.type).toBe('Text');
     });
 
     it('should throw an error if trying to duplicate the root node', () => {
@@ -288,8 +313,8 @@ describe('NodeManager', () => {
       expect(result).toContain('Button:');
     });
 
-    it('should handle nodes without children', () => {
-      const leafNodeId = nodeManager.root.children[0].id;
+    it('should handle nodes with children', () => {
+      const leafNodeId = (nodeManager.root.children[0] as PopulatedNode).id;
       const leafNode = nodeManager.find(leafNodeId);
 
       if (!leafNode) {
@@ -297,11 +322,23 @@ describe('NodeManager', () => {
       }
 
       const result = nodeManager.stringify(leafNode);
-      expect(result).toBe(`Text:${leafNodeId}`);
+      expect(result).toBe(`[Text:${leafNodeId}, [Hello]]`);
+    });
+
+    it('should handle nodes without children', () => {
+      const leafNodeId = (nodeManager.root.children[1] as PopulatedNode).id;
+      const leafNode = nodeManager.find(leafNodeId);
+
+      if (!leafNode) {
+        throw new Error('Leaf node not found');
+      }
+
+      const result = nodeManager.stringify(leafNode);
+      expect(result).toBe(`Button:${leafNodeId}`);
     });
 
     it('should handle custom node parameter', () => {
-      const childNode = nodeManager.root.children[0];
+      const childNode = nodeManager.root.children[0] as PopulatedNode;
       const result = nodeManager.stringify(childNode);
 
       expect(result).toContain(`Text:${childNode.id}`);
@@ -314,7 +351,8 @@ describe('NodeManager', () => {
       const unsubscribe = nodeManager.subscribe(callback);
 
       const newNode: Node = {
-        type: 'Div',
+        __composify__: true,
+        type: 'div',
         props: {},
         children: [],
       };
@@ -333,7 +371,8 @@ describe('NodeManager', () => {
       unsubscribe();
 
       const newNode: Node = {
-        type: 'Div',
+        __composify__: true,
+        type: 'div',
         props: {},
         children: [],
       };
@@ -351,7 +390,8 @@ describe('NodeManager', () => {
       nodeManager.subscribe(callback2);
 
       const newNode: Node = {
-        type: 'Div',
+        __composify__: true,
+        type: 'div',
         props: {},
         children: [],
       };
@@ -366,14 +406,17 @@ describe('NodeManager', () => {
   describe('complex scenarios', () => {
     it('should handle deep nesting', () => {
       const deepNode: Node = {
+        __composify__: true,
         type: 'Level1',
         props: {},
         children: [
           {
+            __composify__: true,
             type: 'Level2',
             props: {},
             children: [
               {
+                __composify__: true,
                 type: 'Level3',
                 props: {},
                 children: [],
@@ -385,9 +428,9 @@ describe('NodeManager', () => {
 
       nodeManager.insert(deepNode, { id: nodeManager.root.id, index: 0 });
 
-      const level1 = nodeManager.root.children[0];
-      const level2 = level1.children[0];
-      const level3 = level2.children[0];
+      const level1 = nodeManager.root.children[0] as PopulatedNode;
+      const level2 = level1.children[0] as PopulatedNode;
+      const level3 = level2.children[0] as PopulatedNode;
 
       expect(level1.type).toBe('Level1');
       expect(level2.type).toBe('Level2');
@@ -396,14 +439,14 @@ describe('NodeManager', () => {
     });
 
     it('should maintain consistency during multiple operations', () => {
-      const nodeA: Node = { type: 'A', props: {}, children: [] };
-      const nodeB: Node = { type: 'B', props: {}, children: [] };
+      const nodeA: Node = { __composify__: true, type: 'A', props: {}, children: [] };
+      const nodeB: Node = { __composify__: true, type: 'B', props: {}, children: [] };
 
       nodeManager.insert(nodeA, { id: nodeManager.root.id, index: 0 });
       nodeManager.insert(nodeB, { id: nodeManager.root.id, index: 1 });
 
-      const nodeAId = nodeManager.root.children[0].id;
-      const nodeBId = nodeManager.root.children[1].id;
+      const nodeAId = (nodeManager.root.children[0] as PopulatedNode).id;
+      const nodeBId = (nodeManager.root.children[1] as PopulatedNode).id;
 
       nodeManager.relocate(nodeAId, { id: nodeBId, index: 0 });
 
@@ -414,7 +457,7 @@ describe('NodeManager', () => {
       }
 
       expect(nodeBAfterMove.children).toHaveLength(1);
-      expect(nodeBAfterMove.children[0].id).toBe(nodeAId);
+      expect((nodeBAfterMove.children[0] as PopulatedNode).id).toBe(nodeAId);
 
       nodeManager.remove(nodeBId);
 
