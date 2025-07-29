@@ -262,8 +262,11 @@ export class NodeManager {
       }
 
       const nodeTypeChildren = current.children.filter(child => typeof child !== 'string');
+      const nodeTypeImplicitChildren = Object.values(current.implicit.children).filter(
+        child => typeof child !== 'string'
+      );
 
-      stack.push(...nodeTypeChildren);
+      stack.push(...nodeTypeChildren, ...nodeTypeImplicitChildren);
     }
 
     return false;
