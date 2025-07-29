@@ -5,6 +5,7 @@ import { getClassNameFactory } from '@composify/utils';
 import { PropertyControl } from '../PropertyControl';
 import { PropertyControlArray } from '../PropertyControlArray';
 import { PropertyControlBoolean } from '../PropertyControlBoolean';
+import { PropertyControlCustom } from '../PropertyControlCustom';
 import { PropertyControlNumber } from '../PropertyControlNumber';
 import { PropertyControlRadio } from '../PropertyControlRadio';
 import { PropertyControlSelect } from '../PropertyControlSelect';
@@ -59,19 +60,9 @@ export const PropertyControlObject = ({ spec, ...props }: Props) => (
                     onChange={handleChange}
                   />
                 );
-              case 'text':
+              case 'custom':
                 return (
-                  <PropertyControlText
-                    key={fieldName}
-                    name={fieldName}
-                    spec={fieldSpec}
-                    value={value[fieldName]}
-                    onChange={handleChange}
-                  />
-                );
-              case 'textarea':
-                return (
-                  <PropertyControlTextArea
+                  <PropertyControlCustom
                     key={fieldName}
                     name={fieldName}
                     spec={fieldSpec}
@@ -112,6 +103,26 @@ export const PropertyControlObject = ({ spec, ...props }: Props) => (
               case 'select':
                 return (
                   <PropertyControlSelect
+                    key={fieldName}
+                    name={fieldName}
+                    spec={fieldSpec}
+                    value={value[fieldName]}
+                    onChange={handleChange}
+                  />
+                );
+              case 'text':
+                return (
+                  <PropertyControlText
+                    key={fieldName}
+                    name={fieldName}
+                    spec={fieldSpec}
+                    value={value[fieldName]}
+                    onChange={handleChange}
+                  />
+                );
+              case 'textarea':
+                return (
+                  <PropertyControlTextArea
                     key={fieldName}
                     name={fieldName}
                     spec={fieldSpec}

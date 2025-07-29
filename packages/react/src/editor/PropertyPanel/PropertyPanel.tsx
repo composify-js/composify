@@ -4,6 +4,7 @@ import { BlockActions } from '../BlockActions';
 import { useEditing } from '../EditingContext';
 import { PropertyControlArray } from '../PropertyControlArray';
 import { PropertyControlBoolean } from '../PropertyControlBoolean';
+import { PropertyControlCustom } from '../PropertyControlCustom';
 import { PropertyControlNode } from '../PropertyControlNode';
 import { PropertyControlNumber } from '../PropertyControlNumber';
 import { PropertyControlObject } from '../PropertyControlObject';
@@ -37,6 +38,8 @@ export const PropertyPanel = () => {
               return <PropertyControlArray key={name} name={name} spec={spec} />;
             case 'boolean':
               return <PropertyControlBoolean key={name} name={name} spec={spec} />;
+            case 'custom':
+              return <PropertyControlCustom key={name} name={name} spec={spec} />;
             case 'node':
               return <PropertyControlNode key={name} name={name} spec={spec} />;
             case 'number':

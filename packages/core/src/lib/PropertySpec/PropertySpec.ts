@@ -15,6 +15,11 @@ export type ArrayPropertySpec<Value extends any[]> = DefaultPropertySpec<Value> 
   item: PropertySpec<Value[number]>;
 };
 
+export type CustomPropertySpec<Value> = DefaultPropertySpec<Value> & {
+  type: 'custom';
+  render: (value: Value, onChange: (value: Value) => void) => any;
+};
+
 export type ObjectPropertySpec<
   Value extends Record<string, any>,
   Key extends keyof Value = keyof Value,
@@ -57,9 +62,10 @@ export type TextAreaPropertySpec<Value> = DefaultPropertySpec<Value> & {
 };
 
 export type PropertySpec<Value> =
+  | CustomPropertySpec<Value>
+  | NodePropertySpec<Value>
   | RadioPropertySpec<Value>
   | SelectPropertySpec<Value>
-  | NodePropertySpec<Value>
   | (Value extends unknown[]
       ? ArrayPropertySpec<Value>
       : Value extends boolean

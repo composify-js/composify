@@ -4,6 +4,7 @@ import { ArrayPropertySpec } from '@composify/core';
 import { getClassNameFactory } from '@composify/utils';
 import { PropertyControl } from '../PropertyControl';
 import { PropertyControlBoolean } from '../PropertyControlBoolean';
+import { PropertyControlCustom } from '../PropertyControlCustom';
 import { PropertyControlNumber } from '../PropertyControlNumber';
 import { PropertyControlObject } from '../PropertyControlObject';
 import { PropertyControlRadio } from '../PropertyControlRadio';
@@ -68,20 +69,9 @@ export const PropertyControlArray = ({ name, spec, ...props }: Props) => (
                           compact={true}
                         />
                       );
-
-                    case 'text':
+                    case 'custom':
                       return (
-                        <PropertyControlText
-                          name={name}
-                          spec={spec.item}
-                          value={value}
-                          onChange={handleChange(index)}
-                          compact={true}
-                        />
-                      );
-                    case 'textarea':
-                      return (
-                        <PropertyControlTextArea
+                        <PropertyControlCustom
                           name={name}
                           spec={spec.item}
                           value={value}
@@ -122,6 +112,26 @@ export const PropertyControlArray = ({ name, spec, ...props }: Props) => (
                     case 'select':
                       return (
                         <PropertyControlSelect
+                          name={name}
+                          spec={spec.item}
+                          value={value}
+                          onChange={handleChange(index)}
+                          compact={true}
+                        />
+                      );
+                    case 'text':
+                      return (
+                        <PropertyControlText
+                          name={name}
+                          spec={spec.item}
+                          value={value}
+                          onChange={handleChange(index)}
+                          compact={true}
+                        />
+                      );
+                    case 'textarea':
+                      return (
+                        <PropertyControlTextArea
                           name={name}
                           spec={spec.item}
                           value={value}

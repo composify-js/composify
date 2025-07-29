@@ -6,6 +6,7 @@ export {
   type NodePropertySpec,
   type NumberPropertySpec,
   type ObjectPropertySpec,
+  type CustomPropertySpec,
   type RadioPropertySpec,
   type SelectPropertySpec,
   type TextPropertySpec,
