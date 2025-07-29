@@ -20,7 +20,7 @@ const getClassName = getClassNameFactory('PropertyControlNode', styles);
 export const PropertyControlNode = ({ spec, ...props }: Props) => {
   const { activeBlock } = useEditing();
 
-  if (!activeBlock) {
+  if (!activeBlock || props.name === 'children') {
     return null;
   }
 
