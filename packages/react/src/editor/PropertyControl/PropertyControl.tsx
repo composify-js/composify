@@ -27,16 +27,18 @@ export const PropertyControl = <SpecValue, Value = SpecValue>({
 }: Props<SpecValue, Value>) => {
   const { activeBlock, updateActiveBlock } = useEditing();
 
-  const effectiveValue = (onChange ? value : activeBlock?.props[name]) ?? (spec.optional ? undefined : defaultValue);
+  const tentativeValue: Value | undefined = onChange ? value : activeBlock?.props[name];
+  const effectiveValue = tentativeValue === undefined ? (spec.optional ? undefined : defaultValue) : tentativeValue;
+
   const isEffectiveValueDefined = typeof effectiveValue !== 'undefined';
 
   const effectiveChangeHandler = onChange ?? updateActiveBlock;
 
   const handleClickOptional = useCallback(() => {
-    if (effectiveValue) {
-      effectiveChangeHandler(name, undefined);
-    } else {
+    if (typeof effectiveValue === 'undefined') {
       effectiveChangeHandler(name, defaultValue);
+    } else {
+      effectiveChangeHandler(name, undefined);
     }
   }, [name, defaultValue, effectiveValue, effectiveChangeHandler]);
 

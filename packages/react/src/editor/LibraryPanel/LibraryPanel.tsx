@@ -1,6 +1,7 @@
-import { Catalog } from '@composify/core';
+import { Catalog, Parser } from '@composify/core';
 import { getClassNameFactory } from '@composify/utils';
 import { createElement } from 'react';
+import toJsxString from 'react-element-to-jsx-string';
 import { Pragma, Renderer } from '../../renderer';
 import { TargetType } from '../Constants';
 import { Draggable } from '../Draggable';
@@ -16,10 +17,10 @@ const pragma: Pragma = {
 
     const defaultProps = Object.entries(propertySpecs).reduce(
       (acc, [key, value]) =>
-        value?.default
+        value?.default && !value.optional
           ? {
               ...acc,
-              [key]: value.default,
+              [key]: propertySpecs[key].type === 'node' ? Parser.parse(toJsxString(value.default)) : value.default,
             }
           : acc,
       { key: node.type } as Record<string, unknown>
