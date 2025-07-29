@@ -11,7 +11,7 @@ export type PopulatedNode = Omit<SparseNode, 'id' | 'children'> & {
   id: string;
   children: (PopulatedNode | string)[];
   implicit: {
-    parent?: string;
+    parentPropKey?: string;
     children: Record<string, PopulatedNode | string>;
   };
 };
@@ -71,6 +71,12 @@ export class NodeManager {
 
     parent.children = parent.children.filter(child => typeof child === 'string' || child.id !== id);
 
+    if (node.implicit.parentPropKey) {
+      parent.props[node.implicit.parentPropKey] = null;
+      delete parent.implicit.children[node.implicit.parentPropKey];
+      delete node.implicit.parentPropKey;
+    }
+
     if (permanent) {
       node.children.forEach(child => {
         if (typeof child === 'string') {
@@ -79,6 +85,15 @@ export class NodeManager {
 
         this.remove(child.id, true);
       });
+
+      Object.values(node.implicit.children).forEach(child => {
+        if (typeof child === 'string') {
+          return;
+        }
+
+        this.remove(child.id, true);
+      });
+
       this.references.delete(id);
     }
 
@@ -113,6 +128,10 @@ export class NodeManager {
       throw new Error('Cannot duplicate root node');
     }
 
+    if (node.implicit.parentPropKey) {
+      throw new Error('Cannot duplicate implicit node');
+    }
+
     const parent = this.find(node.parent);
 
     if (!parent) {
@@ -139,10 +158,17 @@ export class NodeManager {
       throw new Error(`Node with id ${id} not found`);
     }
 
-    node.props[prop.key] =
-      prop.value && typeof prop.value === 'object' && '__composify__' in prop.value
-        ? this.populate(prop.value as unknown as Node, id)
-        : prop.value;
+    if (this.isNode(prop.value)) {
+      const populatedValue = this.populate(prop.value, {
+        parent: id,
+        implicit: prop.key,
+      });
+
+      node.implicit.children[prop.key] = populatedValue;
+      node.props[prop.key] = populatedValue;
+    } else {
+      node.props[prop.key] = prop.value;
+    }
 
     this.notify();
   };
@@ -171,17 +197,39 @@ export class NodeManager {
     this.subscribers.forEach(callback => callback());
   };
 
-  private populate = (node: Node, parent?: string): PopulatedNode => {
+  private populate = (node: Node, options?: { parent: string; implicit?: string }): PopulatedNode => {
     const id = this.generateRandomId();
-    const implicit = {
+    const implicit: PopulatedNode['implicit'] = {
+      ...(options?.implicit ? { parentPropKey: options.implicit } : {}),
       children: {},
     };
-    const children = node.children.map(child => (typeof child === 'string' ? child : this.populate(child, id)));
+
+    const props = Object.fromEntries(
+      Object.entries(node.props).map(([key, value]) => {
+        if (this.isNode(value)) {
+          const populatedValue = this.populate(value, {
+            parent: id,
+            implicit: key,
+          });
+
+          implicit.children[key] = populatedValue;
+
+          return [key, populatedValue];
+        }
+
+        return [key, value];
+      })
+    );
+
+    const children = node.children.map(child =>
+      typeof child === 'string' ? child : this.populate(child, { parent: id })
+    );
 
     const populatedNode: PopulatedNode = {
       ...node,
       id,
-      parent,
+      props,
+      parent: options?.parent,
       children,
       implicit,
     };
@@ -193,6 +241,10 @@ export class NodeManager {
 
   private generateRandomId = () => {
     return Date.now() + Math.random().toString(36).slice(2);
+  };
+
+  private isNode = (value: any): value is Node => {
+    return value && typeof value === 'object' && '__composify__' in value;
   };
 
   private hasChild = (parent: PopulatedNode, id: string): boolean => {

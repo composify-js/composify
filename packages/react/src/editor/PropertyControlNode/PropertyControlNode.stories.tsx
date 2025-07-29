@@ -4,7 +4,7 @@ import { Theme } from '../Theme';
 import { PropertyControlNode } from './PropertyControlNode';
 
 export const BasicUsage = () => {
-  const [value, setValue] = useState<Node>();
+  const [value, setValue] = useState<Node | null>();
 
   return (
     <>

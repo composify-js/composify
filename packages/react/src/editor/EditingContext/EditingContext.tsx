@@ -31,6 +31,9 @@ const EditingContext = createContext<EditingContextValues>({
     type: 'Fragment',
     props: {},
     children: [],
+    implicit: {
+      children: {},
+    },
   },
   focusedBlock: undefined,
   activeBlock: undefined,

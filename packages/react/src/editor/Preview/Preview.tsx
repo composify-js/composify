@@ -1,4 +1,4 @@
-import { Catalog, Node } from '@composify/core';
+import { Catalog } from '@composify/core';
 import { getClassNameFactory } from '@composify/utils';
 import { Children, createElement } from 'react';
 import { Pragma, Renderer } from '../../renderer/Renderer';
@@ -27,20 +27,7 @@ const pragma: Pragma = {
       },
       createElement(
         type,
-        {
-          ...Object.entries(props).reduce(
-            (acc, [key, value]) => ({
-              ...acc,
-              [key]:
-                value && typeof value === 'object' && '__composify__' in value ? (
-                  <Renderer source={value as unknown as Node} />
-                ) : (
-                  value
-                ),
-            }),
-            {} as typeof props
-          ),
-        },
+        props,
         acceptsChildren
           ? [
               createElement(Droppable, {

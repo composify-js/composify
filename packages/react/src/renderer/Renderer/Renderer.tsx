@@ -18,7 +18,7 @@ const renderElement = (node: Node, pragma: Pragma): ReactNode => {
       ...Object.entries(node.props).reduce(
         (acc, [key, value]) => ({
           ...acc,
-          [key]: value && typeof value === 'object' && '__composify__' in value ? <Renderer source={value} /> : value,
+          [key]: value && typeof value === 'object' && '__composify__' in value ? renderElement(value, pragma) : value,
         }),
         {} as typeof node.props
       ),
