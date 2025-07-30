@@ -42,6 +42,7 @@ export const Draggable: FC<PropsWithChildren<Props>> = ({ type, item, ...props }
     <span
       data-composify-role="draggable"
       data-composify-dragging={focusedBlock?.id == item.id}
+      data-composify-type={type}
       ref={node => {
         if (node?.firstChild) {
           dragRef(node.firstChild as Element);

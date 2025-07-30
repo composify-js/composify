@@ -50,7 +50,12 @@ export const LibraryPanel = () => (
               props: defaultProps,
             }}
           >
-            <Renderer source={`<${name} ${jsxProps} />`} />
+            <div className={getClassName('BlockItem')}>
+              <div className={getClassName('BlockItemPreview')}>
+                <Renderer source={`<${name} ${jsxProps} />`} />
+              </div>
+              <p className={getClassName('BlockName')}>{name}</p>
+            </div>
           </Draggable>
         );
       })}
