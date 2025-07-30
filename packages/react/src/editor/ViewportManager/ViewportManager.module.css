@@ -1,15 +1,13 @@
-.ViewportManager-Container {
+.ViewportManager {
   display: flex;
   flex: 1;
   flex-direction: column;
-  align-items: center;
-  overflow: hidden;
   background-color: var(--composify-palette-surface-container);
 }
 
-.ViewportManager-Target {
-  display: flex;
+.ViewportManager-Content {
   flex: 1;
-  transform-origin: center top;
-  transition: all 0.1s linear;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
 }

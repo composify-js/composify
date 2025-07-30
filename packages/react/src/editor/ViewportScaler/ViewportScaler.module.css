@@ -1,0 +1,21 @@
+*:has(> .ViewportScaler-Container) {
+  position: relative;
+}
+
+.ViewportScaler-Container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.ViewportScaler-Target {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  transform-origin: center top;
+  transition: all 0.1s linear;
+}
