@@ -18,8 +18,8 @@ export const ViewportScaler: FC<Props> = ({ width, children }) => {
       return;
     }
 
-    const container = getBox(containerRef.current);
-    const scale = Math.min(container.contentBox.width / width, 2);
+    const box = getBox(containerRef.current);
+    const scale = Math.min(box.contentBox.width / width, 2);
 
     setScale(scale);
   }, [width]);

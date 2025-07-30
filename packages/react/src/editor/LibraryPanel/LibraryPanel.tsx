@@ -4,6 +4,7 @@ import { ReactNode } from 'react';
 import toJsxString from 'react-element-to-jsx-string';
 import { Renderer } from '../../renderer';
 import { TargetType } from '../Constants';
+import { ContentScaler } from '../ContentScaler';
 import { Draggable } from '../Draggable';
 import { SearchForm } from '../SearchForm';
 import styles from './LibraryPanel.module.css';
@@ -42,21 +43,22 @@ export const LibraryPanel = () => (
           .join(' ');
 
         return (
-          <Draggable
-            type={TargetType.Library}
-            key={name}
-            item={{
-              ...node,
-              props: defaultProps,
-            }}
-          >
-            <div className={getClassName('BlockItem')}>
+          <div key={name} className={getClassName('BlockItem')}>
+            <Draggable
+              type={TargetType.Library}
+              item={{
+                ...node,
+                props: defaultProps,
+              }}
+            >
               <div className={getClassName('BlockItemPreview')}>
-                <Renderer source={`<${name} ${jsxProps} />`} />
+                <ContentScaler width={102} height={102}>
+                  <Renderer source={`<${name} ${jsxProps} />`} />
+                </ContentScaler>
               </div>
-              <p className={getClassName('BlockName')}>{name}</p>
-            </div>
-          </Draggable>
+            </Draggable>
+            <p className={getClassName('BlockName')}>{name}</p>
+          </div>
         );
       })}
     </div>
