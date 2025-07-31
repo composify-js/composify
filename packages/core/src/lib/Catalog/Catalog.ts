@@ -1,6 +1,7 @@
 import { PropertySpec } from '../PropertySpec';
 
-export type Block<Props, Key extends keyof Props = keyof Props> = {
+export type Block<Props = any, Key extends keyof Props = keyof Props> = {
+  name: string;
   category?: string;
   component: any;
   props: {
@@ -8,16 +9,19 @@ export type Block<Props, Key extends keyof Props = keyof Props> = {
   };
 };
 
-const blocks = new Map<string, Block<any>>();
+const blocks = new Map<string, Block>();
 
-export const register = <Props>(name: string, block: Block<Props>) => {
+export const register = <Props>(name: string, block: Omit<Block<Props>, 'name'>) => {
   for (const spec of Object.values(block.props)) {
     const typedSpec = spec as PropertySpec<any>;
 
     setSpecDefault(typedSpec);
   }
 
-  blocks.set(name, block as Block<any>);
+  blocks.set(name, {
+    name,
+    ...block,
+  });
 };
 
 export const get = (name: string) => {
@@ -37,8 +41,8 @@ export const get = (name: string) => {
   return block;
 };
 
-export const getAll = () =>
-  Array.from(blocks.values())
+export const getAll = () => {
+  const blockList = Array.from(blocks.values())
     .sort((a, b) => {
       const aCategory = a.category ?? '~';
       const bCategory = b.category ?? '~';
@@ -48,14 +52,21 @@ export const getAll = () =>
     .map(block => ({
       ...block,
       category: block.category ?? 'Uncategorized',
-    }))
-    .reduce(
-      (acc, block) => ({
-        ...acc,
-        [block.category]: [...(acc[block.category] ?? []), block],
-      }),
-      {} as Record<string, Block<any>[]>
-    );
+    }));
+
+  const blocksByCategory = blockList.reduce(
+    (acc, block) => ({
+      ...acc,
+      [block.category]: [...(acc[block.category] ?? []), block],
+    }),
+    {} as Record<string, Block<any>[]>
+  );
+
+  return Object.entries(blocksByCategory).map(([category, blocks]) => ({
+    category,
+    blocks,
+  }));
+};
 
 export const clear = () => {
   blocks.clear();

@@ -1,11 +1,6 @@
-import { Catalog, Node, Parser } from '@composify/core';
+import { Catalog } from '@composify/core';
 import { getClassNameFactory } from '@composify/utils';
-import { ReactNode } from 'react';
-import toJsxString from 'react-element-to-jsx-string';
-import { Renderer } from '../../renderer';
-import { TargetType } from '../Constants';
-import { ContentScaler } from '../ContentScaler';
-import { Draggable } from '../Draggable';
+import { LibraryBlockGroup } from '../LibraryBlocksGroup';
 import { SearchForm } from '../SearchForm';
 import styles from './LibraryPanel.module.css';
 
@@ -14,53 +9,8 @@ const getClassName = getClassNameFactory('LibraryPanel', styles);
 export const LibraryPanel = () => (
   <section className={getClassName()}>
     <SearchForm />
-    <div className={getClassName('BlockList')}>
-      {Catalog.getAll().map(([name, block]) => {
-        const propertySpecs = block.props ?? {};
-
-        const defaultProps = Object.entries(propertySpecs).reduce(
-          (acc, [key, value]) =>
-            value?.default && !value.optional
-              ? {
-                  ...acc,
-                  [key]: propertySpecs[key].type === 'node' ? Parser.parse(toJsxString(value.default)) : value.default,
-                }
-              : acc,
-          {} as Record<string, unknown>
-        );
-
-        const children = [defaultProps.children].flat().filter(child => typeof child !== 'undefined') as ReactNode;
-
-        const node = {
-          __composify__: true,
-          type: name,
-          props: defaultProps,
-          children,
-        } as Node;
-
-        const jsxProps = Object.entries(defaultProps)
-          .map(([key, value]) => `${key}={${JSON.stringify(value)}}`)
-          .join(' ');
-
-        return (
-          <div key={name} className={getClassName('BlockItem')}>
-            <Draggable
-              type={TargetType.Library}
-              item={{
-                ...node,
-                props: defaultProps,
-              }}
-            >
-              <div className={getClassName('BlockItemPreview')}>
-                <ContentScaler width={102} height={102}>
-                  <Renderer source={`<${name} ${jsxProps} />`} />
-                </ContentScaler>
-              </div>
-            </Draggable>
-            <p className={getClassName('BlockName')}>{name}</p>
-          </div>
-        );
-      })}
-    </div>
+    {Catalog.getAll().map(({ category, blocks }) => (
+      <LibraryBlockGroup key={category} category={category} blocks={blocks} />
+    ))}
   </section>
 );

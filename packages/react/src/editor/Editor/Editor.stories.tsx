@@ -32,6 +32,7 @@ Catalog.register<ComponentProps<typeof Text>>('Text', {
 
 Catalog.register<ComponentProps<typeof HStack>>('HStack', {
   component: HStack,
+  category: 'Layout',
   props: {
     children: {
       label: 'Children',
@@ -58,6 +59,7 @@ Catalog.register<ComponentProps<typeof HStack>>('HStack', {
 
 Catalog.register<ComponentProps<typeof VStack>>('VStack', {
   component: VStack,
+  category: 'Layout',
   props: {
     children: {
       label: 'Children',

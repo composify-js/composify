@@ -1,4 +1,5 @@
 export * as Catalog from './lib/Catalog';
+export { type Block } from './lib/Catalog';
 export * as Parser from './lib/Parser';
 export { NodeManager, type Node } from './lib/NodeManager';
 export {

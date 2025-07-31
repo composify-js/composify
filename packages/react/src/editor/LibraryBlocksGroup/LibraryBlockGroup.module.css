@@ -1,0 +1,57 @@
+.LibraryBlockGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.LibraryBlockGroup-Category {
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-top: 1px solid var(--composify-palette-outline);
+  border-bottom: 1px solid var(--composify-palette-outline);
+  background-color: var(--composify-palette-surface-container);
+  color: var(--composify-palette-on-surface);
+}
+
+.LibraryBlockGroup-BlockList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.25rem;
+  padding: 0.5rem;
+}
+
+.LibraryBlockGroup-BlockItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+  overflow: hidden;
+}
+
+.LibraryBlockGroup-BlockItemPreview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.25rem;
+  border: 0.0625rem solid var(--composify-palette-outline);
+  background-color: var(--composify-palette-surface-container-low);
+  overflow: hidden;
+  width: 6.75rem;
+  height: 6.75rem;
+}
+
+.LibraryBlockGroup-BlockItemPreview:hover {
+  border: 0.0625rem solid var(--composify-palette-primary);
+}
+
+.LibraryBlockGroup-BlockName {
+  align-self: stretch;
+  margin: 0 0.1875rem;
+  font-size: 0.75rem;
+  color: var(--composify-palette-on-surface);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
