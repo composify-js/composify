@@ -1,6 +1,7 @@
 import { PropertySpec } from '../PropertySpec';
 
 export type Block<Props, Key extends keyof Props = keyof Props> = {
+  category?: string;
   component: any;
   props: {
     [key in Key]: PropertySpec<Props[key]>;
@@ -36,7 +37,25 @@ export const get = (name: string) => {
   return block;
 };
 
-export const getAll = () => [...blocks];
+export const getAll = () =>
+  Array.from(blocks.values())
+    .sort((a, b) => {
+      const aCategory = a.category ?? '~';
+      const bCategory = b.category ?? '~';
+
+      return aCategory < bCategory ? -1 : 1;
+    })
+    .map(block => ({
+      ...block,
+      category: block.category ?? 'Uncategorized',
+    }))
+    .reduce(
+      (acc, block) => ({
+        ...acc,
+        [block.category]: [...(acc[block.category] ?? []), block],
+      }),
+      {} as Record<string, Block<any>[]>
+    );
 
 export const clear = () => {
   blocks.clear();
