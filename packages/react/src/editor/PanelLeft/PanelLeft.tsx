@@ -14,7 +14,6 @@ const getClassName = getClassNameFactory('PanelLeft', styles);
 export const PanelLeft: FC<Props> = ({ title }) => (
   <section className={getClassName()}>
     <Header title={title} />
-    <SearchForm />
-    <BlockLibrary />
+    <SearchForm>{query => <BlockLibrary query={query} />}</SearchForm>
   </section>
 );

@@ -41,8 +41,9 @@ export const get = (name: string) => {
   return block;
 };
 
-export const getAll = () => {
+export const getAll = (query?: string) => {
   const blockList = Array.from(blocks.values())
+    .filter(block => block.name.toLowerCase().includes(query?.toLowerCase() ?? ''))
     .sort((a, b) => {
       const aCategory = a.category ?? '~';
       const bCategory = b.category ?? '~';
