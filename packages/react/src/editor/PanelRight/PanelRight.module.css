@@ -1,0 +1,7 @@
+.PanelRight {
+  display: flex;
+  flex-direction: column;
+  width: 256px;
+  border-left: 1px solid var(--composify-palette-outline);
+  background-color: var(--composify-palette-surface);
+}

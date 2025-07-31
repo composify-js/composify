@@ -1,0 +1,35 @@
+.ActiveBlockControl {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  border-bottom: 1px solid var(--composify-palette-outline);
+}
+
+.ActiveBlockControl-Title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--composify-palette-on-surface);
+}
+
+.ActiveBlockControl-Actions {
+  display: flex;
+  align-items: center;
+}
+
+.ActiveBlockControl-ActionItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0.5rem 0.5rem;
+  border: none;
+  background-color: transparent;
+  fill: var(--composify-color-on-surface);
+}
+
+.ActiveBlockControl-ActionItem:hover,
+.ActiveBlockControl-ActionItem:active {
+  opacity: 0.7;
+}

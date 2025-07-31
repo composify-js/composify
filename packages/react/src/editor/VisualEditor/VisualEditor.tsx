@@ -4,8 +4,8 @@ import { InlineFrame } from '../InlineFrame';
 import { InlineFrameBinding } from '../InlineFrameBinding';
 import { InlineFrameWindow } from '../InlineFrameWindow';
 import { PanelLeft } from '../PanelLeft';
+import { PanelRight } from '../PanelRight';
 import { Preview } from '../Preview';
-import { PropertyPanel } from '../PropertyPanel';
 import { ViewportManager } from '../ViewportManager';
 import styles from './VisualEditor.module.css';
 
@@ -21,6 +21,6 @@ export const VisualEditor: FC<unknown> = () => (
         <Preview />
       </InlineFrame>
     </ViewportManager>
-    <PropertyPanel />
+    <PanelRight />
   </main>
 );
