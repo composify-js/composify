@@ -6,16 +6,16 @@ import { Renderer } from '../../renderer';
 import { TargetType } from '../Constants';
 import { ContentScaler } from '../ContentScaler';
 import { Draggable } from '../Draggable';
-import styles from './LibraryBlockGroup.module.css';
+import styles from './BlockGroup.module.css';
 
-const getClassName = getClassNameFactory('LibraryBlockGroup', styles);
+const getClassName = getClassNameFactory('BlockGroup', styles);
 
 type Props = {
   category: string;
   blocks: Block[];
 };
 
-export const LibraryBlockGroup: FC<Props> = ({ category, blocks }) => (
+export const BlockGroup: FC<Props> = ({ category, blocks }) => (
   <div className={getClassName()}>
     <h4 className={getClassName('Category')}>{category}</h4>
     <div className={getClassName('BlockList')}>

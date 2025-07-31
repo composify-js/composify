@@ -12,7 +12,7 @@
 }
 
 .Droppable--active {
-  border: 0.0625rem dotted var(--composify-palette-primary);
+  border: 1px dotted var(--composify-palette-primary);
 }
 
 .Droppable--active[data-composify-dragging="true"]:not(:only-child),

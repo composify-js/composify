@@ -1,9 +1,9 @@
-.LibraryBlockGroup {
+.BlockGroup {
   display: flex;
   flex-direction: column;
 }
 
-.LibraryBlockGroup-Category {
+.BlockGroup-Category {
   margin: 0;
   padding: 0.5rem 0.75rem;
   font-size: 0.75rem;
@@ -14,14 +14,14 @@
   color: var(--composify-palette-on-surface);
 }
 
-.LibraryBlockGroup-BlockList {
+.BlockGroup-BlockList {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.25rem;
   padding: 0.5rem;
 }
 
-.LibraryBlockGroup-BlockItem {
+.BlockGroup-BlockItem {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,23 +31,23 @@
   overflow: hidden;
 }
 
-.LibraryBlockGroup-BlockItemPreview {
+.BlockGroup-BlockItemPreview {
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 0.25rem;
-  border: 0.0625rem solid var(--composify-palette-outline);
+  border: 1px solid var(--composify-palette-outline);
   background-color: var(--composify-palette-surface-container-low);
   overflow: hidden;
   width: 6.75rem;
   height: 6.75rem;
 }
 
-.LibraryBlockGroup-BlockItemPreview:hover {
-  border: 0.0625rem solid var(--composify-palette-primary);
+.BlockGroup-BlockItemPreview:hover {
+  border: 1px solid var(--composify-palette-primary);
 }
 
-.LibraryBlockGroup-BlockName {
+.BlockGroup-BlockName {
   align-self: stretch;
   margin: 0 0.1875rem;
   font-size: 0.75rem;

@@ -1,4 +1,4 @@
-.LibraryPanel {
+.PanelLeft {
   display: flex;
   flex-direction: column;
   width: 256px;

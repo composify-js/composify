@@ -3,7 +3,7 @@
   padding: 0.5rem;
   font-size: 0.875rem;
   outline: none;
-  border: 0.0625rem solid var(--composify-palette-outline);
+  border: 1px solid var(--composify-palette-outline);
   border-radius: 0.25rem;
   color: var(--composify-palette-on-surface);
   background-color: var(--composify-palette-surface-container-low);

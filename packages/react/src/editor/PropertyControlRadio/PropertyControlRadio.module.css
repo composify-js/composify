@@ -3,7 +3,7 @@
   align-items: center;
   padding: 0.125rem;
   border-radius: 0.25rem;
-  border: 0.0625rem solid var(--composify-palette-outline);
+  border: 1px solid var(--composify-palette-outline);
   background-color: var(--composify-palette-surface-container-low);
 }
 

@@ -14,8 +14,8 @@ export const Editor: FC<Props> = ({ source }) => (
   <WindowProvider>
     <IsolatedDndProvider>
       <EditingProvider source={source}>
-        <KeyDownDetector />
         <VisualEditor />
+        <KeyDownDetector />
         <Theme />
       </EditingProvider>
     </IsolatedDndProvider>
