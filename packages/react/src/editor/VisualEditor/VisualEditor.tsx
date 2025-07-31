@@ -11,14 +11,18 @@ import styles from './VisualEditor.module.css';
 
 type Props = {
   title: string;
+  viewports: {
+    width: number;
+    label: string;
+  }[];
 };
 
 const getClassName = getClassNameFactory('VisualEditor', styles);
 
-export const VisualEditor: FC<Props> = ({ title }) => (
+export const VisualEditor: FC<Props> = ({ title, viewports }) => (
   <main className={getClassName()}>
     <PanelLeft title={title} />
-    <ViewportManager>
+    <ViewportManager viewports={viewports}>
       <InlineFrame>
         <InlineFrameWindow />
         <InlineFrameBinding />

@@ -28,7 +28,7 @@ export const get = (name: string) => {
   if (name.toLowerCase() === name) {
     return {
       component: name,
-      props: {},
+      props: {} as Record<string, PropertySpec<any>>,
     };
   }
 

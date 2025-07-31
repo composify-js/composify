@@ -13,12 +13,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   position: absolute;
   top: 0;
   bottom: 0;
   border-left: 2px solid var(--composify-palette-outline);
   border-right: 2px solid var(--composify-palette-outline);
   background-color: var(--composify-palette-surface-container-low);
+  transition: all 0.1s linear;
+}
+
+.ViewportControl-ViewportItem:first-child {
+  border: none;
 }
 
 .ViewportControl-Highlight {
@@ -31,7 +37,7 @@
   opacity: 0;
   pointer-events: none;
   background-color: var(--composify-palette-surface-container-highest);
-  transition: opacity 0.1s linear;
+  transition: all 0.1s linear;
 }
 
 .ViewportControl-ViewportItem:hover .ViewportControl-Highlight {

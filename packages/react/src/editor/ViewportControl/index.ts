@@ -1,1 +1,1 @@
-export { ViewportControl, type Props as ViewportControlProps } from './ViewportControl';
+export { ViewportControl } from './ViewportControl';

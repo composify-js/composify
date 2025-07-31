@@ -1,6 +1,5 @@
 .Preview {
   flex: 1;
-  margin: 1rem;
   border: 1px solid var(--composify-palette-outline);
   background-color: var(--composify-palette-surface);
   overflow: hidden;

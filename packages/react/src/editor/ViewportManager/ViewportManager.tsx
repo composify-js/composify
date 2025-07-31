@@ -1,35 +1,24 @@
 import { getClassNameFactory } from '@composify/utils';
 import { FC, PropsWithChildren, useState } from 'react';
-import { ViewportControl, ViewportControlProps } from '../ViewportControl';
+import { ViewportControl } from '../ViewportControl';
 import { ViewportScaler } from '../ViewportScaler';
 import styles from './ViewportManager.module.css';
 
-type Props = PropsWithChildren<Pick<ViewportControlProps, 'viewports'>>;
-
 const getClassName = getClassNameFactory('ViewportManager', styles);
 
-export const ViewportManager: FC<Props> = ({ children }) => {
-  const [width, setWidth] = useState(375);
+type Props = PropsWithChildren<{
+  viewports: {
+    width: number;
+    label: string;
+  }[];
+}>;
+
+export const ViewportManager: FC<Props> = ({ viewports, children }) => {
+  const [width, setWidth] = useState(viewports[0].width);
 
   return (
     <section className={getClassName()}>
-      <ViewportControl
-        viewports={[
-          {
-            width: 375,
-            label: 'Mobile',
-          },
-          {
-            width: 768,
-            label: 'Tablet',
-          },
-          {
-            width: 1024,
-            label: 'Laptop',
-          },
-        ]}
-        onClick={setWidth}
-      />
+      <ViewportControl viewports={viewports} selectedWidth={width} onClick={setWidth} />
       <div className={getClassName('Content')}>
         <ViewportScaler width={width}>{children}</ViewportScaler>
       </div>
