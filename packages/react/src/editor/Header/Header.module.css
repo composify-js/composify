@@ -9,7 +9,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 0.875rem;
-  font-weight: bold;
+  font-size: 1rem;
+  font-weight: 700;
   color: var(--composify-palette-on-surface);
 }

@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 2rem;
+  height: 1.75rem;
 }
 
 .PropertyControl-Label {
@@ -21,53 +21,11 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 0.5rem;
-  margin-right: -0.5rem;
+  padding: 0.375rem;
+  margin-right: -0.375rem;
   outline: none;
   border: none;
   border-radius: 0.25rem;
   background-color: transparent;
   fill: var(--composify-palette-secondary);
-}
-
-.PropertyControl-InputList {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.PropertyControl-InputItem {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.PropertyControl-RemoveButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: 0.25rem;
-  outline: none;
-  border: none;
-  border-radius: 0.25rem;
-  background-color: transparent;
-  fill: var(--composify-palette-secondary);
-}
-
-.PropertyControl-RemoveButton:hover {
-  background-color: var(--composify-palette-surface-container);
-}
-
-.PropertyControl-AddButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 2.125rem;
-  font-size: 0.875rem;
-  cursor: pointer;
-  border: 1px solid var(--composify-palette-secondary);
-  border-radius: 0.25rem;
-  fill: var(--composify-palette-on-secondary);
-  background-color: var(--composify-palette-secondary);
 }
