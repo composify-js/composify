@@ -13,7 +13,23 @@ export const ViewportManager: FC<Props> = ({ children }) => {
 
   return (
     <section className={getClassName()}>
-      <ViewportControl onClick={setWidth} />
+      <ViewportControl
+        viewports={[
+          {
+            width: 375,
+            label: 'Mobile',
+          },
+          {
+            width: 768,
+            label: 'Tablet',
+          },
+          {
+            width: 1024,
+            label: 'Laptop',
+          },
+        ]}
+        onClick={setWidth}
+      />
       <div className={getClassName('Content')}>
         <ViewportScaler width={width}>{children}</ViewportScaler>
       </div>

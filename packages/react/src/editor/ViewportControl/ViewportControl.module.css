@@ -1,24 +1,52 @@
-.ViewportControl-ViewportList {
+.ViewportControl {
   display: flex;
-  justify-content: center;
   align-items: center;
-  column-gap: 0.5rem;
-  padding: 1rem;
+  justify-content: center;
+  position: relative;
+  height: 1.25rem;
+  overflow: hidden;
+  border-bottom: 1px solid var(--composify-palette-outline);
+  background-color: var(--composify-palette-surface-container-low);
 }
 
 .ViewportControl-ViewportItem {
   display: flex;
-  justify-content: center;
   align-items: center;
-  cursor: pointer;
-  padding: 0.75rem;
-  color: var(--composify-palette-on-surface);
-  border: 1px solid var(--composify-palette-outline);
-  border-radius: 0.5rem;
-  background-color: var(--composify-palette-surface);
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-left: 2px solid var(--composify-palette-outline);
+  border-right: 2px solid var(--composify-palette-outline);
+  background-color: var(--composify-palette-surface-container-low);
 }
 
-.ViewportControl-ViewportItem:hover,
-.ViewportControl-ViewportItem:active {
+.ViewportControl-Highlight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  background-color: var(--composify-palette-surface-container-highest);
+  transition: opacity 0.1s linear;
+}
+
+.ViewportControl-ViewportItem:hover .ViewportControl-Highlight {
+  z-index: 1;
   opacity: 0.7;
+}
+
+.ViewportControl-Label {
+  position: absolute;
+  opacity: 0;
+  font-size: 0.75rem;
+  color: var(--composify-palette-on-surface);
+}
+
+.ViewportControl-ViewportItem:hover .ViewportControl-Label {
+  z-index: 2;
+  opacity: 1;
 }
