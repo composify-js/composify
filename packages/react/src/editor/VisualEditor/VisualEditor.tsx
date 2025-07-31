@@ -9,11 +9,15 @@ import { Preview } from '../Preview';
 import { ViewportManager } from '../ViewportManager';
 import styles from './VisualEditor.module.css';
 
+type Props = {
+  title: string;
+};
+
 const getClassName = getClassNameFactory('VisualEditor', styles);
 
-export const VisualEditor: FC<unknown> = () => (
+export const VisualEditor: FC<Props> = ({ title }) => (
   <main className={getClassName()}>
-    <PanelLeft />
+    <PanelLeft title={title} />
     <ViewportManager>
       <InlineFrame>
         <InlineFrameWindow />

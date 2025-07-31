@@ -7,14 +7,15 @@ import { VisualEditor } from '../VisualEditor';
 import { WindowProvider } from '../WindowContext';
 
 type Props = {
+  title: string;
   source: string;
 };
 
-export const Editor: FC<Props> = ({ source }) => (
+export const Editor: FC<Props> = ({ title, source }) => (
   <WindowProvider>
     <IsolatedDndProvider>
       <EditingProvider source={source}>
-        <VisualEditor />
+        <VisualEditor title={title} />
         <KeyDownDetector />
         <Theme />
       </EditingProvider>

@@ -99,5 +99,5 @@ export const BasicUsage = () => {
     </VStack>
   `;
 
-  return <Editor source={source} />;
+  return <Editor title="Lorem Ipsum" source={source} />;
 };
