@@ -24,6 +24,10 @@ export const register = <Props>(name: string, block: Omit<Block<Props>, 'name'>)
   });
 };
 
+export const valid = (names: string[]): boolean => {
+  return names.every(name => blocks.has(name));
+};
+
 export const get = (name: string) => {
   if (name.toLowerCase() === name) {
     return {
