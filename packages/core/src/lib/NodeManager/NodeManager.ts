@@ -173,6 +173,12 @@ export class NodeManager {
     this.notify();
   };
 
+  public replaceRoot = (source: Node) => {
+    this.references.clear();
+    this.root = this.populate(source);
+    this.notify();
+  };
+
   public stringify = (source?: PopulatedNode): string => {
     const root = source ?? this.root;
     const children = root.children.map(child => (typeof child === 'string' ? child : this.stringify(child)));
