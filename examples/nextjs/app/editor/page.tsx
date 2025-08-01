@@ -78,5 +78,5 @@ const source = `
 `;
 
 export default function Page() {
-  return <Editor source={source} />;
+  return <Editor title="Lorem Ipsum" source={source} />;
 }
