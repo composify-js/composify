@@ -1,14 +1,14 @@
 import { getClassNameFactory } from '@composify/utils';
 import { FC } from 'react';
-import styles from './Header.module.css';
+import styles from './EditorHeader.module.css';
 
-const getClassName = getClassNameFactory('Header', styles);
+const getClassName = getClassNameFactory('EditorHeader', styles);
 
 type Props = {
   title: string;
 };
 
-export const Header: FC<Props> = ({ title }) => (
+export const EditorHeader: FC<Props> = ({ title }) => (
   <header className={getClassName()}>
     <h1 className={getClassName('Title')}>{title}</h1>
   </header>

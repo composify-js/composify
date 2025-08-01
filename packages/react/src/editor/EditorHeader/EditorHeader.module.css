@@ -1,10 +1,10 @@
-.Header {
+.EditorHeader {
   padding: 1rem 0.75rem;
   border-bottom: 1px solid var(--composify-palette-outline);
   background-color: var(--composify-palette-surface);
 }
 
-.Header-Title {
+.EditorHeader-Title {
   margin: 0;
   white-space: nowrap;
   overflow: hidden;

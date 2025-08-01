@@ -1,7 +1,7 @@
 import { getClassNameFactory } from '@composify/utils';
 import { FC } from 'react';
 import { BlockLibrary } from '../BlockLibrary';
-import { Header } from '../Header';
+import { EditorHeader } from '../EditorHeader';
 import { SearchForm } from '../SearchForm';
 import styles from './PanelLeft.module.css';
 
@@ -13,7 +13,7 @@ const getClassName = getClassNameFactory('PanelLeft', styles);
 
 export const PanelLeft: FC<Props> = ({ title }) => (
   <section className={getClassName()}>
-    <Header title={title} />
+    <EditorHeader title={title} />
     <SearchForm>{query => <BlockLibrary query={query} />}</SearchForm>
   </section>
 );
