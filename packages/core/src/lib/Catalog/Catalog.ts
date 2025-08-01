@@ -28,6 +28,10 @@ export const valid = (names: string[]): boolean => {
   return names.every(name => blocks.has(name));
 };
 
+export const missing = (names: string[]): string[] => {
+  return names.filter(name => !blocks.has(name));
+};
+
 export const get = (name: string) => {
   if (name.toLowerCase() === name) {
     return {

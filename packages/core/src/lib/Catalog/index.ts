@@ -1,1 +1,1 @@
-export { register, valid, get, getAll, clear, type Block } from './Catalog';
+export { register, valid, missing, get, getAll, clear, type Block } from './Catalog';

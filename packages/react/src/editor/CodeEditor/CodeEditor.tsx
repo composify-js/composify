@@ -36,7 +36,9 @@ export const CodeEditor = () => {
   const editorRef = useRef<Parameters<OnMount>[0] | null>(null);
 
   const { getSource, replaceRoot } = useEditing();
+
   const [code, setCode] = useState(getSource());
+  const [message, setMessage] = useState('');
 
   const formatCode = useCallback(() => {
     if (!editorRef.current) {
@@ -58,12 +60,17 @@ export const CodeEditor = () => {
     try {
       const node = Parser.parse(value);
       const types = new NodeManager(node).collectTypes();
+      const missing = Catalog.missing(types);
 
-      if (Catalog.valid(types)) {
+      if (missing.length === 0) {
         replaceRoot(node);
+        setMessage('');
+      } else {
+        setMessage(`Unregistered Block${missing.length > 1 ? 's' : ''}: ${missing.join(', ')}`);
       }
     } catch {
       // Do nothing if anything fails
+      setMessage('Invalid code');
     }
   }, [replaceRoot]);
 
@@ -82,6 +89,7 @@ export const CodeEditor = () => {
 
   const handleChange = useCallback(
     (value?: string) => {
+      setMessage('typing...');
       setCode(value ?? '');
       debouncedUpdateSource();
     },
@@ -93,6 +101,7 @@ export const CodeEditor = () => {
 
   return (
     <section className={getClassName()}>
+      <p className={getClassName('Message')}>{message}</p>
       <MonacoEditor
         language="javascript"
         value={code}

@@ -11,13 +11,13 @@
   --composify-palette-surface-container-high: rgb(240, 240, 240);
   --composify-palette-surface-container-highest: rgb(233, 233, 233);
   --composify-palette-outline: rgb(229, 229, 229);
+  --composify-palette-error: rgb(186, 26, 26);
 
   --composify-palette-surface-tint: rgb(64, 95, 144);
   --composify-palette-primary-container: rgb(214, 227, 255);
   --composify-palette-on-primary-container: rgb(38, 71, 119);
   --composify-palette-secondary-container: rgb(217, 227, 249);
   --composify-palette-on-secondary-container: rgb(62, 71, 88);
-  --composify-palette-error: rgb(186, 26, 26);
   --composify-palette-on-error: rgb(255, 255, 255);
   --composify-palette-error-container: rgb(255, 218, 214);
   --composify-palette-on-error-container: rgb(147, 0, 10);
