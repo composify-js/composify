@@ -94,7 +94,6 @@ export const CodeEditor = () => {
   return (
     <section className={getClassName()}>
       <MonacoEditor
-        height="100%"
         language="javascript"
         value={code}
         onChange={handleChange}

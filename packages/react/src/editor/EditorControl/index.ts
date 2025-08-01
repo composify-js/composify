@@ -1,1 +1,1 @@
-export { EditorControl } from './EditorControl';
+export { EditorControl, type EditMode } from './EditorControl';

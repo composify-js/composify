@@ -1,15 +1,15 @@
 import { getClassNameFactory } from '@composify/utils';
 import { FC, ReactNode } from 'react';
 import { ActiveBlockControl } from '../ActiveBlockControl';
-import { EditorControl } from '../EditorControl';
+import { EditMode, EditorControl } from '../EditorControl';
 import { PropertyLibrary } from '../PropertyLibrary';
 import styles from './PanelRight.module.css';
 
 const getClassName = getClassNameFactory('PanelRight', styles);
 
 export type Props = {
-  mode: 'visual' | 'code';
-  setMode: (mode: 'visual' | 'code') => void;
+  mode: EditMode;
+  setMode: (mode: EditMode) => void;
   renderControl?: (getSource: () => string) => ReactNode;
   onSubmit?: (source: string) => void;
 };
