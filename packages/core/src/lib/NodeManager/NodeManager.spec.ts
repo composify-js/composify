@@ -304,6 +304,327 @@ describe('NodeManager', () => {
     });
   });
 
+  describe('collectTypes', () => {
+    it('should return empty array for string nodes', () => {
+      const nm = new NodeManager({ __composify__: true, type: 'Fragment', props: {}, children: [] });
+      expect(nm.collectTypes('some text')).toEqual([]);
+    });
+
+    it('should extract single component type', () => {
+      const node: Node = {
+        __composify__: true,
+        type: 'Button',
+        props: {},
+        children: [],
+      };
+      const nm = new NodeManager(node);
+
+      expect(nm.collectTypes(node)).toEqual(['Button']);
+    });
+
+    it('should extract multiple component types from children', () => {
+      const node: Node = {
+        __composify__: true,
+        type: 'Container',
+        props: {},
+        children: [
+          {
+            __composify__: true,
+            type: 'Button',
+            props: {},
+            children: [],
+          },
+          {
+            __composify__: true,
+            type: 'Input',
+            props: {},
+            children: [],
+          },
+          {
+            __composify__: true,
+            type: 'Text',
+            props: {},
+            children: ['content'],
+          },
+        ],
+      };
+      const nm = new NodeManager(node);
+
+      expect(nm.collectTypes(node)).toEqual(expect.arrayContaining(['Container', 'Button', 'Input', 'Text']));
+      expect(nm.collectTypes(node)).toHaveLength(4);
+    });
+
+    it('should extract component types from nested children', () => {
+      const node: Node = {
+        __composify__: true,
+        type: 'Layout',
+        props: {},
+        children: [
+          {
+            __composify__: true,
+            type: 'Header',
+            props: {},
+            children: [
+              {
+                __composify__: true,
+                type: 'Navigation',
+                props: {},
+                children: [
+                  {
+                    __composify__: true,
+                    type: 'Link',
+                    props: {},
+                    children: [],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            __composify__: true,
+            type: 'Main',
+            props: {},
+            children: [
+              {
+                __composify__: true,
+                type: 'Article',
+                props: {},
+                children: [],
+              },
+            ],
+          },
+        ],
+      };
+      const nm = new NodeManager(node);
+      const types = nm.collectTypes(node);
+
+      expect(types).toEqual(expect.arrayContaining(['Layout', 'Header', 'Navigation', 'Link', 'Main', 'Article']));
+      expect(types).toHaveLength(6);
+    });
+
+    it('should extract component types from prop values that are nodes', () => {
+      const node: Node = {
+        __composify__: true,
+        type: 'Modal',
+        props: {
+          header: {
+            __composify__: true,
+            type: 'Title',
+            props: {},
+            children: ['Header'],
+          },
+          footer: {
+            __composify__: true,
+            type: 'Button',
+            props: {},
+            children: ['Close'],
+          },
+        },
+        children: ['Content'],
+      };
+      const nm = new NodeManager(node);
+      const types = nm.collectTypes(node);
+
+      expect(types).toEqual(expect.arrayContaining(['Modal', 'Title', 'Button']));
+      expect(types).toHaveLength(3);
+    });
+
+    it('should extract component types from complex nested prop values', () => {
+      const node: Node = {
+        __composify__: true,
+        type: 'Form',
+        props: {
+          header: {
+            __composify__: true,
+            type: 'Header',
+            props: {},
+            children: [
+              {
+                __composify__: true,
+                type: 'Title',
+                props: {},
+                children: [],
+              },
+            ],
+          },
+          sidebar: {
+            __composify__: true,
+            type: 'Sidebar',
+            props: {},
+            children: [
+              {
+                __composify__: true,
+                type: 'Menu',
+                props: {},
+                children: [
+                  {
+                    __composify__: true,
+                    type: 'Item',
+                    props: {},
+                    children: [],
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        children: [
+          {
+            __composify__: true,
+            type: 'Field',
+            props: {},
+            children: [],
+          },
+        ],
+      };
+      const nm = new NodeManager(node);
+      const types = nm.collectTypes(node);
+
+      expect(types).toEqual(expect.arrayContaining(['Form', 'Header', 'Title', 'Sidebar', 'Menu', 'Item', 'Field']));
+      expect(types).toHaveLength(7);
+    });
+
+    it('should not duplicate component types', () => {
+      const node: Node = {
+        __composify__: true,
+        type: 'Container',
+        props: {},
+        children: [
+          {
+            __composify__: true,
+            type: 'Button',
+            props: {},
+            children: [],
+          },
+          {
+            __composify__: true,
+            type: 'Button',
+            props: {},
+            children: [],
+          },
+          {
+            __composify__: true,
+            type: 'Container',
+            props: {},
+            children: [
+              {
+                __composify__: true,
+                type: 'Button',
+                props: {},
+                children: [],
+              },
+            ],
+          },
+        ],
+      };
+      const nm = new NodeManager(node);
+      const types = nm.collectTypes(node);
+
+      expect(types).toEqual(expect.arrayContaining(['Container', 'Button']));
+      expect(types).toHaveLength(2);
+    });
+
+    it('should handle Fragment components', () => {
+      const node: Node = {
+        __composify__: true,
+        type: 'Fragment',
+        props: {},
+        children: [
+          {
+            __composify__: true,
+            type: 'Button',
+            props: {},
+            children: [],
+          },
+          {
+            __composify__: true,
+            type: 'Input',
+            props: {},
+            children: [],
+          },
+        ],
+      };
+      const nm = new NodeManager(node);
+      const types = nm.collectTypes(node);
+
+      expect(types).toEqual(expect.arrayContaining(['Fragment', 'Button', 'Input']));
+      expect(types).toHaveLength(3);
+    });
+
+    it('should handle mixed children and prop nodes', () => {
+      const node: Node = {
+        __composify__: true,
+        type: 'Dialog',
+        props: {
+          title: {
+            __composify__: true,
+            type: 'Title',
+            props: {},
+            children: ['My Dialog'],
+          },
+          cancelButton: {
+            __composify__: true,
+            type: 'Button',
+            props: {},
+            children: ['Cancel'],
+          },
+          okButton: {
+            __composify__: true,
+            type: 'Button',
+            props: {},
+            children: ['OK'],
+          },
+        },
+        children: [
+          {
+            __composify__: true,
+            type: 'Content',
+            props: {},
+            children: [
+              {
+                __composify__: true,
+                type: 'Text',
+                props: {},
+                children: ['Dialog content'],
+              },
+            ],
+          },
+        ],
+      };
+      const nm = new NodeManager(node);
+      const types = nm.collectTypes(node);
+
+      expect(types).toEqual(expect.arrayContaining(['Dialog', 'Title', 'Button', 'Content', 'Text']));
+      expect(types).toHaveLength(5);
+    });
+
+    it('should ignore non-node prop values', () => {
+      const node: Node = {
+        __composify__: true,
+        type: 'Component',
+        props: {
+          stringProp: 'value',
+          numberProp: 42,
+          booleanProp: true,
+          arrayProp: [1, 2, 3],
+          objectProp: { key: 'value' },
+          nodeProp: {
+            __composify__: true,
+            type: 'Child',
+            props: {},
+            children: [],
+          },
+        },
+        children: [],
+      };
+      const nm = new NodeManager(node);
+      const types = nm.collectTypes(node);
+
+      expect(types).toEqual(expect.arrayContaining(['Component', 'Child']));
+      expect(types).toHaveLength(2);
+    });
+  });
+
   describe('stringify', () => {
     it('should return string representation of the tree', () => {
       const result = nodeManager.stringify();

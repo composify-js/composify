@@ -1,7 +1,7 @@
-import { Catalog, Parser } from '@composify/core';
+import { Catalog, NodeManager, Parser } from '@composify/core';
 import { getClassNameFactory } from '@composify/utils';
 // eslint-disable-next-line import/named
-import MonacoEditor, { useMonaco, OnMount } from '@monaco-editor/react';
+import MonacoEditor, { OnMount } from '@monaco-editor/react';
 import { debounce } from 'es-toolkit';
 import { Plugin } from 'prettier';
 import prettier from 'prettier/standalone';
@@ -34,7 +34,6 @@ const prettify = async (value: string) => {
 
 export const CodeEditor = () => {
   const editorRef = useRef<Parameters<OnMount>[0] | null>(null);
-  const monaco = useMonaco();
 
   const { getSource, replaceRoot } = useEditing();
   const [code, setCode] = useState(getSource());
@@ -58,7 +57,7 @@ export const CodeEditor = () => {
 
     try {
       const node = Parser.parse(value);
-      const types = Parser.extractTypes(node);
+      const types = new NodeManager(node).collectTypes();
 
       if (Catalog.valid(types)) {
         replaceRoot(node);
@@ -72,17 +71,13 @@ export const CodeEditor = () => {
 
   const handleMount = useCallback<OnMount>(
     editor => {
-      if (monaco) {
-        editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, formatCode);
-      }
-
       editorRef.current = editor;
       editorRef.current.onDidBlurEditorText(formatCode);
       editorRef.current.onDidPaste(formatCode);
 
       formatCode();
     },
-    [monaco, formatCode]
+    [formatCode]
   );
 
   const handleChange = useCallback(

@@ -179,6 +179,30 @@ export class NodeManager {
     this.notify();
   };
 
+  public collectTypes = (target?: Node | string): string[] => {
+    const node = target ?? this.root;
+
+    if (typeof node === 'string') {
+      return [];
+    }
+
+    const types = new Set<string>();
+
+    types.add(node.type);
+
+    node.children.forEach(child => {
+      this.collectTypes(child).forEach(type => types.add(type));
+    });
+
+    Object.values(node.props).forEach(value => {
+      if (this.isNode(value)) {
+        this.collectTypes(value).forEach(type => types.add(type));
+      }
+    });
+
+    return Array.from(types);
+  };
+
   public stringify = (source?: PopulatedNode): string => {
     const root = source ?? this.root;
     const children = root.children.map(child => (typeof child === 'string' ? child : this.stringify(child)));
