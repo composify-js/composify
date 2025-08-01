@@ -1,1 +1,1 @@
-export { PanelRight } from './PanelRight';
+export { PanelRight, type Props as PanelRightProps } from './PanelRight';

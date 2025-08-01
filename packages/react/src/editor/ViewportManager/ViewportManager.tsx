@@ -7,13 +7,45 @@ import styles from './ViewportManager.module.css';
 const getClassName = getClassNameFactory('ViewportManager', styles);
 
 type Props = PropsWithChildren<{
-  viewports: {
+  viewports?: {
     width: number;
     label: string;
   }[];
 }>;
 
-export const ViewportManager: FC<Props> = ({ viewports, children }) => {
+export const ViewportManager: FC<Props> = ({
+  viewports = [
+    {
+      width: 320,
+      label: 'Mobile S - 320px',
+    },
+    {
+      width: 375,
+      label: 'Mobile M - 375px',
+    },
+    {
+      width: 425,
+      label: 'Mobile L - 425px',
+    },
+    {
+      width: 768,
+      label: 'Tablet - 768px',
+    },
+    {
+      width: 1024,
+      label: 'Laptop - 1024px',
+    },
+    {
+      width: 1440,
+      label: 'Desktop - 1440px',
+    },
+    {
+      width: 2560,
+      label: '4k - 1440px',
+    },
+  ],
+  children,
+}) => {
   const [width, setWidth] = useState(viewports[0].width);
 
   return (

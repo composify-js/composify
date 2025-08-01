@@ -1,1 +1,1 @@
-export { VisualEditor } from './VisualEditor';
+export { VisualEditor, type Props as VisualEditorProps } from './VisualEditor';

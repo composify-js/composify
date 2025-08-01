@@ -29,7 +29,7 @@ export const ViewportControl: FC<Props> = ({ viewports, selectedWidth, onClick }
     const nextWidthCandidate = Math.min(...widths.filter(v => v > selectedWidth));
     const nextWidth = Math.min(nextWidthCandidate, Math.max(...widths));
 
-    const scale = Math.min(box.width / nextWidth, 1);
+    const scale = Math.min(box.width / nextWidth, 1) * (nextWidth === nextWidthCandidate ? 1.05 : 1);
 
     setScale(scale);
   }, [viewports, selectedWidth]);

@@ -5,7 +5,7 @@ import { Header } from '../Header';
 import { SearchForm } from '../SearchForm';
 import styles from './PanelLeft.module.css';
 
-type Props = {
+export type Props = {
   title: string;
 };
 

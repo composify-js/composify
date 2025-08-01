@@ -1,0 +1,22 @@
+.EditorControl {
+  display: flex;
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--composify-palette-outline);
+  background-color: var(--composify-palette-surface);
+}
+
+.EditorControl-SaveButton {
+  margin-left: auto;
+  padding: 0.4375rem 0.625rem;
+  font-size: 0.75rem;
+  color: var(--composify-palette-on-primary);
+  background-color: var(--composify-palette-primary);
+  border: none;
+  border-radius: 0.1875rem;
+  cursor: pointer;
+}
+
+.EditorControl-SaveButton:hover {
+  opacity: 0.9;
+  transition: opacity 0.1s linear;
+}

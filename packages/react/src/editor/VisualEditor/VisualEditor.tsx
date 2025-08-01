@@ -5,8 +5,8 @@ import { InlineFrameWindow } from '../InlineFrameWindow';
 import { Preview } from '../Preview';
 import { ViewportManager } from '../ViewportManager';
 
-type Props = {
-  viewports: {
+export type Props = {
+  viewports?: {
     width: number;
     label: string;
   }[];
