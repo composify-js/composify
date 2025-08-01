@@ -1,9 +1,10 @@
+import { Parser } from '@composify/core';
 import { getClassNameFactory } from '@composify/utils';
 // eslint-disable-next-line import/named
 import MonacoEditor, { OnMount } from '@monaco-editor/react';
 import { Plugin } from 'prettier';
 import prettier from 'prettier/standalone';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useEditing } from '../EditingContext';
 import styles from './CodeEditor.module.css';
 
@@ -31,7 +32,7 @@ const prettify = async (value: string) => {
 export const CodeEditor = () => {
   const editorRef = useRef<Parameters<OnMount>[0] | null>(null);
 
-  const { getSource } = useEditing();
+  const { getSource, replaceRoot } = useEditing();
   const [code, setCode] = useState(getSource());
 
   const handleMount = useCallback<OnMount>(editor => {
@@ -45,19 +46,7 @@ export const CodeEditor = () => {
         return;
       }
 
-      const formattedCode = await prettify(code);
-      const selection = editor.getSelection();
-
-      model.pushEditOperations(
-        [],
-        [
-          {
-            range: model.getFullModelRange(),
-            text: formattedCode,
-          },
-        ],
-        () => (selection ? [selection] : [])
-      );
+      prettify(code).then(setCode).catch();
     };
 
     editor.onDidBlurEditorText(formatCode);
@@ -71,6 +60,17 @@ export const CodeEditor = () => {
 
     setCode(value);
   }, []);
+
+  useEffect(
+    () => () => {
+      try {
+        replaceRoot(Parser.parse(code));
+      } catch {
+        // If parsing fails, we do not update the root.
+      }
+    },
+    [code, replaceRoot]
+  );
 
   return (
     <section className={getClassName()}>

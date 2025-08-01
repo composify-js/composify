@@ -16,7 +16,7 @@ type EditingContextValues = {
   activeBlock?: Node;
   isDragging: boolean;
   getSource: () => string;
-  replaceSource: (source: string) => void;
+  replaceRoot: (node: Node) => void;
   focusBlock: (id?: string) => void;
   selectBlock: (id: string) => void;
   insertBlock: (node: Node, destination: { id: string; index: number }) => void;
@@ -41,7 +41,7 @@ const EditingContext = createContext<EditingContextValues>({
   activeBlock: undefined,
   isDragging: false,
   getSource: () => '',
-  replaceSource: () => null,
+  replaceRoot: () => null,
   focusBlock: () => null,
   selectBlock: () => null,
   insertBlock: () => null,
@@ -81,11 +81,11 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source, children
 
   const getSource = useCallback(() => Parser.stringify(root), [root]);
 
-  const replaceSource = useCallback(
-    (source: string) => {
+  const replaceRoot = useCallback(
+    (node: Node) => {
       setFocusedBlockId(undefined);
       setActiveBlockId(undefined);
-      nodeManager.replaceRoot(Parser.parse(source));
+      nodeManager.replaceRoot(node);
     },
     [nodeManager]
   );
@@ -142,7 +142,7 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source, children
       activeBlock,
       isDragging,
       getSource,
-      replaceSource,
+      replaceRoot,
       focusBlock: setFocusedBlockId,
       selectBlock: setActiveBlockId,
       insertBlock,
@@ -157,7 +157,7 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source, children
       activeBlock,
       isDragging,
       getSource,
-      replaceSource,
+      replaceRoot,
       insertBlock,
       relocateFocusedBlock,
       removeActiveBlock,
