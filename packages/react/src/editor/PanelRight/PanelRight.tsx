@@ -8,13 +8,15 @@ import styles from './PanelRight.module.css';
 const getClassName = getClassNameFactory('PanelRight', styles);
 
 export type Props = {
+  mode: 'visual' | 'code';
+  setMode: (mode: 'visual' | 'code') => void;
   renderControl?: (source: string) => ReactNode;
   onSubmit?: (source: string) => void;
 };
 
-export const PanelRight: FC<Props> = ({ renderControl, onSubmit }) => (
+export const PanelRight: FC<Props> = ({ mode, setMode, renderControl, onSubmit }) => (
   <section className={getClassName()}>
-    <EditorControl renderControl={renderControl} onSubmit={onSubmit} />
+    <EditorControl mode={mode} setMode={setMode} renderControl={renderControl} onSubmit={onSubmit} />
     <ActiveBlockControl />
     <PropertyLibrary />
   </section>
