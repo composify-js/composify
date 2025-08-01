@@ -1,10 +1,11 @@
-import { Parser } from '@composify/core';
+import { Catalog, Parser } from '@composify/core';
 import { getClassNameFactory } from '@composify/utils';
 // eslint-disable-next-line import/named
-import MonacoEditor, { OnMount } from '@monaco-editor/react';
+import MonacoEditor, { useMonaco, OnMount } from '@monaco-editor/react';
+import { debounce } from 'es-toolkit';
 import { Plugin } from 'prettier';
 import prettier from 'prettier/standalone';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useEditing } from '../EditingContext';
 import styles from './CodeEditor.module.css';
 
@@ -14,63 +15,86 @@ const prettify = async (value: string) => {
   const meriyahParser = await import('prettier/parser-meriyah');
   const estreePlugin = await import('prettier/plugins/estree');
 
-  const formattedCode = await prettier.format(value, {
-    parser: 'meriyah',
-    plugins: [meriyahParser, estreePlugin as Plugin],
-    printWidth: 120,
-    tabWidth: 2,
-    useTabs: false,
-    semi: false,
-    bracketSpacing: false,
-    arrowParens: 'avoid' as const,
-    endOfLine: 'lf' as const,
-  });
+  const formattedCode = await prettier
+    .format(value, {
+      parser: 'meriyah',
+      plugins: [meriyahParser, estreePlugin as Plugin],
+      printWidth: 120,
+      tabWidth: 2,
+      useTabs: false,
+      semi: false,
+      bracketSpacing: false,
+      arrowParens: 'avoid' as const,
+      endOfLine: 'lf' as const,
+    })
+    .catch(() => value);
 
   return formattedCode.replace(/^;/, '').replace(/;$/, '');
 };
 
 export const CodeEditor = () => {
   const editorRef = useRef<Parameters<OnMount>[0] | null>(null);
+  const monaco = useMonaco();
 
   const { getSource, replaceRoot } = useEditing();
   const [code, setCode] = useState(getSource());
 
-  const handleMount = useCallback<OnMount>(editor => {
-    const formatCode = async () => {
-      editorRef.current = editor;
-
-      const model = editor.getModel();
-      const code = model?.getValue();
-
-      if (!model || !code) {
-        return;
-      }
-
-      prettify(code).then(setCode).catch();
-    };
-
-    editor.onDidBlurEditorText(formatCode);
-    formatCode();
-  }, []);
-
-  const handleChange = useCallback(async (value?: string) => {
-    if (!value) {
+  const formatCode = useCallback(() => {
+    if (!editorRef.current) {
       return;
     }
 
-    setCode(value);
+    const value = editorRef.current.getValue();
+
+    prettify(value).then(setCode);
   }, []);
 
-  useEffect(
-    () => () => {
-      try {
-        replaceRoot(Parser.parse(code));
-      } catch {
-        // If parsing fails, we do not update the root.
+  const updateSource = useCallback(() => {
+    if (!editorRef.current) {
+      return;
+    }
+
+    const value = editorRef.current.getValue();
+
+    try {
+      const node = Parser.parse(value);
+      const types = Parser.extractTypes(node);
+
+      if (Catalog.valid(types)) {
+        replaceRoot(node);
       }
+    } catch {
+      // Do nothing if anything fails
+    }
+  }, [replaceRoot]);
+
+  const debouncedUpdateSource = useMemo(() => debounce(updateSource, 1000), [updateSource]);
+
+  const handleMount = useCallback<OnMount>(
+    editor => {
+      if (monaco) {
+        editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, formatCode);
+      }
+
+      editorRef.current = editor;
+      editorRef.current.onDidBlurEditorText(formatCode);
+      editorRef.current.onDidPaste(formatCode);
+
+      formatCode();
     },
-    [code, replaceRoot]
+    [monaco, formatCode]
   );
+
+  const handleChange = useCallback(
+    (value?: string) => {
+      setCode(value ?? '');
+      debouncedUpdateSource();
+    },
+    [debouncedUpdateSource]
+  );
+
+  // Update the source when unmount
+  useEffect(() => () => updateSource(), [updateSource]);
 
   return (
     <section className={getClassName()}>

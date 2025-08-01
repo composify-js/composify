@@ -1,1 +1,1 @@
-export { parse, stringify } from './Parser';
+export { parse, extractTypes, stringify } from './Parser';
