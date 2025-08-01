@@ -73,8 +73,10 @@
     "test": "jest"
   },
   "dependencies": {
+    "@monaco-editor/react": "4.7.0",
     "css-box-model": "1.2.1",
     "es-toolkit": "1.39.8",
+    "prettier": "3.6.2",
     "react-dnd": "16.0.1",
     "react-dnd-html5-backend": "16.0.1",
     "react-element-to-jsx-string": "17.0.1"
