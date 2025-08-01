@@ -150,6 +150,28 @@ const parseAttribute = (expression: any): any => {
   }
 };
 
+export const extractTypes = (node: Node | string): string[] => {
+  if (typeof node === 'string') {
+    return [];
+  }
+
+  const types = new Set<string>();
+
+  types.add(node.type);
+
+  node.children.forEach(child => {
+    extractTypes(child).forEach(type => types.add(type));
+  });
+
+  Object.values(node.props).forEach(value => {
+    if (isNode(value)) {
+      extractTypes(value).forEach(type => types.add(type));
+    }
+  });
+
+  return Array.from(types);
+};
+
 export const stringify = (node: Node | string): string => {
   if (typeof node === 'string') {
     return node;
