@@ -1,4 +1,3 @@
-import { Parser } from '@composify/core';
 import { getClassNameFactory } from '@composify/utils';
 import { FC, ReactNode, useCallback } from 'react';
 import { useEditing } from '../EditingContext';
@@ -9,14 +8,12 @@ const getClassName = getClassNameFactory('EditorControl', styles);
 type Props = {
   mode: 'visual' | 'code';
   setMode: (mode: 'visual' | 'code') => void;
-  renderControl?: (source: string) => ReactNode;
+  renderControl?: (getSource: () => string) => ReactNode;
   onSubmit?: (source: string) => void;
 };
 
 export const EditorControl: FC<Props> = ({ mode, setMode, renderControl, onSubmit }) => {
-  const { source } = useEditing();
-
-  const stringifiedSource = Parser.stringify(source);
+  const { getSource } = useEditing();
 
   const handleSwitchMode = useCallback(
     (value: 'visual' | 'code') => {
@@ -26,11 +23,13 @@ export const EditorControl: FC<Props> = ({ mode, setMode, renderControl, onSubmi
   );
 
   const handleSubmit = useCallback(() => {
-    onSubmit?.(stringifiedSource);
-  }, [stringifiedSource, onSubmit]);
+    const source = getSource();
+
+    onSubmit?.(source);
+  }, [getSource, onSubmit]);
 
   return renderControl ? (
-    renderControl(stringifiedSource)
+    renderControl(getSource)
   ) : (
     <div className={getClassName()}>
       <div className={getClassName('ModeGroup')}>

@@ -1,35 +1,76 @@
-import { Parser } from '@composify/core';
 import { getClassNameFactory } from '@composify/utils';
-import MonacoEditor from '@monaco-editor/react';
+// eslint-disable-next-line import/named
+import MonacoEditor, { OnMount } from '@monaco-editor/react';
 import { Plugin } from 'prettier';
 import prettier from 'prettier/standalone';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { useEditing } from '../EditingContext';
 import styles from './CodeEditor.module.css';
 
 const getClassName = getClassNameFactory('CodeEditor', styles);
 
+const prettify = async (value: string) => {
+  const meriyahParser = await import('prettier/parser-meriyah');
+  const estreePlugin = await import('prettier/plugins/estree');
+
+  const formattedCode = await prettier.format(value, {
+    parser: 'meriyah',
+    plugins: [meriyahParser, estreePlugin as Plugin],
+    printWidth: 120,
+    tabWidth: 2,
+    useTabs: false,
+    semi: false,
+    bracketSpacing: false,
+    arrowParens: 'avoid' as const,
+    endOfLine: 'lf' as const,
+  });
+
+  return formattedCode.replace(/^;/, '').replace(/;$/, '');
+};
+
 export const CodeEditor = () => {
-  const { source } = useEditing();
-  const [code, setCode] = useState('');
+  const editorRef = useRef<Parameters<OnMount>[0] | null>(null);
 
-  const formatCode = useCallback(async () => {
-    const stringifiedSource = Parser.stringify(source).trim();
+  const { getSource } = useEditing();
+  const [code, setCode] = useState(getSource());
 
-    const formattedCode = await prettier.format(stringifiedSource, {
-      parser: 'meriyah',
-      plugins: [await import('prettier/parser-meriyah'), (await import('prettier/plugins/estree')) as Plugin],
-      printWidth: 120,
-      tabWidth: 2,
-      semi: false,
-    });
+  const handleMount = useCallback<OnMount>(editor => {
+    const formatCode = async () => {
+      editorRef.current = editor;
 
-    setCode(formattedCode.replace(/^;/, '').replace(/;$/, ''));
-  }, [source]);
+      const model = editor.getModel();
+      const code = model?.getValue();
 
-  useEffect(() => {
+      if (!model || !code) {
+        return;
+      }
+
+      const formattedCode = await prettify(code);
+      const selection = editor.getSelection();
+
+      model.pushEditOperations(
+        [],
+        [
+          {
+            range: model.getFullModelRange(),
+            text: formattedCode,
+          },
+        ],
+        () => (selection ? [selection] : [])
+      );
+    };
+
+    editor.onDidBlurEditorText(formatCode);
     formatCode();
-  }, [formatCode]);
+  }, []);
+
+  const handleChange = useCallback(async (value?: string) => {
+    if (!value) {
+      return;
+    }
+
+    setCode(value);
+  }, []);
 
   return (
     <section className={getClassName()}>
@@ -37,8 +78,8 @@ export const CodeEditor = () => {
         height="100%"
         language="javascript"
         value={code}
-        onChange={() => null}
-        onMount={() => null}
+        onChange={handleChange}
+        onMount={handleMount}
         options={{
           minimap: {
             enabled: false,

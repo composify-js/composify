@@ -11,10 +11,12 @@ import {
 } from 'react';
 
 type EditingContextValues = {
-  source: Node;
+  root: Node;
   focusedBlock?: Node;
   activeBlock?: Node;
   isDragging: boolean;
+  getSource: () => string;
+  replaceSource: (source: string) => void;
   focusBlock: (id?: string) => void;
   selectBlock: (id: string) => void;
   insertBlock: (node: Node, destination: { id: string; index: number }) => void;
@@ -25,7 +27,7 @@ type EditingContextValues = {
 };
 
 const EditingContext = createContext<EditingContextValues>({
-  source: {
+  root: {
     __composify__: true,
     id: '',
     type: 'Fragment',
@@ -38,6 +40,8 @@ const EditingContext = createContext<EditingContextValues>({
   focusedBlock: undefined,
   activeBlock: undefined,
   isDragging: false,
+  getSource: () => '',
+  replaceSource: () => null,
   focusBlock: () => null,
   selectBlock: () => null,
   insertBlock: () => null,
@@ -51,10 +55,10 @@ type Props = {
   source: string;
 };
 
-export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialSource, children }) => {
-  const nodeManager = useMemo(() => new NodeManager(Parser.parse(initialSource)), [initialSource]);
+export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source, children }) => {
+  const nodeManager = useMemo(() => new NodeManager(Parser.parse(source)), [source]);
 
-  const source = useSyncExternalStore(
+  const root = useSyncExternalStore(
     nodeManager.subscribe,
     () => nodeManager.root,
     () => nodeManager.root
@@ -74,6 +78,17 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
   );
 
   const isDragging = useMemo(() => typeof focusedBlockId !== 'undefined', [focusedBlockId]);
+
+  const getSource = useCallback(() => Parser.stringify(root), [root]);
+
+  const replaceSource = useCallback(
+    (source: string) => {
+      setFocusedBlockId(undefined);
+      setActiveBlockId(undefined);
+      nodeManager.replaceRoot(Parser.parse(source));
+    },
+    [nodeManager]
+  );
 
   const insertBlock = useCallback(
     (node: Node, destination: { id: string; index: number }) => {
@@ -122,10 +137,12 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
 
   const contextValues = useMemo(
     () => ({
-      source,
+      root,
       focusedBlock,
       activeBlock,
       isDragging,
+      getSource,
+      replaceSource,
       focusBlock: setFocusedBlockId,
       selectBlock: setActiveBlockId,
       insertBlock,
@@ -135,10 +152,12 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source: initialS
       updateActiveBlock,
     }),
     [
-      source,
+      root,
       focusedBlock,
       activeBlock,
       isDragging,
+      getSource,
+      replaceSource,
       insertBlock,
       relocateFocusedBlock,
       removeActiveBlock,

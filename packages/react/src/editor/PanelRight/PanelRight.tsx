@@ -10,7 +10,7 @@ const getClassName = getClassNameFactory('PanelRight', styles);
 export type Props = {
   mode: 'visual' | 'code';
   setMode: (mode: 'visual' | 'code') => void;
-  renderControl?: (source: string) => ReactNode;
+  renderControl?: (getSource: () => string) => ReactNode;
   onSubmit?: (source: string) => void;
 };
 

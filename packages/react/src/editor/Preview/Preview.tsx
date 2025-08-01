@@ -51,7 +51,7 @@ const pragma: Pragma = {
 };
 
 export const Preview = () => {
-  const { source } = useEditing();
+  const { root } = useEditing();
 
-  return <Renderer source={source} pragma={pragma} />;
+  return <Renderer source={root} pragma={pragma} />;
 };
