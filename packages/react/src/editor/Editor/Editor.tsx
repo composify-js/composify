@@ -1,10 +1,16 @@
+import { getClassNameFactory } from '@composify/utils';
 import { FC } from 'react';
 import { EditingProvider } from '../EditingContext';
 import { IsolatedDndProvider } from '../IsolatedDndProvider';
 import { KeyDownDetector } from '../KeyDownDetector';
+import { PanelLeft } from '../PanelLeft';
+import { PanelRight } from '../PanelRight';
 import { Theme } from '../Theme';
 import { VisualEditor } from '../VisualEditor';
 import { WindowProvider } from '../WindowContext';
+import styles from './Editor.module.css';
+
+const getClassName = getClassNameFactory('Editor', styles);
 
 type Props = {
   title: string;
@@ -52,7 +58,11 @@ export const Editor: FC<Props> = ({
   <WindowProvider>
     <IsolatedDndProvider>
       <EditingProvider source={source}>
-        <VisualEditor title={title} viewports={viewports} />
+        <main className={getClassName()}>
+          <PanelLeft title={title} />
+          <VisualEditor viewports={viewports} />
+          <PanelRight />
+        </main>
         <KeyDownDetector />
         <Theme />
       </EditingProvider>
