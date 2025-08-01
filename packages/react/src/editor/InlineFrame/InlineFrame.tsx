@@ -4,8 +4,6 @@ import { createPortal } from 'react-dom';
 import styles from './InlineFrame.module.css';
 import { InlineFrameProvider } from './InlineFrameContext';
 
-const SRC_DOC = '<!DOCTYPE html><html><head></head><body></body></html>';
-
 type Props = IframeHTMLAttributes<HTMLIFrameElement> & PropsWithChildren<unknown>;
 
 const getClassName = getClassNameFactory('InlineFrame', styles);
@@ -66,7 +64,25 @@ export const InlineFrame: FC<Props> = ({ children, ...rest }) => {
   }, [iframeLoaded, syncStyles]);
 
   return (
-    <iframe {...rest} ref={iframeRef} srcDoc={SRC_DOC} className={getClassName()} onLoad={() => setIframeLoaded(true)}>
+    <iframe
+      {...rest}
+      ref={iframeRef}
+      srcDoc={`
+        <!DOCTYPE html>
+        <html>
+          <head></head>
+          <body>
+            <style>
+              body {
+                border: 1px solid var(--composify-palette-outline);
+              }
+            </style>
+          </body>
+        </html>
+      `.trim()}
+      className={getClassName()}
+      onLoad={() => setIframeLoaded(true)}
+    >
       {iframeLoaded && renderFrameContents()}
     </iframe>
   );
