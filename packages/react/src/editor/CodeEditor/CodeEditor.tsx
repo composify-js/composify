@@ -34,8 +34,9 @@ const prettify = async (value: string) => {
 
 export const CodeEditor = () => {
   const editorRef = useRef<Parameters<OnMount>[0] | null>(null);
+  const disableFormatting = useRef(false);
 
-  const { getSource, replaceRoot } = useEditing();
+  const { root, getSource, replaceRoot } = useEditing();
 
   const [code, setCode] = useState(getSource());
   const [message, setMessage] = useState('');
@@ -63,6 +64,7 @@ export const CodeEditor = () => {
       const missing = Catalog.missing(types);
 
       if (missing.length === 0) {
+        disableFormatting.current = true;
         replaceRoot(node);
         setMessage('');
       } else {
@@ -98,6 +100,19 @@ export const CodeEditor = () => {
 
   // Update the source when unmount
   useEffect(() => () => updateSource(), [updateSource]);
+
+  useEffect(() => {
+    if (!editorRef.current) {
+      return;
+    }
+
+    if (disableFormatting.current) {
+      disableFormatting.current = false;
+      return;
+    }
+
+    prettify(getSource()).then(setCode);
+  }, [root, getSource]);
 
   return (
     <section className={getClassName()}>
