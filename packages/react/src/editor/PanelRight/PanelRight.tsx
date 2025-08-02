@@ -2,6 +2,7 @@ import { getClassNameFactory } from '@composify/utils';
 import { FC, ReactNode } from 'react';
 import { ActiveBlockControl } from '../ActiveBlockControl';
 import { EditMode, EditorControl } from '../EditorControl';
+import { Outline } from '../Outline';
 import { PropertyLibrary } from '../PropertyLibrary';
 import styles from './PanelRight.module.css';
 
@@ -19,5 +20,6 @@ export const PanelRight: FC<Props> = ({ mode, setMode, renderControl, onSubmit }
     <EditorControl mode={mode} setMode={setMode} renderControl={renderControl} onSubmit={onSubmit} />
     <ActiveBlockControl />
     <PropertyLibrary />
+    <Outline />
   </section>
 );

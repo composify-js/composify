@@ -71,13 +71,7 @@ export const InlineFrame: FC<Props> = ({ children, ...rest }) => {
         <!DOCTYPE html>
         <html>
           <head></head>
-          <body>
-            <style>
-              body {
-                border: 1px solid var(--composify-palette-outline);
-              }
-            </style>
-          </body>
+          <body></body>
         </html>
       `.trim()}
       className={getClassName()}

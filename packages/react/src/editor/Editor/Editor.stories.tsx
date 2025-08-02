@@ -4,9 +4,17 @@ import { HStack } from '../../preset/HStack';
 import { VStack } from '../../preset/VStack';
 import { Editor } from './Editor';
 
-const Text = ({ suffix, textAlign }: { suffix?: ReactNode; textAlign: 'left' | 'center' | 'right' }) => (
+const Text = ({
+  content,
+  suffix,
+  textAlign,
+}: {
+  content: string;
+  suffix?: ReactNode;
+  textAlign: 'left' | 'center' | 'right';
+}) => (
   <div>
-    <p style={{ textAlign }}>Hello world!</p>
+    <p style={{ textAlign }}>{content}</p>
     {suffix}
   </div>
 );
@@ -14,6 +22,11 @@ const Text = ({ suffix, textAlign }: { suffix?: ReactNode; textAlign: 'left' | '
 Catalog.register<ComponentProps<typeof Text>>('Text', {
   component: Text,
   props: {
+    content: {
+      label: 'Content',
+      type: 'text',
+      default: 'Lorem ipsum',
+    },
     suffix: {
       label: 'Suffix',
       type: 'node',

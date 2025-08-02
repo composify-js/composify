@@ -1,0 +1,29 @@
+.OutlineItem {
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  color: var(--composify-palette-on-surface);
+  background-color: transparent;
+}
+
+.OutlineItem--selected {
+  background-color: var(--composify-palette-surface-container);
+}
+
+.OutlineItem:hover {
+  background-color: var(--composify-palette-surface-container);
+}
+
+.OutlineItem-Icon {
+  margin-right: 0.25rem;
+  fill: var(--composify-palette-on-surface-variant)
+}
+
+.OutlineItem-Children {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
