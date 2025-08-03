@@ -2,3 +2,7 @@ dist
 node_modules
 
 .DS_Store
+
+# Docusaurus
+packages/docs/.docusaurus
+packages/docs/build

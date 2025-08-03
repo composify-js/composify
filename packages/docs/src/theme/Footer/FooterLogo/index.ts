@@ -1,0 +1,1 @@
+export { FooterLogo } from './FooterLogo';

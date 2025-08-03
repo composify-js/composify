@@ -1,0 +1,1 @@
+export { FooterLinks } from './FooterLinks';
