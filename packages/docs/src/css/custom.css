@@ -33,6 +33,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.navbar {
+  box-shadow: none;
+}
+
 .navbar__inner {
   margin: 0 auto;
   max-width: var(--ifm-container-width);

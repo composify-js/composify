@@ -1,0 +1,19 @@
+.heroBanner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.title {
+  margin: 0;
+  font-size: 2.5rem;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+}
+
+.description {
+  margin: 0;
+  font-size: 1.5rem;
+}

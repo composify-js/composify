@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 import styles from './FooterCopyright.module.css';
 
 export const FooterCopyright = ({ copyright }: Props): ReactNode => (
-  <p className={styles.Copyright}>
+  <p className={styles.copyright}>
     {copyright}
     <br />
     Website built with Docusaurus.
