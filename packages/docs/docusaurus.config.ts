@@ -80,7 +80,7 @@ const config: Config = {
             },
             {
               label: 'Getting Started',
-              to: '/docs/quickstart',
+              to: '/docs/getting-started',
             },
             {
               label: 'API Reference',
