@@ -36,7 +36,8 @@
 .navbar__inner {
   margin: 0 auto;
   max-width: var(--ifm-container-width);
-  padding: 0 var(--ifm-spacing-horizontal);
+  /* padding: 0 var(--ifm-spacing-horizontal); */
+  padding: 0;
   width: 100%;
 }
 
@@ -73,16 +74,20 @@ html[data-theme='dark'] .header--github-link:before {
 .main-wrapper {
   margin: 0 auto;
   max-width: var(--ifm-container-width);
-  padding: 0 var(--ifm-spacing-horizontal);
+  padding: 0;
   width: 100%;
 }
 
 .main-wrapper > div {
-  border-left: var(--ifm-global-border-width) solid var(--ifm-color-emphasis-200);
-  border-right: var(--ifm-global-border-width) solid var(--ifm-color-emphasis-200);
+  border-left: 1px solid var(--ifm-color-emphasis-200);
+  border-right: 1px solid var(--ifm-color-emphasis-200);
 }
 
-@media(max-width: 996px) {
+@media(max-width: 1140px) {
+  .main-wrapper {
+    padding: 0;
+  }
+
   .main-wrapper > div {
     border: none;
   }
@@ -95,8 +100,7 @@ html[data-theme='dark'] .header--github-link:before {
 }
 
 .theme-doc-sidebar-container {
-  /* border-right: 1px solid var(--ifm-toc-border-color); */
-  border-right: var(--ifm-global-border-width) solid var(--ifm-color-emphasis-200);
+  border-right: 1px solid var(--ifm-color-emphasis-200);
 }
 
 .menu {
@@ -104,5 +108,5 @@ html[data-theme='dark'] .header--github-link:before {
 }
 
 .footer {
-  border-top: var(--ifm-global-border-width) solid var(--ifm-color-emphasis-200);
+  border-top: 1px solid var(--ifm-color-emphasis-200);
 }
