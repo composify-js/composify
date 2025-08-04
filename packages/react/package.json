@@ -92,6 +92,7 @@
     "react-dom": "19.1.0"
   },
   "peerDependencies": {
+    "@composify/core": "*",
     "react": "*",
     "react-dom": "*"
   }
