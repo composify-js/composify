@@ -1,6 +1,9 @@
 .playground {
+  flex: 1;
+  display: flex;
+  justify-content: center;
   margin: 24px 16px;
-  max-height: 768px;
+  height: 768px;
   border: 1px solid var(--ifm-color-outline);
   border-radius: 4px;
   overflow: hidden;
