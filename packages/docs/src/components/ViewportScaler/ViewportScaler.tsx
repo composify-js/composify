@@ -22,11 +22,9 @@ export const ViewportScaler: FC<Props> = ({ width, children }) => {
   }, [width]);
 
   useEffect(() => {
-    requestAnimationFrame(autoScale);
-  }, [autoScale]);
-
-  useEffect(() => {
-    const resizeObserver = new ResizeObserver(autoScale);
+    const resizeObserver = new ResizeObserver(() => {
+      requestAnimationFrame(autoScale);
+    });
 
     if (containerRef.current) {
       resizeObserver.observe(containerRef.current);

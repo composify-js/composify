@@ -20,7 +20,7 @@ export const Playground: FC = () => {
             <div className={styles.mock}>
               <h2 className={styles.mockTitle}>🎨 Playground</h2>
               <p className={styles.mockDescription}>
-                To prevent infinite loops, playground is disabled in editor mode.
+                Playground is turned off in editor mode to prevent infinite loops.
               </p>
             </div>
           ) : (
@@ -28,7 +28,7 @@ export const Playground: FC = () => {
           )}
         </ViewportScaler>
       </div>
-      <p className={styles.description}>Try our editor, hit save, and... tada! 🎉</p>
+      <p className={styles.description}>Make a change, hit save, and... tada! 🎉</p>
     </section>
   );
 };
