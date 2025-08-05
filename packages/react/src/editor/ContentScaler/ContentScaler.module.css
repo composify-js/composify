@@ -1,3 +1,4 @@
 .ContentScaler {
   display: contents;
+  pointer-events: none;
 }
