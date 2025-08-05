@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { ComposifyEditorProvider } from '../ComposifyEditorContext';
 import { InlineFrame } from '../InlineFrame';
 import { InlineFrameBinding } from '../InlineFrameBinding';
 import { InlineFrameWindow } from '../InlineFrameWindow';
@@ -18,7 +19,9 @@ export const VisualEditor: FC<Props> = ({ viewports }) => (
     <InlineFrame>
       <InlineFrameWindow />
       <InlineFrameBinding />
-      <Preview />
+      <ComposifyEditorProvider isLibrary={false} isVisualEditor={true}>
+        <Preview />
+      </ComposifyEditorProvider>
     </InlineFrame>
   </ViewportManager>
 );
