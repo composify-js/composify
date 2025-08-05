@@ -2,9 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 6%;
-  padding: 16px;
-  background-color: var(--ifm-background-surface-color);
+  padding: 64px 16px 16px 16px;
+  background-color: var(--ifm-color-surface);
 }
 
 .title {
@@ -13,7 +12,7 @@
   font-size: 48px;
   font-weight: 800;
   line-height: 1.1;
-  color: var(--ifm-font-color-base);
+  color: var(--ifm-color-on-surface);
 }
 
 .description {
@@ -21,7 +20,7 @@
   margin-bottom: 20px;
   font-size: 24px;
   line-height: 1.4;
-  color: var(--ifm-font-color-base);
+  color: var(--ifm-color-on-surface);
 }
 
 .buttonGroup {
@@ -47,7 +46,7 @@
 
 .learnMore {
   border: 0;
-  color: var(--ifm-font-color-base-inverse);
+  color: var(--ifm-color-on-primary);
   background-color: var(--ifm-color-primary);
 }
 
@@ -56,10 +55,10 @@
 }
 
 .getStarted {
-  color: var(--ifm-font-color-base);
-  border: 1px solid var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-on-surface);
+  border: 1px solid var(--ifm-color-outline);
 }
 
 .getStarted:hover {
-  border: 1px solid var(--ifm-color-emphasis-400);
+  border: 1px solid var(--ifm-color-outline-variant);
 }

@@ -1,7 +1,7 @@
 .playground {
   margin: 24px 16px;
   max-height: 768px;
-  border: 1px solid var(--ifm-color-emphasis-300);
+  border: 1px solid var(--ifm-color-outline);
   border-radius: 4px;
   overflow: hidden;
 }

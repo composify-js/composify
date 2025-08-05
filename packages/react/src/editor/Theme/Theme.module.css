@@ -11,6 +11,7 @@
   --composify-palette-surface-container-high: rgb(240, 240, 240);
   --composify-palette-surface-container-highest: rgb(233, 233, 233);
   --composify-palette-outline: rgb(229, 229, 229);
+  --composify-palette-outline-variant: rgb(210, 210, 210);
   --composify-palette-error: rgb(186, 26, 26);
 
   --composify-palette-surface-tint: rgb(64, 95, 144);
