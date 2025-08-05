@@ -1,10 +1,18 @@
 .playground {
+  margin: 24px 16px;
+}
+
+.preview {
   flex: 1;
   display: flex;
   justify-content: center;
-  margin: 24px 16px;
   aspect-ratio: 1 / 0.6;
   border: 1px solid var(--ifm-color-outline);
   border-radius: 4px;
   overflow: hidden;
+}
+
+.description {
+  margin: 16px 0;
+  color: var(--ifm-color-on-surface-variant);
 }
