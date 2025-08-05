@@ -1,7 +1,6 @@
 .playground {
-  margin: 24px 16px;
+  padding: 24px 16px;
 }
-
 .preview {
   flex: 1;
   display: flex;
@@ -10,6 +9,32 @@
   border: 1px solid var(--ifm-color-outline);
   border-radius: 4px;
   overflow: hidden;
+}
+
+.mock {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 100vh;
+  padding: 32px;
+  background-color: var(--ifm-color-surface);
+}
+
+.mockTitle {
+  margin: 0;
+  font-size: 64px;
+  font-weight: 600;
+  color: var(--ifm-color-on-surface);
+}
+
+.mockDescription {
+  margin: 0;
+  text-align: center;
+  font-size: 36px;
+  color: var(--ifm-color-on-surface-variant);
 }
 
 .description {
