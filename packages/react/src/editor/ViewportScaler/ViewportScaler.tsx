@@ -29,9 +29,15 @@ export const ViewportScaler: FC<Props> = ({ width, children }) => {
   }, [autoScale]);
 
   useEffect(() => {
-    window.addEventListener('resize', autoScale);
+    const resizeObserver = new ResizeObserver(autoScale);
 
-    return () => window.removeEventListener('resize', autoScale);
+    if (containerRef.current) {
+      resizeObserver.observe(containerRef.current);
+    }
+
+    return () => {
+      resizeObserver.disconnect();
+    };
   }, [autoScale]);
 
   return (
