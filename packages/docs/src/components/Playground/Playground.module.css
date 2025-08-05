@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   margin: 24px 16px;
-  height: 768px;
+  aspect-ratio: 1 / 0.6;
   border: 1px solid var(--ifm-color-outline);
   border-radius: 4px;
   overflow: hidden;
