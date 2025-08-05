@@ -1,8 +1,13 @@
 import { Catalog, Node, Parser } from '@composify/core';
-import { createElement, FC, ReactNode, useMemo } from 'react';
+import { createElement, FC, Fragment, ReactNode, useMemo } from 'react';
 
 export type Pragma = {
-  jsx: (type: string, props: Record<string, unknown>, info: Node, ...children: ReactNode[]) => ReactNode;
+  jsx: (
+    type: Parameters<typeof createElement>[0],
+    props: Parameters<typeof createElement>[1],
+    info: Node,
+    ...children: ReactNode[]
+  ) => ReactNode;
 };
 
 const DEFAULT_PRAGMA: Pragma = {
@@ -10,10 +15,14 @@ const DEFAULT_PRAGMA: Pragma = {
 };
 
 const renderElement = (node: Node, pragma: Pragma): ReactNode => {
-  const { component } = Catalog.get(node.type);
+  const spec = Catalog.get(node.type);
+
+  if (!spec) {
+    return renderFragment(node, pragma);
+  }
 
   return pragma.jsx(
-    component,
+    spec?.component ?? Fragment,
     {
       ...Object.entries(node.props).reduce(
         (acc, [key, value]) => ({
@@ -40,6 +49,27 @@ const renderElement = (node: Node, pragma: Pragma): ReactNode => {
     )
   );
 };
+
+const renderFragment = (node: Node, pragma: Pragma): ReactNode =>
+  pragma.jsx(
+    Fragment,
+    {},
+    node,
+    ...node.children.map((child, index) =>
+      typeof child === 'object'
+        ? renderElement(
+            {
+              ...child,
+              props: {
+                ...child.props,
+                key: node.id ?? index,
+              },
+            },
+            pragma
+          )
+        : child
+    )
+  );
 
 type Props = {
   source: string | Node;

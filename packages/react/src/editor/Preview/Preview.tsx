@@ -1,5 +1,5 @@
 import { Catalog } from '@composify/core';
-import { Children, createElement } from 'react';
+import { Children, createElement, Fragment } from 'react';
 import { Pragma, Renderer } from '../../renderer/Renderer';
 import { TargetType } from '../Constants';
 import { Draggable } from '../Draggable';
@@ -9,6 +9,11 @@ import { useEditing } from '../EditingContext';
 const pragma: Pragma = {
   jsx: (type, props, node, ...children) => {
     const spec = Catalog.get(node.type);
+
+    if (!spec) {
+      return createElement(Fragment, {}, children);
+    }
+
     const childrenPropSpec = (spec.props ?? {}).children;
     const acceptsChildren = childrenPropSpec?.type === 'node';
 

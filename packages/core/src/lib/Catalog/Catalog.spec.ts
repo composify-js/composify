@@ -17,8 +17,8 @@ describe('Catalog', () => {
       expect(get('Title')).toBeTruthy();
     });
 
-    it('should throw error if block is not registered', () => {
-      expect(() => get('Title')).toThrow();
+    it('should return null if block is not registered', () => {
+      expect(get('Title')).toBeUndefined();
     });
   });
 

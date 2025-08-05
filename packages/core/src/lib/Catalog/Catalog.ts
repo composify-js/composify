@@ -40,13 +40,7 @@ export const get = (name: string) => {
     };
   }
 
-  const block = blocks.get(name);
-
-  if (!block) {
-    throw new Error(`Block "${name}" is not registered`);
-  }
-
-  return block;
+  return blocks.get(name);
 };
 
 export const getAll = (query?: string) => {

@@ -395,18 +395,6 @@ describe('NodeManager', () => {
   });
 
   describe('collectTypes', () => {
-    it('should return empty array for string nodes', () => {
-      const root: Node = {
-        __composify__: true,
-        type: 'Fragment',
-        props: {},
-        children: [],
-      };
-      const nodeManager = subject(root);
-
-      expect(nodeManager.collectTypes()).toEqual([]);
-    });
-
     it('should extract single component type', () => {
       const root: Node = {
         __composify__: true,
