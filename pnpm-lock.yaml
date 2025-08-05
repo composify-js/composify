@@ -75,6 +75,12 @@ importers:
 
   packages/docs:
     dependencies:
+      '@composify/core':
+        specifier: workspace:*
+        version: link:../core
+      '@composify/react':
+        specifier: workspace:*
+        version: link:../react
       '@docusaurus/core':
         specifier: 3.8.1
         version: 3.8.1(@mdx-js/react@3.1.0(@types/react@19.1.8)(react@19.1.0))(@swc/core@1.13.3)(acorn@8.15.0)(esbuild@0.25.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3)

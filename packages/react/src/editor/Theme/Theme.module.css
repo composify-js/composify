@@ -41,3 +41,10 @@
   --composify-palette-surface-bright: rgb(249, 249, 255);
   --composify-palette-surface-container-lowest: rgb(255, 255, 255);
 }
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  font-family: system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;
+}

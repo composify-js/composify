@@ -9,6 +9,7 @@ export type Props = {
   viewports?: {
     width: number;
     label: string;
+    initial?: boolean;
   }[];
 };
 

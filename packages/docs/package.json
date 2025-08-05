@@ -15,6 +15,8 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@composify/core": "workspace:*",
+    "@composify/react": "workspace:*",
     "@docusaurus/core": "3.8.1",
     "@docusaurus/plugin-content-docs": "3.8.1",
     "@docusaurus/preset-classic": "3.8.1",

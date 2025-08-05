@@ -10,6 +10,7 @@ type Props = PropsWithChildren<{
   viewports?: {
     width: number;
     label: string;
+    initial?: boolean;
   }[];
 }>;
 
@@ -26,6 +27,7 @@ export const ViewportManager: FC<Props> = ({
     {
       width: 425,
       label: 'Mobile L - 425px',
+      initial: true,
     },
     {
       width: 768,
@@ -46,7 +48,8 @@ export const ViewportManager: FC<Props> = ({
   ],
   children,
 }) => {
-  const [width, setWidth] = useState(viewports[0].width);
+  const initialViewport = viewports.find(viewport => viewport.initial) ?? viewports[0];
+  const [width, setWidth] = useState(initialViewport.width);
 
   return (
     <section className={getClassName()}>
