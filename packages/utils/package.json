@@ -6,8 +6,6 @@
     "type": "git",
     "url": "git+https://github.com/composify-js/composify.git"
   },
-  "license": "MIT",
-  "sideEffects": false,
   "module": "dist/index.js",
   "exports": {
     ".": {

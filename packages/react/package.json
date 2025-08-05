@@ -6,8 +6,6 @@
     "type": "git",
     "url": "git+https://github.com/composify-js/composify.git"
   },
-  "license": "MIT",
-  "sideEffects": false,
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -56,8 +54,7 @@
     "./package.json": "./package.json"
   },
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public",
