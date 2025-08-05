@@ -9,7 +9,10 @@ export default function Home() {
   return (
     <Layout title={`${siteConfig.tagline}`} description="Description will go into a meta tag in <head />">
       <main>
-        <HeroBanner />
+        <HeroBanner
+          tagline={siteConfig.tagline}
+          description="Bring visual editing to your components — no rewrites needed."
+        />
         <Playground />
       </main>
     </Layout>
