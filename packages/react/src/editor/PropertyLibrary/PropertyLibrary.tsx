@@ -25,6 +25,10 @@ export const PropertyLibrary: FC<unknown> = () => {
 
   const block = Catalog.get(activeBlock.type);
 
+  if (!block) {
+    return null;
+  }
+
   return (
     <div className={getClassName()}>
       {Object.entries(block.props).map(([name, spec]) => {
