@@ -69,7 +69,7 @@ export const InlineFrame: FC<Props> = ({ children, ...rest }) => {
       ref={iframeRef}
       srcDoc={`
         <!DOCTYPE html>
-        <html>
+        <html data-theme="light">
           <head></head>
           <body></body>
         </html>

@@ -15,7 +15,7 @@ const INITIAL_SOURCE = `
       description="Write components once, let anyone build with them through a visual interface.\nPerfect for design systems, no-code tools, and server-driven UI."
     >
       <Feature
-        title="Keep It Simple with JSX"
+        title="Keep it simple with JSX"
         description="Use the markup you already know. Forget complex JSON or custom syntax."
         preview={<CodePreview asset="/assets/jsx" />}
         wide={false}
@@ -29,7 +29,7 @@ const INITIAL_SOURCE = `
         spacing={{ top: 0, bottom: -50 }}
       />
       <Feature
-        title="Instant visual editing"
+        title="WYSIWYG, tailor-made"
         description="Drag and drop anything, anywhere. Everything works exactly as you'd expect."
         preview={
           <MainCta to="/docs">
@@ -37,7 +37,7 @@ const INITIAL_SOURCE = `
           </MainCta>
         }
         wide={true}
-        spacing={{ top: 0, bottom: 0 }}
+        spacing={{ top: 0, bottom: -2 }}
       />
     </FeatureGroup>
   </>
