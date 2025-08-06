@@ -3,6 +3,7 @@ import { getClassNameFactory } from '@composify/utils';
 import { ReactNode } from 'react';
 import toJsxString from 'react-element-to-jsx-string';
 import { Renderer } from '../../renderer';
+import { ContentScaler } from '../ContentScaler';
 import { Droppable } from '../Droppable';
 import { useEditing } from '../EditingContext';
 import { PropertyControl } from '../PropertyControl';
@@ -33,7 +34,9 @@ export const PropertyControlNode = ({ spec, ...props }: Props) => {
       renderInput={(value, onChange) => (
         <div className={getClassName()}>
           {value ? (
-            <Renderer source={value} />
+            <ContentScaler width={1024} height={1024}>
+              <Renderer source={value} />
+            </ContentScaler>
           ) : (
             <Droppable item={activeBlock} index={0} onDrop={onChange}>
               <p className={getClassName('Placeholder')}>Drop here</p>
