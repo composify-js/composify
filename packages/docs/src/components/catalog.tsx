@@ -4,6 +4,7 @@ import { CodePreview } from './CodePreview';
 import { Feature } from './Feature';
 import { FeatureGroup } from './FeatureGroup';
 import { HeroBanner } from './HeroBanner';
+import { MainCta } from './MainCta';
 import { Playground } from './Playground';
 
 Catalog.register<ComponentProps<typeof HeroBanner>>('HeroBanner', {
@@ -27,6 +28,16 @@ Catalog.register<ComponentProps<typeof Playground>>('Playground', {
   props: {},
 });
 
+Catalog.register<ComponentProps<typeof FeatureGroup>>('FeatureGroup', {
+  component: FeatureGroup,
+  props: {
+    children: {
+      label: 'Children',
+      type: 'node',
+    },
+  },
+});
+
 Catalog.register<ComponentProps<typeof Feature>>('Feature', {
   component: Feature,
   props: {
@@ -38,11 +49,16 @@ Catalog.register<ComponentProps<typeof Feature>>('Feature', {
     description: {
       label: 'Description',
       type: 'textarea',
-      default: 'Drag and drop anything, anywhere. Everything works exactly as you’d expect.',
+      default: "Drag and drop anything, anywhere. Everything works exactly as you'd expect.",
     },
     preview: {
       label: 'Preview',
       type: 'node',
+    },
+    wide: {
+      label: 'Wide',
+      type: 'boolean',
+      default: false,
     },
   },
 });
@@ -67,16 +83,23 @@ Catalog.register<ComponentProps<typeof CodePreview>>('CodePreview', {
     code: {
       label: 'Code',
       type: 'textarea',
+      default: 'const HelloWorld = () => <div>Hello, world!</div>;',
     },
   },
 });
 
-Catalog.register<ComponentProps<typeof FeatureGroup>>('FeatureGroup', {
-  component: FeatureGroup,
+Catalog.register<ComponentProps<typeof MainCta>>('MainCta', {
+  component: MainCta,
   props: {
+    to: {
+      label: 'Link',
+      type: 'text',
+      default: '/docs/getting-started',
+    },
     children: {
-      label: 'Children',
-      type: 'node',
+      label: 'Text',
+      type: 'text',
+      default: 'Get started →',
     },
   },
 });

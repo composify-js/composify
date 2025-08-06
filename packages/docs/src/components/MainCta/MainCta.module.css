@@ -1,0 +1,20 @@
+.mainCta {
+  display: inline-block;
+  margin: 0 48px 48px 48px;
+  cursor: pointer;
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  text-decoration: none;
+  border: 0;
+  color: var(--ifm-color-on-primary);
+  background-color: var(--ifm-color-primary);
+}
+
+@media (max-width: 996px) {
+  .mainCta {
+    margin: 0 28px 28px 28px;
+  }
+}

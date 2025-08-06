@@ -5,6 +5,10 @@
   overflow: hidden;
 }
 
+.wide {
+  grid-column: 1 / span 2;
+}
+
 .banner {
   padding: 48px 48px 0 48px;
 }
@@ -20,7 +24,7 @@
 .description {
   margin-top: 4px;
   margin-bottom: 20px;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.4;
   color: var(--ifm-color-on-surface-variant);
 }

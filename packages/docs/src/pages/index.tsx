@@ -36,7 +36,7 @@ const INITIAL_SOURCE = `
       />
       <Feature
         title="Instant visual editing"
-        description="Drag and drop anything, anywhere. Everything works exactly as you’d expect."
+        description="Drag and drop anything, anywhere. Everything works exactly as you'd expect."
       />
     </Feature>
   </VStack>
@@ -46,6 +46,7 @@ const INITIAL_SOURCE = `
             }
           />
         }
+        wide={false}
       />
       <Feature
         title="It just works"
@@ -80,10 +81,17 @@ Catalog.register<ComponentProps<typeof CodeBlock>>('CodeBlock', {
 });\`}
           />
         }
+        wide={false}
       />
       <Feature
         title="Instant visual editing"
-        description="Drag and drop anything, anywhere. Everything works exactly as you’d expect."
+        description="Drag and drop anything, anywhere. Everything works exactly as you'd expect."
+        preview={
+          <MainCta to="/docs">
+            Get started →
+          </MainCta>
+        }
+        wide={true}
       />
     </FeatureGroup>
   </>
