@@ -107,7 +107,7 @@ html {
 }
 
 .header--github-link:hover {
-  background: var(--ifm-color-emphasis-200);
+  background: var(--ifm-color-outline);
 }
 
 .header--github-link:before {
@@ -129,21 +129,6 @@ html[data-theme='dark'] .header--github-link:before {
   width: 100%;
 }
 
-.main-wrapper > div {
-  border-left: 1px solid var(--ifm-color-emphasis-200);
-  border-right: 1px solid var(--ifm-color-emphasis-200);
-}
-
-@media(max-width: 1140px) {
-  .main-wrapper {
-    padding: 0;
-  }
-
-  .main-wrapper > div {
-    border: none;
-  }
-}
-
 @media (min-width: 1440px) {
   .main-wrapper {
     max-width: var(--ifm-container-width-xl);
@@ -153,12 +138,12 @@ html[data-theme='dark'] .header--github-link:before {
 /* Footer styles */
 .footer {
   margin-top: 48px;
-  border-top: 1px solid var(--ifm-color-emphasis-200);
+  border-top: 1px solid var(--ifm-color-outline);
 }
 
 /* Docs sidebar border color */
 .theme-doc-sidebar-container {
-  border-right: 1px solid var(--ifm-color-emphasis-200);
+  border-right: none;
 }
 
 /* Docs sidebar spacing */

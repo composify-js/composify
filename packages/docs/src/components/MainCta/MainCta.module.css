@@ -11,9 +11,3 @@
   color: var(--ifm-color-on-primary);
   background-color: var(--ifm-color-primary);
 }
-
-@media (max-width: 996px) {
-  .mainCta {
-    margin: 0 28px 28px 28px;
-  }
-}

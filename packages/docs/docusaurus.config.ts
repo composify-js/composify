@@ -26,6 +26,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
+          breadcrumbs: false,
         },
         blog: {
           showReadingTime: true,
