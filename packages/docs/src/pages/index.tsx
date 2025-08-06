@@ -10,7 +10,7 @@ const INITIAL_SOURCE = `
       description="Bring visual editing to your components — no rewrites needed."
     />
     <Playground />
-    <FeatureGroup>
+    <FeatureGroup title="Visual editing, powered by your components." description="Write components once, let anyone build with them through a visual interface.\nPerfect for design systems, no-code tools, and server-driven UI.">
       <Feature
         title="Keep It Simple with JSX"
         description="Use the markup you already know. Forget complex JSON or custom syntax."
@@ -25,7 +25,7 @@ const INITIAL_SOURCE = `
       description="Bring visual editing to your components — no rewrites needed."
     />
     <Playground />
-    <FeatureGroup>
+    <FeatureGroup title="Visual editing, powered by your components." description="Write components once, let anyone build with them through a visual interface.\\nPerfect for design systems, no-code tools, and server-driven UI.">
       <Feature
         title="Keep It Simple with JSX"
         description="Use the markup you already know. Forget complex JSON or custom syntax."

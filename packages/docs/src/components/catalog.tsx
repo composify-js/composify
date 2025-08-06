@@ -31,6 +31,17 @@ Catalog.register<ComponentProps<typeof Playground>>('Playground', {
 Catalog.register<ComponentProps<typeof FeatureGroup>>('FeatureGroup', {
   component: FeatureGroup,
   props: {
+    title: {
+      label: 'Title',
+      type: 'text',
+      default: 'Visual editing, powered by your components.',
+    },
+    description: {
+      label: 'Description',
+      type: 'textarea',
+      default:
+        'Write components once, let anyone build with them through a visual interface.\nPerfect for design systems, no-code tools, and server-driven UI.',
+    },
     children: {
       label: 'Children',
       type: 'node',
