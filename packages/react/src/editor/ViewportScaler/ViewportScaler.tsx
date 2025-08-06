@@ -11,17 +11,23 @@ type Props = PropsWithChildren<{
 
 export const ViewportScaler: FC<Props> = ({ width, children }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const targetRef = useRef<HTMLDivElement>(null);
+
   const [scale, setScale] = useState(1);
+  const [height, setHeight] = useState(0);
 
   const autoScale = useCallback(() => {
-    if (!containerRef.current) {
+    if (!containerRef.current || !targetRef.current) {
       return;
     }
 
-    const box = getBox(containerRef.current);
-    const scale = Math.min(box.contentBox.width / width, 1);
+    const containerBox = getBox(containerRef.current).contentBox;
+
+    const scale = Math.min(containerBox.width / width, 1);
+    const height = containerBox.height / scale;
 
     setScale(scale);
+    setHeight(height);
   }, [width]);
 
   useEffect(() => {
@@ -42,9 +48,11 @@ export const ViewportScaler: FC<Props> = ({ width, children }) => {
     <>
       <div ref={containerRef} className={getClassName('Container')} />
       <div
+        ref={targetRef}
         className={getClassName('Target')}
         style={{
           width,
+          height,
           transform: `scale(${scale})`,
         }}
       >
