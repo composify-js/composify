@@ -1,4 +1,21 @@
-.ContentScaler {
-  display: contents;
+*:has(> .ContentScaler-Container) {
+  position: relative;
+}
+
+.ContentScaler-Container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   pointer-events: none;
+}
+
+.ContentScaler-Target {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center;
+  transition: all 0.1s linear;
 }

@@ -56,7 +56,7 @@ export const BlockGroup: FC<Props> = ({ category, blocks }) => (
               }}
             >
               <div className={getClassName('BlockItemPreview')}>
-                <ContentScaler width={102} height={102}>
+                <ContentScaler width={1024} height={1024}>
                   <Renderer source={`<${block.name} ${jsxProps} />`} />
                 </ContentScaler>
               </div>
