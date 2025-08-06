@@ -26,7 +26,12 @@ describe('Renderer', () => {
       `;
 
     const pragma = {
-      jsx: (type: string, props: Record<string, unknown>, _: Node, ...children: ReactNode[]) =>
+      jsx: (
+        type: Parameters<typeof createElement>[0],
+        props: Parameters<typeof createElement>[1],
+        _: Node,
+        ...children: ReactNode[]
+      ) =>
         createElement('div', null, [
           createElement('div', { key: 1 }, 'custom pragma'),
           createElement(type, { ...props, key: 2 }, children),
