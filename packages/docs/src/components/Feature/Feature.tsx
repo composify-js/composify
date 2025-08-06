@@ -5,16 +5,18 @@ import styles from './Feature.module.css';
 type Props = {
   title: string;
   description: string;
-  preview?: ReactNode;
-  wide?: boolean;
+  preview: ReactNode;
+  wide: boolean;
+  spacing: {
+    top: number;
+    bottom: number;
+  };
 };
 
-export const Feature: FC<Props> = ({ title, description, preview, wide }) => (
+export const Feature: FC<Props> = ({ title, description, spacing, preview, wide }) => (
   <section className={clsx(styles.feature, { [styles.wide]: wide })}>
-    <div className={styles.banner}>
-      <h3 className={styles.title}>{title}</h3>
-      <p className={styles.description}>{description}</p>
-    </div>
-    {preview}
+    <h3 className={styles.title}>{title}</h3>
+    <p className={styles.description}>{description}</p>
+    <div style={{ marginTop: spacing.top, marginBottom: spacing.bottom }}>{preview}</div>
   </section>
 );

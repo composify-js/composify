@@ -10,78 +10,23 @@ const INITIAL_SOURCE = `
       description="Bring visual editing to your components — no rewrites needed."
     />
     <Playground />
-    <FeatureGroup title="Visual editing, powered by your components." description="Write components once, let anyone build with them through a visual interface.\nPerfect for design systems, no-code tools, and server-driven UI.">
+    <FeatureGroup
+      title="Visual editing, powered by your components."
+      description="Write components once, let anyone build with them through a visual interface.\nPerfect for design systems, no-code tools, and server-driven UI."
+    >
       <Feature
         title="Keep It Simple with JSX"
         description="Use the markup you already know. Forget complex JSON or custom syntax."
-        preview={
-          <CodePreview
-            language="jsx"
-            code={
-\`const source = `
-  <VStack>
-    <HeroBanner
-      tagline="Server Driven UI made easy"
-      description="Bring visual editing to your components — no rewrites needed."
-    />
-    <Playground />
-    <FeatureGroup title="Visual editing, powered by your components." description="Write components once, let anyone build with them through a visual interface.\\nPerfect for design systems, no-code tools, and server-driven UI.">
-      <Feature
-        title="Keep It Simple with JSX"
-        description="Use the markup you already know. Forget complex JSON or custom syntax."
+        preview={<CodePreview asset="/assets/jsx" />}
+        wide={false}
+        spacing={{ top: 0, bottom: -50 }}
       />
       <Feature
         title="It just works"
         description="No special props. No rigid structure. Just register your components and go."
-      />
-      <Feature
-        title="Instant visual editing"
-        description="Drag and drop anything, anywhere. Everything works exactly as you'd expect."
-      />
-    </Feature>
-  </VStack>
-`;
-
-  <Renderer source={source} />\`
-            }
-          />
-        }
+        preview={<CodePreview asset="/assets/catalog" />}
         wide={false}
-      />
-      <Feature
-        title="It just works"
-        description="No special props. No rigid structure. Just register your components and go."
-        preview={
-          <CodePreview
-            language="jsx"
-            code={
-\`import { Catalog } from '@composify/react/renderer';
-import CodeBlock from '@theme/CodeBlock';
-import { ComponentProps } from 'react';
-
-Catalog.register('CodeBlock', {
-  component: CodeBlock,
-  props: {
-    language: {
-      label: 'Language',
-      type: 'select',
-      options: [{
-        label: 'JavaScript',
-        value: 'jsx',
-      }, {
-        label: 'Python',
-        value: 'python',
-      }],
-    },
-    children: {
-      label: 'Code',
-      type: 'textarea',
-    },
-  },
-});\`}
-          />
-        }
-        wide={false}
+        spacing={{ top: 0, bottom: -50 }}
       />
       <Feature
         title="Instant visual editing"
@@ -92,6 +37,7 @@ Catalog.register('CodeBlock', {
           </MainCta>
         }
         wide={true}
+        spacing={{ top: 0, bottom: 0 }}
       />
     </FeatureGroup>
   </>

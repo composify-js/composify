@@ -70,30 +70,36 @@ Catalog.register('Feature', {
       type: 'boolean',
       default: false,
     },
+    spacing: {
+      label: 'Preview Spacing',
+      type: 'object',
+      default: {
+        top: 0,
+        bottom: 0,
+      },
+      fields: {
+        top: {
+          label: 'Top',
+          type: 'number',
+          default: 0,
+        },
+        bottom: {
+          label: 'Bottom',
+          type: 'number',
+          default: 0,
+        },
+      },
+    },
   },
 });
 
 Catalog.register('CodePreview', {
   component: CodePreview,
   props: {
-    language: {
-      label: 'Language',
-      type: 'select',
-      options: [
-        {
-          label: 'JavaScript',
-          value: 'jsx',
-        },
-        {
-          label: 'Python',
-          value: 'python',
-        },
-      ],
-    },
-    code: {
-      label: 'Code',
-      type: 'textarea',
-      default: 'const HelloWorld = () => <div>Hello, world!</div>;',
+    asset: {
+      label: 'Image asset',
+      type: 'text',
+      default: '/assets/jsx',
     },
   },
 });

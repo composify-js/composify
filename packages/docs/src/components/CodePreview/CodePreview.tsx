@@ -1,14 +1,13 @@
-import CodeBlock from '@theme/CodeBlock';
 import { FC } from 'react';
 import styles from './CodePreview.module.css';
 
 type Props = {
-  language: 'jsx' | 'python';
-  code: string;
+  asset: string;
 };
 
-export const CodePreview: FC<Props> = ({ language, code }) => (
+export const CodePreview: FC<Props> = ({ asset }) => (
   <div className={styles.codePreview}>
-    <CodeBlock language={language}>{code}</CodeBlock>
+    <img className={styles.light} src={`${asset}-light.png`} />
+    <img className={styles.dark} src={`${asset}-dark.png`} />
   </div>
 );
