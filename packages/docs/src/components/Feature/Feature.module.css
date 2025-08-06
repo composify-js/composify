@@ -25,19 +25,6 @@
   color: var(--ifm-color-on-surface-variant);
 }
 
-.preview {
-  margin: 32px 48px -8px 48px;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-  border: 1px solid var(--ifm-color-outline);
-  aspect-ratio: 1 / 0.5;
-  overflow-y: scroll;
-}
-
-.preview div {
-  margin-bottom: 0 !important;
-}
-
 @media (max-width: 996px) {
   .banner {
     padding: 28px 28px 0 28px;
@@ -51,10 +38,5 @@
     margin-top: 4px;
     margin-bottom: 12px;
     font-size: 16px;
-  }
-
-  .preview {
-    margin: 20px 28px -8px 28px;
-    aspect-ratio: 1 / 0.6;
   }
 }

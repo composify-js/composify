@@ -13,6 +13,6 @@ export const Feature: FC<Props> = ({ title, description, preview }) => (
       <h3 className={styles.title}>{title}</h3>
       <p className={styles.description}>{description}</p>
     </div>
-    {preview && <div className={styles.preview}>{preview}</div>}
+    {preview}
   </section>
 );

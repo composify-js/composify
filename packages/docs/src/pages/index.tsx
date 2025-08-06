@@ -15,9 +15,9 @@ const INITIAL_SOURCE = `
         title="Keep It Simple with JSX"
         description="Use the markup you already know. Forget complex JSON or custom syntax."
         preview={
-          <CodeBlock
+          <CodePreview
             language="jsx"
-            children={
+            code={
 \`const source = `
   <VStack>
     <HeroBanner
@@ -51,9 +51,9 @@ const INITIAL_SOURCE = `
         title="It just works"
         description="No special props. No rigid structure. Just register your components and go."
         preview={
-          <CodeBlock
+          <CodePreview
             language="jsx"
-            children={
+            code={
 \`import { Catalog } from '@composify/core';
 import CodeBlock from '@theme/CodeBlock';
 import { ComponentProps } from 'react';

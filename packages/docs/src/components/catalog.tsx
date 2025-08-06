@@ -1,6 +1,6 @@
 import { Catalog } from '@composify/core';
-import CodeBlock from '@theme/CodeBlock';
 import { ComponentProps } from 'react';
+import { CodePreview } from './CodePreview';
 import { Feature } from './Feature';
 import { FeatureGroup } from './FeatureGroup';
 import { HeroBanner } from './HeroBanner';
@@ -47,8 +47,8 @@ Catalog.register<ComponentProps<typeof Feature>>('Feature', {
   },
 });
 
-Catalog.register<ComponentProps<typeof CodeBlock>>('CodeBlock', {
-  component: CodeBlock,
+Catalog.register<ComponentProps<typeof CodePreview>>('CodePreview', {
+  component: CodePreview,
   props: {
     language: {
       label: 'Language',
@@ -64,10 +64,9 @@ Catalog.register<ComponentProps<typeof CodeBlock>>('CodeBlock', {
         },
       ],
     },
-    children: {
+    code: {
       label: 'Code',
       type: 'textarea',
-      default: 'const HelloWorld = () => <div>Hello, world!</div>;',
     },
   },
 });

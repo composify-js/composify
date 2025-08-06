@@ -1,0 +1,25 @@
+.codePreview {
+  margin: 32px 48px -8px 48px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border: 1px solid var(--ifm-color-outline);
+  aspect-ratio: 1 / 0.5;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.codePreview::-webkit-scrollbar {
+  display: none;
+}
+
+.codePreview div {
+  margin-bottom: 0 !important;
+}
+
+@media (max-width: 996px) {
+  .codePreview {
+    margin: 20px 28px -8px 28px;
+    aspect-ratio: 1 / 0.6;
+  }
+}
