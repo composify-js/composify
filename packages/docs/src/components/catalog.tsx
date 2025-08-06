@@ -1,0 +1,64 @@
+import { Catalog } from '@composify/core';
+import CodeBlock from '@theme/CodeBlock';
+import { ComponentProps } from 'react';
+import { Feature } from '../components/Feature';
+import { HeroBanner } from '../components/HeroBanner';
+import { Playground } from '../components/Playground';
+
+Catalog.register<ComponentProps<typeof HeroBanner>>('HeroBanner', {
+  component: HeroBanner,
+  props: {
+    tagline: {
+      label: 'Tagline',
+      type: 'text',
+      default: 'Server Driven UI made easy',
+    },
+    description: {
+      label: 'Description',
+      type: 'textarea',
+      default: 'Bring visual editing to your components — no rewrites needed.',
+    },
+  },
+});
+
+Catalog.register<ComponentProps<typeof Playground>>('Playground', {
+  component: Playground,
+  props: {},
+});
+
+Catalog.register<ComponentProps<typeof Feature>>('Feature', {
+  component: Feature,
+  props: {
+    title: {
+      label: 'Title',
+      type: 'text',
+      default: 'Instant visual editing',
+    },
+    description: {
+      label: 'Description',
+      type: 'textarea',
+      default: 'Drag and drop anything, anywhere. Everything works exactly as you’d expect.',
+    },
+    preview: {
+      label: 'Preview',
+      type: 'node',
+      default: <div>Preview content goes here</div>,
+    },
+  },
+});
+
+Catalog.register<ComponentProps<typeof CodeBlock>>('CodeBlock', {
+  component: CodeBlock,
+  props: {
+    language: {
+      label: 'Language',
+      type: 'text',
+      default: 'jsx',
+    },
+    children: {
+      label: 'Code',
+      type: 'textarea',
+      default: 'const HelloWorld = () => <div>Hello, world!</div>;',
+    },
+  },
+});
