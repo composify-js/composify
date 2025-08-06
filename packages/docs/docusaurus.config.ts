@@ -5,7 +5,7 @@ import { themes as prismThemes } from 'prism-react-renderer';
 const config: Config = {
   title: 'Composify',
   tagline: 'Server Driven UI made easy',
-  favicon: 'img/favicon.ico',
+  favicon: 'favicon.ico',
   future: {
     v4: true,
   },
