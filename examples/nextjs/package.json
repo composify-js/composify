@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@composify/core": "workspace:*",
     "@composify/react": "workspace:*",
     "react": "19.1.0",
     "react-dom": "19.1.0",

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Parser } from 'acorn';
 import jsx from 'acorn-jsx';
 import { SparseNode, Node } from '../NodeManager';

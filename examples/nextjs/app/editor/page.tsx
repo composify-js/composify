@@ -1,19 +1,18 @@
 'use client';
 
 import '@composify/react/style.css';
-import { Catalog } from '@composify/core';
 import { Editor } from '@composify/react/editor';
 import { HStack, VStack } from '@composify/react/preset';
-import { ComponentProps } from 'react';
+import { Catalog } from '@composify/react/renderer';
 
 const Text = () => <p>Hello world!</p>;
 
-Catalog.register<ComponentProps<typeof Text>>('Text', {
+Catalog.register('Text', {
   component: Text,
   props: {},
 });
 
-Catalog.register<ComponentProps<typeof HStack>>('HStack', {
+Catalog.register('HStack', {
   component: HStack,
   props: {
     children: {
@@ -38,7 +37,7 @@ Catalog.register<ComponentProps<typeof HStack>>('HStack', {
   },
 });
 
-Catalog.register<ComponentProps<typeof VStack>>('VStack', {
+Catalog.register('VStack', {
   component: VStack,
   props: {
     children: {

@@ -1,9 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ComponentProps, ComponentType } from 'react';
 import { PropertySpec } from '../PropertySpec';
 
-export type Block<Props = any, Key extends keyof Props = keyof Props> = {
+export type Block<
+  Component extends ComponentType<any> = any,
+  Props = ComponentProps<Component>,
+  Key extends keyof Props = keyof Props,
+> = {
   name: string;
   category?: string;
-  component: any;
+  component: Component;
   props: {
     [key in Key]: PropertySpec<Props[key]>;
   };
@@ -11,7 +17,7 @@ export type Block<Props = any, Key extends keyof Props = keyof Props> = {
 
 const blocks = new Map<string, Block>();
 
-export const register = <Props>(name: string, block: Omit<Block<Props>, 'name'>) => {
+export const register = <Component extends ComponentType<any>>(name: string, block: Omit<Block<Component>, 'name'>) => {
   for (const spec of Object.values(block.props)) {
     const typedSpec = spec as PropertySpec<any>;
 

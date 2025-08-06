@@ -1,7 +1,7 @@
-import { Node } from '@composify/core';
 import { getClassNameFactory } from '@composify/utils';
 import { MouseEvent, FC, PropsWithChildren, useCallback } from 'react';
 import { useDrag } from 'react-dnd';
+import { Node } from '../../renderer';
 import { TargetType } from '../Constants';
 import { useEditing } from '../EditingContext';
 import styles from './Draggable.module.css';

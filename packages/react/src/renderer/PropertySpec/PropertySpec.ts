@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 type DefaultPropertySpec<Value> = {
   label: string;
   default?: Value;

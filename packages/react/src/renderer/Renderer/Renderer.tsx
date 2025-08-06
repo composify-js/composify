@@ -1,5 +1,7 @@
-import { Catalog, Node, Parser } from '@composify/core';
 import { createElement, FC, Fragment, ReactNode, useMemo } from 'react';
+import * as Catalog from '../Catalog';
+import { Node } from '../NodeManager';
+import * as Parser from '../Parser';
 
 export type Pragma = {
   jsx: (

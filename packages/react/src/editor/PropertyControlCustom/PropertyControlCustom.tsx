@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { CustomPropertySpec } from '@composify/core';
+import { CustomPropertySpec } from '../../renderer';
 import { PropertyControl } from '../PropertyControl';
 
 type Props<Value = any> = {

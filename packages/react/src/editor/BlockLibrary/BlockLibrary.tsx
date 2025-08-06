@@ -1,5 +1,5 @@
-import { Catalog } from '@composify/core';
 import { FC } from 'react';
+import { Catalog } from '../../renderer';
 import { BlockGroup } from '../BlockGroup';
 import { ComposifyEditorProvider } from '../ComposifyEditorContext';
 

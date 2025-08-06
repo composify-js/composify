@@ -35,9 +35,6 @@ importers:
 
   examples/nextjs:
     dependencies:
-      '@composify/core':
-        specifier: workspace:*
-        version: link:../../packages/core
       '@composify/react':
         specifier: workspace:*
         version: link:../../packages/react
@@ -64,20 +61,8 @@ importers:
         specifier: 5.8.3
         version: 5.8.3
 
-  packages/core:
-    dependencies:
-      acorn:
-        specifier: 8.15.0
-        version: 8.15.0
-      acorn-jsx:
-        specifier: 5.3.2
-        version: 5.3.2(acorn@8.15.0)
-
   packages/docs:
     dependencies:
-      '@composify/core':
-        specifier: workspace:*
-        version: link:../core
       '@composify/react':
         specifier: workspace:*
         version: link:../react
@@ -136,6 +121,12 @@ importers:
       '@monaco-editor/react':
         specifier: 4.7.0
         version: 4.7.0(monaco-editor@0.52.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      acorn:
+        specifier: 8.15.0
+        version: 8.15.0
+      acorn-jsx:
+        specifier: 5.3.2
+        version: 5.3.2(acorn@8.15.0)
       css-box-model:
         specifier: 1.2.1
         version: 1.2.1
@@ -155,9 +146,6 @@ importers:
         specifier: 17.0.1
         version: 17.0.1(react-dom@19.1.0(react@19.1.0))(react-is@18.3.1)(react@19.1.0)
     devDependencies:
-      '@composify/core':
-        specifier: workspace:*
-        version: link:../core
       '@composify/utils':
         specifier: workspace:*
         version: link:../utils

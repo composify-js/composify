@@ -55,11 +55,11 @@ const INITIAL_SOURCE = `
           <CodePreview
             language="jsx"
             code={
-\`import { Catalog } from '@composify/core';
+\`import { Catalog } from '@composify/react/renderer';
 import CodeBlock from '@theme/CodeBlock';
 import { ComponentProps } from 'react';
 
-Catalog.register<ComponentProps<typeof CodeBlock>>('CodeBlock', {
+Catalog.register('CodeBlock', {
   component: CodeBlock,
   props: {
     language: {

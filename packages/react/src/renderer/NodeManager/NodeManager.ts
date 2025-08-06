@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-dynamic-delete */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export type SparseNode = {
   __composify__: true;
   id?: never;

@@ -1,5 +1,5 @@
-import { BooleanPropertySpec } from '@composify/core';
 import { getClassNameFactory } from '@composify/utils';
+import { BooleanPropertySpec } from '../../renderer';
 import { PropertyControl } from '../PropertyControl';
 import styles from './PropertyControlBoolean.module.css';
 

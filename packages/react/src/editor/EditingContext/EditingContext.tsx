@@ -1,4 +1,3 @@
-import { Node, NodeManager, Parser } from '@composify/core';
 import {
   createContext,
   useCallback,
@@ -9,6 +8,7 @@ import {
   FC,
   PropsWithChildren,
 } from 'react';
+import { Node, NodeManager, Parser } from '../../renderer';
 
 type EditingContextValues = {
   root: Node;

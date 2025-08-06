@@ -1,5 +1,5 @@
-import { TextPropertySpec } from '@composify/core';
 import { getClassNameFactory } from '@composify/utils';
+import { TextPropertySpec } from '../../renderer';
 import { PropertyControl } from '../PropertyControl';
 import styles from './PropertyControlText.module.css';
 

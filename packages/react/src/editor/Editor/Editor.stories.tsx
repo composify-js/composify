@@ -1,7 +1,7 @@
-import { Catalog } from '@composify/core';
-import { ComponentProps, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { HStack } from '../../preset/HStack';
 import { VStack } from '../../preset/VStack';
+import { Catalog } from '../../renderer';
 import { Editor } from './Editor';
 
 const Text = ({
@@ -19,7 +19,7 @@ const Text = ({
   </div>
 );
 
-Catalog.register<ComponentProps<typeof Text>>('Text', {
+Catalog.register('Text', {
   component: Text,
   props: {
     content: {
@@ -43,7 +43,7 @@ Catalog.register<ComponentProps<typeof Text>>('Text', {
   },
 });
 
-Catalog.register<ComponentProps<typeof HStack>>('HStack', {
+Catalog.register('HStack', {
   component: HStack,
   category: 'Layout',
   props: {
@@ -70,7 +70,7 @@ Catalog.register<ComponentProps<typeof HStack>>('HStack', {
   },
 });
 
-Catalog.register<ComponentProps<typeof VStack>>('VStack', {
+Catalog.register('VStack', {
   component: VStack,
   category: 'Layout',
   props: {

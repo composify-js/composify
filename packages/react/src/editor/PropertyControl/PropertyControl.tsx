@@ -1,6 +1,6 @@
-import { PropertySpec } from '@composify/core';
 import { getClassNameFactory } from '@composify/utils';
 import { ReactNode, useCallback } from 'react';
+import { PropertySpec } from '../../renderer';
 import { useEditing } from '../EditingContext';
 import styles from './PropertyControl.module.css';
 

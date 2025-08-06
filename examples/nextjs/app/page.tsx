@@ -1,16 +1,14 @@
-import { Catalog } from '@composify/core';
 import { HStack, VStack } from '@composify/react/preset';
-import { Renderer } from '@composify/react/renderer';
-import { ComponentProps } from 'react';
+import { Catalog, Renderer } from '@composify/react/renderer';
 
 const Text = () => <p>Hello world!</p>;
 
-Catalog.register<ComponentProps<typeof Text>>('Text', {
+Catalog.register('Text', {
   component: Text,
   props: {},
 });
 
-Catalog.register<ComponentProps<typeof HStack>>('HStack', {
+Catalog.register('HStack', {
   component: HStack,
   props: {
     children: {
@@ -35,7 +33,7 @@ Catalog.register<ComponentProps<typeof HStack>>('HStack', {
   },
 });
 
-Catalog.register<ComponentProps<typeof VStack>>('VStack', {
+Catalog.register('VStack', {
   component: VStack,
   props: {
     children: {

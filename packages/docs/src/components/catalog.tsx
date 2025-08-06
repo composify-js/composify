@@ -1,5 +1,4 @@
-import { Catalog } from '@composify/core';
-import { ComponentProps } from 'react';
+import { Catalog } from '@composify/react/renderer';
 import { CodePreview } from './CodePreview';
 import { Feature } from './Feature';
 import { FeatureGroup } from './FeatureGroup';
@@ -7,7 +6,7 @@ import { HeroBanner } from './HeroBanner';
 import { MainCta } from './MainCta';
 import { Playground } from './Playground';
 
-Catalog.register<ComponentProps<typeof HeroBanner>>('HeroBanner', {
+Catalog.register('HeroBanner', {
   component: HeroBanner,
   props: {
     tagline: {
@@ -23,12 +22,12 @@ Catalog.register<ComponentProps<typeof HeroBanner>>('HeroBanner', {
   },
 });
 
-Catalog.register<ComponentProps<typeof Playground>>('Playground', {
+Catalog.register('Playground', {
   component: Playground,
   props: {},
 });
 
-Catalog.register<ComponentProps<typeof FeatureGroup>>('FeatureGroup', {
+Catalog.register('FeatureGroup', {
   component: FeatureGroup,
   props: {
     title: {
@@ -49,7 +48,7 @@ Catalog.register<ComponentProps<typeof FeatureGroup>>('FeatureGroup', {
   },
 });
 
-Catalog.register<ComponentProps<typeof Feature>>('Feature', {
+Catalog.register('Feature', {
   component: Feature,
   props: {
     title: {
@@ -74,7 +73,7 @@ Catalog.register<ComponentProps<typeof Feature>>('Feature', {
   },
 });
 
-Catalog.register<ComponentProps<typeof CodePreview>>('CodePreview', {
+Catalog.register('CodePreview', {
   component: CodePreview,
   props: {
     language: {
@@ -99,7 +98,7 @@ Catalog.register<ComponentProps<typeof CodePreview>>('CodePreview', {
   },
 });
 
-Catalog.register<ComponentProps<typeof MainCta>>('MainCta', {
+Catalog.register('MainCta', {
   component: MainCta,
   props: {
     to: {

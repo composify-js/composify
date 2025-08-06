@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { RadioPropertySpec } from '@composify/core';
 import { getClassNameFactory } from '@composify/utils';
+import { RadioPropertySpec } from '../../renderer';
 import { PropertyControl } from '../PropertyControl/PropertyControl';
 import styles from './PropertyControlRadio.module.css';
 
