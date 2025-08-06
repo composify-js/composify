@@ -15,6 +15,10 @@
   border: 1px dotted var(--composify-palette-primary);
 }
 
+.Droppable[data-composify-active="false"]:empty {
+  display: none;
+}
+
 .Droppable--active[data-composify-dragging="true"]:not(:only-child),
 [data-composify-role="draggable"][data-composify-dragging="true"] .Droppable--active:not(:only-child),
 [data-composify-role="draggable"][data-composify-dragging="true"] + .Droppable--active,
