@@ -169,5 +169,4 @@ html[data-theme='dark'] .header--github-link:before {
 .theme-code-block {
   font-size: 16px;
   box-shadow: none;
-  border: 1px solid var(--ifm-color-outline);
 }

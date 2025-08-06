@@ -10,20 +10,82 @@ const INITIAL_SOURCE = `
       description="Bring visual editing to your components — no rewrites needed."
     />
     <Playground />
-    <Feature
-      title="Keep It Simple with JSX"
-      description="Use the markup you already know. Forget complex JSON or custom syntax."
-      preview={
-        <CodeBlock language="jsx" children={\`const source = `
-  <Feature
-    title="Keep It Simple with JSX"
-    description="Use the markup you already know. Forget complex JSON or custom syntax."
-  />
+    <FeatureGroup>
+      <Feature
+        title="Keep It Simple with JSX"
+        description="Use the markup you already know. Forget complex JSON or custom syntax."
+        preview={
+          <CodeBlock
+            language="jsx"
+            children={
+\`const source = `
+  <VStack>
+    <HeroBanner
+      tagline="Server Driven UI made easy"
+      description="Bring visual editing to your components — no rewrites needed."
+    />
+    <Playground />
+    <FeatureGroup>
+      <Feature
+        title="Keep It Simple with JSX"
+        description="Use the markup you already know. Forget complex JSON or custom syntax."
+      />
+      <Feature
+        title="It just works"
+        description="No special props. No rigid structure. Just register your components and go."
+      />
+      <Feature
+        title="Instant visual editing"
+        description="Drag and drop anything, anywhere. Everything works exactly as you’d expect."
+      />
+    </Feature>
+  </VStack>
 `;
 
-<Renderer source={source} />\`} />
-      }
-    />
+  <Renderer source={source} />\`
+            }
+          />
+        }
+      />
+      <Feature
+        title="It just works"
+        description="No special props. No rigid structure. Just register your components and go."
+        preview={
+          <CodeBlock
+            language="jsx"
+            children={
+\`import { Catalog } from '@composify/core';
+import CodeBlock from '@theme/CodeBlock';
+import { ComponentProps } from 'react';
+
+Catalog.register<ComponentProps<typeof CodeBlock>>('CodeBlock', {
+  component: CodeBlock,
+  props: {
+    language: {
+      label: 'Language',
+      type: 'select',
+      options: [{
+        label: 'JavaScript',
+        value: 'jsx',
+      }, {
+        label: 'Python',
+        value: 'python',
+      }],
+    },
+    children: {
+      label: 'Code',
+      type: 'textarea',
+    },
+  },
+});\`}
+          />
+        }
+      />
+      <Feature
+        title="Instant visual editing"
+        description="Drag and drop anything, anywhere. Everything works exactly as you’d expect."
+      />
+    </FeatureGroup>
   </>
 `.trim();
 
