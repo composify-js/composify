@@ -1,7 +1,4 @@
 .heroBanner {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   padding: 64px 16px 16px 16px;
   min-width: 320px;
   background-color: var(--ifm-color-surface);

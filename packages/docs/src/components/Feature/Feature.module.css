@@ -1,0 +1,20 @@
+.feature {
+  padding: 64px 16px 16px 16px;
+  background-color: var(--ifm-color-surface);
+}
+
+.title {
+  margin: 0;
+  letter-spacing: -0.02em;
+  font-size: 32px;
+  line-height: 1.1;
+  color: var(--ifm-color-on-surface);
+}
+
+.description {
+  margin-top: 4px;
+  margin-bottom: 12px;
+  font-size: 20px;
+  line-height: 1.4;
+  color: var(--ifm-color-on-surface-variant);
+}

@@ -13,7 +13,7 @@ export const HeroBanner: FC<Props> = ({ tagline, description }) => (
     <p className={styles.description}>{description}</p>
     <div className={styles.buttonGroup}>
       <a href="/docs" className={clsx(styles.button, styles.learnMore)}>
-        Learn More ›
+        Why SDUI
       </a>
       <a href="/docs/getting-started" className={clsx(styles.button, styles.getStarted)}>
         Get started →
