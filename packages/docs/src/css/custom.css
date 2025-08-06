@@ -152,6 +152,7 @@ html[data-theme='dark'] .header--github-link:before {
 
 /* Footer styles */
 .footer {
+  margin-top: 48px;
   border-top: 1px solid var(--ifm-color-emphasis-200);
 }
 
