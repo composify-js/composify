@@ -164,3 +164,10 @@ html[data-theme='dark'] .header--github-link:before {
 .menu {
   padding: 0.5rem !important;
 }
+
+/* Code block styles */
+.theme-code-block {
+  font-size: 16px;
+  box-shadow: none;
+  border: 1px solid var(--ifm-color-outline);
+}

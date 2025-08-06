@@ -1,4 +1,7 @@
 .feature {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   padding: 64px 16px 16px 16px;
   background-color: var(--ifm-color-surface);
 }
@@ -13,7 +16,7 @@
 
 .description {
   margin-top: 4px;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
   font-size: 20px;
   line-height: 1.4;
   color: var(--ifm-color-on-surface-variant);
