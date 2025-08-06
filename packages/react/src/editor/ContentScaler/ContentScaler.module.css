@@ -18,4 +18,5 @@
   justify-content: center;
   transform-origin: center;
   transition: all 0.1s linear;
+  pointer-events: none;
 }
