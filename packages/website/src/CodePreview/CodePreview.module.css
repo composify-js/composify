@@ -16,16 +16,10 @@
   margin-bottom: 0 !important;
 }
 
-@media (max-width: 1080px) {
-  .codePreview {
-    aspect-ratio: 1 / 0.6;
-  }
-}
-
-html.dark .light {
+html[class="dark"] .light {
   display: none;
 }
 
-html:not(.dark) .dark {
+html:not([class="dark"]) .dark {
   display: none;
 }
