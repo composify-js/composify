@@ -5,7 +5,7 @@ Not every UI change comes from the product team. Marketing needs to launch new p
 With Composify, they can:
 
 - Build campaign pages from pre-defined blocks
-- Edit text, images, and layout—visually, without code
+- Edit text, images, and layout visually, without code
 - Ship changes instantly, without waiting for a developer
 
 This works especially well for:
@@ -14,4 +14,4 @@ This works especially well for:
 - Regional or seasonal content
 - Blog-like longform layouts powered by real components
 
-Instead of building custom CMSs or burning engineering time on small changes, you can let other teams ship on their own—using the same components, design system, and visual editor as the rest of the product.
+Instead of building custom CMSs or burning engineering time on small changes, you can let other teams ship on their own — using the same components, design system, and visual editor as the rest of the product.

@@ -14,4 +14,4 @@ This unlocks true collaboration across teams:
 - Marketers can publish changes without opening a ticket
 - Engineers stay focused on building reusable components, not shipping pixels
 
-Whether it's a quick experiment or a live product surface, everyone gets to move faster—without stepping on each other.
+Whether it's a quick experiment or a live product surface, everyone gets to move faster without stepping on each other.

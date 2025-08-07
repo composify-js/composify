@@ -9,7 +9,7 @@ You might want to try:
 - Testing different CTAs, images, or copy based on user segments
 - Personalizing onboarding flows based on user behavior
 
-You can configure all of this from your backend. Assign layouts based on experiment groups, manage variants via feature flags, and analyze performance—no redeploys needed.
+You can configure all of this from your backend. Assign layouts based on experiment groups, manage variants via feature flags, and analyze performance — no redeploys needed.
 
 This also unlocks another powerful use case: lightweight prototyping. Say you have an idea for a new upsell screen, a referral flow, or a product announcement. You want to test it in the real app, not in Figma.
 
