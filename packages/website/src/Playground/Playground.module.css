@@ -14,10 +14,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  aspect-ratio: 1 / 0.66;
+  position: relative;
   border: 1px solid var(--docs-color-outline);
   border-radius: 4px;
   overflow: hidden;
+}
+
+.viewport {
+  display: flex;
+  position: absolute;
+  top: 0;
+  transform-origin: center top;
+  transition: all 0.1s linear;
+  overflow: scroll;
 }
 
 .mock {
