@@ -3,6 +3,7 @@ import '@composify/react/style.css';
 import { Editor, useComposifyEditor } from '@composify/react';
 import { getBox } from 'css-box-model';
 import { FC, useEffect, useRef, useState } from 'react';
+import { Backdrop } from '../Backdrop';
 import { useSource } from '../SourceContext';
 import styles from './Playground.module.css';
 
@@ -76,6 +77,7 @@ export const Playground: FC = () => {
             <Editor title="Home Page" source={source} onSubmit={setSource} />
           )}
         </div>
+        {!isLibrary && !isVisualEditor && <Backdrop />}
       </div>
       <p className={styles.description}>Make a change, hit save, and... tada! 🎉</p>
     </section>

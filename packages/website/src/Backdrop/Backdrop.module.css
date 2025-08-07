@@ -1,0 +1,25 @@
+.backdrop {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--docs-color-backdrop);
+  z-index: 1;
+}
+
+.iconBackground {
+  border-radius: 50%;
+  background-color: var(--docs-color-surface);
+  overflow: hidden;
+  opacity: 0.9;
+}
+
+.backdrop svg {
+  fill: var(--docs-color-on-surface);
+  opacity: 0.9;
+}
