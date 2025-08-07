@@ -1,15 +1,74 @@
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Getting Started
 
+:::note[We are working on Vue support!]
+Currently, Composify does not support Vue. We are working on it and will update the documentation once it's available.
+:::
+
 ## Installation
+
+You can install Composify using your favorite package managers.
 
 <Tabs groupId="package-manager">
   <TabItem value="npm" label="npm">
+    ```bash
+    npm install @composify/react --save
+    ```
   </TabItem>
   <TabItem value="pnpm" label="pnpm">
+    ```bash
+    pnpm add @composify/react
+    ```
   </TabItem>
   <TabItem value="yarn" label="yarn">
+    ```bash
+    yarn add @composify/react
+    ```
   </TabItem>
 </Tabs>
+
+## Usage
+
+### Register components
+
+```jsx
+import { Catalog } from '@composify/react/renderer';
+import { FC } from 'react';
+
+type Props = {
+  textAlign: 'left' | 'center' | 'right';
+  children: string;
+};
+
+const Text: FC<Props> = ({ textAlign, children }) => (
+  <p style={{ textAlign }}>{children}</p>
+);
+
+Catalog.register('Text', {
+  component: Text,
+  props: {
+    textAlign: {
+      label: 'Text Align',
+      type: 'radio',
+      options: [
+        { label: 'Left', value: 'left' },
+        { label: 'Center', value: 'center' },
+        { label: 'Right', value: 'right' },
+      ],
+      default: 'left',
+    },
+    children: {
+      label: 'Text',
+      type: 'string',
+      default: 'Hello, world!',
+    },
+  },
+});
+```
+
+### Render components
+
+### Using editor

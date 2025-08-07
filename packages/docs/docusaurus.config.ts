@@ -135,6 +135,7 @@ const config: Config = {
     prism: {
       theme: prismThemes.oneLight,
       darkTheme: prismThemes.oneDark,
+      additionalLanguages: ['bash'],
     },
   } satisfies Preset.ThemeConfig,
   headTags: [
