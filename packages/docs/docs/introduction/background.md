@@ -1,7 +1,3 @@
----
-sidebar_position: 2
----
-
 # Background
 
 A few years back, I co-founded an edtech company. Like most startups, we ran all kinds of promotions every month, which meant our team was constantly building one-off campaign pages. Over time, we started to see some common patterns — winning combinations we'd reuse again and again, just with different styles.
