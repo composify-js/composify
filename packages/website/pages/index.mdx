@@ -1,9 +1,10 @@
 ---
 layout: landing
+title: Server Driven UI made easy
 ---
 
-import { SourceProvider, SourceRenderer } from '../components/SourceContext';
-import '../components/catalog';
+import { SourceProvider, SourceRenderer } from '../src/SourceContext';
+import '../src/catalog';
 
 export default function Home() {
   return (
@@ -18,7 +19,7 @@ export default function Home() {
   <Playground />
   <FeatureGroup
     title="Visual editing, powered by your components."
-    description="Write components once, let anyone build with them through a visual interface.\nPerfect for design systems, no-code tools, and server-driven UI."
+    description="Write components once, let anyone build with them through a visual interface.\nPerfect for Server Driven UI, no-code website builders, and design tools."
   >
     <Feature
       title="Keep it simple with JSX"
@@ -38,7 +39,7 @@ export default function Home() {
       title="WYSIWYG, tailor-made"
       description="Drag and drop anything, anywhere. Everything works exactly as you'd expect."
       preview={
-        <MainCta to="/docs">
+        <MainCta to="/docs/getting-started">
           Get started →
         </MainCta>
       }

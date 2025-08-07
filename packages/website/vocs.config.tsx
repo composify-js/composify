@@ -29,27 +29,27 @@ export default defineConfig({
     </>
   ),
   topNav: [
-    { text: 'Docs', link: '/docs/welcome/introduction', match: '/docs' },
+    { text: 'Docs', link: '/docs' },
     { text: 'Blog', link: '/blog' },
   ],
   sidebar: [
     {
       text: 'Introduction',
-      link: '/docs/welcome/introduction',
+      link: '/docs',
     },
     {
       text: 'Background',
-      link: '/docs/welcome/background',
+      link: '/docs/background',
     },
     {
       text: 'Use Cases',
       collapsed: true,
       items: [
-        { text: 'Instant UI Updates', link: '/docs/welcome/use-cases/instant-ui-updates' },
-        { text: 'Unblock Your Team', link: '/docs/welcome/use-cases/unblock-your-team' },
-        { text: 'AB Testing and Prototyping', link: '/docs/welcome/use-cases/ab-testing-and-prototyping' },
-        { text: 'Design Systems', link: '/docs/welcome/use-cases/design-systems' },
-        { text: 'No-Code Tools', link: '/docs/welcome/use-cases/no-code-tools' },
+        { text: 'Instant UI Updates', link: '/docs/use-cases/instant-ui-updates' },
+        { text: 'Unblock Your Team', link: '/docs/use-cases/unblock-your-team' },
+        { text: 'AB Testing and Prototyping', link: '/docs/use-cases/ab-testing-and-prototyping' },
+        { text: 'Design Systems', link: '/docs/use-cases/design-systems' },
+        { text: 'No-Code Tools', link: '/docs/use-cases/no-code-tools' },
       ],
     },
     {

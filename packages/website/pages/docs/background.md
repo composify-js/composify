@@ -23,4 +23,4 @@ In fact, most big tech companies already have their own in-house SDUI platforms:
 
 If you don't have the resources to build something like that from scratch — but want the same level of flexibility and power — Composify might be what you're looking for. 
 
-Want to see what's possible with SDUI and visual editing? [Check out the use cases →](/docs/welcome/use-cases/instant-ui-updates)
+Want to see what's possible with SDUI and visual editing? [Check out the use cases →](/docs/use-cases/instant-ui-updates)

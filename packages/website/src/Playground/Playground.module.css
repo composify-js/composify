@@ -1,5 +1,6 @@
 .playground {
   padding: 1.5rem;
+  background-color: var(--docs-color-surface);
 }
 
 @media screen and (max-width: 720px) {
@@ -13,7 +14,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  aspect-ratio: 1 / 0.55;
+  aspect-ratio: 1 / 0.66;
   border: 1px solid var(--docs-color-outline);
   border-radius: 4px;
   overflow: hidden;
