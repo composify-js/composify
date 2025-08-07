@@ -141,12 +141,16 @@ html[data-theme='dark'] .header--github-link:before {
   border-top: 1px solid var(--ifm-color-outline);
 }
 
-/* Docs sidebar border color */
+/* Docs sidebar */
 .theme-doc-sidebar-container {
+  margin-top: 0;
   border-right: none;
 }
 
-/* Docs sidebar spacing */
+.theme-doc-sidebar-container > div > div {
+  padding-top: 0;
+}
+
 .menu {
   padding: 0.5rem !important;
 }
