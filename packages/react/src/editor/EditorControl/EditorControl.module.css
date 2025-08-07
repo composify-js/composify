@@ -39,6 +39,7 @@
 .EditorControl-SaveButton {
   padding: 0.4375rem 0.625rem;
   font-size: 0.75rem;
+  line-height: 1.4;
   color: var(--composify-palette-on-primary);
   background-color: var(--composify-palette-primary);
   border: none;

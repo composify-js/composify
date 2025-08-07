@@ -1,0 +1,130 @@
+:root {
+  --docs-color-primary: rgb(59, 130, 246);
+  --docs-color-on-primary: rgb(255, 255, 255);
+  --docs-color-secondary: rgb(60, 60, 60);
+  --docs-color-on-secondary: rgb(255, 255, 255);
+  --docs-color-surface: rgb(255, 255, 255);
+  --docs-color-on-surface: rgb(30, 30, 30);
+  --docs-color-on-surface-variant: rgb(80, 80, 80);
+  --docs-color-surface-container: rgb(245, 245, 245);
+  --docs-color-surface-container-low: rgb(250, 250, 250);
+  --docs-color-surface-container-high: rgb(240, 240, 240);
+  --docs-color-surface-container-highest: rgb(233, 233, 233);
+  --docs-color-outline: rgb(229, 229, 229);
+  --docs-color-outline-variant: rgb(210, 210, 210);
+
+  --docs-color-primary: #3b82f6;
+  --docs-color-primary-dark: #2563eb;
+  --docs-color-primary-darker: #1d4ed8;
+  --docs-color-primary-darkest: #1e40af;
+  --docs-color-primary-light: #60a5fa;
+  --docs-color-primary-lighter: #93c5fd;
+  --docs-color-primary-lightest: #bfdbfe;
+
+  --vocs-fontWeight_regular: 400;
+  --vocs-fontWeight_medium: 500;
+  --vocs-fontWeight_semibold: 600;
+}
+
+html.dark {
+  --docs-color-primary: rgb(59, 130, 246);
+  --docs-color-on-primary: rgb(255, 255, 255);
+  --docs-color-secondary: rgb(180, 180, 180);
+  --docs-color-on-secondary: rgb(0, 0, 0);
+  --docs-color-surface: rgb(18, 18, 18);
+  --docs-color-on-surface: rgb(235, 235, 235);
+  --docs-color-on-surface-variant: rgb(160, 160, 160);
+  --docs-color-surface-container: rgb(28, 28, 28);
+  --docs-color-surface-container-low: rgb(23, 23, 23);
+  --docs-color-surface-container-high: rgb(33, 33, 33);
+  --docs-color-surface-container-highest: rgb(40, 40, 40);
+  --docs-color-outline: rgb(60, 60, 60);
+
+  --docs-color-primary: #3b82f6;
+  --docs-color-primary-dark: #60a5fa;
+  --docs-color-primary-darker: #93c5fd;
+  --docs-color-primary-darkest: #bfdbfe;
+  --docs-color-primary-light: #2563eb;
+  --docs-color-primary-lighter: #1d4ed8;
+  --docs-color-primary-lightest: #1e40af;
+}
+
+/* Font settings */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.vocs_DocsLayout[data-layout="landing"] .vocs_DocsLayout_gutterTop {
+  position: relative;
+}
+
+.vocs_DocsLayout[data-layout="landing"] .vocs_DesktopTopNav {
+  justify-content: space-between;
+}
+
+.vocs_MobileTopNav {
+  background-color: transparent;
+  border-bottom: none;
+}
+
+.vocs_NavLogo_logoImage {
+  height: 60%;
+}
+
+.vocs_NavigationMenu_link {
+  font-size: var(--vocs-fontsize_16);
+  font-weight: var(--vocs-fontWeight_medium);
+  color: var(--docs-color-on-surface);
+  transition: color 0.1s linear;
+}
+
+.vocs_NavigationMenu_link:hover {
+  color: var(--docs-color-primary);
+}
+
+@media screen and (max-width: 1080px) {
+  :root {
+    --vocs-topNav_height: 56px;
+  }
+}
+
+.vocs_Sidebar_logo {
+  padding-top: 0;
+}
+
+.vocs_DocsLayout[data-layout="landing"] .vocs_DesktopTopNav {
+  display: none;
+}
+
+.vocs_DocsLayout[data-layout="landing"] .vocs_MobileTopNav {
+  display: flex;
+  padding: 0 1.5rem;
+}
+
+.vocs_DocsLayout[data-layout="landing"] .vocs_MobileTopNav_section {
+  gap: 2.5rem;
+}
+
+@media screen and (max-width: 720px) {
+  .vocs_DocsLayout[data-layout="landing"] .vocs_MobileTopNav {
+    display: flex;
+    padding: 0 1rem;
+  }
+
+  .vocs_DocsLayout[data-layout="landing"] .vocs_MobileTopNav_section {
+    gap: 1rem;
+  }
+}
+
+.vocs_DocsLayout[data-layout="landing"] .vocs_DocsLayout_content {
+  max-width: unset;
+  padding-top: 0;
+  margin-left: calc(var(--vocs_DocsLayout_leftGutterWidth) - var(--vocs-sidebar_width));
+  margin-right: calc(var(--vocs_DocsLayout_leftGutterWidth) - var(--vocs-sidebar_width));
+}
+
+.vocs_DocsLayout[data-layout="landing"] .vocs_Content {
+  max-width: unset;
+  padding: 0;
+}

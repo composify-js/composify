@@ -1,0 +1,13 @@
+.mainCta {
+  display: inline-block;
+  cursor: pointer;
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.25;
+  text-decoration: none;
+  border: 0;
+  color: var(--docs-color-on-primary);
+  background-color: var(--docs-color-primary);
+}

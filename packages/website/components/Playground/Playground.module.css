@@ -1,0 +1,42 @@
+.playground {
+  padding: 1.5rem;
+}
+
+@media screen and (max-width: 720px) {
+  .playground {
+    padding: 1rem;
+  }
+}
+
+.preview {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1 / 0.55;
+  border: 1px solid var(--docs-color-outline);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.mock {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 32px;
+}
+
+.mockTitle {
+  margin: 0;
+  font-size: 4rem;
+  font-weight: 600;
+  color: var(--docs-color-on-surface);
+}
+
+.description {
+  margin: 16px 0;
+  color: var(--docs-color-on-surface-variant);
+}

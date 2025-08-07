@@ -1,0 +1,7 @@
+---
+layout: minimal
+---
+ 
+# Blog
+ 
+::blog-posts

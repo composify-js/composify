@@ -1,0 +1,61 @@
+.heroBanner {
+  padding: 4rem 1.5rem 1.5rem 1.5rem;
+  background-color: var(--docs-color-surface);
+}
+
+@media screen and (max-width: 720px) {
+  .heroBanner {
+    padding: 4rem 1rem 1rem 1rem;
+  }
+}
+
+.title {
+  margin: 0;
+  letter-spacing: -0.02em;
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--docs-color-on-surface);
+}
+
+.description {
+  margin-top: 4px;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  line-height: 1.4;
+  color: var(--docs-color-on-surface);
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.button {
+  cursor: pointer;
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+.learnMore {
+  border: 0;
+  color: var(--docs-color-on-primary);
+  background-color: var(--docs-color-primary);
+}
+
+.learnMore:hover {
+  background-color: var(--docs-color-primary-dark);
+}
+
+.getStarted {
+  color: var(--docs-color-on-surface);
+  border: 1px solid var(--docs-color-outline);
+}
+
+.getStarted:hover {
+  border: 1px solid var(--docs-color-outline-variant);
+}

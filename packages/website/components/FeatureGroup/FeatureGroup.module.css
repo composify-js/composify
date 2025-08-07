@@ -1,0 +1,40 @@
+.featureGroup {
+  padding: 4rem 1.5rem 1.5rem 1.5rem;
+}
+
+@media screen and (max-width: 720px) {
+  .featureGroup {
+    padding: 4rem 1rem 1rem 1rem;
+  }
+}
+
+.title {
+  margin: 0;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--docs-color-on-surface);
+}
+
+.description {
+  margin-top: 8px;
+  margin-bottom: 48px;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  color: var(--docs-color-on-surface);
+}
+
+.features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1.5rem;
+}
+
+@media (max-width: 1080px) {
+  .features {
+    display: flex;
+    flex-direction: column;
+  }
+}

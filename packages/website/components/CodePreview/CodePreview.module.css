@@ -1,0 +1,31 @@
+.codePreview {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border: 1px solid var(--docs-color-outline);
+  aspect-ratio: 1 / 0.5;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.codePreview::-webkit-scrollbar {
+  display: none;
+}
+
+.codePreview div {
+  margin-bottom: 0 !important;
+}
+
+@media (max-width: 1080px) {
+  .codePreview {
+    aspect-ratio: 1 / 0.6;
+  }
+}
+
+html.dark .light {
+  display: none;
+}
+
+html:not(.dark) .dark {
+  display: none;
+}
