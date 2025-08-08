@@ -168,6 +168,9 @@ export class NodeManager {
 
       node.implicit.children[prop.key] = populatedValue;
       node.props[prop.key] = populatedValue;
+    } else if (typeof prop.value === 'undefined') {
+      delete node.props[prop.key];
+      delete node.implicit.children[prop.key];
     } else {
       node.props[prop.key] = prop.value;
     }
