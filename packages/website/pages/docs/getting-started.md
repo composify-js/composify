@@ -102,7 +102,7 @@ The renderer only parses JSX — it won't run variables, functions, expressions 
 
 ## Edit visually
 
-Want to edit that JSX visually? Use the `Editor` component. Just like `Renderer`, pass in your JSX string as source.
+To edit JSX in a visual way, use the `Editor` component. Just like `Renderer`, pass in your JSX string as source.
 
 ```jsx [editor.tsx]
 import { Editor } from '@composify/react/editor';
