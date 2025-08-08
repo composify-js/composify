@@ -46,14 +46,12 @@ export default defineConfig({
       link: '/docs/getting-started',
     },
     {
-      text: 'Integration',
+      text: 'Tutorial',
       collapsed: false,
       items: [
-        { text: 'React', link: '/docs/integration/react' },
-        { text: 'React Native', link: '/docs/integration/react-native' },
-        { text: 'Next.js', link: '/docs/integration/nextjs' },
-        { text: 'Astro', link: '/docs/integration/astro' },
-        { text: 'Gatsby', link: '/docs/integration/gatsby' },
+        { text: 'React Router', link: '/docs/tutorial/react-router' },
+        { text: 'Next.js', link: '/docs/tutorial/nextjs' },
+        { text: 'Expo', link: '/docs/tutorial/expo' },
       ],
     },
     {
