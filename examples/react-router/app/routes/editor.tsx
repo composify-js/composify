@@ -1,7 +1,8 @@
 import '@composify/react/preset';
+import '@composify/react/style.css';
 import '../components';
 
-import { Renderer } from '@composify/react/renderer';
+import { Editor } from '@composify/react/editor';
 
 export function meta() {
   return [{ title: 'New React Router App' }, { name: 'description', content: 'Welcome to React Router!' }];
@@ -21,6 +22,6 @@ const source = `
   </VStack>
 `;
 
-export default function HomePage() {
-  return <Renderer source={source} />;
+export default function EditorPage() {
+  return <Editor title="Composify" source={source} />;
 }
