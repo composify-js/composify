@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Renderer',
-  description: 'Render Composify components in Next.js',
+  title: 'Composify Next.js Example',
+  description: 'Server Driven UI made easy 😍',
 };
 
 export default function Layout({

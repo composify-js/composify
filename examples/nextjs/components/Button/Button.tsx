@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 
 type Props = PropsWithChildren<{
   variant: 'primary' | 'outline';

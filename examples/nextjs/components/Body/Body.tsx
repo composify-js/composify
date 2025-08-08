@@ -1,4 +1,4 @@
-import { type FC, type PropsWithChildren } from 'react';
+import { FC, PropsWithChildren } from 'react';
 
 type Props = PropsWithChildren<{
   color?: string;

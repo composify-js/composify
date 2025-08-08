@@ -1,7 +1,7 @@
-import { createElement, type FC, type PropsWithChildren } from 'react';
+import { createElement, FC, PropsWithChildren } from 'react';
 
 type Props = PropsWithChildren<{
-  level?: 1 | 2 | 3 | 4 | 5 | 6;
+  level?: 1 | 2 | 3;
   weight?: 'semibold' | 'bold' | 'extrabold';
 }>;
 
@@ -9,9 +9,6 @@ const TEXT_SIZE_BY_LEVEL = {
   1: 'text-4xl',
   2: 'text-3xl',
   3: 'text-2xl',
-  4: 'text-xl',
-  5: 'text-lg',
-  6: 'text-md',
 };
 
 const FONT_WEIGHT_BY_WEIGHT = {

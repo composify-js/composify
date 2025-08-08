@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 export default function EditorPage({ slug, source }: { slug: string; source: string }) {
   const router = useRouter();
 
-  const onSubmit = async (source: string) => {
+  const handleSubmit = async (source: string) => {
     await fetch('/api/documents', {
       method: 'POST',
       headers: {
@@ -27,5 +27,5 @@ export default function EditorPage({ slug, source }: { slug: string; source: str
     }
   };
 
-  return <Editor title="Composify" source={source} onSubmit={onSubmit} />;
+  return <Editor title={slug} source={source} onSubmit={handleSubmit} />;
 }
