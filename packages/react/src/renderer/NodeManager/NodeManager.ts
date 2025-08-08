@@ -171,6 +171,8 @@ export class NodeManager {
     } else if (typeof prop.value === 'undefined') {
       delete node.props[prop.key];
       delete node.implicit.children[prop.key];
+    } else if (prop.key === 'children' && typeof prop.value === 'string') {
+      node.children = [prop.value];
     } else {
       node.props[prop.key] = prop.value;
     }

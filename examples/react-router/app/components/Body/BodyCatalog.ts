@@ -4,6 +4,10 @@ import { Body } from './Body';
 Catalog.register('Body', {
   component: Body,
   props: {
+    children: {
+      label: 'Content',
+      type: 'text',
+    },
     color: {
       label: 'Text Color',
       type: 'text',

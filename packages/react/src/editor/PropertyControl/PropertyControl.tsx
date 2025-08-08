@@ -27,7 +27,11 @@ export const PropertyControl = <SpecValue, Value = SpecValue>({
 }: Props<SpecValue, Value>) => {
   const { activeBlock, updateActiveBlock } = useEditing();
 
-  const tentativeValue: Value | undefined = onChange ? value : activeBlock?.props[name];
+  const tentativeValue: Value | undefined = onChange
+    ? value
+    : name === 'children'
+      ? activeBlock?.children[0]
+      : activeBlock?.props[name];
   const effectiveValue = tentativeValue === undefined ? (spec.optional ? undefined : defaultValue) : tentativeValue;
 
   const isEffectiveValueDefined = typeof effectiveValue !== 'undefined';

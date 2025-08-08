@@ -1,6 +1,6 @@
 import '@composify/react/preset';
 import '@composify/react/style.css';
-import '../components';
+import '~/components';
 
 import { Editor } from '@composify/react/editor';
 
@@ -19,9 +19,20 @@ const source = `
     <Body color="#1E1E1E" weight="normal">
       Bring visual editing to your components — no rewrites needed.
     </Body>
+    <HStack
+      alignVertical="center"
+      alignHorizontal="flex-start"
+      gap={4}
+      margin={{ top: 16 }}
+    >
+      <Button variant="primary">Learn More ›</Button>
+      <Button variant="outline">Get started →</Button>
+    </HStack>
   </VStack>
 `;
 
 export default function EditorPage() {
-  return <Editor title="Composify" source={source} />;
+  return (
+    <Editor title="Composify" source={source} onSubmit={typeof window === 'undefined' ? console.log : window.alert} />
+  );
 }
