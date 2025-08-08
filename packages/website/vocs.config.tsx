@@ -48,7 +48,7 @@ export default defineConfig({
         { text: 'Instant UI Updates', link: '/docs/use-cases/instant-ui-updates' },
         { text: 'Unblock Your Team', link: '/docs/use-cases/unblock-your-team' },
         { text: 'AB Testing and Prototyping', link: '/docs/use-cases/ab-testing-and-prototyping' },
-        { text: 'Design Systems', link: '/docs/use-cases/design-systems' },
+        { text: 'Design Tools', link: '/docs/use-cases/design-tools' },
         { text: 'No-Code Tools', link: '/docs/use-cases/no-code-tools' },
       ],
     },

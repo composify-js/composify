@@ -1,16 +1,16 @@
 # Background [Why we built this?]
 
-A few years back, I co-founded an edtech company. Like most startups, we ran all kinds of promotions every month, which meant our team was constantly building one-off campaign pages. Over time, we started to see some common patterns — winning combinations we'd reuse again and again, just with different styles.
+A few years back, I co-founded an edtech company. Like most startups, we ran all kinds of promotions every month, which meant our team was constantly building one-off campaign pages.
 
-We realized we were basically playing with LEGO blocks, reassembling the same components over and over. It worked, but it was tedious, repetitive, and honestly, kind of draining.
+Over time, we started to notice patterns — certain page layouts and component combos that worked well. We'd reuse them over and over, just with different styles. Basically, we were playing with "building blocks" made from our existing components... but doing it manually was tedious, repetitive, and honestly, kind of draining.
 
-We wanted a more scalable way to do this, so we looked around and found [Blocks UI](https://blocks-ui.com), a JSX-based visual editor. It was a promising concept and a great fit for our stack, but it wasn't fully built out and had some limitations. So we rolled up our sleeves and built our own editor and renderer from scratch.
+We wanted a more scalable way to do this, so we looked around and found [Blocks UI](https://blocks-ui.com), a JSX-based visual editor.It was a promising concept and a great fit for our stack, but it wasn't fully built out and had some limitations. So we rolled up our sleeves and built our own editor and renderer from scratch.
 
-Two years later, that internal tool became a core part of our company. Every single marketing campaign, product experiment, and dynamic content surface was built with it. At one point, it powered over 60% of all incoming traffic — and that number kept growing.
+Fast-forward two years: it became one of the most-used tools in the company. Every marketing campaign ran through it. It powered product experiments. It even handled 60% of all incoming traffic — and kept growing.
 
-After leaving the company, I worked on several different teams across multiple companies, and I kept running into the same need: a WYSIWYG editor that works with _our_ components, without forcing a rewrite or a complex API. Something lightweight, flexible, and easy to plug into large existing codebases.
+After I moved on to other projects and companies, I realized something: a lot of teams actually need a WYSIWYG editor that works with their own components. They just don't know it yet. And like me back then, they don't want a tool that forces rewrites or adds complex APIs — especially in a large, established codebase.
 
-I looked around again. Still nothing that fit. So we built it.
+I looked around again. Still nothing that fit. So we built one.
 
 Composify started from a small, specific use case, but it turns out that's just scratching the surface of what Server-Driven UI and visual component editors can do.
 

@@ -2,7 +2,7 @@
 
 ## Installation
 
-Install Composify with your favorite package manager:
+Add Composify to your project using your favorite package manager:
 
 :::code-group
 ```bash [npm]
@@ -18,13 +18,13 @@ yarn add @composify/react
 ```
 :::
 
-:::note[Vue support coming soon!]
-Composify currently supports React only. Vue support is in the works and will be available soon.
+:::info[Vue support is on the way 🚀]
+Right now Composify works with React only. Vue support is in the works and coming soon.
 :::
 
-## Register components
+## Register your components
 
-To make your components available in the editor and renderer, you need to register them with the Composify catalog.
+Before you can use a component in the `Editor` or `Renderer`, you need to register it in the Composify catalog.
 
 ```jsx [catalog.tsx]
 import { Catalog } from '@composify/react/renderer';
@@ -61,11 +61,11 @@ Catalog.register('Text', {
 });
 ```
 
-Make sure this file is imported at the entry point of your app (like index.tsx or app.tsx). For more options and advanced config, see the [Catalog API docs](/docs/api/catalog).
+Make sure this file is imported at the entry point of your app (like `index.tsx` or `app.tsx`). For more options and advanced config, see the [Catalog API docs](/docs/api/catalog).
 
 ## Render components
 
-To render JSX content from your catalog, use the `Renderer` component. Just pass a JSX string to the source prop.
+Once registered, render JSX content with the `Renderer` component. Pass a JSX string to the source prop, and we will take care of the rest.
 
 ```jsx [page.tsx]
 import { Renderer } from '@composify/react/renderer';
@@ -96,8 +96,34 @@ export const Page = () => (
 );
 ```
 
-:::warning[The renderer does not evaluate JavaScript.]
-You can't use variables, functions, or expressions directly in the source string.
+:::warning[No JavaScript execution]
+The renderer only parses JSX — it won't run variables, functions, expressions in your source string.
 :::
 
-## Using editor
+## Edit visually
+
+Want to edit that JSX visually? Use the `Editor` component. Just like `Renderer`, pass in your JSX string as source.
+
+```jsx [editor.tsx]
+import { Editor } from '@composify/react/editor';
+import '@composify/react/style.css';
+
+const source = `
+  <div>
+    <h1>Welcome to Composify!</h1>
+    <Text textAlign="center">This is a simple example.</Text>
+  </div>
+`;
+
+export const Page = () => (
+  <Editor title="Lorem Ipsum" source={source} onSubmit={console.log} />
+);
+```
+
+Don't forget to import our styles.
+
+```jsx [editor.tsx]
+import '@composify/react/style.css';
+```
+
+For more details, check out the [Editor API docs](/docs/api/editor)

@@ -1,17 +1,17 @@
-# No code tools
+# No code tools [For non-developers]
 
-Not every UI change comes from the product team. Marketing needs to launch new promotions. Content editors want to tweak a landing page. Ops teams want to run localized campaigns or seasonal themes.
+Not every UI change comes from the product team. Marketing might need to launch a promotion. Content editors may want to adjust a landing page. Ops could be running a localized campaign or seasonal theme.
 
 With Composify, they can:
 
 - Build campaign pages from pre-defined blocks
-- Edit text, images, and layout visually, without code
-- Ship changes instantly, without waiting for a developer
+- Edit text, images, and layout visually, without coding
+- Publish changes instantly, without waiting for a deploy
 
-This works especially well for:
+Common use cases:
 
 - Promotional or campaign landing pages
-- Regional or seasonal content
-- Blog-like longform layouts powered by real components
+- Regional or seasonal variations
+- Blog-like longform layouts using real components
 
 Instead of building custom CMSs or burning engineering time on small changes, you can let other teams ship on their own — using the same components, design system, and visual editor as the rest of the product.

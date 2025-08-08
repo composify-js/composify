@@ -1,17 +1,17 @@
-# Unblock your team
+# Unblock your team [Empower non-developers to build and ship.]
 
-Empower non-developers to build and ship. Engineers shouldn't be pixel-pushing text alignments or changing CTA copy for the 17th time.
+In many teams, small UI changes still end up in the engineering queue — adjusting text alignment, swapping an image, or updating CTA copy for the umpteenth time.
 
-With Composify, engineers build and expose components. Then, marketers, designers, content editors, or PMs use a visual editor to:
+With Composify, engineers focus on building and exposing reusable components. Then, non-developers — marketers, designers, content editors, PMs — use the visual editor to:
 
-- Drag and drop components to build a page
-- Update copy or assets without touching code
-- Adjust layout visually, in a way that's guaranteed to follow the design system
+- Drag and drop components to build or rearrange a page
+- Update copy, images, or other assets without code
+- Tweak layouts while staying within the design system
 
 This unlocks true collaboration across teams:
 
 - Designers don't need to wait for developer availability
 - Marketers can publish changes without opening a ticket
-- Engineers stay focused on building reusable components, not shipping pixels
+- Engineers stay focused on core features, not shipping pixels
 
-Whether it's a quick experiment or a live product surface, everyone gets to move faster without stepping on each other.
+From quick experiments to live product surfaces, each team can work in parallel and ship faster without stepping on each other's toes.

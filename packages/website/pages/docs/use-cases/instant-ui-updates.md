@@ -1,7 +1,7 @@
-# Instant UI updates [Beyond code push]
+# Instant UI updates [Beyond code pushs]
 
-Traditionally, most apps have a hardcoded UI defined on the client. So even a small tweak — like changing a banner title or adjusting layout spacing — requires a full deploy, sometimes even an app store review.
+Most apps still ship with a hard-coded UI on the client. Which means even the tiniest tweak — a banner title change, a few pixels of spacing — needs a full redeploy, and sometimes even an app store review.
 
-With Composify, you control the UI structure from the server. That means you can ship changes instantly. No waiting for CI/CD pipelines, no manual QA passes, no user update prompts. The next time the app loads, it fetches the latest layout and renders it.
+With Composify, your UI layout lives on the server. Change it there, and it's live instantly. No waiting for CI/CD, no dragging QA into the loop, no "please update your app" messages. The next time the client loads, it just pulls the latest layout and renders it.
 
-While tools like CodePush or Over-the-Air updates can help, they still involve downloading and applying a new JS bundle. Composify skips all that. You just send a new JSX string, and the renderer takes care of the rest.
+CodePush or other over-the-air tools help, but they still require shipping and applying a new JS bundle. Composify skips that step entirely — send a new JSX string, and the renderer handles the rest.
