@@ -10,7 +10,7 @@ export function meta() {
 const source = `
   <VStack
     alignVertical="center"
-    alignHorizontal="flex-start"
+    alignHorizontal="stretch"
     padding={{ top: 16, bottom: 16, left: 16, right: 16 }}
     gap={4}
   >
@@ -19,7 +19,7 @@ const source = `
       Bring visual editing to your components — no rewrites needed.
     </Body>
     <HStack
-      alignVertical="center"
+      alignVertical="stretch"
       alignHorizontal="flex-start"
       gap={4}
       margin={{ top: 16 }}

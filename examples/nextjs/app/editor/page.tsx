@@ -1,81 +1,36 @@
 'use client';
 
+import '@composify/react/preset';
 import '@composify/react/style.css';
+import '@/components';
+
 import { Editor } from '@composify/react/editor';
-import { HStack, VStack } from '@composify/react/preset';
-import { Catalog } from '@composify/react/renderer';
-
-const Text = () => <p>Hello world!</p>;
-
-Catalog.register('Text', {
-  component: Text,
-  props: {},
-});
-
-Catalog.register('HStack', {
-  component: HStack,
-  props: {
-    children: {
-      label: 'Children',
-      type: 'node',
-    },
-    width: {
-      label: 'Width',
-      type: 'text',
-      default: '100%',
-    },
-    height: {
-      label: 'Height',
-      type: 'number',
-      default: 96,
-    },
-    backgroundColor: {
-      label: 'Background',
-      type: 'text',
-      default: 'lightgray',
-    },
-  },
-});
-
-Catalog.register('VStack', {
-  component: VStack,
-  props: {
-    children: {
-      label: 'Children',
-      type: 'node',
-    },
-    width: {
-      label: 'Width',
-      type: 'text',
-      default: '100%',
-    },
-    height: {
-      label: 'Height',
-      type: 'number',
-      default: 96,
-    },
-    backgroundColor: {
-      label: 'Background',
-      type: 'text',
-      default: 'lightgray',
-    },
-  },
-});
 
 const source = `
-  <VStack>
-    <HStack backgroundColor="#ECEFF1">
-      <HStack width={200} height={100} backgroundColor="#E1F5FE" />
-      <Text />
-      <HStack width={150} height={100} backgroundColor="#B3E5FC" />
+  <VStack
+    alignVertical="center"
+    alignHorizontal="stretch"
+    padding={{ top: 16, bottom: 16, left: 16, right: 16 }}
+    gap={4}
+  >
+    <Heading level={1} weight="extrabold">Server Driven UI made easy</Heading>
+    <Body color="#1E1E1E" weight="normal">
+      Bring visual editing to your components — no rewrites needed.
+    </Body>
+    <HStack
+      alignVertical="stretch"
+      alignHorizontal="flex-start"
+      gap={4}
+      margin={{ top: 16 }}
+    >
+      <Button variant="primary">Learn More ›</Button>
+      <Button variant="outline">Get started →</Button>
     </HStack>
-    <HStack backgroundColor="#CFD8DC">
-      <HStack width={100} height={100} backgroundColor="#81D4FA" />
-    </HStack>
-    <HStack backgroundColor="#B0BEC5" />
   </VStack>
 `;
 
-export default function Page() {
-  return <Editor title="Lorem Ipsum" source={source} />;
+export default function EditorPage() {
+  return (
+    <Editor title="Composify" source={source} onSubmit={typeof window === 'undefined' ? console.log : window.alert} />
+  );
 }
