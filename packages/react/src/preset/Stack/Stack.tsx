@@ -2,21 +2,21 @@ import { FC, PropsWithChildren, useMemo } from 'react';
 
 export type StackProps = {
   /* flex */
-  flex?: number;
-  flexDirection?: 'row' | 'column';
+  flexGrow?: number;
   flexWrap?: 'wrap' | 'nowrap';
+  flexDirection?: 'row' | 'column';
+  gap?: number;
   alignItems?: 'flex-start' | 'flex-end' | 'center' | 'stretch';
   alignSelf?: 'auto' | 'flex-start' | 'flex-end' | 'center' | 'stretch';
   justifyContent?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
-  gap?: number;
-  /* size */
-  width?: number | string;
-  minWidth?: number | string;
-  maxWidth?: number | string;
-  height?: number | string;
-  minHeight?: number | string;
-  maxHeight?: number | string;
-  /* space */
+  size?: {
+    width?: number | string;
+    minWidth?: number | string;
+    maxWidth?: number | string;
+    height?: number | string;
+    minHeight?: number | string;
+    maxHeight?: number | string;
+  };
   padding?: {
     top: number;
     right: number;
@@ -29,37 +29,28 @@ export type StackProps = {
     bottom: number;
     left: number;
   };
-  /* border */
   border?: {
-    width: number;
-    style: 'solid' | 'dashed' | 'dotted';
-    color: string;
+    width?: number;
+    style?: 'solid' | 'dashed' | 'dotted';
+    color?: string;
+    radius?: number;
   };
-  borderRadius?: number;
-  /* background */
   backgroundColor?: string;
-  /* overflow */
   overflow?: 'hidden' | 'visible' | 'scroll';
 };
 
 export const Stack: FC<PropsWithChildren<StackProps>> = ({
-  flex,
-  flexDirection,
+  flexGrow,
   flexWrap,
+  flexDirection,
+  gap,
   alignItems,
   alignSelf,
   justifyContent,
-  gap,
-  width,
-  minWidth,
-  maxWidth,
-  height,
-  minHeight,
-  maxHeight,
+  size,
   padding,
   margin,
   border,
-  borderRadius,
   backgroundColor,
   overflow,
   ...props
@@ -67,19 +58,19 @@ export const Stack: FC<PropsWithChildren<StackProps>> = ({
   const style = useMemo(
     () => ({
       display: 'flex',
-      flex,
-      flexDirection,
+      flexGrow: flexGrow,
       flexWrap,
+      flexDirection,
+      gap,
       alignItems,
       alignSelf,
       justifyContent,
-      gap,
-      width,
-      minWidth,
-      maxWidth,
-      height,
-      minHeight,
-      maxHeight,
+      width: size?.width,
+      minWidth: size?.minWidth,
+      maxWidth: size?.maxWidth,
+      height: size?.height,
+      minHeight: size?.minHeight,
+      maxHeight: size?.maxHeight,
       paddingLeft: padding?.left,
       paddingRight: padding?.right,
       paddingTop: padding?.top,
@@ -92,27 +83,21 @@ export const Stack: FC<PropsWithChildren<StackProps>> = ({
       borderWidth: border?.width,
       borderStyle: border?.style,
       borderColor: border?.color,
-      borderRadius,
+      borderRadius: border?.radius,
       backgroundColor,
     }),
     [
-      flex,
-      flexDirection,
+      flexGrow,
       flexWrap,
+      flexDirection,
+      gap,
       alignItems,
       alignSelf,
       justifyContent,
-      gap,
-      width,
-      minWidth,
-      maxWidth,
-      height,
-      minHeight,
-      maxHeight,
+      size,
       padding,
       margin,
       border,
-      borderRadius,
       backgroundColor,
       overflow,
     ]

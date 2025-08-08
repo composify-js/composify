@@ -1,0 +1,210 @@
+import { Catalog } from '../../renderer';
+import { HStack } from './HStack';
+
+Catalog.register('HStack', {
+  component: HStack,
+  props: {
+    flexGrow: {
+      label: 'Flex Grow',
+      type: 'number',
+      default: 0,
+      optional: true,
+    },
+    gap: {
+      label: 'Gap',
+      type: 'number',
+      default: 0,
+      optional: true,
+    },
+    alignHorizontal: {
+      label: 'Horizontal',
+      type: 'select',
+      options: [
+        { label: 'Start', value: 'flex-start' },
+        { label: 'End', value: 'flex-end' },
+        { label: 'Center', value: 'center' },
+        { label: 'Space Between', value: 'space-between' },
+        { label: 'Space Around', value: 'space-around' },
+        { label: 'Space Evenly', value: 'space-evenly' },
+      ],
+      default: 'flex-start',
+      optional: true,
+    },
+    alignVertical: {
+      label: 'Vertical',
+      type: 'select',
+      options: [
+        { label: 'Start', value: 'flex-start' },
+        { label: 'End', value: 'flex-end' },
+        { label: 'Center', value: 'center' },
+        { label: 'Stretch', value: 'stretch' },
+      ],
+      default: 'stretch',
+      optional: true,
+    },
+    size: {
+      label: 'Size',
+      type: 'object',
+      fields: {
+        width: {
+          label: 'Width',
+          type: 'number',
+          default: 100,
+          optional: true,
+        },
+        minWidth: {
+          label: 'Min Width',
+          type: 'number',
+          default: 0,
+          optional: true,
+        },
+        maxWidth: {
+          label: 'Max Width',
+          type: 'number',
+          default: 1000,
+          optional: true,
+        },
+        height: {
+          label: 'Height',
+          type: 'number',
+          default: 100,
+          optional: true,
+        },
+        minHeight: {
+          label: 'Min Height',
+          type: 'number',
+          default: 0,
+          optional: true,
+        },
+        maxHeight: {
+          label: 'Max Height',
+          type: 'number',
+          default: 1000,
+          optional: true,
+        },
+      },
+      optional: true,
+    },
+    padding: {
+      label: 'Padding',
+      type: 'object',
+      fields: {
+        top: {
+          label: 'Top',
+          type: 'number',
+          default: 0,
+        },
+        right: {
+          label: 'Right',
+          type: 'number',
+          default: 0,
+        },
+        bottom: {
+          label: 'Bottom',
+          type: 'number',
+          default: 0,
+        },
+        left: {
+          label: 'Left',
+          type: 'number',
+          default: 0,
+        },
+      },
+      optional: true,
+    },
+    margin: {
+      label: 'Margin',
+      type: 'object',
+      fields: {
+        top: {
+          label: 'Top',
+          type: 'number',
+          default: 0,
+        },
+        right: {
+          label: 'Right',
+          type: 'number',
+          default: 0,
+        },
+        bottom: {
+          label: 'Bottom',
+          type: 'number',
+          default: 0,
+        },
+        left: {
+          label: 'Left',
+          type: 'number',
+          default: 0,
+        },
+      },
+      optional: true,
+    },
+    border: {
+      label: 'Border',
+      type: 'object',
+      fields: {
+        width: {
+          label: 'Width',
+          type: 'number',
+          default: 1,
+          optional: true,
+        },
+        style: {
+          label: 'Style',
+          type: 'select',
+          options: [
+            { label: 'Solid', value: 'solid' },
+            { label: 'Dashed', value: 'dashed' },
+            { label: 'Dotted', value: 'dotted' },
+          ],
+          default: 'solid',
+          optional: true,
+        },
+        color: {
+          label: 'Color',
+          type: 'text',
+          default: '#000000',
+          optional: true,
+        },
+        radius: {
+          label: 'Radius',
+          type: 'number',
+          default: 0,
+          optional: true,
+        },
+      },
+      optional: true,
+    },
+    backgroundColor: {
+      label: 'Background Color',
+      type: 'text',
+      default: '#ffffff',
+      optional: true,
+    },
+    flexWrap: {
+      label: 'Wrap',
+      type: 'radio',
+      options: [
+        { label: 'No Wrap', value: 'nowrap' },
+        { label: 'Wrap', value: 'wrap' },
+      ],
+      default: 'nowrap',
+      optional: true,
+    },
+    overflow: {
+      label: 'Overflow',
+      type: 'radio',
+      options: [
+        { label: 'Hidden', value: 'hidden' },
+        { label: 'Visible', value: 'visible' },
+        { label: 'Scroll', value: 'scroll' },
+      ],
+      default: 'visible',
+      optional: true,
+    },
+    children: {
+      label: 'Children',
+      type: 'node',
+    },
+  },
+});

@@ -1,35 +1,18 @@
-import { ReactNode } from 'react';
-import { HStack } from '../../preset/HStack';
-import { VStack } from '../../preset/VStack';
 import { Catalog } from '../../renderer';
 import { Editor } from './Editor';
+import '../../preset';
 
-const Text = ({
-  content,
-  suffix,
-  textAlign,
-}: {
-  content: string;
-  suffix?: ReactNode;
-  textAlign: 'left' | 'center' | 'right';
-}) => (
-  <div>
-    <p style={{ textAlign }}>{content}</p>
-    {suffix}
-  </div>
+const Text = ({ children, textAlign }: { children: string; textAlign: 'left' | 'center' | 'right' }) => (
+  <span style={{ textAlign }}>{children}</span>
 );
 
 Catalog.register('Text', {
   component: Text,
   props: {
-    content: {
+    children: {
       label: 'Content',
       type: 'text',
       default: 'Lorem ipsum',
-    },
-    suffix: {
-      label: 'Suffix',
-      type: 'node',
     },
     textAlign: {
       label: 'Text Align',
@@ -39,76 +22,65 @@ Catalog.register('Text', {
         { label: 'Center', value: 'center' },
         { label: 'Right', value: 'right' },
       ],
-    },
-  },
-});
-
-Catalog.register('HStack', {
-  component: HStack,
-  category: 'Layout',
-  props: {
-    children: {
-      label: 'Children',
-      type: 'node',
-    },
-    width: {
-      label: 'Width',
-      type: 'text',
-      default: '100%',
-    },
-    height: {
-      label: 'Height',
-      type: 'number',
-      default: 100,
-    },
-    backgroundColor: {
-      label: 'Background',
-      type: 'text',
-      default: 'lightgray',
-      optional: true,
-    },
-  },
-});
-
-Catalog.register('VStack', {
-  component: VStack,
-  category: 'Layout',
-  props: {
-    children: {
-      label: 'Children',
-      type: 'node',
-    },
-    width: {
-      label: 'Width',
-      type: 'text',
-      default: '100%',
-    },
-    height: {
-      label: 'Height',
-      type: 'number',
-      default: 100,
-    },
-    backgroundColor: {
-      label: 'Background',
-      type: 'text',
-      default: 'lightgray',
-      optional: true,
+      default: 'left',
     },
   },
 });
 
 export const BasicUsage = () => {
   const source = `
-    <VStack>
-      <HStack backgroundColor="#ECEFF1">
-        <HStack width={200} height={100} backgroundColor="#E1F5FE" />
-        <Text />
-        <HStack width={150} height={100} backgroundColor="#B3E5FC" />
+    <VStack
+      flexGrow={1}
+      gap={8}
+      alignVertical="flex-start"
+      alignHorizontal="stretch"
+      backgroundColor="#ffffff"
+      overflow="visible"
+    >
+      <Text textAlign="left">Welcome to Composify! 👋</Text>
+      <HStack
+        flexGrow={1}
+        alignVertical="stretch"
+        alignHorizontal="flex-start"
+        backgroundColor="#f8fafc"
+        overflow="visible"
+      >
+        <HStack
+          flexGrow={0}
+          alignVertical="stretch"
+          alignHorizontal="flex-start"
+          size={{ width: 100, height: 100 }}
+          backgroundColor="#f1f5f9"
+        />
+        <HStack
+          flexGrow={0}
+          alignVertical="stretch"
+          alignHorizontal="flex-start"
+          size={{ width: 125, height: 100 }}
+          backgroundColor="#e2e8f0"
+        />
+        <HStack
+          flexGrow={0}
+          alignVertical="stretch"
+          alignHorizontal="flex-start"
+          size={{ width: 150, height: 100 }}
+          backgroundColor="#cbd5e1"
+        />
       </HStack>
-      <HStack backgroundColor="#CFD8DC">
-        <HStack width={100} height={100} backgroundColor="#81D4FA" />
-      </HStack>
-      <HStack backgroundColor="#B0BEC5" />
+      <HStack
+        flexGrow={1}
+        alignVertical="stretch"
+        alignHorizontal="flex-start"
+        size={{ height: 100 }}
+        backgroundColor="#f1f5f9"
+      />
+      <HStack
+        flexGrow={1}
+        alignVertical="stretch"
+        alignHorizontal="flex-start"
+        size={{ height: 100 }}
+        backgroundColor="#cbd5e1"
+      />
     </VStack>
   `;
 

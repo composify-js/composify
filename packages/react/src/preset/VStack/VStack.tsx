@@ -1,37 +1,11 @@
-import { FC, PropsWithChildren, useMemo } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import { Stack, StackProps } from '../Stack';
 
 type Props = Omit<StackProps, 'flexDirection' | 'alignItems' | 'justifyContent'> & {
-  alignHorizontal?: 'center' | 'end' | 'start' | 'stretch';
-  alignVertical?: 'between' | 'center' | 'end' | 'start';
+  alignVertical?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+  alignHorizontal?: 'flex-start' | 'flex-end' | 'center' | 'stretch';
 };
 
-export const VStack: FC<PropsWithChildren<Props>> = ({ alignHorizontal, alignVertical, ...props }) => {
-  const alignItems = useMemo(() => {
-    switch (alignHorizontal) {
-      case 'center':
-        return 'center';
-      case 'end':
-        return 'flex-end';
-      case 'start':
-        return 'flex-start';
-      case 'stretch':
-        return 'stretch';
-    }
-  }, [alignHorizontal]);
-
-  const justifyContent = useMemo(() => {
-    switch (alignVertical) {
-      case 'between':
-        return 'space-between' as const;
-      case 'center':
-        return 'center' as const;
-      case 'end':
-        return 'flex-end' as const;
-      case 'start':
-        return 'flex-start' as const;
-    }
-  }, [alignVertical]);
-
-  return <Stack flexDirection="column" alignItems={alignItems} justifyContent={justifyContent} {...props} />;
-};
+export const VStack: FC<PropsWithChildren<Props>> = ({ alignVertical, alignHorizontal, ...props }) => (
+  <Stack flexDirection="column" alignItems={alignHorizontal} justifyContent={alignVertical} {...props} />
+);
