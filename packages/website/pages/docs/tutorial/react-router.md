@@ -56,6 +56,17 @@ export async function action({ request }: ActionFunctionArgs) {
 }
 ```
 
+Don't forget to register the route in `app/routes.ts`:
+
+```ts [app/routes.ts]
+import { type RouteConfig, index, route } from '@react-router/dev/routes';
+
+export default [
+  index('routes/home.tsx'),
+  route('api/documents', 'routes/api.documents.ts'),
+] satisfies RouteConfig;
+```
+
 Test it:
 
 ```bash
@@ -68,17 +79,6 @@ Then:
 ```bash
 curl "http://localhost:5173/api/documents?slug=/test"
 # <VStack size={{height: 100}} backgroundColor="#f8fafc" />
-```
-
-Don't forget to register the route in `app/routes.ts`:
-
-```ts [app/routes.ts]
-import { type RouteConfig, index, route } from '@react-router/dev/routes';
-
-export default [
-  index('routes/home.tsx'),
-  route('api/documents', 'routes/api.documents.ts'),
-] satisfies RouteConfig;
 ```
 
 ## Add your components to the Catalog
@@ -345,7 +345,7 @@ export { Button } from './Button/Button';
 
 ## Set up the Editor
 
-The editor allows you to visually edit documents. We'll load the initial source in a route loader and pass it to the editor component.
+We'll load the initial source in a route loader and pass it to the Composify's editor component.
 
 ```jsx [app/routes/editor.tsx]
 import '@composify/react/preset';

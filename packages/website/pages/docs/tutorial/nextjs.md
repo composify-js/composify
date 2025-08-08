@@ -359,7 +359,7 @@ export { Button } from './Button';
 
 ## Set up the Editor
 
-The editor is a client component — it includes a bunch of interactivity, so mark it with `'use client'`.
+The `Editor` is a client component — it includes a bunch of interactivity, so mark it with `'use client'`.
 
 ```jsx [app/editor/[...path]/client.tsx]
 'use client';
