@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-dynamic-delete */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable import/no-cycle */
 import { getClassNameFactory } from '@composify/utils';
@@ -30,10 +31,15 @@ export const PropertyControlObject = ({ spec, ...props }: Props) => (
     defaultValue={spec.default ?? {}}
     renderInput={(value, onChange) => {
       const handleChange = (fieldName: string, fieldValue: any) => {
-        onChange({
-          ...value,
-          [fieldName]: fieldValue,
-        });
+        const next = { ...value };
+
+        if (typeof fieldValue === 'undefined') {
+          delete next[fieldName];
+        } else {
+          next[fieldName] = fieldValue;
+        }
+
+        onChange(next);
       };
 
       return (

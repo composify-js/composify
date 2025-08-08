@@ -61,7 +61,7 @@ Catalog.register('Text', {
 });
 ```
 
-Make sure this file is imported at the entry point of your app (like `index.tsx` or `app.tsx`). For more options and advanced config, see the [Catalog API docs](/docs/api/catalog).
+Make sure this file is imported at the entry point of your app (like `index.tsx` or `app.tsx`). For more options and advanced config, see the [Catalog docs](/docs/catalog).
 
 ## Render components
 
@@ -126,4 +126,4 @@ Don't forget to import our styles.
 import '@composify/react/style.css';
 ```
 
-For more details, check out the [Editor API docs](/docs/api/editor)
+For more details, check out the [Editor docs](/docs/editor)

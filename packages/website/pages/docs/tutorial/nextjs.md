@@ -26,7 +26,7 @@ Right now Composify works with React only. Vue support is in the works and comin
 
 ## Build document APIs
 
-Before Composify can do anything useful, it needs a way to save and load page documents. We'll create two simple endpoints with Next.js [Route Handlers](https://nextjs.org/docs/app/getting-started/route-handlers-and-middleware), storing everything in a database.json file at the root of the project.
+Before Composify can do anything useful, it needs a way to save and load page documents. We'll create two simple endpoints with Next.js [Route Handlers](https://nextjs.org/docs/app/getting-started/route-handlers-and-middleware), storing everything in a database.json file at the project root.
 
 ### Save document
 
@@ -357,7 +357,7 @@ export { Body } from './Body';
 export { Button } from './Button';
 ```
 
-## Integrate the Editor
+## Set up the Editor
 
 The editor is a client component — it includes a bunch of interactivity, so mark it with `'use client'`.
 
@@ -477,9 +477,9 @@ export default async function Page({ params }: { params: Promise<{ path: string[
 
 Now try it:
 
-- Visit [`http://localhost:3000/test/`](http://localhost:3000/test/) — you’ll see the saved design.
+- Visit [`http://localhost:3000/test/`](http://localhost:3000/test/) — you'll see the saved design.
 - Visit [`http://localhost:3000/foo/`](http://localhost:3000/foo/) — 404 (since there's no data yet).
-- Open [`http://localhost:3000/editor/foo/`](http://localhost:3000/editor/foo/), edit something, click Save — and [`http://localhost:3000/foo/`](http://localhost:3000/foo/) will be live instantly 🎉
+- Open [`http://localhost:3000/editor/foo/`](http://localhost:3000/editor/foo/), edit something, click **Save** — and [`http://localhost:3000/foo/`](http://localhost:3000/foo/) will be live instantly 🎉
 
 ## Wrapping up
 

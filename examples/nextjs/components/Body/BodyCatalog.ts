@@ -7,6 +7,7 @@ Catalog.register('Body', {
     children: {
       label: 'Content',
       type: 'text',
+      default: 'Bring visual editing to your components — no rewrites needed.',
     },
     color: {
       label: 'Text Color',

@@ -1,21 +1,25 @@
 import '@composify/react/preset';
-import '@/components';
+import '~/components';
 
 import { Renderer } from '@composify/react/renderer';
-import { notFound } from 'next/navigation';
+import { type LoaderFunctionArgs } from 'react-router';
+import { useLoaderData } from 'react-router';
 
-export default async function Page({ params }: { params: Promise<{ path: string[] }> }) {
-  const { path = [] } = await params;
-
-  const slug = `/${path.join('/')}`;
-  const res = await fetch(`http://localhost:3000/api/documents?slug=${encodeURIComponent(slug)}`, {
-    cache: 'no-store',
-  });
+export async function loader({ params, request }: LoaderFunctionArgs) {
+  const slug = '/' + (params['*'] ?? '');
+  const url = new URL(request.url);
+  const res = await fetch(new URL(`/api/documents?slug=${encodeURIComponent(slug)}`, url.origin));
   const source = await res.text();
 
   if (!source) {
-    return notFound();
+    throw new Response('', { status: 404 });
   }
+
+  return { slug, source };
+}
+
+export default function Page() {
+  const { slug, source } = useLoaderData<typeof loader>();
 
   return (
     <main className="p-4">
