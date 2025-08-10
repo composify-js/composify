@@ -3,6 +3,8 @@ import { getClassNameFactory } from '@composify/utils';
 import MonacoEditor, { type OnMount } from '@monaco-editor/react';
 import { debounce } from 'es-toolkit';
 import { type Plugin } from 'prettier';
+import * as meriyahParser from 'prettier/parser-meriyah';
+import * as estreePlugin from 'prettier/plugins/estree';
 import prettier from 'prettier/standalone';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Catalog, NodeManager, Parser } from '../../renderer';
@@ -12,9 +14,6 @@ import styles from './CodeEditor.module.css';
 const getClassName = getClassNameFactory('CodeEditor', styles);
 
 const prettify = async (value: string) => {
-  const meriyahParser = await import('prettier/parser-meriyah');
-  const estreePlugin = await import('prettier/plugins/estree');
-
   const formattedCode = await prettier
     .format(value, {
       parser: 'meriyah',
