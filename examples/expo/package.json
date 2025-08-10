@@ -1,0 +1,31 @@
+{
+  "name": "@examples/expo",
+  "main": "expo-router/entry",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "lint": "expo lint"
+  },
+  "dependencies": {
+    "@composify/react": "workspace:*",
+    "@react-navigation/native": "7.1.17",
+    "expo": "53.0.20",
+    "expo-router": "5.1.4",
+    "expo-splash-screen": "0.30.10",
+    "expo-status-bar": "2.2.3",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-native": "0.79.5",
+    "react-native-web": "0.20.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.26.0",
+    "@expo/webpack-config": "19.0.1",
+    "@types/react": "19.1.8",
+    "typescript": "5.8.3"
+  },
+  "private": true
+}

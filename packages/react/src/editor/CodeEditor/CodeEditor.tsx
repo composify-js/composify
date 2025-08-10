@@ -1,8 +1,8 @@
 import { getClassNameFactory } from '@composify/utils';
-// eslint-disable-next-line import/named
-import MonacoEditor, { OnMount } from '@monaco-editor/react';
+
+import MonacoEditor, { type OnMount } from '@monaco-editor/react';
 import { debounce } from 'es-toolkit';
-import { Plugin } from 'prettier';
+import { type Plugin } from 'prettier';
 import prettier from 'prettier/standalone';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Catalog, NodeManager, Parser } from '../../renderer';

@@ -1,6 +1,6 @@
 import { getClassNameFactory } from '@composify/utils';
-import { FC, useCallback } from 'react';
-import { Node } from '../../renderer';
+import { type FC, useCallback } from 'react';
+import { type Node } from '../../renderer';
 import { useEditing } from '../EditingContext';
 import styles from './OutlineItem.module.css';
 

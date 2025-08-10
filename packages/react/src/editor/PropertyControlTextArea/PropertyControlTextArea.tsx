@@ -1,5 +1,5 @@
 import { getClassNameFactory } from '@composify/utils';
-import { TextAreaPropertySpec } from '../../renderer';
+import { type TextAreaPropertySpec } from '../../renderer';
 import { PropertyControl } from '../PropertyControl';
 import styles from './PropertyControlTextArea.module.css';
 

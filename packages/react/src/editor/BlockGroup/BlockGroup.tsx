@@ -1,7 +1,7 @@
 import { getClassNameFactory } from '@composify/utils';
-import { FC, ReactNode } from 'react';
+import { type FC, type ReactNode } from 'react';
 import toJsxString from 'react-element-to-jsx-string';
-import { Block, Node, Parser, Renderer } from '../../renderer';
+import { type Block, type Node, Parser, Renderer } from '../../renderer';
 import { TargetType } from '../Constants';
 import { ContentScaler } from '../ContentScaler';
 import { Draggable } from '../Draggable';

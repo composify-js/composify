@@ -1,6 +1,6 @@
 import { getClassNameFactory } from '@composify/utils';
 import { getBox } from 'css-box-model';
-import { FC, PropsWithChildren, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { type FC, type PropsWithChildren, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import styles from './ContentScaler.module.css';
 
 const getClassName = getClassNameFactory('ContentScaler', styles);

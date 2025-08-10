@@ -1,6 +1,6 @@
-import { createElement, FC, Fragment, ReactNode, useMemo } from 'react';
+import { createElement, type FC, Fragment, type ReactNode, useMemo } from 'react';
 import * as Catalog from '../Catalog';
-import { Node } from '../NodeManager';
+import { type Node } from '../NodeManager';
 import * as Parser from '../Parser';
 
 export type Pragma = {

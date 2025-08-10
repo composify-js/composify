@@ -1,5 +1,5 @@
 import { getClassNameFactory } from '@composify/utils';
-import { FC } from 'react';
+import { type FC } from 'react';
 import styles from './EditorHeader.module.css';
 
 const getClassName = getClassNameFactory('EditorHeader', styles);

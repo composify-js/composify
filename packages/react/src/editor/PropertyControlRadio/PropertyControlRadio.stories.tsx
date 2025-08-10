@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, useState } from 'react';
+import { type FC, type PropsWithChildren, useState } from 'react';
 import { Theme } from '../Theme';
 import { PropertyControlRadio } from './PropertyControlRadio';
 

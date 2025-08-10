@@ -1,4 +1,4 @@
-import { createElement, FC, PropsWithChildren } from 'react';
+import { createElement, type FC, type PropsWithChildren } from 'react';
 
 type Props = PropsWithChildren<{
   level?: 1 | 2 | 3;

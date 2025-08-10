@@ -1,6 +1,6 @@
 import { Children, createElement, Fragment } from 'react';
 import { Catalog } from '../../renderer';
-import { Pragma, Renderer } from '../../renderer/Renderer';
+import { type Pragma, Renderer } from '../../renderer/Renderer';
 import { TargetType } from '../Constants';
 import { Draggable } from '../Draggable';
 import { Droppable } from '../Droppable';

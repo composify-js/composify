@@ -5,10 +5,10 @@ import {
   useMemo,
   useState,
   useSyncExternalStore,
-  FC,
-  PropsWithChildren,
+  type FC,
+  type PropsWithChildren,
 } from 'react';
-import { Node, NodeManager, Parser } from '../../renderer';
+import { type Node, NodeManager, Parser } from '../../renderer';
 
 type EditingContextValues = {
   root: Node;

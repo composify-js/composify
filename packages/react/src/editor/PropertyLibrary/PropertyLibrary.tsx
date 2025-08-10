@@ -1,5 +1,5 @@
 import { getClassNameFactory } from '@composify/utils';
-import { FC } from 'react';
+import { type FC } from 'react';
 import { Catalog } from '../../renderer';
 import { useEditing } from '../EditingContext';
 import { PropertyControlArray } from '../PropertyControlArray';

@@ -1,7 +1,7 @@
 import { getClassNameFactory } from '@composify/utils';
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import toJsxString from 'react-element-to-jsx-string';
-import { Node, NodePropertySpec, Parser, Renderer } from '../../renderer';
+import { type Node, type NodePropertySpec, Parser, Renderer } from '../../renderer';
 import { ContentScaler } from '../ContentScaler';
 import { Droppable } from '../Droppable';
 import { useEditing } from '../EditingContext';

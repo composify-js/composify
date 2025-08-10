@@ -1,5 +1,5 @@
 import { getClassNameFactory } from '@composify/utils';
-import { FC, PropsWithChildren, useMemo, useState } from 'react';
+import { type FC, type PropsWithChildren, useMemo, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import styles from './IsolatedDndProvider.module.css';

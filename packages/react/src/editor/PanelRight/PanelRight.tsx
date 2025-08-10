@@ -1,7 +1,7 @@
 import { getClassNameFactory } from '@composify/utils';
-import { FC, ReactNode } from 'react';
+import { type FC, type ReactNode } from 'react';
 import { ActiveBlockControl } from '../ActiveBlockControl';
-import { EditMode, EditorControl } from '../EditorControl';
+import { type EditMode, EditorControl } from '../EditorControl';
 import { Outline } from '../Outline';
 import { PropertyLibrary } from '../PropertyLibrary';
 import styles from './PanelRight.module.css';

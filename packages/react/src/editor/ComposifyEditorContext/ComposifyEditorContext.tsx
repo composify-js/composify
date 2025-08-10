@@ -1,4 +1,4 @@
-import { createContext, FC, PropsWithChildren, useContext, useMemo } from 'react';
+import { createContext, type FC, type PropsWithChildren, useContext, useMemo } from 'react';
 
 type ComposifyEditorContextValues = {
   isLibrary: boolean;

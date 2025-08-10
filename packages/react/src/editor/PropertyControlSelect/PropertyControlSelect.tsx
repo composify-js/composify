@@ -1,5 +1,5 @@
 import { getClassNameFactory } from '@composify/utils';
-import { SelectPropertySpec } from '../../renderer';
+import { type SelectPropertySpec } from '../../renderer';
 import { PropertyControl } from '../PropertyControl';
 import styles from './PropertyControlSelect.module.css';
 

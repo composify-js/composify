@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable import/no-cycle */
 import { getClassNameFactory } from '@composify/utils';
-import { ArrayPropertySpec } from '../../renderer';
+import { type ArrayPropertySpec } from '../../renderer';
 import { PropertyControl } from '../PropertyControl';
 import { PropertyControlBoolean } from '../PropertyControlBoolean';
 import { PropertyControlCustom } from '../PropertyControlCustom';

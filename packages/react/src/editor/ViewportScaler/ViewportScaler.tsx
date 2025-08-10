@@ -1,6 +1,6 @@
 import { getClassNameFactory } from '@composify/utils';
 import { getBox } from 'css-box-model';
-import { FC, PropsWithChildren, useCallback, useEffect, useRef, useState } from 'react';
+import { type FC, type PropsWithChildren, useCallback, useEffect, useRef, useState } from 'react';
 import styles from './ViewportScaler.module.css';
 
 const getClassName = getClassNameFactory('ViewportScaler', styles);

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { type FC } from 'react';
 import { Catalog } from '../../renderer';
 import { BlockGroup } from '../BlockGroup';
 import { ComposifyEditorProvider } from '../ComposifyEditorContext';

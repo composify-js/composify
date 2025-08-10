@@ -1,5 +1,5 @@
-import { FC, PropsWithChildren } from 'react';
-import { Stack, StackProps } from '../Stack';
+import { type FC, type PropsWithChildren } from 'react';
+import { Stack, type StackProps } from '../Stack';
 
 type Props = Omit<StackProps, 'flexDirection' | 'alignItems' | 'justifyContent'> & {
   alignVertical?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';

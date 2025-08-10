@@ -1,14 +1,14 @@
 import { getClassNameFactory } from '@composify/utils';
-import { FC, useState } from 'react';
+import { type FC, useState } from 'react';
 import { CodeEditor } from '../CodeEditor';
 import { EditingProvider } from '../EditingContext';
-import { EditMode } from '../EditorControl';
+import { type EditMode } from '../EditorControl';
 import { IsolatedDndProvider } from '../IsolatedDndProvider';
 import { KeyDownDetector } from '../KeyDownDetector';
-import { PanelLeft, PanelLeftProps } from '../PanelLeft';
-import { PanelRight, PanelRightProps } from '../PanelRight';
+import { PanelLeft, type PanelLeftProps } from '../PanelLeft';
+import { PanelRight, type PanelRightProps } from '../PanelRight';
 import { Theme } from '../Theme';
-import { VisualEditor, VisualEditorProps } from '../VisualEditor';
+import { VisualEditor, type VisualEditorProps } from '../VisualEditor';
 import { WindowProvider } from '../WindowContext';
 import styles from './Editor.module.css';
 

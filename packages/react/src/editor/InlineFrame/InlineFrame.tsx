@@ -1,5 +1,13 @@
 import { getClassNameFactory } from '@composify/utils';
-import { useCallback, useEffect, useState, useRef, FC, IframeHTMLAttributes, PropsWithChildren } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useState,
+  useRef,
+  type FC,
+  type IframeHTMLAttributes,
+  type PropsWithChildren,
+} from 'react';
 import { createPortal } from 'react-dom';
 import styles from './InlineFrame.module.css';
 import { InlineFrameProvider } from './InlineFrameContext';

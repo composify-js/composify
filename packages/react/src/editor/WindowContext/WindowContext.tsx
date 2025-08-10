@@ -1,4 +1,4 @@
-import { createContext, FC, PropsWithChildren, useCallback, useContext, useMemo, useState } from 'react';
+import { createContext, type FC, type PropsWithChildren, useCallback, useContext, useMemo, useState } from 'react';
 
 type WindowContextValues = {
   windows: Window[];
