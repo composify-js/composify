@@ -2,30 +2,39 @@ import '@composify/react/preset';
 import '@/components';
 
 import { Renderer } from '@composify/react/renderer';
+import { useLocalSearchParams } from 'expo-router';
+import { useEffect, useState } from 'react';
 
 export default function Page() {
-  const source = `
-    <VStack
-      alignVertical="center"
-      alignHorizontal="stretch"
-      padding={{ top: 16, bottom: 16, left: 16, right: 16 }}
-      gap={4}
-    >
-      <Heading level={1} weight="extrabold">Server Driven UI made easy</Heading>
-      <Body color="#1E1E1E" weight="normal">
-        Bring visual editing to your components — no rewrites needed.
-      </Body>
-      <HStack
-        alignVertical="stretch"
-        alignHorizontal="flex-start"
-        gap={4}
-        margin={{ top: 16 }}
-      >
-        <Button variant="primary">Learn More ›</Button>
-        <Button variant="outline">Get started →</Button>
-      </HStack>
-    </VStack>
-  `;
+  const [source, setSource] = useState<string | null>(null);
+
+  const { path } = useLocalSearchParams<{ path?: string | string[] }>();
+  const slug = '/' + (Array.isArray(path) ? path.join('/') : (path ?? ''));
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch(`http://localhost:3000/?slug=${encodeURIComponent(slug)}`, {
+        cache: 'no-store',
+      });
+
+      const source = await res.text();
+
+      setSource(
+        source ||
+          `
+<VStack flex={1} alignHorizontal="center" alignVertical="center">
+  <Heading level={3} weight="semibold">Not Found</Heading>
+</VStack>
+  `.trim()
+      );
+    };
+
+    fetchData();
+  }, [slug]);
+
+  if (!source) {
+    return null;
+  }
 
   return <Renderer source={source} />;
 }

@@ -4,12 +4,25 @@ import '../../components';
 
 import { Editor } from '@composify/react/editor';
 import { useLocalSearchParams } from 'expo-router';
+import { useEffect, useState } from 'react';
 
 export default function EditorPage() {
+  const [source, setSource] = useState<string | null>(null);
+
   const { path } = useLocalSearchParams<{ path?: string | string[] }>();
   const slug = '/' + (Array.isArray(path) ? path.join('/') : (path ?? ''));
 
-  const source = `
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch(`http://localhost:3000/?slug=${encodeURIComponent(slug)}`, {
+        cache: 'no-store',
+      });
+
+      const source = await res.text();
+
+      setSource(
+        source ||
+          `
     <VStack
       alignVertical="center"
       alignHorizontal="stretch"
@@ -30,7 +43,29 @@ export default function EditorPage() {
         <Button variant="outline">Get started →</Button>
       </HStack>
     </VStack>
-  `;
+  `.trim()
+      );
+    };
 
-  return <Editor title={slug} source={source} />;
+    fetchData();
+  }, [slug]);
+
+  const handleSubmit = async (source: string) => {
+    await fetch('http://localhost:3000', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        slug,
+        content: source,
+      }),
+    });
+  };
+
+  if (!source) {
+    return null;
+  }
+
+  return <Editor title={slug} source={source} onSubmit={handleSubmit} />;
 }

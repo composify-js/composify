@@ -4,6 +4,12 @@ import { VStack } from './VStack';
 Catalog.register('VStack', {
   component: VStack,
   props: {
+    flex: {
+      label: 'Flex',
+      type: 'number',
+      default: 1,
+      optional: true,
+    },
     gap: {
       label: 'Gap',
       type: 'number',
