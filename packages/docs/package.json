@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "vocs dev",
+    "build": "vocs build",
     "preview": "vocs preview",
     "lint": "eslint **/*.ts{,x} --fix"
   },
