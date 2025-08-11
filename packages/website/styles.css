@@ -131,3 +131,12 @@ html.dark {
   max-width: unset;
   padding: 0;
 }
+
+.vocs_Footer {
+  max-width: unset;
+  padding: 1.5rem;
+}
+
+.vocs_Footer:not([data-layout="docs"]) {
+  align-items: stretch;
+}
