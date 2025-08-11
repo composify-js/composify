@@ -1,1 +1,0 @@
-export { FooterCopyright } from './FooterCopyright';
