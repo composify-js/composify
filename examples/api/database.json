@@ -1,0 +1,9 @@
+{
+  "documents": [
+    {
+      "id": "1",
+      "slug": "/foo",
+      "content": "<VStack alignVertical=\"center\" alignHorizontal=\"stretch\" padding={{top: 16, bottom: 16, left: 16, right: 16}} gap={4}><Heading level={1} weight=\"extrabold\">Server Driven UI made easy</Heading><Body color=\"#1E1E1E\" weight=\"normal\">Bring visual editing to your components — no rewrites needed.</Body></VStack>"
+    }
+  ]
+}
