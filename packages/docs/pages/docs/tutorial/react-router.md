@@ -1,6 +1,6 @@
 # React Router Tutorial
 
-This guide shows how to integrate Composify into a React Router project. It assumes you already have a React Router project created with `react-router init`.
+In this guide, we'll assume you already have a React Router project up and running. If not, start with the [React Router quick start guide](https://v5.reactrouter.com/web/guides/quick-start/) first.
 
 ## Install Composify
 

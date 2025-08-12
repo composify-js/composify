@@ -10,16 +10,14 @@ In this guide, we'll integrate Composify into your stack. Before Composify can r
 {
   "documents": [
     {
-      "id": "1",
-      "slug": "/foo",
+      "id": "foo",
       "content": "<VStack size={{ height: 100 }} backgroundColor=\"#f8fafc\" />"
     }
   ]
 }
 ```
 
-- `id`: json-server will auto-generate one if you omit it.
-- `slug`: your page identifier (e.g. route path).
+- `id`: your page identifier.
 - `content`: a JSX string Composify will render.
 
 ## Run the mock API
@@ -36,16 +34,16 @@ Create a new document:
 
 ```bash
 curl -X POST http://localhost:9000/documents \
-  --data '{"id":"/bar","content":"<VStack size={{ height: 200 }} backgroundColor=\"#f8fafc\" />"}'
+  --data '{"id":"bar","content":"<VStack size={{ height: 200 }} backgroundColor=\"#f8fafc\" />"}'
 ```
 
-Fetch by slug:
+Fetch by id:
 
 ```bash
-curl http://localhost:9000/documents/%20bar
+curl http://localhost:9000/documents/bar
 # [
 #   {
-#     "id": "/bar",
+#     "id": "bar",
 #     "content": "<VStack size={{ height: 200 }} backgroundColor=\"#f8fafc\" />"
 #   }
 # ]
