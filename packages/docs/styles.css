@@ -58,23 +58,26 @@ html.dark {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Static navigation */
 .vocs_DocsLayout[data-layout="landing"] .vocs_DocsLayout_gutterTop {
   position: relative;
 }
 
-.vocs_DocsLayout[data-layout="landing"] .vocs_DesktopTopNav {
-  justify-content: space-between;
+/* Search bar position */
+.vocs_DesktopTopNav_withLogo {
+  padding-left: 224px;
 }
 
-.vocs_MobileTopNav {
-  background-color: transparent;
-  border-bottom: none;
+.vocs_DesktopTopNav_logoWrapper {
+  pointer-events: none;
 }
 
+/* Logo size */
 .vocs_NavLogo_logoImage {
-  height: 60%;
+  height: 62%;
 }
 
+/* Link size */
 .vocs_NavigationMenu_link {
   font-size: var(--vocs-fontsize_16);
   font-weight: var(--vocs-fontWeight_medium);
@@ -86,40 +89,23 @@ html.dark {
   color: var(--docs-color-primary);
 }
 
-@media screen and (max-width: 1080px) {
-  :root {
-    --vocs-topNav_height: 56px;
-  }
+/* Mobile navigation padding */
+.vocs_MobileTopNav {
+  padding: 0 1rem;
 }
 
-.vocs_Sidebar_logo {
-  padding-top: 0;
+.vocs_MobileTopNav_curtain {
+  padding: 0 1rem;
 }
 
-.vocs_DocsLayout[data-layout="landing"] .vocs_DesktopTopNav {
-  display: none;
-}
-
-.vocs_DocsLayout[data-layout="landing"] .vocs_MobileTopNav {
-  display: flex;
-  padding: 0 1.5rem;
-}
-
-.vocs_DocsLayout[data-layout="landing"] .vocs_MobileTopNav_section {
-  gap: 2.5rem;
-}
-
+/* Mobile content padding */
 @media screen and (max-width: 720px) {
-  .vocs_DocsLayout[data-layout="landing"] .vocs_MobileTopNav {
-    display: flex;
-    padding: 0 1rem;
-  }
-
-  .vocs_DocsLayout[data-layout="landing"] .vocs_MobileTopNav_section {
-    gap: 1rem;
+  .vocs_Content {
+    padding: 1rem;
   }
 }
 
+/* Landing content width */
 .vocs_DocsLayout[data-layout="landing"] .vocs_DocsLayout_content {
   max-width: unset;
   padding-top: 0;
