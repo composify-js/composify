@@ -13,9 +13,9 @@ type Props = PropsWithChildren<{
 }>;
 
 const FONT_WEIGHT_BY_WEIGHT = {
-  light: '300' as const,
-  normal: '400' as const,
-};
+  light: '300',
+  normal: '400',
+} as const;
 
 export const Body: FC<Props> = ({ color = '#1E1E1E', weight = 'normal', margin, children }) => (
   <Text

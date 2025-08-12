@@ -10,13 +10,13 @@ const TEXT_SIZE_BY_LEVEL = {
   1: 48,
   2: 36,
   3: 24,
-};
+} as const;
 
 const FONT_WEIGHT_BY_WEIGHT = {
-  semibold: '600' as const,
-  bold: '700' as const,
-  extrabold: '800' as const,
-};
+  semibold: '600',
+  bold: '700',
+  extrabold: '800',
+} as const;
 
 export const Heading: FC<Props> = ({ level = 1, weight = 'extrabold', children }) => (
   <Text

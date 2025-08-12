@@ -2,6 +2,8 @@
 
 In this guide, we'll assume you already have a React Router project up and running. If not, start with the [React Router quick start guide](https://v5.reactrouter.com/web/guides/quick-start/) first.
 
+Make sure your mock API from the [prerequisites](/docs/tutorial/prerequisites) is running on `http://localhost:9000`. We'll use it to read and write documents. We'll identify pages with a simple `slug` (like `foo`) — no slashes needed.
+
 ## Install Composify
 
 Add Composify to your project with your preferred package manager:
@@ -443,7 +445,7 @@ If you select **No** in the confirmation dialog, you'll be redirected to the ren
 ## Try it out
 
 1. Visit [`http://localhost:3000/foo/`](http://localhost:3000/foo/) to see the saved content.
-2. Open [`http://localhost:3000/editor/foo/`](http://localhost:3000/editor/foo/), make a change, and click **Save** — The rendered page updates instantly.
+2. Open [`http://localhost:3000/editor/foo/`](http://localhost:3000/editor/foo/), make a change, and click **Save** — the rendered page updates instantly.
 3. Visit [`http://localhost:3000/baz/`](http://localhost:3000/baz/) to see a 404.
 4. Open [`http://localhost:3000/editor/baz/`](http://localhost:3000/editor/baz/), creat content, click **Save**, and the new page will be live immediately 🎉
 

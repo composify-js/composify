@@ -33,6 +33,8 @@ const styles = StyleSheet.create({
   },
   outline: {
     backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderRadius: 4,
     borderColor: '#D1D5DB',
   },
   buttonText: {
