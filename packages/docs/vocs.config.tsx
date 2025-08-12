@@ -18,6 +18,16 @@ export default defineConfig({
       },
     },
   },
+  theme: {
+    accentColor: '#3B82F6',
+    variables: {
+      content: {
+        horizontalPadding: '3rem',
+        verticalPadding: '2rem',
+        width: 'calc(64ch + (3rem * 2))',
+      },
+    },
+  },
   head: () => (
     <>
       <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
