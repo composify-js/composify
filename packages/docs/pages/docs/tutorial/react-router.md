@@ -31,7 +31,7 @@ Right now Composify works with React only. Vue support is in the works and comin
 You _can_ use plain HTML elements, but Composify really shines with your own components. Let's create three simple components: `Heading`, `Body`, and `Button`.
 
 :::code-group
-```jsx [Heading]
+```jsx showLineNumbers [Heading]
 /* app/components/Heading.tsx */
 import { createElement, type FC, type PropsWithChildren } from 'react';
 
@@ -64,7 +64,7 @@ export const Heading: FC<Props> = ({
   );
 ```
 
-```jsx [Body]
+```jsx showLineNumbers [Body]
 /* app/components/Body.tsx */
 import { type FC, type PropsWithChildren } from 'react';
 
@@ -105,7 +105,7 @@ export const Body: FC<Props> = ({
 );
 ```
 
-```jsx [Button]
+```jsx showLineNumbers [Button]
 /* app/components/Button.tsx */
 import { type PropsWithChildren } from 'react';
 
@@ -127,7 +127,7 @@ export const Button = ({ variant, children }: Props) => {
 Now register them:
 
 :::code-group
-```jsx [Heading]
+```jsx showLineNumbers [Heading]
 /* app/components/Heading.tsx */
 import { Catalog } from '@composify/react/renderer';
 
@@ -183,7 +183,7 @@ Catalog.register('Heading', {
 });
 ```
 
-```jsx [Body]
+```jsx showLineNumbers [Body]
 /* app/components/Body.tsx */
 import { Catalog } from '@composify/react/renderer';
 
@@ -246,7 +246,7 @@ Catalog.register('Body', {
 });
 ```
 
-```jsx [Button]
+```jsx showLineNumbers [Button]
 /* app/components/Button.tsx */
 import { Catalog } from '@composify/react/renderer';
 
@@ -341,7 +341,7 @@ Now test it:
 
 To create or update content, we'll set up the `Editor` component. Let's load the initial source in a route loader and pass it to the `Editor` component.
 
-```jsx [app/routes/editor.tsx]
+```jsx showLineNumbers [app/routes/editor.tsx]
 import '@composify/react/preset';
 import '@composify/react/style.css';
 import '~/components';
@@ -392,7 +392,7 @@ Open [`http://localhost:3000/editor/foo/`](http://localhost:3000/editor/foo/) an
 
 Right now, clicking **Save** does nothing. Let's wire up an `onSubmit` handler so the editor knows how to store the updated content.
 
-```jsx [app/routes/editor.tsx]
+```jsx showLineNumbers [app/routes/editor.tsx]
 import '@composify/react/preset';
 import '@composify/react/style.css';
 import '~/components';

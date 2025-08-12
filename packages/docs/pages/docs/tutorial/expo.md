@@ -31,7 +31,7 @@ Right now Composify works with React only. Vue support is in the works and comin
 Let's create three simple components: `Heading`, `Body`, and `Button`.
 
 :::code-group
-```jsx [Heading]
+```jsx showLineNumbers [Heading]
 /* components/Heading.tsx */
 import { type FC, type PropsWithChildren } from 'react';
 import { Text, StyleSheet } from 'react-native';
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
 
 ```
 
-```jsx [Body]
+```jsx showLineNumbers [Body]
 /* components/Body.tsx */
 import { type FC, type PropsWithChildren } from 'react';
 import { Text, StyleSheet } from 'react-native';
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
 });
 ```
 
-```jsx [Button]
+```jsx showLineNumbers [Button]
 /* components/Button.tsx */
 import { type PropsWithChildren } from 'react';
 import { Pressable, Text, StyleSheet } from 'react-native';
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
 });
 ```
 
-```jsx [VStack]
+```jsx showLineNumbers [VStack]
 /* components/VStack.tsx */
 import { type FC, type PropsWithChildren } from 'react';
 import { View } from 'react-native';
@@ -249,7 +249,7 @@ export const VStack: FC<Props> = ({
 );
 ```
 
-```jsx [HStack]
+```jsx showLineNumbers [HStack]
 /* components/HStack.tsx */
 import { type FC, type PropsWithChildren } from 'react';
 import { View } from 'react-native';
@@ -324,7 +324,7 @@ export const HStack: FC<Props> = ({
 Now register them:
 
 :::code-group
-```jsx [Heading]
+```jsx showLineNumbers [Heading]
 /* components/Heading.tsx */
 import { Catalog } from '@composify/react/renderer';
 
@@ -380,7 +380,7 @@ Catalog.register('Heading', {
 });
 ```
 
-```jsx [Body]
+```jsx showLineNumbers [Body]
 /* components/Body.tsx */
 import { Catalog } from '@composify/react/renderer';
 
@@ -443,7 +443,7 @@ Catalog.register('Body', {
 });
 ```
 
-```jsx [Button]
+```jsx showLineNumbers [Button]
 /* components/Button.tsx */
 import { Catalog } from '@composify/react/renderer';
 
@@ -476,7 +476,7 @@ Catalog.register('Button', {
 });
 ```
 
-```jsx [VStack]
+```jsx showLineNumbers [VStack]
 /* components/VStack.tsx */
 import { Catalog } from '@composify/react/renderer';
 
@@ -635,7 +635,7 @@ Catalog.register('VStack', {
 ```
 
 
-```jsx [HStack]
+```jsx showLineNumbers [HStack]
 /* components/HStack.tsx */
 import { Catalog } from '@composify/react/renderer';
 
@@ -805,7 +805,7 @@ export { VStack } from './VStack';
 
 The `Renderer` takes the saved JSX and renders it using your registered components.
 
-```jsx [app/[slug].tsx]
+```jsx showLineNumbers [app/[slug].tsx]
 import '@composify/react/preset';
 import '@/components';
 
@@ -848,7 +848,7 @@ export default function Page() {
 
 A index screen to bounce around:
 
-```jsx [app/index.tsx]
+```jsx showLineNumbers [app/index.tsx]
 import '@composify/react/preset';
 import '@/components';
 
@@ -904,7 +904,7 @@ Now test it:
 
 To create or update content, we'll set up the `Editor` component.
 
-```jsx [app/editor/[slug].tsx]
+```jsx showLineNumbers [app/editor/[slug].tsx]
 import '@composify/react/preset';
 import '@composify/react/style.css';
 import '@/components';
@@ -938,7 +938,7 @@ export default function EditorPage() {
 
 We'll fetch the saved JSX from our GET API and pass it to the `Editor` as the source prop.
 
-```jsx [app/editor/[slug].tsx]
+```jsx showLineNumbers [app/editor/[slug].tsx]
 import '@composify/react/preset';
 import '@composify/react/style.css';
 import '@/components';
@@ -980,7 +980,7 @@ Open `/foo` and you should see the editor UI with the document loaded.
 
 Right now, clicking **Save** does nothing. Let's wire up an `onSubmit` handler so the editor knows how to store the updated content.
 
-```jsx [app/editor/[slug].tsx]
+```jsx showLineNumbers [app/editor/[slug].tsx]
 import '@composify/react/preset';
 import '@composify/react/style.css';
 import '@/components';

@@ -31,7 +31,7 @@ Right now Composify works with React only. Vue support is in the works and comin
 You _can_ use plain HTML elements, but Composify really shines with your own components. Let's create three simple components: `Heading`, `Body`, and `Button`.
 
 :::code-group
-```jsx [Heading]
+```jsx showLineNumbers [Heading]
 /* components/Heading.tsx */
 import { createElement, type FC, type PropsWithChildren } from 'react';
 
@@ -64,7 +64,7 @@ export const Heading: FC<Props> = ({
   );
 ```
 
-```jsx [Body]
+```jsx showLineNumbers [Body]
 /* components/Body.tsx */
 import { type FC, type PropsWithChildren } from 'react';
 
@@ -105,7 +105,7 @@ export const Body: FC<Props> = ({
 );
 ```
 
-```jsx [Button]
+```jsx showLineNumbers [Button]
 /* components/Button.tsx */
 import { type PropsWithChildren } from 'react';
 
@@ -127,7 +127,7 @@ export const Button = ({ variant, children }: Props) => {
 Now register them:
 
 :::code-group
-```jsx [Heading]
+```jsx showLineNumbers [Heading]
 /* components/Heading.tsx */
 import { Catalog } from '@composify/react/renderer';
 
@@ -183,7 +183,7 @@ Catalog.register('Heading', {
 });
 ```
 
-```jsx [Body]
+```jsx showLineNumbers [Body]
 /* components/Body.tsx */
 import { Catalog } from '@composify/react/renderer';
 
@@ -246,7 +246,7 @@ Catalog.register('Body', {
 });
 ```
 
-```jsx [Button]
+```jsx showLineNumbers [Button]
 /* components/Button.tsx */
 import { Catalog } from '@composify/react/renderer';
 
@@ -282,7 +282,7 @@ Catalog.register('Button', {
 
 Finally, export them in `components/index.ts` so you can import them all at once:
 
-```jsx [components/index.ts]
+```jsx showLineNumbers [components/index.ts]
 export { Heading } from './Heading';
 export { Body } from './Body';
 export { Button } from './Button';
@@ -292,7 +292,7 @@ export { Button } from './Button';
 
 The `Renderer` takes the saved JSX and renders it using your registered components.
 
-```jsx [app/[slug]/page.tsx]
+```jsx showLineNumbers [app/[slug]/page.tsx]
 import '@composify/react/preset';
 import '@/components';
 
@@ -326,7 +326,7 @@ Now test it:
 
 To create or update content, we'll set up the `Editor` component. Since it contains client-side interactivity, mark the file with `'use client'`.
 
-```jsx [app/editor/[slug]/client.tsx]
+```jsx showLineNumbers [app/editor/[slug]/client.tsx]
 'use client';
 
 import '@composify/react/preset';
@@ -350,7 +350,7 @@ export default function EditorPage({ slug, content }: { slug: string; content: s
 
 We'll fetch the saved JSX from our GET API and pass it to the `Editor` as the source prop.
 
-```jsx [app/editor/[slug]/page.tsx]
+```jsx showLineNumbers [app/editor/[slug]/page.tsx]
 import EditorPage from './client';
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
@@ -371,7 +371,7 @@ Open [`http://localhost:3000/editor/foo/`](http://localhost:3000/editor/foo/) an
 
 Right now, clicking **Save** does nothing. Let's wire up an `onSubmit` handler so the editor knows how to store the updated content.
 
-```jsx [app/editor/[slug]/client.tsx]
+```jsx showLineNumbers [app/editor/[slug]/client.tsx]
 'use client';
 
 import '@composify/react/preset';
