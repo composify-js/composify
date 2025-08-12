@@ -39,6 +39,7 @@
   font-weight: 500;
   line-height: 1.25;
   text-decoration: none;
+  transition: all 0.1s ease;
 }
 
 .learnMore {

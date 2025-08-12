@@ -2,7 +2,7 @@ import '@composify/react/style.css';
 
 import { Editor, useComposifyEditor } from '@composify/react';
 import { getBox } from 'css-box-model';
-import { FC, useEffect, useRef, useState } from 'react';
+import { type FC, useEffect, useRef, useState } from 'react';
 import { Backdrop } from '../Backdrop';
 import { useSource } from '../SourceContext';
 import styles from './Playground.module.css';

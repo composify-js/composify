@@ -1,4 +1,4 @@
-import { createContext, FC, PropsWithChildren, useContext, useMemo, useState } from 'react';
+import { createContext, type FC, type PropsWithChildren, useContext, useMemo, useState } from 'react';
 
 type SourceContextValues = {
   source: string;
