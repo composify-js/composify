@@ -5,17 +5,16 @@ import { Renderer } from '@composify/react/renderer';
 import { type LoaderFunctionArgs } from 'react-router';
 import { useLoaderData } from 'react-router';
 
-export async function loader({ params, request }: LoaderFunctionArgs) {
-  const slug = '/' + (params['*'] ?? '');
-  const url = new URL(request.url);
-  const res = await fetch(new URL(`/api/documents?slug=${encodeURIComponent(slug)}`, url.origin));
-  const source = await res.text();
+export async function loader({ params }: LoaderFunctionArgs) {
+  const slug = params.slug ?? '';
+  const res = await fetch(`http://localhost:9000/documents/${slug}`);
+  const { content } = await res.json().catch(() => ({}));
 
-  if (!source) {
+  if (!content) {
     throw new Response('', { status: 404 });
   }
 
-  return { slug, source };
+  return { slug, source: content };
 }
 
 export default function Page() {
@@ -25,7 +24,7 @@ export default function Page() {
     <main className="p-4">
       <section className="flex items-end justify-between mb-4">
         <h1 className="text-2xl">Rendering page {slug}</h1>
-        <a href={`/editor${slug}`} className="text-blue-500 hover:underline">
+        <a href={`/editor/${slug}`} className="text-blue-500 hover:underline">
           Visit Editor
         </a>
       </section>

@@ -7,7 +7,7 @@ import '@/components';
 import { Editor } from '@composify/react/editor';
 import { useRouter } from 'next/navigation';
 
-export default function EditorPage({ slug, source }: { slug: string; source: string }) {
+export default function EditorPage({ slug, content }: { slug: string; content: string }) {
   const router = useRouter();
 
   const handleSubmit = async (source: string) => {
@@ -31,5 +31,5 @@ export default function EditorPage({ slug, source }: { slug: string; source: str
     }
   };
 
-  return <Editor title={slug} source={source} onSubmit={handleSubmit} />;
+  return <Editor title={slug} source={content} onSubmit={handleSubmit} />;
 }

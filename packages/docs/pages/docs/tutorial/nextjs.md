@@ -278,7 +278,7 @@ Catalog.register('Button', {
 ```
 :::
 
-Finally, export them from `components/index.ts` so you can import them all at once:
+Finally, export them in `components/index.ts` so you can import them all at once:
 
 ```jsx [components/index.ts]
 export { Heading } from './Heading';
@@ -333,8 +333,8 @@ import '@/components';
 
 import { Editor } from '@composify/react/editor';
 
-export default function EditorPage({ slug, source }: { slug: string; source: string }) {
-  return <Editor title={slug} source={source} />;
+export default function EditorPage({ slug, content }: { slug: string; content: string }) {
+  return <Editor title={slug} source={content} />;
 }
 ```
 
@@ -359,7 +359,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   });
   const { content } = await res.json().catch(() => ({}));
 
-  return <EditorPage slug={slug} source={content ?? '<VStack size={{ height: 100 }} backgroundColor="#f8fafc" />'} />;
+  return <EditorPage slug={slug} content={content ?? '<VStack size={{ height: 100 }} backgroundColor="#f8fafc" />'} />;
 }
 ```
 
@@ -379,7 +379,7 @@ import '@/components';
 import { Editor } from '@composify/react/editor';
 import { useRouter } from 'next/navigation';
 
-export default function EditorPage({ slug, source }: { slug: string; source: string }) {
+export default function EditorPage({ slug, content }: { slug: string; content: string }) {
   const router = useRouter();
 
   const handleSubmit = async (source: string) => {
@@ -403,7 +403,7 @@ export default function EditorPage({ slug, source }: { slug: string; source: str
     }
   };
 
-  return <Editor title={slug} source={source} onSubmit={handleSubmit} />;
+  return <Editor title={slug} source={content} onSubmit={handleSubmit} />;
 }
 ```
 
@@ -421,13 +421,13 @@ If you select **No** in the confirmation dialog, you'll be redirected to the ren
 
 You now have:
 
-- A **document store** (currently file-based, but can be replaced with a real database)
+- A **document store** (currently powered by json-server, but could be a real database later)
 - An **editor** where you can visually compose pages using your own components
 - A **renderer** that turns saved JSX back into real UI
 
 From here, you could:
 
-- Replace `database.json` with a real database
+- Replace json-server with a real database
 - Add authentication and user permissions
 - Deploy it so your whole team can collaborate
 

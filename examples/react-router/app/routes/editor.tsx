@@ -6,17 +6,16 @@ import { Editor } from '@composify/react/editor';
 import { type LoaderFunctionArgs } from 'react-router';
 import { useLoaderData, useNavigate } from 'react-router';
 
-export async function loader({ params, request }: LoaderFunctionArgs) {
-  const slug = '/' + (params['*'] ?? '');
-  const url = new URL(request.url);
+export async function loader({ params }: LoaderFunctionArgs) {
+  const slug = params.slug ?? '';
 
-  const res = await fetch(new URL(`/api/documents?slug=${encodeURIComponent(slug)}`, url.origin));
-  const source = await res.text();
+  const res = await fetch(`http://localhost:9000/documents/${slug}`);
+  const { content } = await res.json().catch(() => ({}));
 
   return {
     slug,
-    source:
-      source ||
+    content:
+      content ??
       `
 <VStack
   alignVertical="center"
@@ -38,25 +37,32 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
     <Button variant="outline">Get started →</Button>
   </HStack>
 </VStack>
-`.trim(),
+  `.trim(),
   };
 }
 
 export default function EditorPage() {
-  const { slug, source } = useLoaderData<typeof loader>();
+  const { slug, content } = useLoaderData<typeof loader>();
   const navigate = useNavigate();
 
-  const handleSubmit = async (src: string) => {
-    await fetch('/api/documents', {
+  const handleSubmit = async (source: string) => {
+    await fetch(`http://localhost:9000/documents/${slug}`, {
+      method: 'DELETE',
+    }).catch(() => null);
+
+    await fetch('http://localhost:9000/documents', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ slug, content: src }),
+      body: JSON.stringify({
+        id: slug,
+        content: source,
+      }),
     });
 
     if (!window.confirm('Saved successfully. Keep editing?')) {
-      navigate(slug);
+      navigate(`/${slug}`);
     }
   };
 
-  return <Editor title={slug} source={source} onSubmit={handleSubmit} />;
+  return <Editor title={slug} source={content} onSubmit={handleSubmit} />;
 }
