@@ -4,16 +4,15 @@ import '@/components';
 import { Renderer } from '@composify/react/renderer';
 import { notFound } from 'next/navigation';
 
-export default async function Page({ params }: { params: Promise<{ path: string[] }> }) {
-  const { path = [] } = await params;
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
 
-  const slug = `/${path.join('/')}`;
-  const res = await fetch(`http://localhost:3000/api/documents?slug=${encodeURIComponent(slug)}`, {
+  const res = await fetch(`http://localhost:9000/documents/${slug}`, {
     cache: 'no-store',
   });
-  const source = await res.text();
+  const { content } = await res.json().catch(() => ({}));
 
-  if (!source) {
+  if (!content) {
     return notFound();
   }
 
@@ -26,7 +25,7 @@ export default async function Page({ params }: { params: Promise<{ path: string[
         </a>
       </section>
       <section className="border rounded-sm border-neutral-200">
-        <Renderer source={source} />
+        <Renderer source={content} />
       </section>
     </main>
   );

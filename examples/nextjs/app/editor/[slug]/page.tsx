@@ -1,19 +1,18 @@
 import EditorPage from './client';
 
-export default async function Page({ params }: { params: Promise<{ path: string[] }> }) {
-  const { path = [] } = await params;
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
 
-  const slug = `/${path.join('/')}`;
-  const res = await fetch(`http://localhost:3000/api/documents?slug=${encodeURIComponent(slug)}`, {
+  const res = await fetch(`http://localhost:3000/api/documents/${slug}`, {
     cache: 'no-store',
   });
-  const source = await res.text();
+  const { content } = await res.json().catch(() => ({}));
 
   return (
     <EditorPage
       slug={slug}
       source={
-        source ||
+        content ??
         `
 <VStack
   alignVertical="center"

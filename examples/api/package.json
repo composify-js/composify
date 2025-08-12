@@ -6,7 +6,7 @@
     "start": "json-server --watch database.json --port 9000"
   },
   "dependencies": {
-    "json-server": "0.17.4"
+    "json-server": "1.0.0-beta.3"
   },
   "private": true
 }

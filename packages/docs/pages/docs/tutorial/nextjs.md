@@ -1,6 +1,6 @@
 # Next.js Tutorial
 
-In this guide, we'll integrate Composify into a Next.js project using basic file-system APIs. We'll assume you already have a Next.js project up and running. If not, check out the [Next.js getting started guide](https://nextjs.org/docs/app/getting-started/) first.
+In this guide, we'll assume you already have a Next.js project up and running. If not, start with the [Next.js getting started guide](https://nextjs.org/docs/app/getting-started/) first.
 
 ## Install Composify
 
@@ -24,78 +24,7 @@ yarn add @composify/react
 Right now Composify works with React only. Vue support is in the works and coming soon.
 :::
 
-## Build document APIs
-
-Before Composify can do anything useful, it needs a way to save and load page documents. We'll create two simple endpoints with Next.js [Route Handlers](https://nextjs.org/docs/app/getting-started/route-handlers-and-middleware), storing everything in a database.json file at the project root.
-
-### Save document
-
-This endpoint takes a slug (the page path) and content (the JSX source), updates `database.json`, and revalidates the corresponding path so the changes appear instantly.
-
-```ts [app/api/documents/route.ts]
-import { revalidatePath } from 'next/cache';
-import { NextResponse } from 'next/server';
-import fs from 'fs';
-
-export async function POST(request: Request) {
-  const { slug, content } = await request.json();
-
-  const database = JSON.parse(fs.existsSync('database.json') ? fs.readFileSync('database.json', 'utf-8') : '{}');
-
-  const updatedData = {
-    ...database,
-    [decodeURIComponent(slug)]: content,
-  };
-
-  fs.writeFileSync('database.json', JSON.stringify(updatedData));
-
-  revalidatePath(slug);
-
-  return new NextResponse('', {
-    status: 200,
-  });
-}
-```
-
-Test it:
-
-```bash
-curl -X POST http://localhost:3000/api/documents \
-  --data '{"slug":"/test","content":"<VStack size={{ height: 100 }} backgroundColor="#f8fafc" />"}'
-```
-
-Now check the file:
-
-```bash
-cat database.json
-# {"/test": "<VStack size={{height: 100}} backgroundColor=\"#f8fafc\" />"}
-```
-
-### Load document
-
-This endpoint just looks up the saved JSX for a given slug.
-
-```ts [app/api/documents/route.ts]
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-
-  const slug = searchParams.get('slug') ?? '';
-  const database = JSON.parse(fs.existsSync('database.json') ? fs.readFileSync('database.json', 'utf-8') : '{}');
-
-  return new NextResponse(database[slug], {
-    status: 200,
-  });
-}
-```
-
-Test it:
-
-```bash
-curl "http://localhost:3000/api/documents?slug=/test"
-# <VStack size={{height: 100}} backgroundColor="#f8fafc" />
-```
-
-## Add your components to the Catalog
+## Register components to the Catalog
 
 You _can_ use plain HTML elements, but Composify really shines with your own components. Let's create three simple components: `Heading`, `Body`, and `Button`.
 
@@ -349,7 +278,7 @@ Catalog.register('Button', {
 ```
 :::
 
-Finally, export them in `components/index.ts` so you can import them all at once:
+Finally, export them from `components/index.ts` so you can import them all at once:
 
 ```jsx [components/index.ts]
 export { Heading } from './Heading';
@@ -357,11 +286,45 @@ export { Body } from './Body';
 export { Button } from './Button';
 ```
 
+## Render a page
+
+The `Renderer` takes the saved JSX and renders it using your registered components.
+
+```jsx [app/[slug]/page.tsx]
+import '@composify/react/preset';
+import '@/components';
+
+import { Renderer } from '@composify/react/renderer';
+import { notFound } from 'next/navigation';
+
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+
+  const res = await fetch(`http://localhost:9000/documents/${slug}`, {
+    cache: 'no-store',
+  });
+  const { content } = await res.json().catch(() => ({}));
+
+  if (!content) {
+    return notFound();
+  }
+
+  return (
+    <Renderer source={content} />
+  );
+}
+```
+
+Now test it:
+
+- Visit [`http://localhost:3000/foo/`](http://localhost:3000/foo/) to see the saved page.
+- Visit [`http://localhost:3000/baz/`](http://localhost:3000/baz/) and you'll get a 404 because there's no data yet.
+
 ## Set up the Editor
 
-The `Editor` is a client component — it includes a bunch of interactivity, so mark it with `'use client'`.
+To create or update content, we'll set up the `Editor` component. Since it contains client-side interactivity, mark the file with `'use client'`.
 
-```jsx [app/editor/[...path]/client.tsx]
+```jsx [app/editor/[slug]/client.tsx]
 'use client';
 
 import '@composify/react/preset';
@@ -377,37 +340,36 @@ export default function EditorPage({ slug, source }: { slug: string; source: str
 
 **Notes:**
 
+- `@composify/react/preset` is optional; it just gives you handy layout components like `VStack`.
 - `@composify/react/style.css` is **required** — it contains core editor styles.
 - Import your components so they're available in the editor.
-- `@composify/react/preset` is optional; it just gives you handy layout components like `VStack`.
 
-### Load the initial source into the Editor
+### Load the initial source
 
-To feed the Editor with something to work on, we'll fetch the JSX source from the **GET** API we just created and pass it in as the source prop.
+We'll fetch the saved JSX from our GET API and pass it to the Editor as the source prop.
 
-```jsx [app/editor/[...path]/page.tsx]
+```jsx [app/editor/[slug]/page.tsx]
 import EditorPage from './client';
 
-export default async function Page({ params }: { params: Promise<{ path: string[] }> }) {
-  const { path = [] } = await params;
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
 
-  const slug = `/${path.join('/')}`;
-  const res = await fetch(`http://localhost:3000/api/documents?slug=${encodeURIComponent(slug)}`, {
+  const res = await fetch(`http://localhost:3000/api/documents/${slug}`, {
     cache: 'no-store',
   });
-  const source = await res.text();
+  const { content } = await res.json().catch(() => ({}));
 
-  return <EditorPage slug={slug} source={source || '<VStack size={{ height: 100 }} backgroundColor="#f8fafc" />'} />;
+  return <EditorPage slug={slug} source={content ?? '<VStack size={{ height: 100 }} backgroundColor="#f8fafc" />'} />;
 }
 ```
 
-### Try it out in the browser
+Open [`http://localhost:3000/editor/foo/`](http://localhost:3000/editor/foo/) and you should see the editor UI with the document loaded.
 
-Now open [`http://localhost:3000/editor/test/`](http://localhost:3000/editor/test/) in your browser. You should see Composify's editor UI with the initial document loaded.
+### Handle saving
 
-When you click Save right now, nothing will happen yet. That's because we haven't told the editor what to do on submit. Let's fix that by wiring up the save handler in our `client.tsx` file.
+Right now, clicking **Save** does nothing. Let's wire up an `onSubmit` handler so the editor knows how to store the updated content.
 
-```jsx [app/editor/[...path]/client.tsx]
+```jsx [app/editor/[slug]/client.tsx]
 'use client';
 
 import '@composify/react/preset';
@@ -421,13 +383,17 @@ export default function EditorPage({ slug, source }: { slug: string; source: str
   const router = useRouter();
 
   const handleSubmit = async (source: string) => {
-    await fetch('/api/documents', {
+    await fetch(`http://localhost:9000/documents/${slug}`, {
+      method: 'DELETE',
+    }).catch(() => null);
+
+    await fetch('http://localhost:9000/documents', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        slug,
+        id: slug,
         content: source,
       }),
     });
@@ -441,58 +407,28 @@ export default function EditorPage({ slug, source }: { slug: string; source: str
 }
 ```
 
-Now, when you hit Save, the document will POST to our `/api/documents` endpoint, and you'll get a confirmation prompt.
+Now, when you hit **Save**, the editor sends the updated JSX to your `/documents` API.
+If you select **No** in the confirmation dialog, you'll be redirected to the rendered page.
 
-If you choose No, you'll be taken straight to the rendered page.
+## Try it out
 
-## Add the Renderer
-
-The renderer simply pulls the saved JSX and renders it using your registered components.
-
-```jsx [app/[...path]/page.tsx]
-import '@composify/react/preset';
-import '@/components';
-
-import { Renderer } from '@composify/react/renderer';
-import { notFound } from 'next/navigation';
-
-export default async function Page({ params }: { params: Promise<{ path: string[] }> }) {
-  const { path = [] } = await params;
-
-  const slug = `/${path.join('/')}`;
-  const res = await fetch(`http://localhost:3000/api/documents?slug=${encodeURIComponent(slug)}`, {
-    cache: 'no-store',
-  });
-  const source = await res.text();
-
-  if (!source) {
-    return notFound();
-  }
-
-  return (
-    <Renderer source={source} />
-  );
-}
-```
-
-Now try it:
-
-- Visit [`http://localhost:3000/test/`](http://localhost:3000/test/) — you'll see the saved design.
-- Visit [`http://localhost:3000/foo/`](http://localhost:3000/foo/) — 404 (since there's no data yet).
-- Open [`http://localhost:3000/editor/foo/`](http://localhost:3000/editor/foo/), edit something, click **Save** — and [`http://localhost:3000/foo/`](http://localhost:3000/foo/) will be live instantly 🎉
+1. Visit [`http://localhost:3000/foo/`](http://localhost:3000/foo/) to see the saved content.
+2. Open [`http://localhost:3000/editor/foo/`](http://localhost:3000/editor/foo/), make a change, and click **Save** — The rendered page updates instantly.
+3. Visit [`http://localhost:3000/baz/`](http://localhost:3000/baz/) to see a 404.
+4. Open [`http://localhost:3000/editor/baz/`](http://localhost:3000/editor/baz/), creat content, click **Save**, and the new page will be live immediately 🎉
 
 ## Wrapping up
 
 You now have:
 
-- A **document store** (file-based for now, but could be a DB later)
+- A **document store** (currently file-based, but can be replaced with a real database)
 - An **editor** where you can visually compose pages using your own components
 - A **renderer** that turns saved JSX back into real UI
 
 From here, you could:
 
-- Swap `database.json` for a real database
-- Add auth and user permissions
+- Replace `database.json` with a real database
+- Add authentication and user permissions
 - Deploy it so your whole team can collaborate
 
 For unlimited bandwidth, built-in version history, and collaboration features, try [Composify Cloud](https://composify.com) — or self-host it, since it's all open source.

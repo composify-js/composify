@@ -11,19 +11,23 @@ export default function EditorPage({ slug, source }: { slug: string; source: str
   const router = useRouter();
 
   const handleSubmit = async (source: string) => {
-    await fetch('/api/documents', {
+    await fetch(`http://localhost:9000/documents/${slug}`, {
+      method: 'DELETE',
+    }).catch(() => null);
+
+    await fetch('http://localhost:9000/documents', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        slug,
+        id: slug,
         content: source,
       }),
     });
 
     if (!window.confirm('Saved successfully. Keep editing?')) {
-      router.push(slug);
+      router.push(`/${slug}`);
     }
   };
 

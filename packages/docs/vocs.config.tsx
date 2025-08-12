@@ -49,6 +49,7 @@ export default defineConfig({
       text: 'Tutorial',
       collapsed: false,
       items: [
+        { text: 'Prerequisites', link: '/docs/tutorial/prerequisites' },
         { text: 'React Router', link: '/docs/tutorial/react-router' },
         { text: 'Next.js', link: '/docs/tutorial/nextjs' },
         { text: 'Expo', link: '/docs/tutorial/expo' },
