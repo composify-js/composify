@@ -354,7 +354,7 @@ import EditorPage from './client';
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
 
-  const res = await fetch(`http://localhost:3000/api/documents/${slug}`, {
+  const res = await fetch(`http://localhost:9000/documents/${slug}`, {
     cache: 'no-store',
   });
   const { content } = await res.json().catch(() => ({}));
