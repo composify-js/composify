@@ -3,6 +3,7 @@ layout: landing
 title: Server Driven UI made easy
 ---
 
+import { VStack } from '@composify/react/preset';
 import { SourceProvider, SourceRenderer } from '../src/SourceContext';
 import '../src/catalog';
 
@@ -11,10 +12,14 @@ export default function Home() {
     <main>
       <SourceProvider
         source={`
-<>
+<VStack>
   <HeroBanner
     tagline="Server Driven UI made easy"
     description="Bring visual editing to your components — no rewrites needed."
+    actions={[
+      { label: 'Learn more ›', href: '/docs', primary: true },
+      { label: 'Get started →', href: '/docs/getting-started', primary: false },
+    ]}
   />
   <Playground />
   <FeatureGroup
@@ -47,7 +52,7 @@ export default function Home() {
       spacing={{ top: 0, bottom: -2 }}
     />
   </FeatureGroup>
-</>`}
+</VStack>`}
       >
         <SourceRenderer />
       </SourceProvider>

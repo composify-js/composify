@@ -1,1 +1,0 @@
-export { CloudHeroBanner } from './CloudHeroBanner';

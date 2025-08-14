@@ -19,6 +19,33 @@ Catalog.register('HeroBanner', {
       type: 'textarea',
       default: 'Bring visual editing to your components — no rewrites needed.',
     },
+    actions: {
+      label: 'Actions',
+      type: 'array',
+      item: {
+        label: 'Action',
+        type: 'object',
+        fields: {
+          label: {
+            label: 'Label',
+            type: 'text',
+          },
+          href: {
+            label: 'URL',
+            type: 'text',
+          },
+          primary: {
+            label: 'Primary',
+            type: 'boolean',
+            default: false,
+          },
+        },
+      },
+      default: [
+        { label: 'Learn more ›', href: '/docs', primary: true },
+        { label: 'Get started →', href: '/docs/getting-started', primary: false },
+      ],
+    },
   },
 });
 

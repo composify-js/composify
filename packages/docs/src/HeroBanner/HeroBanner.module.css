@@ -42,21 +42,21 @@
   transition: all 0.1s ease;
 }
 
-.learnMore {
+.primary {
   border: 0;
   color: var(--docs-color-on-primary);
   background-color: var(--docs-color-primary);
 }
 
-.learnMore:hover {
+.primary:hover {
   background-color: var(--docs-color-primary-dark);
 }
 
-.getStarted {
+.secondary {
   color: var(--docs-color-on-surface);
   border: 1px solid var(--docs-color-outline);
 }
 
-.getStarted:hover {
+.secondary:hover {
   border: 1px solid var(--docs-color-outline-variant);
 }

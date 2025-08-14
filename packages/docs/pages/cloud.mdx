@@ -3,13 +3,20 @@ layout: landing
 title: Supercharge your editor
 ---
 
-import { CloudHeroBanner } from '../src/CloudHeroBanner';
+import { HeroBanner } from '../src/HeroBanner';
 import { PriceCalculator } from '../src/PriceCalculator';
 
 export default function Cloud() {
   return (
     <main>
-      <CloudHeroBanner />
+      <HeroBanner
+        tagline="Supercharge your editor"
+        description="All the power you need, without the hassle."
+        actions={[
+          { label: 'Start free ›', href: 'https://app.composify.net', primary: true },
+          { label: 'Explore features →', href: '#features', primary: false },
+        ]}
+      />
       <PriceCalculator />
     </main>
   );
