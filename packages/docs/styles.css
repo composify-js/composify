@@ -69,7 +69,12 @@ html.dark {
 }
 
 .vocs_DesktopTopNav_logoWrapper {
-  pointer-events: none;
+  left: calc(var(--vocs_DocsLayout_leftGutterWidth) - var(--vocs-sidebar_width));
+  width: auto;
+}
+
+.vocs_DesktopTopNav_logo {
+  width: auto;
 }
 
 /* Logo size */
