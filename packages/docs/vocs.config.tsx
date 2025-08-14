@@ -39,9 +39,9 @@ export default defineConfig({
     </>
   ),
   topNav: [
+    { text: 'Cloud', link: '/cloud' },
     { text: 'Docs', link: '/docs' },
     { text: 'Blog', link: '/blog' },
-    { text: 'Cloud', link: '/cloud' },
   ],
   sidebar: [
     {

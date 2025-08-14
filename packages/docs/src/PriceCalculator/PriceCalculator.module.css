@@ -1,5 +1,6 @@
 .priceCalculator {
   display: flex;
+  flex-direction: column;
   margin: 0 1.5rem;
   border-radius: 4px;
   border: 1px solid var(--docs-color-outline);
@@ -8,14 +9,24 @@
 
 @media screen and (max-width: 720px) {
   .priceCalculator {
-    flex-direction: column;
     margin: 0 1rem;
+  }
+}
+
+.calculatorGroup {
+  display: flex;
+  border-bottom: 1px solid var(--docs-color-outline);
+}
+
+@media screen and (max-width: 720px) {
+  .calculatorGroup {
+    flex-direction: column;
   }
 }
 
 .calculator {
   flex: 1;
-  padding: 2rem 2rem 1.5rem 2rem;
+  padding: 1.75rem 1.75rem 1.25rem 1.75rem;
 }
 
 @media screen and (max-width: 720px) {
@@ -42,6 +53,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  margin-bottom: 0.25rem;
 }
 
 .title {
@@ -118,4 +130,79 @@
   text-align: center;
   opacity: 0.8;
   color: var(--docs-color-on-surface-variant);
+}
+
+.plan {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.75rem;
+  background-color: var(--docs-color-surface-container-low);
+}
+
+@media screen and (max-width: 720px) {
+  .plan {
+    padding: 1.5rem;
+  }
+}
+
+.planTitle {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.1;
+  font-weight: 500;
+  color: var(--docs-color-on-surface);
+}
+
+.planPrice {
+  display: flex;
+  align-items: baseline;
+}
+
+.planPriceAmount {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 1.1;
+  font-weight: 600;
+  color: var(--docs-color-on-surface);
+}
+
+.planPriceInterval {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--docs-color-on-surface-variant);
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 720px) {
+  .plan {
+    align-items: baseline;
+  }
+
+  .planTitle {
+    font-size: 1.25rem;
+  }
+
+  .planPriceAmount {
+    font-size: 1.5rem;
+  }
+
+  .planPriceInterval {
+    font-size: 0.875rem;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .planTitle {
+    font-size: 1.125rem;
+  }
+
+  .planPriceAmount {
+    font-size: 1.25rem;
+  }
+
+  .planPriceInterval {
+    font-size: 0.75rem;
+  }
 }
