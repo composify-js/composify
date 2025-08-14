@@ -25,3 +25,38 @@
   line-height: 1.4;
   color: var(--docs-color-on-surface);
 }
+
+.buttonGroup {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.button {
+  cursor: pointer;
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.25;
+  text-decoration: none;
+  transition: all 0.1s ease;
+}
+
+.learnMore {
+  border: 0;
+  color: var(--docs-color-on-primary);
+  background-color: var(--docs-color-primary);
+}
+
+.learnMore:hover {
+  background-color: var(--docs-color-primary-dark);
+}
+
+.getStarted {
+  color: var(--docs-color-on-surface);
+  border: 1px solid var(--docs-color-outline);
+}
+
+.getStarted:hover {
+  border: 1px solid var(--docs-color-outline-variant);
+}

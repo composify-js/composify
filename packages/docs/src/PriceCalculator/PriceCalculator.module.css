@@ -1,15 +1,16 @@
 .priceCalculator {
   display: flex;
   flex-direction: column;
-  margin: 0 1.5rem;
+  margin: 1.5rem;
   border-radius: 4px;
   border: 1px solid var(--docs-color-outline);
   background-color: var(--docs-color-surface);
+  overflow: hidden;
 }
 
 @media screen and (max-width: 720px) {
   .priceCalculator {
-    margin: 0 1rem;
+    margin: 1rem;
   }
 }
 
