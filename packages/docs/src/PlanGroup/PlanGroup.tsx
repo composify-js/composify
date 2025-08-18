@@ -44,7 +44,7 @@ export const PlanGroup: FC = () => (
           { label: 'Unlimited Page Views' },
           { label: 'Real-time Collaboration' },
           { label: 'Version History with Time-travel', planned: true },
-          { label: 'Templates for Frequent Combinations', planned: true },
+          { label: 'Templates for Repeated Patterns', planned: true },
         ]}
       />
     </div>

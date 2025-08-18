@@ -41,6 +41,7 @@ html:not([class="dark"]) .dark {
   margin: 0;
   padding: 4px 0;
   font-size: 0.75rem;
+  line-height: 1.5;
   color: var(--docs-color-on-surface-variant);
 }
 

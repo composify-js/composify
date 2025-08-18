@@ -6,7 +6,11 @@ export const Footer = () => (
     <div className={styles.item}>
       <img src="/brand/logo-light.svg" alt="Logo" className={clsx(styles.logo, styles.light)} />
       <img src="/brand/logo-dark.svg" alt="Logo" className={clsx(styles.logo, styles.dark)} />
-      <p className={styles.copyright}>© {new Date().getFullYear()} Hills Inc.</p>
+      <p className={styles.copyright}>
+        © {new Date().getFullYear()} Hills Inc.
+        <br />
+        Icons from <a href="https://fontawesome.com">Font Awesome Free</a>.
+      </p>
     </div>
     <div className={styles.item}>
       <h6 className={styles.footerTitle}>Docs</h6>
