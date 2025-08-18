@@ -1,11 +1,11 @@
 .playground {
-  padding: 1.5rem;
+  padding: 24px;
   background-color: var(--docs-color-surface);
 }
 
 @media screen and (max-width: 720px) {
   .playground {
-    padding: 1rem;
+    padding: 16px;
   }
 }
 

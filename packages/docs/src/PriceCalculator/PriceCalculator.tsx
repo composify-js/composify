@@ -1,45 +1,44 @@
 import { useState, type FC } from 'react';
 import styles from './PriceCalculator.module.css';
 
-const REQUESTS_MIN = 10000;
-const REQUESTS_MAX = 10000000;
+const PAGES_MAX = 1000;
 const SEATS_MAX = 100;
 
 export const PriceCalculator: FC = () => {
-  const [requests, setRequests] = useState(0);
+  const [pages, setPages] = useState(1);
   const [seats, setSeats] = useState(1);
 
-  const requestsProgress = (requests / REQUESTS_MAX) * 100;
+  const pagesProgress = (pages / PAGES_MAX) * 100;
   const seatsProgress = (seats / SEATS_MAX) * 100;
 
-  const effectiveRequests = Math.max(requests, REQUESTS_MIN);
-
-  const price = Math.max((effectiveRequests - REQUESTS_MIN) * 0.00005 + (seats - 1) * 5, 0);
+  const price = Math.max((pages - 1) * 1 + (seats - 1) * 5, 0);
 
   return (
     <section className={styles.priceCalculator}>
       <div className={styles.calculatorGroup}>
         <div className={styles.calculator}>
           <div className={styles.header}>
-            <p className={styles.title}>Page Views</p>
-            <p className={styles.usage}>{effectiveRequests.toLocaleString()} / month</p>
+            <p className={styles.title}>Live Pages</p>
+            <p className={styles.usage}>
+              {pages.toLocaleString()} page{pages !== 1 ? 's' : ''}
+            </p>
           </div>
           <input
             type="range"
-            step={100000}
-            min={0}
-            max={REQUESTS_MAX}
-            value={requests}
+            step={1}
+            min={1}
+            max={PAGES_MAX}
+            value={pages}
             className={styles.rangeInput}
-            onChange={e => setRequests(Number(e.target.value))}
-            style={{ '--progress': `${requestsProgress}%` } as React.CSSProperties}
+            onChange={e => setPages(Number(e.target.value))}
+            style={{ '--progress': `${pagesProgress}%` } as React.CSSProperties}
           />
           <div className={styles.indicatorGroup}>
             <p className={styles.indicator}>0</p>
-            <p className={styles.indicator}>2.5M</p>
-            <p className={styles.indicator}>5M</p>
-            <p className={styles.indicator}>7.5M</p>
-            <p className={styles.indicator}>10M+</p>
+            <p className={styles.indicator}>250</p>
+            <p className={styles.indicator}>500</p>
+            <p className={styles.indicator}>750</p>
+            <p className={styles.indicator}>1000+</p>
           </div>
         </div>
         <div className={styles.divider} />

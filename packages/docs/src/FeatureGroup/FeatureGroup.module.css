@@ -1,11 +1,11 @@
 .featureGroup {
-  padding: 4rem 1.5rem 1.5rem 1.5rem;
+  padding: 64px 24px 24px 24px;
   background-color: var(--docs-color-surface);
 }
 
 @media screen and (max-width: 720px) {
   .featureGroup {
-    padding: 4rem 1rem 1rem 1rem;
+    padding: 64px 16px 16px 16px;
   }
 }
 

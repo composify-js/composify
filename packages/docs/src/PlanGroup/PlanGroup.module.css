@@ -1,0 +1,28 @@
+.planGroup {
+  padding: 24px;
+}
+
+.plans {
+  display: flex;
+  flex-direction: row;
+  border-radius: 2px;
+  border: 1px solid var(--docs-color-outline);
+  background-color: var(--docs-color-surface);
+  overflow: hidden;
+}
+
+.caption {
+  float: right;
+}
+
+@media screen and (max-width: 720px) {
+  .planGroup {
+    padding: 16px;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .plans {
+    flex-direction: column;
+  }
+}

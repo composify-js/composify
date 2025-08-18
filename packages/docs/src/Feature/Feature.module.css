@@ -12,7 +12,7 @@
 
 .title {
   margin: 0;
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -22,14 +22,14 @@
 .description {
   margin-top: 4px;
   margin-bottom: 20px;
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 1.4;
   color: var(--docs-color-on-surface-variant);
 }
 
 @media (max-width: 1080px) {
   .feature {
-    padding: 1.75rem;
+    padding: 28px;
   }
 
   .title {
