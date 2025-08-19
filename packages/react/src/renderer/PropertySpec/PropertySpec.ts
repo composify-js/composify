@@ -6,8 +6,6 @@ type DefaultPropertySpec<Value> = {
 };
 
 export type BooleanPropertySpec<Value> = DefaultPropertySpec<Value> & { type: 'boolean' };
-export type DatePropertySpec<Value> = DefaultPropertySpec<Value> & { type: 'date' };
-export type ImagePropertySpec<Value> = DefaultPropertySpec<Value> & { type: 'image' };
 export type NodePropertySpec<Value> = DefaultPropertySpec<Value> & { type: 'node' };
 export type NumberPropertySpec<Value> = DefaultPropertySpec<Value> & { type: 'number' };
 
@@ -71,12 +69,10 @@ export type PropertySpec<Value> =
       ? ArrayPropertySpec<Value>
       : Value extends boolean
         ? BooleanPropertySpec<Value>
-        : Value extends Date
-          ? DatePropertySpec<Value>
-          : Value extends number
-            ? NumberPropertySpec<Value>
-            : Value extends string
-              ? TextPropertySpec<Value> | TextAreaPropertySpec<Value> | ImagePropertySpec<Value>
-              : Value extends Record<string, any>
-                ? ObjectPropertySpec<Value>
-                : never);
+        : Value extends number
+          ? NumberPropertySpec<Value>
+          : Value extends string
+            ? TextPropertySpec<Value> | TextAreaPropertySpec<Value>
+            : Value extends Record<string, any>
+              ? ObjectPropertySpec<Value>
+              : never);
