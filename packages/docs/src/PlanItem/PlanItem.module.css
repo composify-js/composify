@@ -69,15 +69,21 @@
 .featureLabel {
   display: flex;
   align-items: baseline;
+  font-size: 0.9375rem;
   gap: 4px;
 }
 
 .featureCaption {
   color: var(--docs-color-on-surface-variant);
+  font-size: 0.75rem;
   opacity: 0.9;
 }
 
 @media screen and (max-width: 1080px) {
+  .container {
+    padding: 24px;
+  }
+
   .recommended {
     border: none;
     border-top: 1px solid var(--docs-color-outline);

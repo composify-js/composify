@@ -5,7 +5,7 @@
 .plans {
   display: flex;
   flex-direction: row;
-  border-radius: 2px;
+  border-radius: 4px;
   border: 1px solid var(--docs-color-outline);
   background-color: var(--docs-color-surface);
   overflow: hidden;
@@ -21,7 +21,7 @@
   }
 }
 
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 939px) {
   .plans {
     flex-direction: column;
   }
