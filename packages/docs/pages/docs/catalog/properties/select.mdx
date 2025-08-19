@@ -1,0 +1,75 @@
+import '@composify/react/style.css';
+import { PropertyControlSelect } from '@composify/react/editor';
+import { useState } from 'react';
+
+export const BasicUsage = () => {
+  const [value, setValue] = useState('apple');
+
+  return (
+    <PropertyControlSelect
+      name="example"
+      spec={{
+        type: 'select',
+        label: 'Fruit',
+        options: [
+          { label: 'Apple', value: 'apple' },
+          { label: 'Banana', value: 'banana' },
+          { label: 'Orange', value: 'orange' },
+        ],
+      }}
+      value={value}
+      onChange={(_, next) => setValue(next ?? 'apple')}
+    />
+  );
+};
+
+# Select property
+
+A select prop renders a dropdown so users can pick one option from a list. Great for things like choosing categories, sizes, or any fixed set of values.
+
+:::code-group
+<div data-title="Preview">
+  <BasicUsage />
+</div>
+
+```tsx showLineNumbers [Code]
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    fruit: {
+      label: 'Fruit',
+      type: 'select',// [!code hl]
+      options: [// [!code hl]
+        { label: 'Apple', value: 'apple' },// [!code hl]
+        { label: 'Banana', value: 'banana' },// [!code hl]
+        { label: 'Orange', value: 'orange' },// [!code hl]
+      ],// [!code hl]
+    },
+  },
+});
+```
+:::
+
+## Required Parameters
+
+### `options`
+
+Defines the list of choices for the dropdown. Each option needs a label (what users see) and a value (what gets passed to the component).
+
+```tsx showLineNumbers
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    fruit: {
+      label: 'Fruit',
+      type: 'select',
+      options: [// [!code hl]
+        { label: 'Apple', value: 'apple' },// [!code hl]
+        { label: 'Banana', value: 'banana' },// [!code hl]
+        { label: 'Orange', value: 'orange' },// [!code hl]
+      ],// [!code hl]
+    },
+  },
+});
+```
+

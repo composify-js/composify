@@ -28,34 +28,34 @@ A textarea prop is for multi-line strings. Use it when you need longer input, li
   <BasicUsage />
 </div>
 
-```tsx [Code]
+```tsx showLineNumbers [Code]
 Catalog.register('Sample', {
   component: Sample,
   props: {
     description: {
       label: 'Description',
-      type: 'textarea', // [!code hl]
-      placeholder: 'Type something...', // [!code hl]
+      type: 'textarea',// [!code hl]
+      placeholder: 'Type something...',// [!code hl]
     },
   },
 });
 ```
 :::
 
-## Parameters
+## Optional Parameters
 
 ### `placeholder`
 
 Placeholder lets you show hint text in the input when it's empty.
 
-```tsx
+```tsx showLineNumbers
 Catalog.register('Sample', {
   component: Sample,
   props: {
     description: {
       label: 'Description',
       type: 'textarea',
-      placeholder: 'Type something...', // [!code hl]
+      placeholder: 'Type something...',// [!code hl]
     },
   },
 });

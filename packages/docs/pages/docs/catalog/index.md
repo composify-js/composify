@@ -40,10 +40,10 @@ If your component has required props (and you're using TypeScript), you'll see t
 Catalog.register('HeroBanner', {
   component: HeroBanner,
   props: {
-    tagline: {          // [!code hl]
-      label: 'Tagline', // [!code hl]
-      type: 'text',     // [!code hl]
-    },                  // [!code hl]
+    tagline: {// [!code hl]
+      label: 'Tagline',// [!code hl]
+      type: 'text',// [!code hl]
+    },// [!code hl]
   },
 });
 ```
@@ -74,7 +74,7 @@ Catalog.register('HeroBanner', {
     tagline: {
       label: 'Tagline',
       type: 'text',
-      optional: true, // [!code hl]
+      optional: true,// [!code hl]
     },
   },
 });
@@ -106,7 +106,7 @@ You can organize components in the editor's library by assigning them a category
 ```tsx
 Catalog.register('HeroBanner', {
   component: HeroBanner,
-  category: 'Landing', // [!code hl]
+  category: 'Landing',// [!code hl]
   props: {
     tagline: {
       label: 'Tagline',
