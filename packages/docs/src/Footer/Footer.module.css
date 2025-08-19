@@ -1,4 +1,4 @@
-.footer {
+.container {
   display: flex;
   flex-direction: row;
   border-top: 1px solid var(--docs-color-outline);
@@ -6,17 +6,17 @@
   padding-top: 32px;
 }
 
-footer[data-layout="docs"] > .footer {
+footer[data-layout="docs"] > .container {
   display: none;
 }
 
 @media (max-width: 1080px) {
-  .footer {
+  .container {
     flex-direction: column;
   }
 }
 
-.item {
+.column {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -45,14 +45,14 @@ html:not([class="dark"]) .dark {
   color: var(--docs-color-on-surface-variant);
 }
 
-.footerTitle {
+.title {
   margin: 0 0 16px 0;
   font-size: 1rem;
   color: var(--docs-color-on-surface);
   font-weight: bold;
 }
 
-.footerLink {
+.item {
   font-size: 1rem;
   color: var(--docs-color-on-surface-variant);
   height: 2rem;

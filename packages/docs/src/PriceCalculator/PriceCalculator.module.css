@@ -1,4 +1,4 @@
-.priceCalculator {
+.container {
   display: flex;
   flex-direction: column;
   margin: 24px;
@@ -8,21 +8,9 @@
   overflow: hidden;
 }
 
-@media screen and (max-width: 720px) {
-  .priceCalculator {
-    margin: 16px;
-  }
-}
-
-.calculatorGroup {
+.calculators {
   display: flex;
   border-bottom: 1px solid var(--docs-color-outline);
-}
-
-@media screen and (max-width: 720px) {
-  .calculatorGroup {
-    flex-direction: column;
-  }
 }
 
 .calculator {
@@ -30,24 +18,10 @@
   padding: 28px 28px 20px 28px;
 }
 
-@media screen and (max-width: 720px) {
-  .calculator {
-    flex: 1;
-    padding: 24px 24px 16px 24px;
-  }
-}
-
 .divider {
   width: 1px;
   height: auto;
   background-color: var(--docs-color-outline);
-}
-
-@media screen and (max-width: 720px) {
-  .divider {
-    width: auto;
-    height: 1px;
-  }
 }
 
 .header {
@@ -141,12 +115,6 @@
   background-color: var(--docs-color-surface-container-low);
 }
 
-@media screen and (max-width: 720px) {
-  .plan {
-    padding: 24px;
-  }
-}
-
 .planTitle {
   margin: 0;
   font-size: 1.5rem;
@@ -177,7 +145,26 @@
 }
 
 @media screen and (max-width: 720px) {
+  .container {
+    margin: 16px;
+  }
+
+  .calculatorGroup {
+    flex-direction: column;
+  }
+
+  .calculator {
+    flex: 1;
+    padding: 24px 24px 16px 24px;
+  }
+
+  .divider {
+    width: auto;
+    height: 1px;
+  }
+
   .plan {
+    padding: 24px;
     align-items: baseline;
   }
 

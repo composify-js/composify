@@ -53,7 +53,7 @@ export const Playground: FC = () => {
   }, []);
 
   return (
-    <section className={styles.playground}>
+    <section className={styles.container}>
       <div
         ref={containerRef}
         className={styles.preview}

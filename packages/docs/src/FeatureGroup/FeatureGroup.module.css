@@ -1,12 +1,6 @@
-.featureGroup {
+.container {
   padding: 64px 24px 24px 24px;
   background-color: var(--docs-color-surface);
-}
-
-@media screen and (max-width: 720px) {
-  .featureGroup {
-    padding: 64px 16px 16px 16px;
-  }
 }
 
 .title {
@@ -33,7 +27,11 @@
   gap: 1.5rem;
 }
 
-@media (max-width: 720px) {
+@media screen and (max-width: 720px) {
+  .container {
+    padding: 64px 16px 16px 16px;
+  }
+
   .features {
     display: flex;
     flex-direction: column;

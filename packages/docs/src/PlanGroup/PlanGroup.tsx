@@ -3,7 +3,7 @@ import { PlanItem } from '../PlanItem';
 import styles from './PlanGroup.module.css';
 
 export const PlanGroup: FC = () => (
-  <section className={styles.planGroup}>
+  <section className={styles.container}>
     <div className={styles.plans}>
       <PlanItem
         title="Free"

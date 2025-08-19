@@ -1,12 +1,6 @@
-.heroBanner {
+.container {
   padding: 64px 24px 24px 24px;
   background-color: var(--docs-color-surface);
-}
-
-@media screen and (max-width: 720px) {
-  .heroBanner {
-    padding: 64px 16px 16px 16px;
-  }
 }
 
 .title {
@@ -59,4 +53,10 @@
 
 .secondary:hover {
   border: 1px solid var(--docs-color-outline-variant);
+}
+
+@media screen and (max-width: 720px) {
+  .container {
+    padding: 64px 16px 16px 16px;
+  }
 }

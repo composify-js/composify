@@ -6,7 +6,7 @@ type Props = {
 };
 
 export const CodePreview: FC<Props> = ({ asset }) => (
-  <div className={styles.codePreview}>
+  <div className={styles.container}>
     <img className={styles.light} src={`${asset}-light.png`} />
     <img className={styles.dark} src={`${asset}-dark.png`} />
   </div>

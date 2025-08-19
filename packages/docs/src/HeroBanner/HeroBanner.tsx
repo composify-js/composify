@@ -13,7 +13,7 @@ type Props = {
 };
 
 export const HeroBanner: FC<Props> = ({ tagline, description, actions }) => (
-  <section className={styles.heroBanner}>
+  <section className={styles.container}>
     <h1 className={styles.title}>{tagline}</h1>
     <p className={styles.description}>{description}</p>
     <div className={styles.buttonGroup}>

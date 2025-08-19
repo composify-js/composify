@@ -7,7 +7,7 @@ type Props = PropsWithChildren<{
 }>;
 
 export const FeatureGroup: FC<Props> = ({ title, description, children }) => (
-  <section className={styles.featureGroup}>
+  <section className={styles.container}>
     <h2 className={styles.title}>{title}</h2>
     <p className={styles.description}>{nl2br(description)}</p>
     <div className={styles.features}>{children}</div>

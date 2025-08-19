@@ -1,4 +1,4 @@
-.codePreview {
+.container {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   border: 1px solid var(--docs-color-outline);
@@ -8,12 +8,8 @@
   -ms-overflow-style: none;
 }
 
-.codePreview::-webkit-scrollbar {
+.container::-webkit-scrollbar {
   display: none;
-}
-
-.codePreview div {
-  margin-bottom: 0 !important;
 }
 
 html[class="dark"] .light {

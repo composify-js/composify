@@ -23,8 +23,8 @@ export const PriceCalculator: FC = () => {
   const price = effectivePages <= 1 && effectiveSeats <= 1 ? 0 : Math.min(proPrice, businessPrice);
 
   return (
-    <section className={styles.priceCalculator}>
-      <div className={styles.calculatorGroup}>
+    <section className={styles.container}>
+      <div className={styles.calculators}>
         <div className={styles.calculator}>
           <div className={styles.header}>
             <p className={styles.title}>Live Pages</p>

@@ -1,4 +1,4 @@
-.backdrop {
+.container {
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -19,7 +19,7 @@
   opacity: 0.9;
 }
 
-.backdrop svg {
+.icon {
   fill: var(--docs-color-on-surface);
   opacity: 0.9;
 }
