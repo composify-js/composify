@@ -1,0 +1,42 @@
+import '@composify/react/style.css';
+import { PropertyControlBoolean } from '@composify/react/editor';
+import { useState } from 'react';
+
+export const BasicUsage = () => {
+  const [value, setValue] = useState(false);
+
+  return (
+    <PropertyControlBoolean
+      name="example"
+      spec={{
+        type: 'boolean',
+        label: 'Visible',
+        default: false,
+      }}
+      value={value}
+      onChange={(_, next) => setValue(next)}
+    />
+  );
+};
+
+# Boolean property
+
+A boolean prop is just a simple `true` / `false` toggle. Use it for things like showing or hiding a component, enabling or disabling a feature, or any other binary switch.
+
+:::code-group
+<div data-title="Preview">
+  <BasicUsage />
+</div>
+
+```tsx [Code]
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    visible: {
+      label: 'Visible',
+      type: 'boolean', // [!code hl]
+    },
+  },
+});
+```
+:::

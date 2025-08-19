@@ -72,7 +72,6 @@ const styles = StyleSheet.create({
     color: '#1E1E1E',
   },
 });
-
 ```
 
 ```jsx showLineNumbers [Body]
