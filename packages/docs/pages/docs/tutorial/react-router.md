@@ -463,4 +463,4 @@ From here, you could:
 - Add authentication and user permissions
 - Deploy it so your whole team can collaborate
 
-For unlimited bandwidth, built-in version history, and collaboration features, try [Composify Cloud](https://composify.com) — or self-host it, since it's all open source.
+For unlimited bandwidth, built-in version history, and collaboration features, try [Composify Cloud](/cloud) — or self-host it, since it's all open source.
