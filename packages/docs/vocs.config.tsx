@@ -71,14 +71,13 @@ export default defineConfig({
       collapsed: true,
       items: [
         { text: 'Overview', link: '/docs/catalog' },
-        { text: 'Grouping', link: '/docs/catalog/grouping' },
-        { text: 'Unregistered components', link: '/docs/catalog/unregistered-components' },
         {
           text: 'Properties',
           items: [
             { text: 'Boolean property', link: '/docs/catalog/properties/boolean' },
             { text: 'Number property', link: '/docs/catalog/properties/number' },
             { text: 'Text property', link: '/docs/catalog/properties/text' },
+            { text: 'Textarea property', link: '/docs/catalog/properties/textarea' },
             { text: 'Radio property', link: '/docs/catalog/properties/radio' },
             { text: 'Select property', link: '/docs/catalog/properties/select' },
             { text: 'Node property', link: '/docs/catalog/properties/node' },
