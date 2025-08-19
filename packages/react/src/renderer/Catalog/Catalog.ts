@@ -90,12 +90,6 @@ const setSpecDefault = (spec: PropertySpec<any>): void => {
     case 'boolean':
       spec.default ??= false;
       break;
-    case 'date':
-      spec.default ??= new Date();
-      break;
-    case 'image':
-      spec.default ??= '';
-      break;
     case 'node':
       spec.default ??= null;
       break;

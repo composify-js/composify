@@ -1,0 +1,41 @@
+import '@composify/react/style.css';
+import { PropertyControlText } from '@composify/react/editor';
+import { useState } from 'react';
+
+export const BasicUsage = () => {
+  const [value, setValue] = useState('');
+
+  return (
+    <PropertyControlText
+      name="example"
+      spec={{
+        type: 'text',
+        label: 'Title',
+      }}
+      value={value}
+      onChange={(_, next) => setValue(next ?? '')}
+    />
+  );
+};
+
+# Text property
+
+A text prop is just a plain string. Use it for things like titles, labels, names, or any short bit of text content.
+
+:::code-group
+<div data-title="Preview">
+  <BasicUsage />
+</div>
+
+```tsx [Code]
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    title: {
+      label: 'Title',
+      type: 'text', // [!code hl]
+    },
+  },
+});
+```
+:::

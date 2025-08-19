@@ -1,0 +1,41 @@
+import '@composify/react/style.css';
+import { PropertyControlNumber } from '@composify/react/editor';
+import { useState } from 'react';
+
+export const BasicUsage = () => {
+  const [value, setValue] = useState(0);
+
+  return (
+    <PropertyControlNumber
+      name="example"
+      spec={{
+        type: 'number',
+        label: 'Count',
+      }}
+      value={value}
+      onChange={(_, next) => setValue(next ?? 0)}
+    />
+  );
+};
+
+# Number property
+
+A number prop holds numeric values. Perfect for things like counts, sizes, spacing, or any prop that needs a number.
+
+:::code-group
+<div data-title="Preview">
+  <BasicUsage />
+</div>
+
+```tsx [Code]
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    count: {
+      label: 'Count',
+      type: 'number', // [!code hl]
+    },
+  },
+});
+```
+:::

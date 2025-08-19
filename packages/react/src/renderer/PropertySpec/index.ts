@@ -1,8 +1,6 @@
 export {
   type ArrayPropertySpec,
   type BooleanPropertySpec,
-  type DatePropertySpec,
-  type ImagePropertySpec,
   type NodePropertySpec,
   type NumberPropertySpec,
   type ObjectPropertySpec,

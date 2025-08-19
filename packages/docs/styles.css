@@ -132,3 +132,7 @@ html.dark {
 .vocs_Footer:not([data-layout="docs"]) {
   align-items: stretch;
 }
+
+.vocs_Tabs_content[id*="content-Preview"] {
+  background: var(--vocs-color_background);
+}

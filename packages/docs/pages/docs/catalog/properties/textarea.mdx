@@ -1,0 +1,41 @@
+import '@composify/react/style.css';
+import { PropertyControlTextArea } from '@composify/react/editor';
+import { useState } from 'react';
+
+export const BasicUsage = () => {
+  const [value, setValue] = useState('');
+
+  return (
+    <PropertyControlTextArea
+      name="example"
+      spec={{
+        type: 'textarea',
+        label: 'Description',
+      }}
+      value={value}
+      onChange={(_, next) => setValue(next ?? '')}
+    />
+  );
+};
+
+# Textarea property
+
+A textarea prop is for multi-line strings. Use it when you need longer input, like descriptions, messages, or paragraphs of text.
+
+:::code-group
+<div data-title="Preview">
+  <BasicUsage />
+</div>
+
+```tsx [Code]
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    description: {
+      label: 'Description',
+      type: 'textarea', // [!code hl]
+    },
+  },
+});
+```
+:::
