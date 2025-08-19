@@ -1,8 +1,32 @@
 import { useState, type FC } from 'react';
 import styles from './PriceCalculator.module.css';
 
-const PAGES = ['1', '5', '10', '20', '30', '50', '100', '250', '500', '1000', '2500', '5000+'];
-const SEATS = ['1', '2', '3', '5', '10', '15', '20', '30', '40', '50', '75', '100+'];
+const PAGES = [
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '10',
+  '15',
+  '20',
+  '25',
+  '50',
+  '75',
+  '100',
+  '150',
+  '200',
+  '250',
+  '500',
+  '1,000',
+  '1,500',
+  '2,000',
+  '2,500',
+  '5,000',
+  '7,500',
+  '10,000+',
+];
+const SEATS = ['1', '2', '3', '4', '5', '10', '15', '20', '25', '30', '40', '50', '75', '100+'];
 
 const PAGES_PRICE = 1;
 const SEATS_PRICE = 3;
@@ -21,6 +45,7 @@ export const PriceCalculator: FC = () => {
   const businessPrice = Math.max(99 + (effectivePages - 100) * PAGES_PRICE, 99);
 
   const price = effectivePages <= 1 && effectiveSeats <= 1 ? 0 : Math.min(proPrice, businessPrice);
+  const plan = price === 0 ? 'Free' : price === businessPrice ? 'Business' : 'Pro';
 
   return (
     <section className={styles.container}>
@@ -43,10 +68,8 @@ export const PriceCalculator: FC = () => {
             style={{ '--progress': `${pagesProgress}%` } as React.CSSProperties}
           />
           <div className={styles.indicatorGroup}>
-            <p className={styles.indicator}>{PAGES[0]}</p>
-            <p className={styles.indicator}>{PAGES[3]}</p>
-            <p className={styles.indicator}>{PAGES[7]}</p>
-            <p className={styles.indicator}>{PAGES[11]}</p>
+            <p className={styles.indicator}>{PAGES[0]} pages</p>
+            <p className={styles.indicator}>{PAGES[22]} pages</p>
           </div>
         </div>
         <div className={styles.divider} />
@@ -68,15 +91,13 @@ export const PriceCalculator: FC = () => {
             style={{ '--progress': `${seatsProgress}%` } as React.CSSProperties}
           />
           <div className={styles.indicatorGroup}>
-            <p className={styles.indicator}>{SEATS[0]}</p>
-            <p className={styles.indicator}>{SEATS[3]}</p>
-            <p className={styles.indicator}>{SEATS[7]}</p>
-            <p className={styles.indicator}>{SEATS[11]}</p>
+            <p className={styles.indicator}>{SEATS[0]} seats</p>
+            <p className={styles.indicator}>{SEATS[13]} seats</p>
           </div>
         </div>
       </div>
       <div className={styles.plan}>
-        <h3 className={styles.planTitle}>Pay as you go</h3>
+        <h3 className={styles.planTitle}>{plan} Plan</h3>
         <div className={styles.planPrice}>
           <p className={styles.planPriceAmount}>${price.toFixed(2)}</p>
           <p className={styles.planPriceInterval}>&nbsp;/ mo</p>
