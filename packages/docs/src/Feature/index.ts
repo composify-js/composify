@@ -1,1 +1,0 @@
-export { Feature } from './Feature';

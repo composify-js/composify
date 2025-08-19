@@ -1,4 +1,4 @@
-.feature {
+.container {
   padding: 48px;
   border-radius: 4px;
   border: 1px solid var(--docs-color-outline);
@@ -28,7 +28,7 @@
 }
 
 @media (max-width: 1080px) {
-  .feature {
+  .container {
     padding: 28px;
   }
 

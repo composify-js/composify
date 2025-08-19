@@ -1,7 +1,7 @@
 import { Catalog } from '@composify/react/renderer';
 import { CodePreview } from './CodePreview';
-import { Feature } from './Feature';
 import { FeatureGroup } from './FeatureGroup';
+import { FeatureItem } from './FeatureItem';
 import { HeroBanner } from './HeroBanner';
 import { MainCta } from './MainCta';
 import { Playground } from './Playground';
@@ -75,8 +75,8 @@ Catalog.register('FeatureGroup', {
   },
 });
 
-Catalog.register('Feature', {
-  component: Feature,
+Catalog.register('FeatureItem', {
+  component: FeatureItem,
   props: {
     title: {
       label: 'Title',
