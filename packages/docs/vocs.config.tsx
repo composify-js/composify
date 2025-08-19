@@ -98,20 +98,6 @@ export default defineConfig({
       ],
     },
     {
-      text: 'Preset',
-      collapsed: true,
-      items: [{ text: 'Overview', link: '/docs/preset' }],
-    },
-    {
-      text: 'API Reference',
-      collapsed: true,
-      items: [
-        { text: 'Catalog', link: '/docs/api/catalog' },
-        { text: 'Editor', link: '/docs/api/editor' },
-        { text: 'Preset', link: '/docs/api/preset' },
-      ],
-    },
-    {
       text: 'Use Cases',
       collapsed: true,
       items: [

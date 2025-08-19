@@ -20,8 +20,8 @@ export const Footer = () => (
       <a href="/docs/getting-started" className={styles.item}>
         Getting Started
       </a>
-      <a href="/docs/api/catalog" className={styles.item}>
-        API Reference
+      <a href="/docs/tutorial/prerequisites" className={styles.item}>
+        Tutorial
       </a>
     </div>
     <div className={styles.column}>
