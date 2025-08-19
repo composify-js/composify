@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { NodeManager, Node, PopulatedNode } from './NodeManager';
+import { NodeManager, type Node, type PopulatedNode } from './NodeManager';
 
 const ensureNode = (node: PopulatedNode | string | undefined): PopulatedNode => {
   if (!node || typeof node === 'string') {

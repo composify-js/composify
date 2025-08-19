@@ -7,7 +7,7 @@
     "start": "vocs dev",
     "build": "vocs build",
     "preview": "vocs preview",
-    "lint": "eslint **/*.ts{,x} --fix"
+    "lint": "eslint src --ext .ts,.tsx --fix"
   },
   "dependencies": {
     "@composify/react": "workspace:*",

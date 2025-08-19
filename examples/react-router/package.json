@@ -7,7 +7,7 @@
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc",
-    "lint": "eslint **/*.ts{,x} --fix"
+    "lint": "eslint app --ext .ts,.tsx --fix"
   },
   "dependencies": {
     "@composify/react": "workspace:*",

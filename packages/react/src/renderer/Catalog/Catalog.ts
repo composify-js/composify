@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ComponentProps, ComponentType } from 'react';
-import { PropertySpec } from '../PropertySpec';
+import { type ComponentProps, type ComponentType } from 'react';
+import { type PropertySpec } from '../PropertySpec';
 
 export type Block<
   Component extends ComponentType<any> = any,
