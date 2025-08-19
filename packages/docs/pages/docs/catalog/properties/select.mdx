@@ -9,8 +9,8 @@ export const BasicUsage = () => {
     <PropertyControlSelect
       name="example"
       spec={{
-        type: 'select',
         label: 'Fruit',
+        type: 'select',
         options: [
           { label: 'Apple', value: 'apple' },
           { label: 'Banana', value: 'banana' },
@@ -25,7 +25,8 @@ export const BasicUsage = () => {
 
 # Select property
 
-A select prop renders a dropdown so users can pick one option from a list. Great for things like choosing categories, sizes, or any fixed set of values.
+A select prop renders a dropdown so users can pick one option from a list.
+Great for things like choosing categories, sizes, or any fixed set of values.
 
 :::code-group
 <div data-title="Preview">
@@ -50,11 +51,12 @@ Catalog.register('Sample', {
 ```
 :::
 
-## Required Parameters
+## Required parameters
 
 ### `options`
 
-Defines the list of choices for the dropdown. Each option needs a label (what users see) and a value (what gets passed to the component).
+Defines the list of choices for the dropdown.
+Each option needs a label (what users see) and a value (what gets passed to the component).
 
 ```tsx showLineNumbers
 Catalog.register('Sample', {

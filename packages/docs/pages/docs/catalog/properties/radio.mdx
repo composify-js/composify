@@ -28,8 +28,8 @@ export const BasicUsage = () => {
     <PropertyControlRadio
       name="example"
       spec={{
-        type: 'radio',
         label: 'Alignment',
+        type: 'radio',
         options: [
           { label: 'Left', value: 'left' },
           { label: 'Center', value: 'center' },
@@ -49,8 +49,8 @@ export const WithCustomRender = () => {
     <PropertyControlRadio
       name="example"
       spec={{
-        type: 'radio',
         label: 'Alignment',
+        type: 'radio',
         options: ['left', 'center', 'right'],
         render: (value, onChange) => (
           <div style={{ display: 'flex', gap: '0.5rem' }}>
@@ -105,11 +105,12 @@ Catalog.register('Sample', {
 ```
 :::
 
-## Required Parameters
+## Required parameters
 
 ### `options`
 
-Defines the list of choices for the radio group. Each option needs a label (what users see) and a value (what gets passed to the component).
+Defines the list of choices for the radio group.
+Each option needs a label (what users see) and a value (what gets passed to the component).
 
 ```tsx showLineNumbers
 Catalog.register('Sample', {
@@ -128,7 +129,7 @@ Catalog.register('Sample', {
 });
 ```
 
-## Optional Parameters
+## Optional parameters
 
 ### `render`
 
@@ -172,4 +173,5 @@ Catalog.register('Sample', {
 ```
 :::
 
-Note that when you use a custom render, `options` should only include the values. Don't include labels — the render function is in charge of how each option looks.
+Note that when you use a custom render, `options` should only include the values.
+Don't include labels — the render function is in charge of how each option looks.

@@ -1,0 +1,91 @@
+import '@composify/react/style.css';
+import { PropertyControlObject } from '@composify/react/editor';
+import { useState } from 'react';
+
+export const BasicUsage = () => {
+  const [value, setValue] = useState({ label: 'Click me', primary: true });
+
+  return (
+    <PropertyControlObject
+      name="example"
+      spec={{
+        label: 'Actions',
+        type: 'object',
+        fields: {
+          label: { label: 'Label' , type: 'text' },
+          primary: { label: 'Primary', type: 'boolean' },
+        },
+      }}
+      value={value}
+      onChange={(_, next) => setValue(next ?? {})}
+    />
+  );
+};
+
+# Object property
+
+An object prop lets you group multiple named properties together into a single structured value.
+Each field inside `fields` is defined using another property spec (e.g. text, number, boolean, array, object).
+Nested objects and arrays are fully supported, so you can build complex shapes if needed.
+
+:::code-group
+<div data-title="Preview">
+  <BasicUsage />
+</div>
+
+```tsx showLineNumbers [Code]
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    actions: {
+      label: 'Actions',
+      type: 'object',// [!code hl]
+      fields: {// [!code hl]
+        label: {// [!code hl]
+          label: 'Label',// [!code hl]
+          type: 'text',// [!code hl]
+        },// [!code hl]
+        primary: {// [!code hl]
+          label: 'Primary',// [!code hl]
+          type: 'boolean',// [!code hl]
+        },// [!code hl]
+      },// [!code hl]
+    },
+  },
+});
+```
+:::
+
+## Required parameters
+
+### `fields`
+
+Defines the structure of the object.
+Each key in the object becomes a field, and its value is a property spec describing that field.
+
+```tsx showLineNumbers
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    actions: {
+      label: 'Actions',
+      type: 'object',
+      fields: {// [!code hl]
+        label: {// [!code hl]
+          label: 'Label',// [!code hl]
+          type: 'text',// [!code hl]
+        },// [!code hl]
+        primary: {// [!code hl]
+          label: 'Primary',// [!code hl]
+          type: 'boolean',// [!code hl]
+        },// [!code hl]
+      },// [!code hl]
+    },
+  },
+});
+```
+
+Each field works just like a regular property spec:
+
+- It must have at least a `label` and a `type`.
+- The `type` decides what kind of input control gets rendered.

@@ -9,8 +9,8 @@ export const BasicUsage = () => {
     <PropertyControlNumber
       name="example"
       spec={{
-        type: 'number',
         label: 'Count',
+        type: 'number',
       }}
       value={value}
       onChange={(_, next) => setValue(next ?? 0)}
@@ -20,7 +20,8 @@ export const BasicUsage = () => {
 
 # Number property
 
-A number prop holds numeric values. Perfect for things like counts, sizes, spacing, or any prop that needs a number.
+A number prop holds numeric values.
+Perfect for things like counts, sizes, spacing, or any prop that needs a number.
 
 :::code-group
 <div data-title="Preview">

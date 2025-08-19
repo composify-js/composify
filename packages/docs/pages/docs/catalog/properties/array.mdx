@@ -1,0 +1,83 @@
+import '@composify/react/style.css';
+import { PropertyControlArray } from '@composify/react/editor';
+import { useState } from 'react';
+
+export const BasicUsage = () => {
+  const [value, setValue] = useState(['']);
+
+  return (
+    <PropertyControlArray
+      name="example"
+      spec={{
+        label: 'Tags',
+        type: 'array',
+        item: {
+          label: 'Tag',
+          type: 'text',
+        },
+      }}
+      value={value}
+      onChange={(_, next) => setValue(next ?? [])}
+    />
+  );
+};
+
+# Array property
+
+An array prop stores a list of values.
+It can't stand on its own — you need to define an item spec that describes what each entry looks like.
+The item spec can be any other property type (e.g. text, number, select).
+Nested objects and arrays are fully supported.
+
+Users can add or remove items in the editor.
+When adding a new item, it will start from `item.default` if you provide one.
+
+:::code-group
+<div data-title="Preview">
+  <BasicUsage />
+</div>
+
+```tsx showLineNumbers [Code]
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    tags: {
+      label: 'Tags',
+      type: 'array',// [!code hl]
+      item: {// [!code hl]
+        label: 'Tag'// [!code hl]
+        type: 'text',// [!code hl]
+      },// [!code hl]
+    },
+  },
+});
+```
+:::
+
+In the editor, this shows up with controls to add new entries or remove existing ones.
+Removing an item simply deletes it from the array.
+
+## Required parameters
+
+### `item`
+
+The `item` spec defines the property type for each entry in the array.
+Like any other property, it must have at least a `label` and a `type`.
+The `type` decides what kind of input control is rendered for each item.
+
+```tsx showLineNumbers
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    tags: {
+      label: 'Tags',
+      type: 'array',
+      item: {// [!code hl]
+        label: 'Tag'// [!code hl]
+        type: 'text',// [!code hl]
+      },// [!code hl]
+    },
+  },
+});
+```
+:::
