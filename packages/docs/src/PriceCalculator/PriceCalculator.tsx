@@ -32,8 +32,8 @@ const PAGES_PRICE = 1;
 const SEATS_PRICE = 3;
 
 export const PriceCalculator: FC = () => {
-  const [pages, setPages] = useState(1);
-  const [seats, setSeats] = useState(1);
+  const [pages, setPages] = useState(0);
+  const [seats, setSeats] = useState(0);
 
   const pagesProgress = (pages / (PAGES.length - 1)) * 100;
   const seatsProgress = (seats / (SEATS.length - 1)) * 100;
