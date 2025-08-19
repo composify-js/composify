@@ -4,6 +4,9 @@ import styles from './PriceCalculator.module.css';
 const PAGES = ['1', '5', '10', '20', '30', '50', '100', '250', '500', '1000', '2500', '5000+'];
 const SEATS = ['1', '2', '3', '5', '10', '15', '20', '30', '40', '50', '75', '100+'];
 
+const PAGES_PRICE = 1;
+const SEATS_PRICE = 3;
+
 export const PriceCalculator: FC = () => {
   const [pages, setPages] = useState(1);
   const [seats, setSeats] = useState(1);
@@ -11,7 +14,13 @@ export const PriceCalculator: FC = () => {
   const pagesProgress = (pages / (PAGES.length - 1)) * 100;
   const seatsProgress = (seats / (SEATS.length - 1)) * 100;
 
-  const price = Math.max((pages - 1) * 1 + (seats - 1) * 5, 0);
+  const effectivePages = parseInt(PAGES[pages].replace(/\D/g, ''), 10);
+  const effectiveSeats = parseInt(SEATS[seats].replace(/\D/g, ''), 10);
+
+  const proPrice = Math.max(29 + (effectivePages - 30) * PAGES_PRICE + (effectiveSeats - 3) * SEATS_PRICE, 29);
+  const businessPrice = Math.max(99 + (effectivePages - 100) * PAGES_PRICE, 99);
+
+  const price = effectivePages <= 1 && effectiveSeats <= 1 ? 0 : Math.min(proPrice, businessPrice);
 
   return (
     <section className={styles.priceCalculator}>
