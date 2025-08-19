@@ -1,3 +1,3 @@
 # composify
 
-Server driven UI made easy.
+Server Driven UI made easy.

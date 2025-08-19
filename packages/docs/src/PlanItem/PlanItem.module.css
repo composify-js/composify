@@ -7,7 +7,6 @@
 }
 
 .recommended {
-  background-color: var(--docs-color-surface-container-low);
   border: none;
   border-left: 1px solid var(--docs-color-outline);
   border-right: 1px solid var(--docs-color-outline);

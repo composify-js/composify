@@ -33,7 +33,7 @@
   gap: 1.5rem;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 720px) {
   .features {
     display: flex;
     flex-direction: column;
