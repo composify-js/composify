@@ -11,6 +11,7 @@ export const BasicUsage = () => {
       spec={{
         type: 'textarea',
         label: 'Description',
+        placeholder: 'Type something...',
       }}
       value={value}
       onChange={(_, next) => setValue(next ?? '')}
@@ -34,8 +35,28 @@ Catalog.register('Sample', {
     description: {
       label: 'Description',
       type: 'textarea', // [!code hl]
+      placeholder: 'Type something...', // [!code hl]
     },
   },
 });
 ```
 :::
+
+## Parameters
+
+### `placeholder`
+
+Placeholder lets you show hint text in the input when it's empty.
+
+```tsx
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    description: {
+      label: 'Description',
+      type: 'textarea',
+      placeholder: 'Type something...', // [!code hl]
+    },
+  },
+});
+```

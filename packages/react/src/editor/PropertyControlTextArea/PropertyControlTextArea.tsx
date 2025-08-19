@@ -19,7 +19,13 @@ export const PropertyControlTextArea = ({ spec, ...props }: Props) => (
     spec={spec}
     defaultValue={spec.default ?? ''}
     renderInput={(value, onChange) => (
-      <textarea value={value} rows={3} onChange={event => onChange(event.target.value)} className={getClassName()} />
+      <textarea
+        rows={3}
+        placeholder={spec.placeholder}
+        value={value}
+        onChange={event => onChange(event.target.value)}
+        className={getClassName()}
+      />
     )}
   />
 );

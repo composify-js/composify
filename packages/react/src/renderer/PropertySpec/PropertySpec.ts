@@ -54,10 +54,12 @@ export type SelectPropertySpec<Value> = DefaultPropertySpec<Value> & {
 
 export type TextPropertySpec<Value> = DefaultPropertySpec<Value> & {
   type: 'text';
+  placeholder?: string;
 };
 
 export type TextAreaPropertySpec<Value> = DefaultPropertySpec<Value> & {
   type: 'textarea';
+  placeholder?: string;
 };
 
 export type PropertySpec<Value> =

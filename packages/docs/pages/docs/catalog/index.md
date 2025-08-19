@@ -92,8 +92,8 @@ Each type comes with a default value so you don't always have to specify one you
 | [`number`](/docs/catalog/properties/number)     | `0`                          |
 | [`text`](/docs/catalog/properties/text)         | `''`                         |
 | [`textarea`](/docs/catalog/properties/textarea) | `''`                         |
-| [`radio`](/docs/catalog/properties/radio)       | First options value          |
-| [`select`](/docs/catalog/properties/select)     | First options value          |
+| [`radio`](/docs/catalog/properties/radio)       | First option's value          |
+| [`select`](/docs/catalog/properties/select)     | First option's value          |
 | [`node`](/docs/catalog/properties/node)         | `null`                       |
 | [`array`](/docs/catalog/properties/array)       | `[]`                         |
 | [`object`](/docs/catalog/properties/object)     | Defaults for each sub-field  |

@@ -11,6 +11,7 @@ export const BasicUsage = () => {
       spec={{
         type: 'text',
         label: 'Title',
+        placeholder: 'Type something...',
       }}
       value={value}
       onChange={(_, next) => setValue(next ?? '')}
@@ -20,7 +21,7 @@ export const BasicUsage = () => {
 
 # Text property
 
-A text prop is just a plain string. Use it for things like titles, labels, names, or any short bit of text content.
+A text prop is just a plain string. Use it for titles, labels, names, or any short bit of text content.
 
 :::code-group
 <div data-title="Preview">
@@ -34,8 +35,28 @@ Catalog.register('Sample', {
     title: {
       label: 'Title',
       type: 'text', // [!code hl]
+      placeholder: 'Type something...', // [!code hl]
     },
   },
 });
 ```
 :::
+
+## Parameters
+
+### `placeholder`
+
+Placeholder lets you show hint text in the input when it's empty.
+
+```tsx
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    title: {
+      label: 'Title',
+      type: 'text',
+      placeholder: 'Type something...', // [!code hl]
+    },
+  },
+});
+```

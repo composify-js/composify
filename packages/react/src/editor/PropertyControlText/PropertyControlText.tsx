@@ -19,7 +19,13 @@ export const PropertyControlText = ({ spec, ...props }: Props) => (
     spec={spec}
     defaultValue={spec.default ?? ''}
     renderInput={(value, onChange) => (
-      <input type="text" value={value} onChange={event => onChange(event.target.value)} className={getClassName()} />
+      <input
+        type="text"
+        placeholder={spec.placeholder}
+        value={value}
+        onChange={event => onChange(event.target.value)}
+        className={getClassName()}
+      />
     )}
   />
 );
