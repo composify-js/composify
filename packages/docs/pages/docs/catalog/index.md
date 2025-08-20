@@ -1,4 +1,4 @@
-# Catalog Overview
+# Catalog
 
 The **Catalog** is the core of Composify. Both the editor and the renderer rely on it, since every component must be registered there before it can be used. The Catalog defines:
 
