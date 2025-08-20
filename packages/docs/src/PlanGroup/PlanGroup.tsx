@@ -24,7 +24,7 @@ export const PlanGroup: FC = () => (
         interval="&nbsp;/ mo + usage"
         features={[
           { label: '30 Live Pages', caption: '+ then $1 per page' },
-          { label: '3 Editor Seats', caption: '+ then $3 per seat' },
+          { label: '3 Editor Seats', caption: '+ then $5 per seat' },
           { label: 'Unlimited Bandwidth' },
           { label: 'Unlimited Page Views' },
           { label: 'Real-time Collaboration' },

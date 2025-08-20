@@ -17,19 +17,16 @@ const PAGES = [
   '150',
   '200',
   '250',
+  '300',
+  '400',
   '500',
-  '1,000',
-  '1,500',
-  '2,000',
-  '2,500',
-  '5,000',
-  '7,500',
-  '10,000+',
+  '750',
+  '1,000+',
 ];
 const SEATS = ['1', '2', '3', '4', '5', '10', '15', '20', '25', '30', '40', '50', '75', '100+'];
 
 const PAGES_PRICE = 1;
-const SEATS_PRICE = 3;
+const SEATS_PRICE = 5;
 
 export const PriceCalculator: FC = () => {
   const [pages, setPages] = useState(0);
@@ -41,8 +38,9 @@ export const PriceCalculator: FC = () => {
   const effectivePages = parseInt(PAGES[pages].replace(/\D/g, ''), 10);
   const effectiveSeats = parseInt(SEATS[seats].replace(/\D/g, ''), 10);
 
-  const proPrice = Math.max(29 + (effectivePages - 30) * PAGES_PRICE + (effectiveSeats - 3) * SEATS_PRICE, 29);
-  const businessPrice = Math.max(99 + (effectivePages - 100) * PAGES_PRICE, 99);
+  const proPrice =
+    29 + Math.max((effectivePages - 30) * PAGES_PRICE, 0) + Math.max((effectiveSeats - 3) * SEATS_PRICE, 0);
+  const businessPrice = 99 + Math.max((effectivePages - 100) * PAGES_PRICE, 0);
 
   const price = effectivePages <= 1 && effectiveSeats <= 1 ? 0 : Math.min(proPrice, businessPrice);
   const plan = price === 0 ? 'Free' : price === businessPrice ? 'Business' : 'Pro';
@@ -69,7 +67,7 @@ export const PriceCalculator: FC = () => {
           />
           <div className={styles.indicatorGroup}>
             <p className={styles.indicator}>{PAGES[0]} pages</p>
-            <p className={styles.indicator}>{PAGES[22]} pages</p>
+            <p className={styles.indicator}>{PAGES[PAGES.length - 1]} pages</p>
           </div>
         </div>
         <div className={styles.divider} />
@@ -92,14 +90,17 @@ export const PriceCalculator: FC = () => {
           />
           <div className={styles.indicatorGroup}>
             <p className={styles.indicator}>{SEATS[0]} seats</p>
-            <p className={styles.indicator}>{SEATS[13]} seats</p>
+            <p className={styles.indicator}>{SEATS[SEATS.length - 1]} seats</p>
           </div>
         </div>
       </div>
       <div className={styles.plan}>
         <h3 className={styles.planTitle}>{plan} Plan</h3>
         <div className={styles.planPrice}>
-          <p className={styles.planPriceAmount}>${price.toFixed(2)}</p>
+          <p className={styles.planPriceAmount}>
+            ${price.toFixed(2)}
+            {pages === PAGES.length - 1 ? '+' : ''}
+          </p>
           <p className={styles.planPriceInterval}>&nbsp;/ mo</p>
         </div>
       </div>
