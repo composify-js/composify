@@ -1,0 +1,113 @@
+import '@composify/react/style.css';
+import { PropertyControlCustom } from '@composify/react/editor';
+import { useState } from 'react';
+
+export const BasicUsage = () => {
+  const [value, setValue] = useState('');
+
+  return (
+    <PropertyControlCustom
+      name="example"
+      spec={{
+        type: 'custom',
+        label: 'Image',
+        render: (value, onChange) => (
+          <>
+            <style>
+              {`
+            .file-input {
+              display: block;
+              width: 100%;
+              font-size: 0.875rem;
+              line-height: 1.4;
+              color: var(--docs-color-secondary);
+              border: 1px solid var(--docs-color-outline);
+              border-radius: 4px;
+              cursor: pointer;
+              background-color: var(--docs-color-surface-container-low);
+              padding: 0;
+            }
+
+            .file-input::file-selector-button {
+              margin-right: 16px;
+              padding: 8px 16px;
+              border: 0;
+              border-top-left-radius: 4px;
+              border-bottom-left-radius: 4px;
+              font-size: 0.875rem;
+              line-height: 1.4;
+              font-weight: 600;
+              background-color: var(--docs-color-secondary);
+              color: white;
+              cursor: pointer;
+              transition: opacity 0.1s;
+            }
+
+            .file-input:hover::file-selector-button {
+              opacity: 0.9;
+            }
+            `}
+            </style>
+            <input
+              type="file"
+              className="file-input"
+              value={value}
+              onChange={event => onChange(event.target.files?.[0].name ?? '')}
+            />
+          </>
+        ),
+      }}
+      value={value}
+      onChange={(_, next) => setValue(next)}
+    />
+  );
+};
+
+# Custom property
+
+When none of the built-in property types fit, use a custom prop to build your own control.
+This gives you full flexibility — you can render anything from a file picker to a color slider to a full-blown form.
+
+:::code-group
+<div data-title="Preview">
+  <BasicUsage />
+</div>
+
+```tsx showLineNumbers [Code]
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    counter: {
+      label: 'Counter',
+      type: 'custom',// [!code hl]
+      render: (value, onChange) => (// [!code hl]
+        <FileUploadInput value={value} onChange={onChange} />// [!code hl]
+      ),// [!code hl]
+    },
+  },
+});
+```
+:::
+
+## Required Parameters
+
+### `render`
+
+A custom prop must define a `render` function.
+It receives the current `value` and an `onChange` callback.
+Return any React element — a button, slider, upload control, or even a small form — and wire it up to `onChange` to update the prop's value.
+
+```tsx showLineNumbers
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    counter: {
+      label: 'Counter',
+      type: 'custom',
+      render: (value, onChange) => (// [!code hl]
+        <FileUploadInput value={value} onChange={onChange} />// [!code hl]
+      ),// [!code hl]
+    },
+  },
+});
+```

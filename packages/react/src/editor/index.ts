@@ -9,3 +9,4 @@ export { PropertyControlRadio } from './PropertyControlRadio';
 export { PropertyControlSelect } from './PropertyControlSelect';
 export { PropertyControlText } from './PropertyControlText';
 export { PropertyControlTextArea } from './PropertyControlTextArea';
+export { PropertyControlCustom } from './PropertyControlCustom';
