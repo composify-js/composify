@@ -98,6 +98,11 @@ export default defineConfig({
       ],
     },
     {
+      text: 'Renderer',
+      collapsed: true,
+      items: [{ text: 'Overview', link: '/docs/renderer' }],
+    },
+    {
       text: 'Use Cases',
       collapsed: true,
       items: [

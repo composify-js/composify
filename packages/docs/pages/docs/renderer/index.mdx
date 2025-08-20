@@ -1,0 +1,42 @@
+import { Renderer } from '@composify/react/renderer';
+import '../../../src/catalog';
+
+export const source = `
+  <FeatureItem
+    title="Keep it simple with JSX"
+    description="Use the markup you already know. Forget complex JSON or custom syntax."
+    preview={<CodePreview asset="/assets/jsx" />}
+    wide={false}
+    spacing={{ top: 0, bottom: -50 }}
+  />
+`;
+
+# Renderer
+
+The **Renderer** takes a JSX string and turns it into real UI using components registered in the [Catalog](/docs/catalog).
+
+:::code-group
+<div data-title="Preview">
+  <Renderer source={source} />
+</div>
+
+```tsx showLineNumbers [Usage]
+import { Renderer } from '@composify/react/renderer';
+
+const source = `
+  <FeatureItem
+    title="Keep it simple with JSX"
+    description="Use the markup you already know. Forget complex JSON or custom syntax."
+    preview={<CodePreview asset="/assets/jsx" />}
+    wide={false}
+    spacing={{ top: 0, bottom: -50 }}
+  />
+`;
+
+export function Example() {
+  return <Renderer source={source} />;
+}
+```
+:::
+
+If you haven't set up your catalog yet or want to wire up the editor side, check out the [Getting Started guide](/docs/getting-started).
