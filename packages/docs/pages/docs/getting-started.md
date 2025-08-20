@@ -19,10 +19,10 @@ yarn add @composify/react
 :::
 
 :::info[Vue support is on the way 🚀]
-Right now Composify works with React only. Vue support is in the works and coming soon.
+Right now, Composify works with React only. Vue support is in the works and will be coming soon.
 :::
 
-## Register your components
+## 1. Register your components
 
 Before you can use a component in the `Editor` or `Renderer`, you need to register it in the Composify catalog.
 
@@ -61,11 +61,13 @@ Catalog.register('Text', {
 });
 ```
 
-Make sure this file is imported at the entry point of your app (like `index.tsx` or `app.tsx`). For more options and advanced config, see the [Catalog docs](/docs/catalog).
+**Important**: Make sure this catalog file is imported at the entry point of your app (like `index.tsx` or `app.tsx`) so your components are registered.
 
-## Render components
+For more options and advanced configurations, check out the [Catalog docs](/docs/catalog).
 
-Once registered, render JSX content with the `Renderer` component. Pass a JSX string to the source prop, and we will take care of the rest.
+## 2. Render your components
+
+Once registered, you can render any JSX content with the `Renderer` component. Just pass a JSX string to the `source` prop, and we'll take care of the rest.
 
 ```jsx [page.tsx]
 import { Renderer } from '@composify/react/renderer';
@@ -97,12 +99,12 @@ export const Page = () => (
 ```
 
 :::warning[No JavaScript execution]
-The renderer only parses JSX — it won't run variables, functions, expressions in your source string.
+The renderer only parses JSX. It won't run any variables, functions, or JavaScript expressions in your source string.
 :::
 
-## Edit visually
+## 3. Edit visually
 
-To edit JSX in a visual way, use the `Editor` component. Just like `Renderer`, pass in your JSX string as source.
+To edit JSX in a visual way, use the `Editor` component. Just like the `Renderer`, you pass your JSX string to the `source` prop.
 
 ```jsx [editor.tsx]
 import { Editor } from '@composify/react/editor';
@@ -120,7 +122,7 @@ export const Page = () => (
 );
 ```
 
-Don't forget to import our styles.
+Don't forget to import the necessary styles for the editor to look right.
 
 ```jsx [editor.tsx]
 import '@composify/react/style.css';

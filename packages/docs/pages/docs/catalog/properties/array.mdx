@@ -22,15 +22,13 @@ export const BasicUsage = () => {
   );
 };
 
-# Array property
+# Array Property
 
-An array prop stores a list of values.
-It can't stand on its own — you need to define an item spec that describes what each entry looks like.
-The item spec can be any other property type (e.g. text, number, select).
-Nested objects and arrays are fully supported.
+An **array** property stores a list of values.
+It can't stand on its own — you also need to define an item spec that describes what each entry in the list looks like.
+The `item` spec can be any other property type (like `text`, `number`, or `select`), and you can even nest objects and arrays inside.
 
-Users can add or remove items in the editor.
-When adding a new item, it will start from `item.default` if you provide one.
+In the editor, users can add or remove items. If you want new items to start with a default value, just add a `default` key to your `item` spec.
 
 :::code-group
 <div data-title="Preview">
@@ -57,13 +55,13 @@ Catalog.register('Sample', {
 In the editor, this shows up with controls to add new entries or remove existing ones.
 Removing an item simply deletes it from the array.
 
-## Required parameters
+## Required Parameters
 
 ### `item`
 
 The `item` spec defines the property type for each entry in the array.
-Like any other property, it must have at least a `label` and a `type`.
-The `type` decides what kind of input control is rendered for each item.
+Just like any other property, it needs at least a `label` and a `type`.
+The `type` tells the editor which kind of input to render for each item.
 
 ```tsx showLineNumbers
 Catalog.register('Sample', {

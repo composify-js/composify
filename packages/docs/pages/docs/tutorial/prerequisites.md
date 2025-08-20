@@ -1,10 +1,10 @@
 # Prerequistes
 
-In this guide, we'll integrate Composify into your stack. Before Composify can render anything, it needs endpoints to save and load page documents. The quickest way to mock those is with [json-server](https://github.com/typicode/json-server).
+In these tutorials, we'll be integrating Composify into your stack. Before we start, Composify needs a place to save and load page content. The quickest way to set up a mock API for this is with [json-server](https://github.com/typicode/json-server).
 
 ## Seed some data
 
-**json-server** infers its schema from an initial JSON file. Create a `database.json` (name can be anything) with a documents collection:
+**json-server** creates a REST API from a single JSON file. Let's create a `database.json` file to get started. You can name it anything you like.
 
 ```json [database.json]
 {
@@ -17,27 +17,31 @@ In this guide, we'll integrate Composify into your stack. Before Composify can r
 }
 ```
 
-- `id`: your page identifier.
-- `content`: a JSX string Composify will render.
+- `id`: The unique identifier for your page.
+- `content`: The JSX string that Composify will render.
 
-## Run the mock API
+## Run the Mock API
+
+Now, run this command in your terminal:
 
 ```bash
 npx json-server --watch database.json --port 9000
 ```
 
-This gives you a REST API at `http://localhost:9000` with CORS enabled out of the box.
+This spins up a REST API at `http://localhost:9000` with CORS enabled out of the box.
 
-## Try it out
+## Try It Out
 
-Create a new document:
+You can now interact with your mock API.
+
+To create a new document, run a POST request:
 
 ```bash
 curl -X POST http://localhost:9000/documents \
   --data '{"id":"bar","content":"<VStack size={{ height: 200 }} backgroundColor=\"#f8fafc\" />"}'
 ```
 
-Fetch by id:
+To fetch it by ID:
 
 ```bash
 curl http://localhost:9000/documents/bar
@@ -49,4 +53,4 @@ curl http://localhost:9000/documents/bar
 # ]
 ```
 
-That's it. Composify can now hit `/documents` to read and write pages while you build the real backend later.
+That's it! Now you have a working mock API, and Composify can use the `/documents` endpoint to read and write pages. You can build out the real backend later.

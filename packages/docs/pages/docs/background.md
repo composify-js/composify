@@ -4,7 +4,7 @@ A few years back, I co-founded an edtech company. Like most startups, we ran all
 
 Over time, we started to notice patterns — certain page layouts and component combos that worked well. We'd reuse them over and over, just with different styles. Basically, we were playing with "building blocks" made from our existing components... but doing it manually was tedious, repetitive, and honestly, kind of draining.
 
-We wanted a more scalable way to do this, so we looked around and found [Blocks UI](https://blocks-ui.com), a JSX-based visual editor.It was a promising concept and a great fit for our stack, but it wasn't fully built out and had some limitations. So we rolled up our sleeves and built our own editor and renderer from scratch.
+We wanted a more scalable way to do this, so we looked around and found [Blocks UI](https://blocks-ui.com), a JSX-based visual editor.It was a promising concept and a great fit for our stack, but it wasn't fully built out and had a few limitations. So we rolled up our sleeves and built our own editor and renderer from scratch.
 
 Fast-forward two years: it became one of the most-used tools in the company. Every marketing campaign ran through it. It powered product experiments. It even handled 60% of all incoming traffic — and kept growing.
 

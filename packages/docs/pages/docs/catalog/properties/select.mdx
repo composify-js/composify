@@ -23,10 +23,10 @@ export const BasicUsage = () => {
   );
 };
 
-# Select property
+# Select Property
 
-A select prop renders a dropdown so users can pick one option from a list.
-Great for things like choosing categories, sizes, or any fixed set of values.
+The **select** property renders a dropdown, letting users pick one option from a predefined list.
+It's great for choosing from categories, sizes, or any fixed set of values. 
 
 :::code-group
 <div data-title="Preview">
@@ -51,12 +51,15 @@ Catalog.register('Sample', {
 ```
 :::
 
-## Required parameters
+## Required Parameters
 
 ### `options`
 
-Defines the list of choices for the dropdown.
-Each option needs a label (what users see) and a value (what gets passed to the component).
+The `options` property is an array that defines the choices for the dropdown.
+Each option in the array should be an object with: 
+
+- `label`: The text users will see in the list.
+- `value`: The actual value that gets passed to your component.
 
 ```tsx showLineNumbers
 Catalog.register('Sample', {

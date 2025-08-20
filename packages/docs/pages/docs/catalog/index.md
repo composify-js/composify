@@ -1,15 +1,15 @@
 # Catalog
 
-The **Catalog** is the core of Composify. Both the editor and the renderer rely on it, since every component must be registered there before it can be used. The Catalog defines:
+The **Catalog** is the heart of Composify. Both the editor and the renderer rely on it, as every component must be registered here before it can be used The Catalog is where you define:
 
-- Which components are available
+- Which components are available in the editor
 - What props each component accepts
-- How those props should be edited in the UI
-- Extra settings (grouping by category, optional or not, ...)
+- How those props should be edited
+- Extra settings, like categories or default values
 
 ## Registering a component
 
-Use `Catalog.register` to make a component available. It takes three things:
+Use `Catalog.register` to make a component available in Composify. It takes three things:
 
 1. The component name
 2. The component itself
@@ -26,15 +26,15 @@ The **component name** is how Composify identifies it. To keep things simple, we
 
 The **component** can be any React component (function or class). No restrictions here.
 
-### Unregistered component
+### Unregistered Components
 
-If you try to use a component that hasn't been registered, Composify will just treat it like a `Fragment`. In other words, the component itself won't render and its props will be ignored.
+What happens if you try to render a component that hasn't been registered? Composify will simply treat it like a React `Fragment`. This means the component itself won't render, and its props will be ignored.
 
-This way, the editor and renderer won't crash and they'll keep rendering everything else that's properly registered.
+This way, your app won't crash, and the editor and the renderer will keep rendering everything else that's registered correctly.
 
 ## Defining props
 
-If your component has required props (and you're using TypeScript), you'll see type errors until you tell Composify how to handle those props. That's where the prop specification comes in.
+If your component has required props (and you're using TypeScript), you'll see type errors until you tell Composify how to handle them. That's where the property specification comes in.
 
 ```tsx [catalog.tsx]
 Catalog.register('HeroBanner', {
@@ -48,7 +48,7 @@ Catalog.register('HeroBanner', {
 });
 ```
 
-Each prop needs at least two fields: `label` and `type`. The editor picks the right input control based on `type`. Here's the full list:
+Each property specification needs at least a `label` and a `type`. The `type` tells the editor which input control to use. Here's a list of all available types:
 
 |                       Type                      |                 Description                 |
 |-------------------------------------------------|---------------------------------------------|
@@ -65,7 +65,7 @@ Each prop needs at least two fields: `label` and `type`. The editor picks the ri
 
 ## Optional props
 
-You can make a prop optional by setting the `optional` field to `true`.
+You can make a prop optional by setting `optional: true`.
 
 ```tsx
 Catalog.register('HeroBanner', {
@@ -79,12 +79,11 @@ Catalog.register('HeroBanner', {
   },
 });
 ```
-
-In the editor, optional props show up with a toggle button next to the label. This lets users add or remove the prop dynamically, instead of always having to provide a value.
+This adds a toggle in the editor next to the prop's label, letting users add or remove the prop on the fly.
 
 ## Default values
 
-Each type comes with a default value so you don't always have to specify one yourself:
+Each property type comes with a sensible default value so you don't have to specify one every time:
 
 |                       Type                      |            Default           |
 |-------------------------------------------------|------------------------------|
@@ -101,7 +100,7 @@ Each type comes with a default value so you don't always have to specify one you
 
 ## Group components
 
-You can organize components in the editor's library by assigning them a category. Components with the same category will appear grouped together.
+You can organize components in the editor by assigning them a `category`. Components with the same category will appear grouped together in the library panel.
 
 ```tsx
 Catalog.register('HeroBanner', {
@@ -116,4 +115,4 @@ Catalog.register('HeroBanner', {
 });
 ```
 
-If you don't set a category, the component will automatically be placed under "Uncategorized".
+If you don't set a category, the component will be placed under "Uncategorized".

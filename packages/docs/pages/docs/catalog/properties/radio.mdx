@@ -78,9 +78,9 @@ export const WithCustomRender = () => {
   );
 };
 
-# Radio property
+# Radio Property
 
-A radio prop lets users pick one option from a set, shown as a group of radio buttons.
+A **radio** property lets users pick one option from a set, displayed as a group of radio buttons. 
 
 :::code-group
 <div data-title="Preview">
@@ -105,12 +105,15 @@ Catalog.register('Sample', {
 ```
 :::
 
-## Required parameters
+## Required Parameters
 
 ### `options`
 
-Defines the list of choices for the radio group.
-Each option needs a label (what users see) and a value (what gets passed to the component).
+This is an array that defines the choices for the radio group.
+Each option in the array should be an object with: 
+
+- `label`: The text displayed next to the radio button.
+- `value`: The value passed to your component when the option is selected.
 
 ```tsx showLineNumbers
 Catalog.register('Sample', {
@@ -129,11 +132,11 @@ Catalog.register('Sample', {
 });
 ```
 
-## Optional parameters
+## Optional Parameters
 
 ### `render`
 
-You can override how the radio group is displayed by providing a custom render function.
+f you want to create a totally custom look, you can provide your own `render` function to display the radio group however you like. 
 
 :::code-group
 <div data-title="Preview">
@@ -173,5 +176,5 @@ Catalog.register('Sample', {
 ```
 :::
 
-Note that when you use a custom render, `options` should only include the values.
-Don't include labels — the render function is in charge of how each option looks.
+**Heads up**: When using a custom `render` function, the `options` array should only contain the raw values (e.g., `['left', 'center', 'right']`)
+ Your `render` function is now fully in charge of displaying the labels.

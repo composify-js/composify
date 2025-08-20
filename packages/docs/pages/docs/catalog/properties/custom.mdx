@@ -63,10 +63,10 @@ export const BasicUsage = () => {
   );
 };
 
-# Custom property
+# Custom Property
 
-When none of the built-in property types fit, use a custom prop to build your own control.
-This gives you full flexibility — you can render anything from a file picker to a color slider to a full-blown form.
+When none of the built-in property types quite fit your needs, the **custom** property gives you the power to build your own control.
+This gives you total flexibility — render anything from a file picker to a color slider to a full-blown form. 
 
 :::code-group
 <div data-title="Preview">
@@ -89,13 +89,14 @@ Catalog.register('Sample', {
 ```
 :::
 
-## Required parameters
+## Required Parameters
 
 ### `render`
 
-A custom prop must define a `render` function.
-It receives the current `value` and an `onChange` callback.
-Return any React element — a button, slider, upload control, or even a small form — and wire it up to `onChange` to update the prop's value.
+A custom property requires a render `function`.
+This function receives the current `value` of the prop and an `onChange` callback you can use to update it. 
+
+Inside, you can return any React element — a button, a slider, or even a small form — and just wire up the `onChange` callback to pass back new values. 
 
 ```tsx showLineNumbers
 Catalog.register('Sample', {
