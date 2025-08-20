@@ -68,7 +68,7 @@
 
 .featureLabel {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   font-size: 0.9375rem;
   gap: 4px;
 }

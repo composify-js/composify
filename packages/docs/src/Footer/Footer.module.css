@@ -45,6 +45,10 @@ html:not([class="dark"]) .dark {
   color: var(--docs-color-on-surface-variant);
 }
 
+.github {
+  margin: 12px 0;
+}
+
 .title {
   margin: 0 0 16px 0;
   font-size: 1rem;

@@ -115,5 +115,11 @@ export default defineConfig({
       ],
     },
   ],
+  socials: [
+    {
+      icon: 'github',
+      link: 'https://github.com/composify-js/composify',
+    },
+  ],
   rootDir: '',
 });

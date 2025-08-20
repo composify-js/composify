@@ -124,6 +124,10 @@ html.dark {
   padding: 0;
 }
 
+.vocs_DocsLayout[data-layout="landing"] .vocs_Socials {
+  display: none;
+}
+
 .vocs_Footer {
   max-width: unset;
   padding: 1.5rem;

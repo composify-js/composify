@@ -47,6 +47,9 @@ export const Footer = () => (
       <a href="/blog" className={styles.item}>
         Blog
       </a>
+      <a href="https://github.com/composify-js/composify" className={styles.item}>
+        Github
+      </a>
     </div>
   </section>
 );
