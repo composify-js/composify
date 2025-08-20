@@ -13,14 +13,14 @@ export const source = `
 
 # Renderer
 
-The **Renderer** takes a JSX string and turns it into real UI using components registered in the [Catalog](/docs/catalog).
+The **Renderer** takes a JSX string and renders it as a live UI, using components registered in your [Catalog](/docs/catalog).
 
 :::code-group
 <div data-title="Preview">
   <Renderer source={source} />
 </div>
 
-```tsx showLineNumbers [Usage]
+```tsx showLineNumbers [Code]
 import { Renderer } from '@composify/react/renderer';
 
 const source = `
@@ -39,4 +39,4 @@ export function Example() {
 ```
 :::
 
-If you haven't set up your catalog yet or want to wire up the editor side, check out the [Getting Started guide](/docs/getting-started).
+For a complete walkthrough on setting up the Catalog and integrating the full editor, please refer to the [Getting Started guide](/docs/getting-started).

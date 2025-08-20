@@ -51,7 +51,17 @@ Catalog.register('HeroBanner', {
 
 Catalog.register('Playground', {
   component: Playground,
-  props: {},
+  props: {
+    mode: {
+      label: 'Mode',
+      type: 'select',
+      options: [
+        { label: 'Landing', value: 'landing' },
+        { label: 'Docs', value: 'docs' },
+      ],
+      default: 'landing',
+    },
+  },
 });
 
 Catalog.register('FeatureGroup', {

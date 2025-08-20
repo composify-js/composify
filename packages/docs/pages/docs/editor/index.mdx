@@ -1,0 +1,96 @@
+import { Editor } from '@composify/react';
+import { SourceProvider } from '../../../src/SourceContext';
+import { Playground } from '../../../src/Playground';
+import '../../../src/catalog';
+
+export const source = `
+  <FeatureGroup
+    title="Visual editing, powered by your components."
+    description="Write components once, let anyone build with them through a visual interface."
+  >
+    <FeatureItem
+      title="Keep it simple with JSX"
+      description="Use the markup you already know. Forget complex JSON or custom syntax."
+      preview={<CodePreview asset="/assets/jsx" />}
+      wide={false}
+      spacing={{ top: 0, bottom: -50 }}
+    />
+    <FeatureItem
+      title="It just works"
+      description="No special props. No rigid structure. Just register your components and go."
+      preview={<CodePreview asset="/assets/catalog" />}
+      wide={false}
+      spacing={{ top: 0, bottom: -50 }}
+    />
+    <FeatureItem
+      title="WYSIWYG, tailor-made"
+      description="Drag and drop anything, anywhere. Everything works exactly as you'd expect."
+      preview={
+        <MainCta to="/docs/getting-started">
+          Get started →
+        </MainCta>
+      }
+      wide={true}
+      spacing={{ top: 0, bottom: -2 }}
+    />
+  </FeatureGroup>
+`;
+
+# Editor
+
+The **Editor** lets you build pages with your own JSX components.
+
+:::code-group
+<div data-title="Preview">
+  <SourceProvider source={source}>
+    <Playground mode="docs" />
+  </SourceProvider>
+</div>
+
+```tsx showLineNumbers [Code]
+import { Editor } from "@composify/react/editor";
+
+const source = `
+  <FeatureGroup
+    title="Visual editing, powered by your components."
+    description="Write components once, let anyone build with them through a visual interface."
+  >
+    <FeatureItem
+      title="Keep it simple with JSX"
+      description="Use the markup you already know. Forget complex JSON or custom syntax."
+      preview={<CodePreview asset="/assets/jsx" />}
+      wide={false}
+      spacing={{ top: 0, bottom: -50 }}
+    />
+    <FeatureItem
+      title="It just works"
+      description="No special props. No rigid structure. Just register your components and go."
+      preview={<CodePreview asset="/assets/catalog" />}
+      wide={false}
+      spacing={{ top: 0, bottom: -50 }}
+    />
+    <FeatureItem
+      title="WYSIWYG, tailor-made"
+      description="Drag and drop anything, anywhere. Everything works exactly as you'd expect."
+      preview={
+        <MainCta to="/docs/getting-started">
+          Get started →
+        </MainCta>
+      }
+      wide={true}
+      spacing={{ top: 0, bottom: -2 }}
+    />
+  </FeatureGroup>
+`;
+
+export function Example() {
+  return <Editor title="Home Page" source={source} />;
+}
+```
+:::
+
+While basic interactions like drag-and-drop, resizing, and property editing are designed to be intuitive, here are a few other key features:
+
+- **Dynamic viewport**: Simulate different screen sizes and orientations, just like in Chrome DevTools.
+- **Code editor**: Switch to the **Code** tab to edit JSX directly. Changes are instantly reflected on the visual canvas.
+- **Split view**: Use **Split** mode to view the visual and code editors side-by-side. This lets you tweak code and see the results update in real time.

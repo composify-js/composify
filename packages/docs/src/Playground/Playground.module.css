@@ -3,6 +3,10 @@
   background-color: var(--docs-color-surface);
 }
 
+.docsMode {
+  padding: 0;
+}
+
 .preview {
   flex: 1;
   display: flex;

@@ -43,7 +43,7 @@ export const ViewportManager: FC<Props> = ({
     },
     {
       width: 2560,
-      label: '4k - 1440px',
+      label: '4K - 2560px',
     },
   ],
   children,

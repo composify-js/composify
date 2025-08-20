@@ -1,6 +1,7 @@
 import '@composify/react/style.css';
 
 import { Editor, useComposifyEditor } from '@composify/react';
+import clsx from 'clsx';
 import { getBox } from 'css-box-model';
 import { type FC, useEffect, useRef, useState } from 'react';
 import { Backdrop } from '../Backdrop';
@@ -9,7 +10,16 @@ import styles from './Playground.module.css';
 
 const PLAYGROUND_WIDTH = 1354;
 
-export const Playground: FC = () => {
+type Props = {
+  mode: 'landing' | 'docs';
+  viewports?: {
+    width: number;
+    label: string;
+    initial?: boolean;
+  }[];
+};
+
+export const Playground: FC<Props> = ({ mode, viewports }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const [scale, setScale] = useState(1);
@@ -53,7 +63,7 @@ export const Playground: FC = () => {
   }, []);
 
   return (
-    <section className={styles.container}>
+    <section className={clsx(styles.container, { [styles.docsMode]: mode === 'docs' })}>
       <div
         ref={containerRef}
         className={styles.preview}
@@ -74,12 +84,12 @@ export const Playground: FC = () => {
               <h2 className={styles.mockTitle}>🎨 Playground</h2>
             </div>
           ) : (
-            <Editor title="Home Page" source={source} onSubmit={setSource} />
+            <Editor title="Home Page" source={source} viewports={viewports} onSubmit={setSource} />
           )}
         </div>
-        {!isLibrary && !isVisualEditor && <Backdrop />}
+        {mode === 'landing' && !isLibrary && !isVisualEditor && <Backdrop />}
       </div>
-      <p className={styles.description}>Make a change, hit save, and... tada! 🎉</p>
+      {mode === 'landing' && <p className={styles.description}>Make a change, hit save, and... tada! 🎉</p>}
     </section>
   );
 };

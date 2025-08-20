@@ -25,6 +25,9 @@
 
 .ViewportControl-ViewportItem:first-child {
   border: none;
+  width: auto !important;
+  left: 0;
+  right: 0;
 }
 
 .ViewportControl-Highlight {
