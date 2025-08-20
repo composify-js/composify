@@ -805,7 +805,6 @@ export { VStack } from './VStack';
 With our components registered, let's render a screen. The `Renderer` takes the saved JSX and renders it using your components.
 
 ```jsx showLineNumbers [app/[slug].tsx]
-import '@composify/react/preset';
 import '@/components';
 
 import { Renderer } from '@composify/react/renderer';
@@ -848,7 +847,6 @@ export default function Page() {
 A index screen to bounce around:
 
 ```jsx showLineNumbers [app/index.tsx]
-import '@composify/react/preset';
 import '@/components';
 
 import { Link } from 'expo-router';
@@ -904,7 +902,6 @@ Now you can test it:
 Now for the fun part: setting up the visual editor. To create or update content, we'll use the `Editor` component. Note that the editor runs on the web only. Rendering works everywhere.
 
 ```jsx showLineNumbers [app/editor/[slug].tsx]
-import '@composify/react/preset';
 import '@composify/react/style.css';
 import '@/components';
 
@@ -928,7 +925,6 @@ export default function EditorPage() {
 
 A few key points:
 
-- `@composify/react/preset` is optional; it just gives you handy layout components like VStack.
 - `@composify/react/style.css` is **required** — it contains the core editor styles.
 - Import your components (`@/components`) so they're available in the editor.
 
@@ -937,7 +933,6 @@ A few key points:
 First, we'll fetch the saved JSX from our API and pass it to the `Editor` as the `source` prop.
 
 ```jsx showLineNumbers [app/editor/[slug].tsx]
-import '@composify/react/preset';
 import '@composify/react/style.css';
 import '@/components';
 
@@ -979,7 +974,6 @@ Open `/foo` and you should see the editor UI with the document loaded.
 Right now, clicking **Save** does nothing. Let's wire it up to our API using the `onSubmit` handler.
 
 ```jsx showLineNumbers [app/editor/[slug].tsx]
-import '@composify/react/preset';
 import '@composify/react/style.css';
 import '@/components';
 

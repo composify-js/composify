@@ -3,11 +3,306 @@ import { CodePreview } from './CodePreview';
 import { FeatureGroup } from './FeatureGroup';
 import { FeatureItem } from './FeatureItem';
 import { HeroBanner } from './HeroBanner';
+import { HStack } from './HStack';
 import { MainCta } from './MainCta';
 import { Playground } from './Playground';
+import { VStack } from './VStack';
+
+Catalog.register('HStack', {
+  component: HStack,
+  category: 'Layout',
+  props: {
+    alignHorizontal: {
+      label: 'Horizontal Alignment',
+      type: 'select',
+      options: [
+        { label: 'Start', value: 'flex-start' },
+        { label: 'End', value: 'flex-end' },
+        { label: 'Center', value: 'center' },
+        { label: 'Space Between', value: 'space-between' },
+        { label: 'Space Around', value: 'space-around' },
+        { label: 'Space Evenly', value: 'space-evenly' },
+      ],
+      default: 'flex-start',
+      optional: true,
+    },
+    alignVertical: {
+      label: 'Vertical Alignment',
+      type: 'select',
+      options: [
+        { label: 'Start', value: 'flex-start' },
+        { label: 'End', value: 'flex-end' },
+        { label: 'Center', value: 'center' },
+        { label: 'Stretch', value: 'stretch' },
+      ],
+      default: 'stretch',
+      optional: true,
+    },
+    gap: {
+      label: 'Gap',
+      type: 'number',
+      default: 0,
+      optional: true,
+    },
+    size: {
+      label: 'Size',
+      type: 'object',
+      fields: {
+        width: {
+          label: 'Width',
+          type: 'number',
+          default: 100,
+          optional: true,
+        },
+        minWidth: {
+          label: 'Min Width',
+          type: 'number',
+          default: 0,
+          optional: true,
+        },
+        maxWidth: {
+          label: 'Max Width',
+          type: 'number',
+          default: 1000,
+          optional: true,
+        },
+        height: {
+          label: 'Height',
+          type: 'number',
+          default: 100,
+          optional: true,
+        },
+        minHeight: {
+          label: 'Min Height',
+          type: 'number',
+          default: 0,
+          optional: true,
+        },
+        maxHeight: {
+          label: 'Max Height',
+          type: 'number',
+          default: 1000,
+          optional: true,
+        },
+      },
+      optional: true,
+    },
+    padding: {
+      label: 'Padding',
+      type: 'object',
+      fields: {
+        top: {
+          label: 'Top',
+          type: 'number',
+          default: 0,
+        },
+        right: {
+          label: 'Right',
+          type: 'number',
+          default: 0,
+        },
+        bottom: {
+          label: 'Bottom',
+          type: 'number',
+          default: 0,
+        },
+        left: {
+          label: 'Left',
+          type: 'number',
+          default: 0,
+        },
+      },
+      optional: true,
+    },
+    margin: {
+      label: 'Margin',
+      type: 'object',
+      fields: {
+        top: {
+          label: 'Top',
+          type: 'number',
+          default: 0,
+        },
+        right: {
+          label: 'Right',
+          type: 'number',
+          default: 0,
+        },
+        bottom: {
+          label: 'Bottom',
+          type: 'number',
+          default: 0,
+        },
+        left: {
+          label: 'Left',
+          type: 'number',
+          default: 0,
+        },
+      },
+      optional: true,
+    },
+    backgroundColor: {
+      label: 'Background Color',
+      type: 'text',
+      default: '#ffffff',
+      optional: true,
+    },
+    children: {
+      label: 'Children',
+      type: 'node',
+    },
+  },
+});
+
+Catalog.register('VStack', {
+  component: VStack,
+  category: 'Layout',
+  props: {
+    alignHorizontal: {
+      label: 'Horizontal Alignment',
+      type: 'select',
+      options: [
+        { label: 'Start', value: 'flex-start' },
+        { label: 'End', value: 'flex-end' },
+        { label: 'Center', value: 'center' },
+        { label: 'Stretch', value: 'stretch' },
+      ],
+      default: 'stretch',
+      optional: true,
+    },
+    alignVertical: {
+      label: 'Vertical Alignment',
+      type: 'select',
+      options: [
+        { label: 'Start', value: 'flex-start' },
+        { label: 'End', value: 'flex-end' },
+        { label: 'Center', value: 'center' },
+        { label: 'Space Between', value: 'space-between' },
+        { label: 'Space Around', value: 'space-around' },
+        { label: 'Space Evenly', value: 'space-evenly' },
+      ],
+      default: 'flex-start',
+      optional: true,
+    },
+    gap: {
+      label: 'Gap',
+      type: 'number',
+      default: 0,
+      optional: true,
+    },
+    size: {
+      label: 'Size',
+      type: 'object',
+      fields: {
+        width: {
+          label: 'Width',
+          type: 'number',
+          default: 100,
+          optional: true,
+        },
+        minWidth: {
+          label: 'Min Width',
+          type: 'number',
+          default: 0,
+          optional: true,
+        },
+        maxWidth: {
+          label: 'Max Width',
+          type: 'number',
+          default: 1000,
+          optional: true,
+        },
+        height: {
+          label: 'Height',
+          type: 'number',
+          default: 100,
+          optional: true,
+        },
+        minHeight: {
+          label: 'Min Height',
+          type: 'number',
+          default: 0,
+          optional: true,
+        },
+        maxHeight: {
+          label: 'Max Height',
+          type: 'number',
+          default: 1000,
+          optional: true,
+        },
+      },
+      optional: true,
+    },
+    padding: {
+      label: 'Padding',
+      type: 'object',
+      fields: {
+        top: {
+          label: 'Top',
+          type: 'number',
+          default: 0,
+        },
+        right: {
+          label: 'Right',
+          type: 'number',
+          default: 0,
+        },
+        bottom: {
+          label: 'Bottom',
+          type: 'number',
+          default: 0,
+        },
+        left: {
+          label: 'Left',
+          type: 'number',
+          default: 0,
+        },
+      },
+      optional: true,
+    },
+    margin: {
+      label: 'Margin',
+      type: 'object',
+      fields: {
+        top: {
+          label: 'Top',
+          type: 'number',
+          default: 0,
+        },
+        right: {
+          label: 'Right',
+          type: 'number',
+          default: 0,
+        },
+        bottom: {
+          label: 'Bottom',
+          type: 'number',
+          default: 0,
+        },
+        left: {
+          label: 'Left',
+          type: 'number',
+          default: 0,
+        },
+      },
+      optional: true,
+    },
+    backgroundColor: {
+      label: 'Background Color',
+      type: 'text',
+      default: '#ffffff',
+      optional: true,
+    },
+    children: {
+      label: 'Children',
+      type: 'node',
+    },
+  },
+});
 
 Catalog.register('HeroBanner', {
   component: HeroBanner,
+  category: 'Landing',
   props: {
     tagline: {
       label: 'Tagline',
@@ -51,6 +346,7 @@ Catalog.register('HeroBanner', {
 
 Catalog.register('Playground', {
   component: Playground,
+  category: 'Landing',
   props: {
     mode: {
       label: 'Mode',
@@ -66,6 +362,7 @@ Catalog.register('Playground', {
 
 Catalog.register('FeatureGroup', {
   component: FeatureGroup,
+  category: 'Landing',
   props: {
     title: {
       label: 'Title',
@@ -87,6 +384,7 @@ Catalog.register('FeatureGroup', {
 
 Catalog.register('FeatureItem', {
   component: FeatureItem,
+  category: 'Landing',
   props: {
     title: {
       label: 'Title',
@@ -132,6 +430,7 @@ Catalog.register('FeatureItem', {
 
 Catalog.register('CodePreview', {
   component: CodePreview,
+  category: 'Landing',
   props: {
     asset: {
       label: 'Image asset',
@@ -143,6 +442,7 @@ Catalog.register('CodePreview', {
 
 Catalog.register('MainCta', {
   component: MainCta,
+  category: 'Landing',
   props: {
     to: {
       label: 'Link',

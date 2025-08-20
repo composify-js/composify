@@ -1,4 +1,3 @@
-import '@composify/react/preset';
 import '@/components';
 
 import { Link } from 'expo-router';

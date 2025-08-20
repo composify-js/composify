@@ -30,16 +30,6 @@
         "default": "./dist/editor/index.js"
       }
     },
-    "./preset": {
-      "import": {
-        "types": "./dist/preset/index.d.mts",
-        "default": "./dist/preset/index.mjs"
-      },
-      "require": {
-        "types": "./dist/preset/index.d.ts",
-        "default": "./dist/preset/index.js"
-      }
-    },
     "./renderer": {
       "import": {
         "types": "./dist/renderer/index.d.mts",

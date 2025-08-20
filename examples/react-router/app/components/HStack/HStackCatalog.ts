@@ -1,23 +1,11 @@
-import { Catalog } from '../../renderer';
+import { Catalog } from '@composify/react/renderer';
 import { HStack } from './HStack';
 
 Catalog.register('HStack', {
   component: HStack,
   props: {
-    flexGrow: {
-      label: 'Flex Grow',
-      type: 'number',
-      default: 0,
-      optional: true,
-    },
-    gap: {
-      label: 'Gap',
-      type: 'number',
-      default: 0,
-      optional: true,
-    },
     alignHorizontal: {
-      label: 'Horizontal',
+      label: 'Horizontal Alignment',
       type: 'select',
       options: [
         { label: 'Start', value: 'flex-start' },
@@ -31,7 +19,7 @@ Catalog.register('HStack', {
       optional: true,
     },
     alignVertical: {
-      label: 'Vertical',
+      label: 'Vertical Alignment',
       type: 'select',
       options: [
         { label: 'Start', value: 'flex-start' },
@@ -40,6 +28,12 @@ Catalog.register('HStack', {
         { label: 'Stretch', value: 'stretch' },
       ],
       default: 'stretch',
+      optional: true,
+    },
+    gap: {
+      label: 'Gap',
+      type: 'number',
+      default: 0,
       optional: true,
     },
     size: {
@@ -139,67 +133,10 @@ Catalog.register('HStack', {
       },
       optional: true,
     },
-    border: {
-      label: 'Border',
-      type: 'object',
-      fields: {
-        width: {
-          label: 'Width',
-          type: 'number',
-          default: 1,
-          optional: true,
-        },
-        style: {
-          label: 'Style',
-          type: 'select',
-          options: [
-            { label: 'Solid', value: 'solid' },
-            { label: 'Dashed', value: 'dashed' },
-            { label: 'Dotted', value: 'dotted' },
-          ],
-          default: 'solid',
-          optional: true,
-        },
-        color: {
-          label: 'Color',
-          type: 'text',
-          default: '#000000',
-          optional: true,
-        },
-        radius: {
-          label: 'Radius',
-          type: 'number',
-          default: 0,
-          optional: true,
-        },
-      },
-      optional: true,
-    },
     backgroundColor: {
       label: 'Background Color',
       type: 'text',
       default: '#ffffff',
-      optional: true,
-    },
-    flexWrap: {
-      label: 'Wrap',
-      type: 'radio',
-      options: [
-        { label: 'No Wrap', value: 'nowrap' },
-        { label: 'Wrap', value: 'wrap' },
-      ],
-      default: 'nowrap',
-      optional: true,
-    },
-    overflow: {
-      label: 'Overflow',
-      type: 'radio',
-      options: [
-        { label: 'Hidden', value: 'hidden' },
-        { label: 'Visible', value: 'visible' },
-        { label: 'Scroll', value: 'scroll' },
-      ],
-      default: 'visible',
       optional: true,
     },
     children: {

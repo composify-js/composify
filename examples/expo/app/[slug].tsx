@@ -1,4 +1,3 @@
-import '@composify/react/preset';
 import '@/components';
 
 import { Renderer } from '@composify/react/renderer';

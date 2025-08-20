@@ -122,6 +122,124 @@ export const Button = ({ variant, children }: Props) => {
   return <button className={`px-5 py-3 text-base rounded ${className}`}>{children}</button>;
 };
 ```
+
+```jsx showLineNumbers [VStack]
+import { type FC, type PropsWithChildren } from 'react';
+
+export type Props = PropsWithChildren<{
+  alignVertical?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+  alignHorizontal?: 'flex-start' | 'flex-end' | 'center' | 'stretch';
+  size?: {
+    width?: number | string;
+    minWidth?: number | string;
+    maxWidth?: number | string;
+    height?: number | string;
+    minHeight?: number | string;
+    maxHeight?: number | string;
+  };
+  padding?: { top: number; right: number; bottom: number; left: number };
+  margin?: { top: number; right: number; bottom: number; left: number };
+  backgroundColor?: string;
+  gap?: number;
+}>;
+
+export const VStack: FC<Props> = ({
+  alignVertical,
+  alignHorizontal,
+  size,
+  padding,
+  margin,
+  gap,
+  backgroundColor,
+  children,
+}) => (
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: alignHorizontal,
+      justifyContent: alignVertical,
+      width: size?.width,
+      minWidth: size?.minWidth,
+      maxWidth: size?.maxWidth,
+      height: size?.height,
+      minHeight: size?.minHeight,
+      maxHeight: size?.maxHeight,
+      paddingTop: padding?.top,
+      paddingBottom: padding?.bottom,
+      paddingLeft: padding?.left,
+      paddingRight: padding?.right,
+      marginTop: margin?.top,
+      marginBottom: margin?.bottom,
+      marginLeft: margin?.left,
+      marginRight: margin?.right,
+      gap,
+      backgroundColor,
+    }}
+  >
+    {children}
+  </div>
+);
+```
+
+```jsx showLineNumbers [HStack]
+import { type FC, type PropsWithChildren } from 'react';
+
+export type Props = PropsWithChildren<{
+  alignHorizontal?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+  alignVertical?: 'flex-start' | 'flex-end' | 'center' | 'stretch';
+  size?: {
+    width?: number | string;
+    minWidth?: number | string;
+    maxWidth?: number | string;
+    height?: number | string;
+    minHeight?: number | string;
+    maxHeight?: number | string;
+  };
+  padding?: { top: number; right: number; bottom: number; left: number };
+  margin?: { top: number; right: number; bottom: number; left: number };
+  backgroundColor?: string;
+  gap?: number;
+}>;
+
+export const HStack: FC<Props> = ({
+  alignVertical,
+  alignHorizontal,
+  size,
+  padding,
+  margin,
+  gap,
+  backgroundColor,
+  children,
+}) => (
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: alignVertical,
+      justifyContent: alignHorizontal,
+      width: size?.width,
+      minWidth: size?.minWidth,
+      maxWidth: size?.maxWidth,
+      height: size?.height,
+      minHeight: size?.minHeight,
+      maxHeight: size?.maxHeight,
+      paddingTop: padding?.top,
+      paddingBottom: padding?.bottom,
+      paddingLeft: padding?.left,
+      paddingRight: padding?.right,
+      marginTop: margin?.top,
+      marginBottom: margin?.bottom,
+      marginLeft: margin?.left,
+      marginRight: margin?.right,
+      gap,
+      backgroundColor,
+    }}
+  >
+    {children}
+  </div>
+);
+```
 :::
 
 Now, let's register them in the Catalog:
@@ -278,6 +396,308 @@ Catalog.register('Button', {
   },
 });
 ```
+
+```jsx showLineNumbers [VStack]
+/* components/VStack.tsx */
+import { Catalog } from '@composify/react/renderer';
+
+/* ... */
+Catalog.register('VStack', {
+  component: VStack,
+  props: {
+    alignHorizontal: {
+      label: 'Horizontal Alignment',
+      type: 'select',
+      options: [
+        { label: 'Start', value: 'flex-start' },
+        { label: 'End', value: 'flex-end' },
+        { label: 'Center', value: 'center' },
+        { label: 'Stretch', value: 'stretch' },
+      ],
+      default: 'stretch',
+      optional: true,
+    },
+    alignVertical: {
+      label: 'Vertical Alignment',
+      type: 'select',
+      options: [
+        { label: 'Start', value: 'flex-start' },
+        { label: 'End', value: 'flex-end' },
+        { label: 'Center', value: 'center' },
+        { label: 'Space Between', value: 'space-between' },
+        { label: 'Space Around', value: 'space-around' },
+        { label: 'Space Evenly', value: 'space-evenly' },
+      ],
+      default: 'flex-start',
+      optional: true,
+    },
+    gap: {
+      label: 'Gap',
+      type: 'number',
+      default: 0,
+      optional: true,
+    },
+    size: {
+      label: 'Size',
+      type: 'object',
+      fields: {
+        width: {
+          label: 'Width',
+          type: 'number',
+          default: 100,
+          optional: true,
+        },
+        minWidth: {
+          label: 'Min Width',
+          type: 'number',
+          default: 0,
+          optional: true,
+        },
+        maxWidth: {
+          label: 'Max Width',
+          type: 'number',
+          default: 1000,
+          optional: true,
+        },
+        height: {
+          label: 'Height',
+          type: 'number',
+          default: 100,
+          optional: true,
+        },
+        minHeight: {
+          label: 'Min Height',
+          type: 'number',
+          default: 0,
+          optional: true,
+        },
+        maxHeight: {
+          label: 'Max Height',
+          type: 'number',
+          default: 1000,
+          optional: true,
+        },
+      },
+      optional: true,
+    },
+    padding: {
+      label: 'Padding',
+      type: 'object',
+      fields: {
+        top: {
+          label: 'Top',
+          type: 'number',
+          default: 0,
+        },
+        right: {
+          label: 'Right',
+          type: 'number',
+          default: 0,
+        },
+        bottom: {
+          label: 'Bottom',
+          type: 'number',
+          default: 0,
+        },
+        left: {
+          label: 'Left',
+          type: 'number',
+          default: 0,
+        },
+      },
+      optional: true,
+    },
+    margin: {
+      label: 'Margin',
+      type: 'object',
+      fields: {
+        top: {
+          label: 'Top',
+          type: 'number',
+          default: 0,
+        },
+        right: {
+          label: 'Right',
+          type: 'number',
+          default: 0,
+        },
+        bottom: {
+          label: 'Bottom',
+          type: 'number',
+          default: 0,
+        },
+        left: {
+          label: 'Left',
+          type: 'number',
+          default: 0,
+        },
+      },
+      optional: true,
+    },
+    backgroundColor: {
+      label: 'Background Color',
+      type: 'text',
+      default: '#ffffff',
+      optional: true,
+    },
+    children: {
+      label: 'Children',
+      type: 'node',
+    },
+  },
+});
+```
+
+```jsx showLineNumbers [HStack]
+/* components/HStack.tsx */
+import { Catalog } from '@composify/react/renderer';
+
+/* ... */
+Catalog.register('HStack', {
+  component: HStack,
+  props: {
+    alignHorizontal: {
+      label: 'Horizontal Alignment',
+      type: 'select',
+      options: [
+        { label: 'Start', value: 'flex-start' },
+        { label: 'End', value: 'flex-end' },
+        { label: 'Center', value: 'center' },
+        { label: 'Space Between', value: 'space-between' },
+        { label: 'Space Around', value: 'space-around' },
+        { label: 'Space Evenly', value: 'space-evenly' },
+      ],
+      default: 'flex-start',
+      optional: true,
+    },
+    alignVertical: {
+      label: 'Vertical Alignment',
+      type: 'select',
+      options: [
+        { label: 'Start', value: 'flex-start' },
+        { label: 'End', value: 'flex-end' },
+        { label: 'Center', value: 'center' },
+        { label: 'Stretch', value: 'stretch' },
+      ],
+      default: 'stretch',
+      optional: true,
+    },
+    gap: {
+      label: 'Gap',
+      type: 'number',
+      default: 0,
+      optional: true,
+    },
+    size: {
+      label: 'Size',
+      type: 'object',
+      fields: {
+        width: {
+          label: 'Width',
+          type: 'number',
+          default: 100,
+          optional: true,
+        },
+        minWidth: {
+          label: 'Min Width',
+          type: 'number',
+          default: 0,
+          optional: true,
+        },
+        maxWidth: {
+          label: 'Max Width',
+          type: 'number',
+          default: 1000,
+          optional: true,
+        },
+        height: {
+          label: 'Height',
+          type: 'number',
+          default: 100,
+          optional: true,
+        },
+        minHeight: {
+          label: 'Min Height',
+          type: 'number',
+          default: 0,
+          optional: true,
+        },
+        maxHeight: {
+          label: 'Max Height',
+          type: 'number',
+          default: 1000,
+          optional: true,
+        },
+      },
+      optional: true,
+    },
+    padding: {
+      label: 'Padding',
+      type: 'object',
+      fields: {
+        top: {
+          label: 'Top',
+          type: 'number',
+          default: 0,
+        },
+        right: {
+          label: 'Right',
+          type: 'number',
+          default: 0,
+        },
+        bottom: {
+          label: 'Bottom',
+          type: 'number',
+          default: 0,
+        },
+        left: {
+          label: 'Left',
+          type: 'number',
+          default: 0,
+        },
+      },
+      optional: true,
+    },
+    margin: {
+      label: 'Margin',
+      type: 'object',
+      fields: {
+        top: {
+          label: 'Top',
+          type: 'number',
+          default: 0,
+        },
+        right: {
+          label: 'Right',
+          type: 'number',
+          default: 0,
+        },
+        bottom: {
+          label: 'Bottom',
+          type: 'number',
+          default: 0,
+        },
+        left: {
+          label: 'Left',
+          type: 'number',
+          default: 0,
+        },
+      },
+      optional: true,
+    },
+    backgroundColor: {
+      label: 'Background Color',
+      type: 'text',
+      default: '#ffffff',
+      optional: true,
+    },
+    children: {
+      label: 'Children',
+      type: 'node',
+    },
+  },
+});
+```
 :::
 
 Finally, create a central export file at `components/index.ts` so we can import them all with a single line:
@@ -286,6 +706,8 @@ Finally, create a central export file at `components/index.ts` so we can import 
 export { Heading } from './Heading';
 export { Body } from './Body';
 export { Button } from './Button';
+export { HStack } from './HStack';
+export { VStack } from './VStack';
 ```
 
 ## Render a page
@@ -293,7 +715,6 @@ export { Button } from './Button';
 With our components registered, let's render a page. The `Renderer` takes the saved JSX and renders it using your components.
 
 ```jsx showLineNumbers [app/[slug]/page.tsx]
-import '@composify/react/preset';
 import '@/components';
 
 import { Renderer } from '@composify/react/renderer';
@@ -329,7 +750,6 @@ Now for the fun part: setting up the visual editor. To create or update content,
 ```jsx showLineNumbers [app/editor/[slug]/client.tsx]
 'use client';
 
-import '@composify/react/preset';
 import '@composify/react/style.css';
 import '@/components';
 
@@ -342,7 +762,6 @@ export default function EditorPage({ slug, content }: { slug: string; content: s
 
 A few key points:
 
-- `@composify/react/preset` is optional; it just gives you handy layout components like VStack.
 - `@composify/react/style.css` is **required** — it contains the core editor styles.
 - Import your components (`@/components`) so they're available in the editor.
 
@@ -374,7 +793,6 @@ Right now, clicking **Save** does nothing. Let's wire it up to our API using the
 ```jsx showLineNumbers [app/editor/[slug]/client.tsx]
 'use client';
 
-import '@composify/react/preset';
 import '@composify/react/style.css';
 import '@/components';
 

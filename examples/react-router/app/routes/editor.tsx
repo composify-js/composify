@@ -1,4 +1,3 @@
-import '@composify/react/preset';
 import '@composify/react/style.css';
 import '~/components';
 

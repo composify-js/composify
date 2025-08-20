@@ -1,4 +1,3 @@
-import '@composify/react/preset';
 import '@/components';
 
 export default function HomePage() {
