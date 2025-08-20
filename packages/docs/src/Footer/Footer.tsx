@@ -29,11 +29,14 @@ export const Footer = () => (
       <a href="/docs/use-cases/ab-testing-and-prototyping" className={styles.item}>
         Faster Prototyping
       </a>
+      <a href="/docs/use-cases/no-code-tools" className={styles.item}>
+        No Code Tools
+      </a>
       <a href="/docs/use-cases/instant-ui-updates" className={styles.item}>
         Instant UI updates
       </a>
-      <a href="/docs/use-cases/no-code-tools" className={styles.item}>
-        No Code Tools
+      <a href="/docs/use-cases/headless-cms" className={styles.item}>
+        Headless CMS
       </a>
     </div>
     <div className={styles.column}>

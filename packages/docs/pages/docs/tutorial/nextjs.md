@@ -1,8 +1,8 @@
 # Next.js Tutorial
 
-In this guide, we'll assume you already have a Next.js project up and running. If not, start with the [Next.js getting started guide](https://nextjs.org/docs/app/getting-started/) first.
+This guide will walk you through setting up Composify in your Next.js project. We'll assume you already have a Next.js project up and running. If not, start with the [Next.js getting started guide](https://nextjs.org/docs/app/getting-started/) first.
 
-Make sure your mock API from the [prerequisites](/docs/tutorial/prerequisites) is running on `http://localhost:9000`. We'll use it to read and write documents. We'll identify pages with a simple `slug` (like `foo`) — no slashes needed.
+First, make sure the mock API from our [prerequisites guide](/docs/tutorial/prerequisites) is running on `http://localhost:9000`. We'll use it to read and write our page content.
 
 ## Install Composify
 
@@ -23,12 +23,12 @@ yarn add @composify/react
 :::
 
 :::info[Vue support is on the way 🚀]
-Right now Composify works with React only. Vue support is in the works and coming soon.
+Right now, Composify works with React only. Vue support is in the works and will be coming soon.
 :::
 
-## Register components to the Catalog
+## Register your components
 
-You _can_ use plain HTML elements, but Composify really shines with your own components. Let's create three simple components: `Heading`, `Body`, and `Button`.
+You _can_ use plain HTML elements, but Composify really shines when you use your own components. Let's create a few simple ones.
 
 :::code-group
 ```jsx showLineNumbers [Heading]
@@ -124,7 +124,7 @@ export const Button = ({ variant, children }: Props) => {
 ```
 :::
 
-Now register them:
+Now, let's register them in the Catalog:
 
 :::code-group
 ```jsx showLineNumbers [Heading]
@@ -280,7 +280,7 @@ Catalog.register('Button', {
 ```
 :::
 
-Finally, export them in `components/index.ts` so you can import them all at once:
+Finally, create a central export file at `components/index.ts` so we can import them all with a single line:
 
 ```jsx showLineNumbers [components/index.ts]
 export { Heading } from './Heading';
@@ -290,7 +290,7 @@ export { Button } from './Button';
 
 ## Render a page
 
-The `Renderer` takes the saved JSX and renders it using your registered components.
+With our components registered, let's render a page. The `Renderer` takes the saved JSX and renders it using your components.
 
 ```jsx showLineNumbers [app/[slug]/page.tsx]
 import '@composify/react/preset';
@@ -317,14 +317,14 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 }
 ```
 
-Now test it:
+Now you can test it:
 
 - Visit [`http://localhost:3000/foo/`](http://localhost:3000/foo/) to see the saved page.
 - Visit [`http://localhost:3000/baz/`](http://localhost:3000/baz/) and you'll get a 404 because there's no data yet.
 
 ## Set up the Editor
 
-To create or update content, we'll set up the `Editor` component. Since it contains client-side interactivity, mark the file with `'use client'`.
+Now for the fun part: setting up the visual editor. To create or update content, we'll use the `Editor` component. Note that the editor is interactive, so it must be in a Client Component (`'use client'`).
 
 ```jsx showLineNumbers [app/editor/[slug]/client.tsx]
 'use client';
@@ -340,15 +340,15 @@ export default function EditorPage({ slug, content }: { slug: string; content: s
 }
 ```
 
-**Notes:**
+A few key points:
 
-- `@composify/react/preset` is optional; it just gives you handy layout components like `VStack`.
-- `@composify/react/style.css` is **required** — it contains core editor styles.
-- Import your components so they're available in the editor.
+- `@composify/react/preset` is optional; it just gives you handy layout components like VStack.
+- `@composify/react/style.css` is **required** — it contains the core editor styles.
+- Import your components (`@/components`) so they're available in the editor.
 
 ### Load the initial source
 
-We'll fetch the saved JSX from our GET API and pass it to the `Editor` as the source prop.
+First, we'll fetch the saved JSX from our API and pass it to the `Editor` as the `source` prop.
 
 ```jsx showLineNumbers [app/editor/[slug]/page.tsx]
 import EditorPage from './client';
@@ -369,7 +369,7 @@ Open [`http://localhost:3000/editor/foo/`](http://localhost:3000/editor/foo/) an
 
 ### Handle saving
 
-Right now, clicking **Save** does nothing. Let's wire up an `onSubmit` handler so the editor knows how to store the updated content.
+Right now, clicking **Save** does nothing. Let's wire it up to our API using the `onSubmit` handler.
 
 ```jsx showLineNumbers [app/editor/[slug]/client.tsx]
 'use client';
@@ -412,7 +412,7 @@ export default function EditorPage({ slug, content }: { slug: string; content: s
 Now, when you hit **Save**, the editor sends the updated JSX to your `/documents` API.
 If you select **No** in the confirmation dialog, you'll be redirected to the rendered page.
 
-## Try it out
+## Try it out!
 
 1. Visit [`http://localhost:3000/foo/`](http://localhost:3000/foo/) to see the saved content.
 2. Open [`http://localhost:3000/editor/foo/`](http://localhost:3000/editor/foo/), make a change, and click **Save** — the rendered page updates instantly.
@@ -421,13 +421,13 @@ If you select **No** in the confirmation dialog, you'll be redirected to the ren
 
 ## Wrapping up
 
-You now have:
+And that's it! You now have:
 
 - A **document store** (currently powered by json-server, but could be a real database later)
 - An **editor** where you can visually compose pages using your own components
 - A **renderer** that turns saved JSX back into real UI
 
-From here, you could:
+Where to go from here?
 
 - Replace json-server with a real database
 - Add authentication and user permissions

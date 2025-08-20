@@ -107,10 +107,11 @@ export default defineConfig({
       collapsed: true,
       items: [
         { text: 'Instant UI Updates', link: '/docs/use-cases/instant-ui-updates' },
-        { text: 'Unblock Your Team', link: '/docs/use-cases/unblock-your-team' },
         { text: 'AB Testing and Prototyping', link: '/docs/use-cases/ab-testing-and-prototyping' },
-        { text: 'Design Tools', link: '/docs/use-cases/design-tools' },
+        { text: 'Headless CMS', link: '/docs/use-cases/headless-cms' },
         { text: 'No-Code Tools', link: '/docs/use-cases/no-code-tools' },
+        { text: 'Unblock Your Team', link: '/docs/use-cases/unblock-your-team' },
+        { text: 'Design Tools', link: '/docs/use-cases/design-tools' },
       ],
     },
   ],
