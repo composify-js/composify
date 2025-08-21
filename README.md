@@ -41,20 +41,20 @@ Add Composify to your project using your favorite package manager:
 
 ```bash
 # npm
-npm install @composify/react --save
+$ npm install @composify/react --save
 
 # pnpm
-pnpm add @composify/react
+$ pnpm add @composify/react
 
 # yarn
-yarn add @composify/react
+$ yarn add @composify/react
 ```
 
 ### Register your components
 
 Before you can use a component in the `Editor` or `Renderer`, you need to register it in the `Catalog`.
 
-```jsx
+```tsx
 // catalog.tsx
 import { Catalog } from '@composify/react/renderer';
 import { FC } from 'react';
@@ -96,7 +96,7 @@ Catalog.register('Text', {
 
 Once registered, you can render any JSX content with the `Renderer` component.
 
-```
+```tsx
 // page.tsx
 import { Renderer } from '@composify/react/renderer';
  
@@ -116,7 +116,7 @@ export const Page = () => (
 
 To edit JSX in a visual way, use the `Editor` component.
 
-```
+```tsx
 // editor.tsx
 import { Editor } from '@composify/react/editor';
 import '@composify/react/style.css';
