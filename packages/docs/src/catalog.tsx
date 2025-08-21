@@ -338,7 +338,7 @@ Catalog.register('HeroBanner', {
       },
       default: [
         { label: 'Learn more ›', href: '/docs', primary: true },
-        { label: 'Get started →', href: '/docs/getting-started', primary: false },
+        { label: 'View Demo →', href: '/demo', primary: false },
       ],
     },
   },

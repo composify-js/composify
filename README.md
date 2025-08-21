@@ -19,9 +19,9 @@
   </p>
 </div>
 
-## Introduction
+## 👋 Introduction
 
-Welcome to Composify! 👋
+Welcome to Composify!
 
 Composify is an open-source toolkit that lets you build pages visually, using your own production components. Think of it as a WYSIWYG editor that's powered by your component library, not some generic widget set.
 
@@ -29,11 +29,11 @@ Engineers build components once, and Composify empowers anyone on the team—fro
 
 Find out more at our [website](https://composify.js.org).
 
-## Documentation
+## 📖 Documentation
 
 Visit [https://composify.js.org/docs](https://composify.js.org/docs) to view the full documentation.
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Installation
 
@@ -133,7 +133,7 @@ export const Page = () => (
 );
 ```
 
-## Use Cases
+## 🔥 Use Cases
 
 Composify is a versatile tool that can be used in a variety of scenarios:
 
@@ -145,7 +145,7 @@ Composify is a versatile tool that can be used in a variety of scenarios:
 
 Find out more at our [website](https://composify.js.org/docs/use-cases/instant-ui-updates).
 
-## Composify Cloud
+## ☁️ Composify Cloud
 
 For teams that want to move even faster, Composify Cloud provides a managed, hassle-free experience with features like:
 
@@ -156,10 +156,10 @@ For teams that want to move even faster, Composify Cloud provides a managed, has
 
 Learn more about [Composify Cloud →](https://composify.js.org/cloud)
 
-## Contributing
+## 🙌 Contributing
 
 We welcome contributions from the community! Whether you're interested in fixing a bug, adding a new feature, or improving our documentation, we'd love to have your help.
 
-## License
+## 📄 License
 
 This project is licensed under the [Elastic License 2.0](LICENSE).
