@@ -1,7 +1,7 @@
-import { getClassNameFactory } from '@composify/utils';
 import { type FC, type PropsWithChildren, useMemo, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { getClassNameFactory } from '../../utils';
 import styles from './IsolatedDndProvider.module.css';
 
 const getClassName = getClassNameFactory('IsolatedDndProvider', styles);

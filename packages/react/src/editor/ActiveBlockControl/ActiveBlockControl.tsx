@@ -1,4 +1,4 @@
-import { getClassNameFactory } from '@composify/utils';
+import { getClassNameFactory } from '../../utils';
 import { useEditing } from '../EditingContext';
 import styles from './ActiveBlockControl.module.css';
 

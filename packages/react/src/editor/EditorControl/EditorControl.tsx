@@ -1,5 +1,5 @@
-import { getClassNameFactory } from '@composify/utils';
 import { type FC, type ReactNode, useCallback } from 'react';
+import { getClassNameFactory } from '../../utils';
 import { useEditing } from '../EditingContext';
 import styles from './EditorControl.module.css';
 

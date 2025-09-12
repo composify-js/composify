@@ -1,5 +1,5 @@
-import { getClassNameFactory } from '@composify/utils';
 import { type FC, useCallback, useEffect, useRef, useState } from 'react';
+import { getClassNameFactory } from '../../utils';
 import styles from './ViewportControl.module.css';
 
 const getClassName = getClassNameFactory('ViewportControl', styles);

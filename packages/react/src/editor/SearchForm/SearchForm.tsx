@@ -1,5 +1,5 @@
-import { getClassNameFactory } from '@composify/utils';
 import { type FC, type ReactNode, useState } from 'react';
+import { getClassNameFactory } from '../../utils';
 import styles from './SearchForm.module.css';
 
 const getClassName = getClassNameFactory('SearchForm', styles);

@@ -1,5 +1,5 @@
-import { getClassNameFactory } from '@composify/utils';
 import { type FC } from 'react';
+import { getClassNameFactory } from '../../utils';
 import { useEditing } from '../EditingContext';
 import { OutlineItem } from '../OutlineItem';
 import styles from './Outline.module.css';

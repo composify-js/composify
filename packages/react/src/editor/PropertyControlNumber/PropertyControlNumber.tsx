@@ -1,5 +1,5 @@
-import { getClassNameFactory } from '@composify/utils';
 import { type NumberPropertySpec } from '../../renderer';
+import { getClassNameFactory } from '../../utils';
 import { PropertyControl } from '../PropertyControl';
 import styles from './PropertyControlNumber.module.css';
 

@@ -71,7 +71,6 @@
     "react-element-to-jsx-string": "17.0.1"
   },
   "devDependencies": {
-    "@composify/utils": "workspace:*",
     "@ladle/react": "5.0.3",
     "@testing-library/react": "16.3.0",
     "@types/react": "19.1.8",

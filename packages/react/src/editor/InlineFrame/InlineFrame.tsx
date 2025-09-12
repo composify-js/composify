@@ -1,4 +1,3 @@
-import { getClassNameFactory } from '@composify/utils';
 import {
   useCallback,
   useEffect,
@@ -9,6 +8,7 @@ import {
   type PropsWithChildren,
 } from 'react';
 import { createPortal } from 'react-dom';
+import { getClassNameFactory } from '../../utils';
 import styles from './InlineFrame.module.css';
 import { InlineFrameProvider } from './InlineFrameContext';
 

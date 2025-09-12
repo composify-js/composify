@@ -1,5 +1,5 @@
-import { getClassNameFactory } from '@composify/utils';
 import { type FC, type PropsWithChildren, useState } from 'react';
+import { getClassNameFactory } from '../../utils';
 import { ViewportControl } from '../ViewportControl';
 import { ViewportScaler } from '../ViewportScaler';
 import styles from './ViewportManager.module.css';

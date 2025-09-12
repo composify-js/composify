@@ -1,5 +1,5 @@
-import { getClassNameFactory } from '@composify/utils';
 import { type FC } from 'react';
+import { getClassNameFactory } from '../../utils';
 import { BlockLibrary } from '../BlockLibrary';
 import { EditorHeader } from '../EditorHeader';
 import { SearchForm } from '../SearchForm';

@@ -1,5 +1,5 @@
-import { getClassNameFactory } from '@composify/utils';
 import { forwardRef, useState } from 'react';
+import { getClassNameFactory } from '../../utils';
 import { CodeEditor } from '../CodeEditor';
 import { EditingProvider, type EditingRef } from '../EditingContext';
 import { type EditMode } from '../EditorControl';

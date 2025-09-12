@@ -1,5 +1,3 @@
-import { getClassNameFactory } from '@composify/utils';
-
 import MonacoEditor, { type OnMount } from '@monaco-editor/react';
 import { debounce } from 'es-toolkit';
 import { type Plugin } from 'prettier';
@@ -8,6 +6,7 @@ import * as estreePlugin from 'prettier/plugins/estree';
 import prettier from 'prettier/standalone';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Catalog, NodeManager, Parser } from '../../renderer';
+import { getClassNameFactory } from '../../utils';
 import { useEditing } from '../EditingContext';
 import styles from './CodeEditor.module.css';
 

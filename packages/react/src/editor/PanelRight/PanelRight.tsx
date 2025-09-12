@@ -1,5 +1,5 @@
-import { getClassNameFactory } from '@composify/utils';
 import { type FC, type ReactNode } from 'react';
+import { getClassNameFactory } from '../../utils';
 import { ActiveBlockControl } from '../ActiveBlockControl';
 import { type EditMode, EditorControl } from '../EditorControl';
 import { Outline } from '../Outline';
