@@ -1,6 +1,6 @@
 import { type BridgeEventType, type BridgeEvent, isBridgeEvent } from './BridgeEvent';
 
-type BridgeEventHandler<Event extends BridgeEvent = BridgeEvent> = (event: Event) => void;
+export type BridgeEventHandler<Event extends BridgeEvent = BridgeEvent> = (event: Event) => void;
 
 export class Bridge {
   private readonly target: Window;

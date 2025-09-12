@@ -1,11 +1,12 @@
 import {
   createContext,
+  forwardRef,
   useCallback,
   useContext,
+  useImperativeHandle,
   useMemo,
   useState,
   useSyncExternalStore,
-  type FC,
   type PropsWithChildren,
 } from 'react';
 import { type Node, NodeManager, Parser } from '../../renderer';
@@ -51,11 +52,16 @@ const EditingContext = createContext<EditingContextValues>({
   updateActiveBlock: () => null,
 });
 
-type Props = {
-  source: string;
+export type EditingRef = {
+  getSource: () => string;
+  replaceRoot: (node: Node) => void;
 };
 
-export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source, children }) => {
+type Props = PropsWithChildren<{
+  source: string;
+}>;
+
+export const EditingProvider = forwardRef<EditingRef, Props>(({ source, children }, ref) => {
   const nodeManager = useMemo(() => new NodeManager(Parser.parse(source)), [source]);
 
   const root = useSyncExternalStore(
@@ -135,6 +141,11 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source, children
     [activeBlock, nodeManager]
   );
 
+  useImperativeHandle(ref, () => ({
+    getSource,
+    replaceRoot,
+  }));
+
   const contextValues = useMemo(
     () => ({
       root,
@@ -167,6 +178,8 @@ export const EditingProvider: FC<PropsWithChildren<Props>> = ({ source, children
   );
 
   return <EditingContext.Provider value={contextValues}>{children}</EditingContext.Provider>;
-};
+});
+
+EditingProvider.displayName = 'EditingProvider';
 
 export const useEditing = () => useContext(EditingContext);

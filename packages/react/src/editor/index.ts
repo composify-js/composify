@@ -1,3 +1,4 @@
+export { CloudEditor } from './CloudEditor';
 export { Editor } from './Editor';
 export { useComposifyEditor } from './ComposifyEditorContext';
 

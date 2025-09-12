@@ -30,9 +30,7 @@ export const EditorControl: FC<Props> = ({ mode, setMode, renderControl, onSubmi
     onSubmit?.(source);
   }, [getSource, onSubmit]);
 
-  return renderControl ? (
-    renderControl(getSource)
-  ) : (
+  return (
     <div className={getClassName()}>
       <div className={getClassName('ModeGroup')}>
         <button
@@ -63,9 +61,13 @@ export const EditorControl: FC<Props> = ({ mode, setMode, renderControl, onSubmi
           </svg>
         </button>
       </div>
-      <button type="button" className={getClassName('SaveButton')} onClick={handleSubmit}>
-        Save
-      </button>
+      {renderControl ? (
+        renderControl(getSource)
+      ) : (
+        <button type="button" className={getClassName('SaveButton')} onClick={handleSubmit}>
+          Save
+        </button>
+      )}
     </div>
   );
 };

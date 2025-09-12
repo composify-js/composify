@@ -1,7 +1,7 @@
 import { getClassNameFactory } from '@composify/utils';
-import { type FC, useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { CodeEditor } from '../CodeEditor';
-import { EditingProvider } from '../EditingContext';
+import { EditingProvider, type EditingRef } from '../EditingContext';
 import { type EditMode } from '../EditorControl';
 import { IsolatedDndProvider } from '../IsolatedDndProvider';
 import { KeyDownDetector } from '../KeyDownDetector';
@@ -20,13 +20,13 @@ type Props = PanelLeftProps &
     source: string;
   };
 
-export const Editor: FC<Props> = ({ title, source, viewports, renderControl, onSubmit }) => {
+export const Editor = forwardRef<EditingRef, Props>(({ title, source, viewports, renderControl, onSubmit }, ref) => {
   const [mode, setMode] = useState<EditMode>('visual');
 
   return (
     <WindowProvider>
       <IsolatedDndProvider>
-        <EditingProvider source={source}>
+        <EditingProvider ref={ref} source={source}>
           <main className={getClassName()}>
             <PanelLeft title={title} />
             {mode !== 'code' && <VisualEditor viewports={viewports} />}
@@ -40,4 +40,6 @@ export const Editor: FC<Props> = ({ title, source, viewports, renderControl, onS
       </IsolatedDndProvider>
     </WindowProvider>
   );
-};
+});
+
+Editor.displayName = 'Editor';

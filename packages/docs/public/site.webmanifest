@@ -1,6 +1,6 @@
 {
-  "name": "composify",
-  "short_name": "composify",
+  "name": "Composify",
+  "short_name": "Composify",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
