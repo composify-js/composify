@@ -1,2 +1,2 @@
-export { HostEventType, GuestEventType, useBridge } from './Bridge';
+export { Bridge, HostEventType, GuestEventType } from './Bridge';
 export { getClassNameFactory } from './getClassNameFactory';

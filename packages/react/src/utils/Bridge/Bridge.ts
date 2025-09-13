@@ -30,28 +30,11 @@ export class Bridge {
 
     listeners.add(listener as BridgeEventHandler);
     this.listeners.set(type, listeners);
-
-    return () => this.removeListener(type, listener);
-  }
-
-  public removeListener<EventType extends BridgeEventType>(
-    type: EventType,
-    listener: BridgeEventHandler<Extract<BridgeEvent, { type: EventType }>>
-  ) {
-    const listeners = this.listeners.get(type);
-    if (!listeners) {
-      return;
-    }
-
-    listeners.delete(listener as BridgeEventHandler);
-
-    if (listeners.size === 0) {
-      this.listeners.delete(type);
-    }
   }
 
   public dispose() {
     this.abort.abort();
+    this.listeners.forEach(listeners => listeners.clear());
     this.listeners.clear();
   }
 
