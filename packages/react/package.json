@@ -1,6 +1,6 @@
 {
   "name": "@composify/react",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://composify.js.org",
   "repository": {
     "type": "git",
@@ -38,6 +38,16 @@
       "require": {
         "types": "./dist/renderer/index.d.ts",
         "default": "./dist/renderer/index.js"
+      }
+    },
+    "./utils": {
+      "import": {
+        "types": "./dist/utils/index.d.mts",
+        "default": "./dist/utils/index.mjs"
+      },
+      "require": {
+        "types": "./dist/utils/index.d.ts",
+        "default": "./dist/utils/index.js"
       }
     },
     "./style.css": "./dist/index.css",
