@@ -1,24 +1,25 @@
-import { useCallback, useEffect } from 'react';
-import { type BridgeEventHandler } from './Bridge';
+import { useCallback, useEffect, useRef } from 'react';
+import { type Bridge, type BridgeEventHandler } from './Bridge';
 import { type BridgeEventType, type BridgeEvent } from './BridgeEvent';
 import { getBridge } from './BridgeManager';
 
 export const useBridge = (target: Window) => {
-  const emit = useCallback(
-    (event: BridgeEvent) => {
-      const { bridge } = getBridge(target);
+  const bridgeRef = useRef<Bridge>(null);
 
-      bridge.emit(event);
-    },
-    [target]
-  );
+  const emit = useCallback((event: BridgeEvent) => {
+    bridgeRef.current?.emit(event);
+  }, []);
 
   const addListener = useCallback(
     <EventType extends BridgeEventType>(
       type: EventType,
       listener: BridgeEventHandler<Extract<BridgeEvent, { type: EventType }>>
     ) => {
-      const { bridge } = getBridge(target);
+      const bridge = bridgeRef.current;
+
+      if (!bridge) {
+        return () => null;
+      }
 
       bridge.addListener(type, listener);
 
@@ -26,11 +27,13 @@ export const useBridge = (target: Window) => {
         bridge.removeListener(type, listener);
       };
     },
-    [target]
+    []
   );
 
   useEffect(() => {
-    const { release } = getBridge(target);
+    const { bridge, release } = getBridge(target);
+
+    bridgeRef.current = bridge;
 
     return release;
   }, [target]);
