@@ -13,7 +13,12 @@ export class Bridge {
     this.target = target;
     this.origin = origin;
 
-    window.addEventListener('message', this.handle.bind(this), {
+    this.on = this.on.bind(this);
+    this.emit = this.emit.bind(this);
+    this.dispose = this.dispose.bind(this);
+    this.handle = this.handle.bind(this);
+
+    window.addEventListener('message', this.handle, {
       signal: this.abort.signal,
     });
   }
@@ -22,7 +27,7 @@ export class Bridge {
     this.target.postMessage(event, this.origin);
   }
 
-  public addListener<EventType extends BridgeEventType>(
+  public on<EventType extends BridgeEventType>(
     type: EventType,
     listener: BridgeEventHandler<Extract<BridgeEvent, { type: EventType }>>
   ) {

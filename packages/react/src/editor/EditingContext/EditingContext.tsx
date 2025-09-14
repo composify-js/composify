@@ -141,10 +141,14 @@ export const EditingProvider = forwardRef<EditingRef, Props>(({ source, children
     [activeBlock, nodeManager]
   );
 
-  useImperativeHandle(ref, () => ({
-    getSource,
-    replaceRoot,
-  }));
+  useImperativeHandle(
+    ref,
+    () => ({
+      getSource,
+      replaceRoot,
+    }),
+    [getSource, replaceRoot]
+  );
 
   const contextValues = useMemo(
     () => ({
