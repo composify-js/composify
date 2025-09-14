@@ -1,7 +1,7 @@
 .PanelLeft {
   display: flex;
   flex-direction: column;
-  width: 256px;
+  width: 288px;
   border-right: 1px solid var(--composify-palette-outline);
   background-color: var(--composify-palette-surface);
   overflow: scroll;

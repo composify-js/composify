@@ -6,6 +6,8 @@ export enum HostEventType {
 export enum GuestEventType {
   Ready = 'ready',
   ContentProvided = 'contentProvided',
+  SettingsClicked = 'settingsClicked',
+  SaveClicked = 'saveClicked',
 }
 
 type HostEvent =
@@ -24,6 +26,13 @@ type GuestEvent =
     }
   | {
       type: GuestEventType.ContentProvided;
+      content: string;
+    }
+  | {
+      type: GuestEventType.SettingsClicked;
+    }
+  | {
+      type: GuestEventType.SaveClicked;
       content: string;
     };
 
