@@ -10,12 +10,13 @@ import styles from './Droppable.module.css';
 type Props = PropsWithChildren<{
   item: Node;
   index: number;
+  replace?: boolean;
   onDrop?: (item: Node) => void;
 }>;
 
 const getClassName = getClassNameFactory('Droppable', styles);
 
-export const Droppable: FC<Props> = ({ item, index, onDrop, ...props }) => {
+export const Droppable: FC<Props> = ({ item, index, replace, onDrop, ...props }) => {
   const { isDragging, focusedBlock, relocateFocusedBlock, insertBlock } = useEditing();
 
   const [{ isOver }, dropRef] = useDrop<Node, unknown, { isOver: boolean }>({
@@ -55,6 +56,7 @@ export const Droppable: FC<Props> = ({ item, index, onDrop, ...props }) => {
       className={getClassName({
         active: isDragging,
         over: isOver,
+        fullScreen: !!replace,
       })}
       {...props}
     />

@@ -57,5 +57,9 @@ const pragma: Pragma = {
 export const Preview = () => {
   const { root } = useEditing();
 
+  if (root.type === 'Fragment' && root.children.length === 0) {
+    return <Droppable item={root} index={0} replace={true} />;
+  }
+
   return <Renderer source={root} pragma={pragma} />;
 };
