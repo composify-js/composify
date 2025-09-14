@@ -39,8 +39,8 @@
   border: 1px solid var(--composify-palette-outline);
   background-color: var(--composify-palette-surface-container-low);
   overflow: hidden;
-  width: 6.75rem;
-  height: 6.75rem;
+  width: 7.75rem;
+  height: 7.75rem;
 }
 
 .BlockGroup-BlockItemPreview:hover {
