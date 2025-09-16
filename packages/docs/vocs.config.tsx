@@ -64,6 +64,7 @@ export default defineConfig({
         { text: 'Next.js', link: '/docs/tutorial/nextjs' },
         { text: 'React Router', link: '/docs/tutorial/react-router' },
         { text: 'Expo', link: '/docs/tutorial/expo' },
+        { text: 'Cloud', link: '/docs/tutorial/cloud' },
       ],
     },
     {
