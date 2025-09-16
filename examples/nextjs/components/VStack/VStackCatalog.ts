@@ -49,13 +49,11 @@ Catalog.register('VStack', {
         minWidth: {
           label: 'Min Width',
           type: 'number',
-          default: 0,
           optional: true,
         },
         maxWidth: {
           label: 'Max Width',
           type: 'number',
-          default: 1000,
           optional: true,
         },
         height: {
@@ -67,17 +65,17 @@ Catalog.register('VStack', {
         minHeight: {
           label: 'Min Height',
           type: 'number',
-          default: 0,
           optional: true,
         },
         maxHeight: {
           label: 'Max Height',
           type: 'number',
-          default: 1000,
           optional: true,
         },
       },
-      optional: true,
+      default: {
+        height: 100,
+      },
     },
     padding: {
       label: 'Padding',
