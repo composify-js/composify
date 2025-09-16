@@ -50,5 +50,7 @@ export const isBridgeEvent = (data: unknown): data is BridgeEvent => {
     HostEventType.ContentRequested,
     GuestEventType.Ready,
     GuestEventType.ContentProvided,
+    GuestEventType.SettingsClicked,
+    GuestEventType.SaveClicked,
   ].includes((data as BridgeEvent).type);
 };
