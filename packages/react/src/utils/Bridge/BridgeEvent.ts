@@ -1,5 +1,6 @@
 export enum HostEventType {
   Initialize = 'initialize',
+  TitleUpdated = 'titleUpdated',
   ContentRequested = 'contentRequested',
 }
 
@@ -15,6 +16,10 @@ type HostEvent =
       type: HostEventType.Initialize;
       title: string;
       content: string;
+    }
+  | {
+      type: HostEventType.TitleUpdated;
+      title: string;
     }
   | {
       type: HostEventType.ContentRequested;
@@ -47,6 +52,7 @@ export const isBridgeEvent = (data: unknown): data is BridgeEvent => {
 
   return [
     HostEventType.Initialize,
+    HostEventType.TitleUpdated,
     HostEventType.ContentRequested,
     GuestEventType.Ready,
     GuestEventType.ContentProvided,
