@@ -27,7 +27,7 @@ export const PlanGroup: FC = () => (
           { label: '3 Editor Seats', caption: '+ then $5 per seat' },
           { label: 'Unlimited Bandwidth' },
           { label: 'Unlimited Page Views' },
-          { label: 'Real-time Collaboration' },
+          { label: 'Real-time Collaboration', planned: true },
           { label: 'Version History with Time-travel', planned: true },
         ]}
         recommended={true}
@@ -42,7 +42,7 @@ export const PlanGroup: FC = () => (
           { label: 'Unlimited Editor Seats' },
           { label: 'Unlimited Bandwidth' },
           { label: 'Unlimited Page Views' },
-          { label: 'Real-time Collaboration' },
+          { label: 'Real-time Collaboration', planned: true },
           { label: 'Version History with Time-travel', planned: true },
           { label: 'Templates for Repeated Patterns', planned: true },
         ]}
