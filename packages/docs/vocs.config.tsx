@@ -40,7 +40,6 @@ export default defineConfig({
   ),
   topNav: [
     { text: 'Docs', link: '/docs' },
-    { text: 'Blog', link: '/blog' },
     { text: 'Cloud', link: '/cloud' },
   ],
   sidebar: [
