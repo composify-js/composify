@@ -23,6 +23,9 @@ export const Footer = () => (
       <a href="/docs/tutorial/prerequisites" className={styles.item}>
         Tutorial
       </a>
+      <a href="https://github.com/composify-js/composify" className={styles.item}>
+        Github
+      </a>
     </div>
     <div className={styles.column}>
       <h6 className={styles.title}>Use Cases</h6>
@@ -40,15 +43,18 @@ export const Footer = () => (
       </a>
     </div>
     <div className={styles.column}>
-      <h6 className={styles.title}>Company</h6>
-      <a href="/contact" className={styles.item}>
-        Contact Us
+      <h6 className={styles.title}>Cloud</h6>
+      <a href="https://composify.cloud" className={styles.item}>
+        Dashboard
       </a>
-      <a href="/blog" className={styles.item}>
-        Blog
+      <a href="https://composify.cloud/terms" className={styles.item}>
+        Terms of Service
       </a>
-      <a href="https://github.com/composify-js/composify" className={styles.item}>
-        Github
+      <a href="https://composify.cloud/privacy" className={styles.item}>
+        Privacy Policy
+      </a>
+      <a href="mailto:support@composify.cloud" className={styles.item}>
+        Contact
       </a>
     </div>
   </section>
