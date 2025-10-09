@@ -44,13 +44,13 @@ export const Footer = () => (
     </div>
     <div className={styles.column}>
       <h6 className={styles.title}>Cloud</h6>
-      <a href="https://composify.cloud" className={styles.item}>
+      <a href="https://app.composify.cloud" className={styles.item}>
         Dashboard
       </a>
-      <a href="https://composify.cloud/terms" className={styles.item}>
+      <a href="https://app.composify.cloud/terms" className={styles.item}>
         Terms of Service
       </a>
-      <a href="https://composify.cloud/privacy" className={styles.item}>
+      <a href="https://app.composify.cloud/privacy" className={styles.item}>
         Privacy Policy
       </a>
       <a href="mailto:support@composify.cloud" className={styles.item}>
