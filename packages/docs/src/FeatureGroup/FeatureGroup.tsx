@@ -1,4 +1,4 @@
-import { type FC, type PropsWithChildren } from 'react';
+import type { FC, PropsWithChildren } from 'react';
 import styles from './FeatureGroup.module.css';
 
 type Props = PropsWithChildren<{

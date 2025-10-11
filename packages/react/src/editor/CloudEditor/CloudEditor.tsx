@@ -1,10 +1,10 @@
-import { useState, type FC } from 'react';
+import { type FC, useState } from 'react';
 import { CloudEditorControl } from '../CloudEditorControl';
 import { CloudEditorEventHandler } from '../CloudEditorEventHandler';
 import { CloudEditorInitializer } from '../CloudEditorInitializer';
-import { type EditingRef } from '../EditingContext';
+import type { EditingRef } from '../EditingContext';
 import { Editor } from '../Editor';
-import { type VisualEditorProps } from '../VisualEditor';
+import type { VisualEditorProps } from '../VisualEditor';
 
 type Props = VisualEditorProps;
 
@@ -19,7 +19,9 @@ export const CloudEditor: FC<Props> = ({ viewports }) => {
         title={title}
         source="<></>"
         viewports={viewports}
-        renderControl={() => (editingRef ? <CloudEditorControl getSource={editingRef.getSource} /> : null)}
+        renderControl={() =>
+          editingRef ? <CloudEditorControl getSource={editingRef.getSource} /> : null
+        }
       />
       <CloudEditorInitializer />
       {editingRef && (

@@ -1,4 +1,4 @@
-import { type FC } from 'react';
+import type { FC } from 'react';
 import { ComposifyEditorProvider } from '../ComposifyEditorContext';
 import { InlineFrame } from '../InlineFrame';
 import { InlineFrameBinding } from '../InlineFrameBinding';

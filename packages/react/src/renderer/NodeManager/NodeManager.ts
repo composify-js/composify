@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-dynamic-delete */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/** biome-ignore-all lint/suspicious/noExplicitAny: for arbitrary values */
 export type SparseNode = {
   __composify__: true;
   id?: never;
@@ -71,7 +70,9 @@ export class NodeManager {
       throw new Error('Parent node not found');
     }
 
-    parent.children = parent.children.filter(child => typeof child === 'string' || child.id !== id);
+    parent.children = parent.children.filter(
+      (child) => typeof child === 'string' || child.id !== id,
+    );
 
     if (node.implicit.parentPropKey) {
       parent.props[node.implicit.parentPropKey] = null;
@@ -80,7 +81,7 @@ export class NodeManager {
     }
 
     if (permanent) {
-      node.children.forEach(child => {
+      node.children.forEach((child) => {
         if (typeof child === 'string') {
           return;
         }
@@ -88,7 +89,7 @@ export class NodeManager {
         this.remove(child.id, true);
       });
 
-      Object.values(node.implicit.children).forEach(child => {
+      Object.values(node.implicit.children).forEach((child) => {
         if (typeof child === 'string') {
           return;
         }
@@ -140,7 +141,9 @@ export class NodeManager {
       throw new Error('Parent node not found');
     }
 
-    const index = parent.children.findIndex(child => typeof child !== 'string' && child.id === id);
+    const index = parent.children.findIndex(
+      (child) => typeof child !== 'string' && child.id === id,
+    );
     const duplicated = this.populate(node);
 
     this.insert(duplicated, {
@@ -197,13 +200,17 @@ export class NodeManager {
 
     types.add(node.type);
 
-    node.children.forEach(child => {
-      this.collectTypes(child).forEach(type => types.add(type));
+    node.children.forEach((child) => {
+      this.collectTypes(child).forEach((type) => {
+        types.add(type);
+      });
     });
 
-    Object.values(node.props).forEach(value => {
+    Object.values(node.props).forEach((value) => {
       if (this.isNode(value)) {
-        this.collectTypes(value).forEach(type => types.add(type));
+        this.collectTypes(value).forEach((type) => {
+          types.add(type);
+        });
       }
     });
 
@@ -212,7 +219,9 @@ export class NodeManager {
 
   public stringify = (source?: PopulatedNode): string => {
     const root = source ?? this.root;
-    const children = root.children.map(child => (typeof child === 'string' ? child : this.stringify(child)));
+    const children = root.children.map((child) =>
+      typeof child === 'string' ? child : this.stringify(child),
+    );
     const name = `${root.type}:${root.id}`;
 
     if (children.length > 0) {
@@ -231,10 +240,15 @@ export class NodeManager {
   private notify = () => {
     this.root = { ...this.root };
     this.references.set(this.root.id, this.root);
-    this.subscribers.forEach(callback => callback());
+    this.subscribers.forEach((callback) => {
+      callback();
+    });
   };
 
-  private populate = (node: Node, options?: { parent: string; implicit?: string }): PopulatedNode => {
+  private populate = (
+    node: Node,
+    options?: { parent: string; implicit?: string },
+  ): PopulatedNode => {
     const id = this.generateRandomId();
     const implicit: PopulatedNode['implicit'] = {
       ...(options?.implicit ? { parentPropKey: options.implicit } : {}),
@@ -255,11 +269,11 @@ export class NodeManager {
         }
 
         return [key, value];
-      })
+      }),
     );
 
-    const children = node.children.map(child =>
-      typeof child === 'string' ? child : this.populate(child, { parent: id })
+    const children = node.children.map((child) =>
+      typeof child === 'string' ? child : this.populate(child, { parent: id }),
     );
 
     const populatedNode: PopulatedNode = {
@@ -298,9 +312,9 @@ export class NodeManager {
         return true;
       }
 
-      const nodeTypeChildren = current.children.filter(child => typeof child !== 'string');
+      const nodeTypeChildren = current.children.filter((child) => typeof child !== 'string');
       const nodeTypeImplicitChildren = Object.values(current.implicit.children).filter(
-        child => typeof child !== 'string'
+        (child) => typeof child !== 'string',
       );
 
       stack.push(...nodeTypeChildren, ...nodeTypeImplicitChildren);

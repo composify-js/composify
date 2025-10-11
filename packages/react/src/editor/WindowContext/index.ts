@@ -1,1 +1,1 @@
-export { WindowProvider, useWindow } from './WindowContext';
+export { useWindow, WindowProvider } from './WindowContext';

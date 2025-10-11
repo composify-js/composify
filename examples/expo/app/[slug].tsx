@@ -22,7 +22,7 @@ export default function Page() {
 <VStack flex={1} alignHorizontal="center" alignVertical="center">
   <Heading level={3} weight="semibold">Not Found</Heading>
 </VStack>
-  `.trim()
+  `.trim(),
       );
     };
 

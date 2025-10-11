@@ -20,9 +20,12 @@
 }
 
 .Droppable--active[data-composify-dragging="true"]:not(:only-child),
-[data-composify-role="draggable"][data-composify-dragging="true"] .Droppable--active:not(:only-child),
+[data-composify-role="draggable"][data-composify-dragging="true"]
+  .Droppable--active:not(:only-child),
 [data-composify-role="draggable"][data-composify-dragging="true"] + .Droppable--active,
-.Droppable--active:not(:only-child):has(+ [data-composify-role="draggable"][data-composify-dragging="true"]) {
+.Droppable--active:not(:only-child):has(
+    + [data-composify-role="draggable"][data-composify-dragging="true"]
+  ) {
   display: none;
 }
 

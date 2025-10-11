@@ -1,4 +1,4 @@
-import { type FC, type ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 import { getClassNameFactory } from '../../utils';
 import { ActiveBlockControl } from '../ActiveBlockControl';
 import { type EditMode, EditorControl } from '../EditorControl';
@@ -17,7 +17,12 @@ export type Props = {
 
 export const PanelRight: FC<Props> = ({ mode, setMode, renderControl, onSubmit }) => (
   <section className={getClassName()}>
-    <EditorControl mode={mode} setMode={setMode} renderControl={renderControl} onSubmit={onSubmit} />
+    <EditorControl
+      mode={mode}
+      setMode={setMode}
+      renderControl={renderControl}
+      onSubmit={onSubmit}
+    />
     <ActiveBlockControl />
     <PropertyLibrary />
     <Outline />

@@ -1,6 +1,5 @@
 .InlineFrame {
   flex: 1;
-  border: none;
   border: 1px solid var(--composify-palette-outline);
   background-color: var(--composify-palette-surface);
 }

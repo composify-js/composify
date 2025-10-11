@@ -1,5 +1,5 @@
-import { type PropsWithChildren } from 'react';
-import { Pressable, Text, StyleSheet } from 'react-native';
+import type { PropsWithChildren } from 'react';
+import { Pressable, StyleSheet, Text } from 'react-native';
 
 type Props = PropsWithChildren<{
   variant: 'primary' | 'outline';
@@ -14,7 +14,9 @@ export const Button = ({ variant, children }: Props) => {
         variant === 'primary' ? styles.primary : styles.outline,
       ]}
     >
-      <Text style={[styles.buttonText, variant === 'primary' ? styles.primaryText : styles.outlineText]}>
+      <Text
+        style={[styles.buttonText, variant === 'primary' ? styles.primaryText : styles.outlineText]}
+      >
         {children}
       </Text>
     </Pressable>

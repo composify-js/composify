@@ -1,5 +1,13 @@
 import { getBox } from 'css-box-model';
-import { type FC, type PropsWithChildren, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  type FC,
+  type PropsWithChildren,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { getClassNameFactory } from '../../utils';
 import styles from './ContentScaler.module.css';
 

@@ -1,4 +1,4 @@
-import { type TextAreaPropertySpec } from '../../renderer';
+import type { TextAreaPropertySpec } from '../../renderer';
 import { getClassNameFactory } from '../../utils';
 import { PropertyControl } from '../PropertyControl';
 import styles from './PropertyControlTextArea.module.css';
@@ -23,7 +23,7 @@ export const PropertyControlTextArea = ({ spec, ...props }: Props) => (
         rows={3}
         placeholder={spec.placeholder}
         value={value}
-        onChange={event => onChange(event.target.value)}
+        onChange={(event) => onChange(event.target.value)}
         className={getClassName()}
       />
     )}

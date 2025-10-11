@@ -1,13 +1,13 @@
 import {
   createContext,
   forwardRef,
+  type PropsWithChildren,
   useCallback,
   useContext,
   useImperativeHandle,
   useMemo,
   useState,
   useSyncExternalStore,
-  type PropsWithChildren,
 } from 'react';
 import { type Node, NodeManager, Parser } from '../../renderer';
 
@@ -67,7 +67,7 @@ export const EditingProvider = forwardRef<EditingRef, Props>(({ source, children
   const root = useSyncExternalStore(
     nodeManager.subscribe,
     () => nodeManager.root,
-    () => nodeManager.root
+    () => nodeManager.root,
   );
 
   const [focusedBlockId, setFocusedBlockId] = useState<string>();
@@ -75,12 +75,12 @@ export const EditingProvider = forwardRef<EditingRef, Props>(({ source, children
 
   const focusedBlock = useMemo(
     () => (focusedBlockId ? nodeManager.find(focusedBlockId) : undefined),
-    [focusedBlockId, nodeManager]
+    [focusedBlockId, nodeManager],
   );
 
   const activeBlock = useMemo(
     () => (activeBlockId ? nodeManager.find(activeBlockId) : undefined),
-    [activeBlockId, nodeManager]
+    [activeBlockId, nodeManager],
   );
 
   const isDragging = useMemo(() => typeof focusedBlockId !== 'undefined', [focusedBlockId]);
@@ -93,7 +93,7 @@ export const EditingProvider = forwardRef<EditingRef, Props>(({ source, children
       setActiveBlockId(undefined);
       nodeManager.replaceRoot(node);
     },
-    [nodeManager]
+    [nodeManager],
   );
 
   const insertBlock = useCallback(
@@ -102,7 +102,7 @@ export const EditingProvider = forwardRef<EditingRef, Props>(({ source, children
 
       setActiveBlockId(id);
     },
-    [nodeManager]
+    [nodeManager],
   );
 
   const relocateFocusedBlock = useCallback(
@@ -111,7 +111,7 @@ export const EditingProvider = forwardRef<EditingRef, Props>(({ source, children
         nodeManager.relocate(focusedBlock.id, destination);
       }
     },
-    [focusedBlock, nodeManager]
+    [focusedBlock, nodeManager],
   );
 
   const removeActiveBlock = useCallback(() => {
@@ -138,7 +138,7 @@ export const EditingProvider = forwardRef<EditingRef, Props>(({ source, children
 
       nodeManager.update(activeBlock.id, { key, value });
     },
-    [activeBlock, nodeManager]
+    [activeBlock, nodeManager],
   );
 
   useImperativeHandle(
@@ -147,7 +147,7 @@ export const EditingProvider = forwardRef<EditingRef, Props>(({ source, children
       getSource,
       replaceRoot,
     }),
-    [getSource, replaceRoot]
+    [getSource, replaceRoot],
   );
 
   const contextValues = useMemo(
@@ -178,7 +178,7 @@ export const EditingProvider = forwardRef<EditingRef, Props>(({ source, children
       removeActiveBlock,
       duplicateActiveBlock,
       updateActiveBlock,
-    ]
+    ],
   );
 
   return <EditingContext.Provider value={contextValues}>{children}</EditingContext.Provider>;

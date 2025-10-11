@@ -1,2 +1,2 @@
 export { Bridge } from './Bridge';
-export { HostEventType, GuestEventType } from './BridgeEvent';
+export { GuestEventType, HostEventType } from './BridgeEvent';

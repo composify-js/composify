@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-dynamic-delete */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable import/no-cycle */
-import { type ObjectPropertySpec } from '../../renderer';
+/** biome-ignore-all lint/suspicious/noExplicitAny: for arbitrary values */
+import type { ObjectPropertySpec } from '../../renderer';
 import { getClassNameFactory } from '../../utils';
 import { PropertyControl } from '../PropertyControl';
 import { PropertyControlArray } from '../PropertyControlArray';

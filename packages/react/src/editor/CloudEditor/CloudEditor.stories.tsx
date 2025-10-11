@@ -5,7 +5,13 @@ import { CloudEditor } from './CloudEditor';
 type StackProps = PropsWithChildren<{
   flexDirection?: 'row' | 'column';
   alignItems?: 'flex-start' | 'flex-end' | 'center' | 'stretch';
-  justifyContent?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+  justifyContent?:
+    | 'flex-start'
+    | 'flex-end'
+    | 'center'
+    | 'space-between'
+    | 'space-around'
+    | 'space-evenly';
   gap?: number;
   size?: {
     width?: number | string;
@@ -54,7 +60,7 @@ const Stack: FC<StackProps> = ({
       marginBottom: margin?.bottom,
       backgroundColor,
     }),
-    [flexDirection, alignItems, justifyContent, gap, size, padding, margin, backgroundColor]
+    [flexDirection, alignItems, justifyContent, gap, size, padding, margin, backgroundColor],
   );
 
   return <div style={style} {...props} />;
@@ -65,7 +71,9 @@ type TextProps = {
   textAlign: 'left' | 'center' | 'right';
 };
 
-const Text: FC<TextProps> = ({ children, textAlign }) => <span style={{ textAlign }}>{children}</span>;
+const Text: FC<TextProps> = ({ children, textAlign }) => (
+  <span style={{ textAlign }}>{children}</span>
+);
 
 Catalog.register('Stack', {
   component: Stack,

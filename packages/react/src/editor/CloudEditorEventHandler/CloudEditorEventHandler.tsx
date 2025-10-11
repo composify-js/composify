@@ -1,5 +1,5 @@
 import { type FC, useEffect } from 'react';
-import { Parser, type Node } from '../../renderer';
+import { type Node, Parser } from '../../renderer';
 import { Bridge, GuestEventType, HostEventType } from '../../utils';
 
 type Props = {
@@ -12,12 +12,12 @@ export const CloudEditorEventHandler: FC<Props> = ({ setTitle, replaceRoot, getS
   useEffect(() => {
     const bridge = new Bridge(window.parent);
 
-    bridge.on(HostEventType.Initialize, data => {
+    bridge.on(HostEventType.Initialize, (data) => {
       setTitle(data.title);
       replaceRoot(Parser.parse(data.content));
     });
 
-    bridge.on(HostEventType.TitleUpdated, data => {
+    bridge.on(HostEventType.TitleUpdated, (data) => {
       setTitle(data.title);
     });
 

@@ -21,5 +21,5 @@ export const Heading: FC<Props> = ({ level = 1, weight = 'extrabold', children }
   createElement(
     `h${level}`,
     { className: `text-neutral-900 ${FONT_WEIGHT_BY_WEIGHT[weight]} ${TEXT_SIZE_BY_LEVEL[level]}` },
-    children
+    children,
   );

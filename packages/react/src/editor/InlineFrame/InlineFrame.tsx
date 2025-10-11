@@ -1,11 +1,11 @@
 import {
-  useCallback,
-  useEffect,
-  useState,
-  useRef,
   type FC,
   type IframeHTMLAttributes,
   type PropsWithChildren,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
 } from 'react';
 import { createPortal } from 'react-dom';
 import { getClassNameFactory } from '../../utils';
@@ -50,7 +50,7 @@ export const InlineFrame: FC<Props> = ({ children, ...rest }) => {
       >
         {children}
       </InlineFrameProvider>,
-      inlineDocument.body
+      inlineDocument.body,
     );
   }, [children, getInlineDocument]);
 

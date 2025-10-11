@@ -25,11 +25,12 @@ export const ViewportControl: FC<Props> = ({ viewports, selectedWidth, onClick }
     const container = containerRef.current;
     const box = container.getBoundingClientRect();
 
-    const widths = viewports.map(v => v.width);
-    const nextWidthCandidate = Math.min(...widths.filter(v => v > selectedWidth));
+    const widths = viewports.map((v) => v.width);
+    const nextWidthCandidate = Math.min(...widths.filter((v) => v > selectedWidth));
     const nextWidth = Math.min(nextWidthCandidate, Math.max(...widths));
 
-    const scale = Math.min(box.width / nextWidth, 1) * (nextWidth === nextWidthCandidate ? 1.05 : 1);
+    const scale =
+      Math.min(box.width / nextWidth, 1) * (nextWidth === nextWidthCandidate ? 1.05 : 1);
 
     setScale(scale);
   }, [viewports, selectedWidth]);
@@ -48,7 +49,7 @@ export const ViewportControl: FC<Props> = ({ viewports, selectedWidth, onClick }
     <div ref={containerRef} className={getClassName()}>
       {viewports
         .sort((a, b) => b.width - a.width)
-        .map(viewport => (
+        .map((viewport) => (
           <div
             role="button"
             key={viewport.width}

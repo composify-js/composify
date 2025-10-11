@@ -1,4 +1,4 @@
-import { useEffect, startTransition } from 'react';
+import { startTransition, useEffect } from 'react';
 import { TargetType } from '../Constants';
 import { useEditing } from '../EditingContext';
 import { useWindow } from '../WindowContext';
@@ -44,7 +44,7 @@ export const KeyDownDetector = () => {
       }
     };
 
-    windows.forEach(window => {
+    windows.forEach((window) => {
       window.addEventListener('mouseup', handleMouseUp);
       window.addEventListener('mousemove', handleMouseMove);
       window.addEventListener('dragstart', handleDragStart);
@@ -53,7 +53,7 @@ export const KeyDownDetector = () => {
     });
 
     return () => {
-      windows.forEach(window => {
+      windows.forEach((window) => {
         window.removeEventListener('mouseup', handleMouseUp);
         window.removeEventListener('mousemove', handleMouseMove);
         window.removeEventListener('dragstart', handleDragStart);

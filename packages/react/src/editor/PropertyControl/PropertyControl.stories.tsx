@@ -19,7 +19,7 @@ export const BasicUsage = () => {
         onChange={(_, next) => setValue(next)}
         defaultValue=""
         renderInput={(_, onChange) => (
-          <input type="file" onChange={event => onChange(event.target.files?.[0]?.name || '')} />
+          <input type="file" onChange={(event) => onChange(event.target.files?.[0]?.name || '')} />
         )}
       />
     </>

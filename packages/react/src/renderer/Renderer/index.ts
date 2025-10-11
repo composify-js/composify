@@ -1,1 +1,1 @@
-export { Renderer, type Pragma } from './Renderer';
+export { type Pragma, Renderer } from './Renderer';

@@ -11,13 +11,17 @@ export const InlineFrameBinding = memo(() => {
     removeEventListeners: (window?: Window) => void;
   };
 
-  const iframeWindows = useMemo(() => windows.filter(item => item !== window), [windows]);
+  const iframeWindows = useMemo(() => windows.filter((item) => item !== window), [windows]);
 
   useEffect(() => {
-    iframeWindows.forEach(item => backend.addEventListeners(item));
+    iframeWindows.forEach((item) => {
+      backend.addEventListeners(item);
+    });
 
     return () => {
-      iframeWindows.forEach(item => backend.removeEventListeners(item));
+      iframeWindows.forEach((item) => {
+        backend.removeEventListeners(item);
+      });
     };
   }, [iframeWindows, backend]);
 

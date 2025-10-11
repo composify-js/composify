@@ -1,4 +1,12 @@
-import { createContext, type FC, type PropsWithChildren, useCallback, useContext, useMemo, useState } from 'react';
+import {
+  createContext,
+  type FC,
+  type PropsWithChildren,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from 'react';
 
 type WindowContextValues = {
   windows: Window[];
@@ -14,7 +22,7 @@ export const WindowProvider: FC<PropsWithChildren<unknown>> = ({ children }) => 
   const [windows, setWindows] = useState<Window[]>(typeof window !== 'undefined' ? [window] : []);
 
   const addWindow = useCallback((item: Window) => {
-    setWindows(prev => (prev.includes(item) ? prev : [...prev, item]));
+    setWindows((prev) => (prev.includes(item) ? prev : [...prev, item]));
   }, []);
 
   const contextValues = useMemo(() => ({ windows, addWindow }), [windows, addWindow]);

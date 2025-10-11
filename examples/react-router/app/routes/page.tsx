@@ -1,8 +1,7 @@
 import '~/components';
 
 import { Renderer } from '@composify/react/renderer';
-import { type LoaderFunctionArgs } from 'react-router';
-import { useLoaderData } from 'react-router';
+import { type LoaderFunctionArgs, useLoaderData } from 'react-router';
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const slug = params.slug ?? '';

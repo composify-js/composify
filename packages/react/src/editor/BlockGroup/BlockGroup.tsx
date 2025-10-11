@@ -1,4 +1,4 @@
-import { type FC, type ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 import toJsxString from 'react-element-to-jsx-string';
 import { type Block, type Node, Parser, Renderer } from '../../renderer';
 import { getClassNameFactory } from '../../utils';
@@ -18,7 +18,7 @@ export const BlockGroup: FC<Props> = ({ category, blocks }) => (
   <div className={getClassName()}>
     <h4 className={getClassName('Category')}>{category}</h4>
     <div className={getClassName('BlockList')}>
-      {blocks.map(block => {
+      {blocks.map((block) => {
         const propertySpecs = block.props ?? {};
 
         const defaultProps = Object.entries(propertySpecs).reduce(
@@ -26,13 +26,18 @@ export const BlockGroup: FC<Props> = ({ category, blocks }) => (
             value?.default && !value.optional
               ? {
                   ...acc,
-                  [key]: propertySpecs[key].type === 'node' ? Parser.parse(toJsxString(value.default)) : value.default,
+                  [key]:
+                    propertySpecs[key].type === 'node'
+                      ? Parser.parse(toJsxString(value.default))
+                      : value.default,
                 }
               : acc,
-          {} as Record<string, unknown>
+          {} as Record<string, unknown>,
         );
 
-        const children = [defaultProps.children].flat().filter(child => typeof child !== 'undefined') as ReactNode;
+        const children = [defaultProps.children]
+          .flat()
+          .filter((child) => typeof child !== 'undefined') as ReactNode;
 
         const node = {
           __composify__: true,

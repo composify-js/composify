@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { type ComponentProps, type ComponentType } from 'react';
-import { type PropertySpec } from '../PropertySpec';
+/** biome-ignore-all lint/suspicious/noExplicitAny: for arbitrary values */
+import type { ComponentProps, ComponentType } from 'react';
+import type { PropertySpec } from '../PropertySpec';
 
 export type Block<
   Component extends ComponentType<any> = any,
@@ -17,7 +17,10 @@ export type Block<
 
 const blocks = new Map<string, Block>();
 
-export const register = <Component extends ComponentType<any>>(name: string, block: Omit<Block<Component>, 'name'>) => {
+export const register = <Component extends ComponentType<any>>(
+  name: string,
+  block: Omit<Block<Component>, 'name'>,
+) => {
   for (const spec of Object.values(block.props)) {
     const typedSpec = spec as PropertySpec<any>;
 
@@ -31,11 +34,11 @@ export const register = <Component extends ComponentType<any>>(name: string, blo
 };
 
 export const valid = (names: string[]): boolean => {
-  return names.every(name => blocks.has(name));
+  return names.every((name) => blocks.has(name));
 };
 
 export const missing = (names: string[]): string[] => {
-  return names.filter(name => !blocks.has(name));
+  return names.filter((name) => !blocks.has(name));
 };
 
 export const get = (name: string) => {
@@ -51,24 +54,29 @@ export const get = (name: string) => {
 
 export const getAll = (query?: string) => {
   const blockList = Array.from(blocks.values())
-    .filter(block => block.name.toLowerCase().includes(query?.toLowerCase() ?? ''))
+    .filter((block) => block.name.toLowerCase().includes(query?.toLowerCase() ?? ''))
     .sort((a, b) => {
       const aCategory = a.category ?? '~';
       const bCategory = b.category ?? '~';
 
       return aCategory < bCategory ? -1 : 1;
     })
-    .map(block => ({
+    .map((block) => ({
       ...block,
       category: block.category ?? 'Uncategorized',
     }));
 
   const blocksByCategory = blockList.reduce(
-    (acc, block) => ({
-      ...acc,
-      [block.category]: [...(acc[block.category] ?? []), block],
-    }),
-    {} as Record<string, Block<any>[]>
+    (acc, block) => {
+      if (Array.isArray(acc[block.category])) {
+        acc[block.category].push(block);
+      } else {
+        acc[block.category] = [block];
+      }
+
+      return acc;
+    },
+    {} as Record<string, Block<any>[]>,
   );
 
   return Object.entries(blocksByCategory).map(([category, blocks]) => ({
@@ -100,7 +108,9 @@ const setSpecDefault = (spec: PropertySpec<any>): void => {
       for (const field of Object.values(spec.fields)) {
         setSpecDefault(field);
       }
-      spec.default ??= Object.fromEntries(Object.entries(spec.fields).map(([key, field]) => [key, field.default]));
+      spec.default ??= Object.fromEntries(
+        Object.entries(spec.fields).map(([key, field]) => [key, field.default]),
+      );
       break;
     case 'custom':
       break;

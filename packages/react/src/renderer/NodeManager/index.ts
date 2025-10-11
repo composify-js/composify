@@ -1,1 +1,1 @@
-export { NodeManager, type Node, type SparseNode, type PopulatedNode } from './NodeManager';
+export { type Node, NodeManager, type PopulatedNode, type SparseNode } from './NodeManager';

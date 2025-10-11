@@ -54,7 +54,7 @@ export const BasicUsage = () => {
                 type="file"
                 className="file-input"
                 value={value}
-                onChange={event => onChange(event.target.files?.[0].name ?? '')}
+                onChange={(event) => onChange(event.target.files?.[0].name ?? '')}
               />
             </>
           ),

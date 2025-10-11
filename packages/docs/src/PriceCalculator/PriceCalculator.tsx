@@ -1,4 +1,4 @@
-import { useState, type FC } from 'react';
+import { type FC, useState } from 'react';
 import styles from './PriceCalculator.module.css';
 
 const PAGES = [
@@ -39,7 +39,9 @@ export const PriceCalculator: FC = () => {
   const effectiveSeats = parseInt(MEMBERS[members].replace(/\D/g, ''), 10);
 
   const proPrice =
-    29 + Math.max((effectivePages - 30) * PAGES_PRICE, 0) + Math.max((effectiveSeats - 3) * MEMBERS_PRICE, 0);
+    29 +
+    Math.max((effectivePages - 30) * PAGES_PRICE, 0) +
+    Math.max((effectiveSeats - 3) * MEMBERS_PRICE, 0);
   const businessPrice = 99 + Math.max((effectivePages - 100) * PAGES_PRICE, 0);
 
   const price = effectivePages <= 1 && effectiveSeats <= 1 ? 0 : Math.min(proPrice, businessPrice);
@@ -62,7 +64,7 @@ export const PriceCalculator: FC = () => {
             max={PAGES.length - 1}
             value={pages}
             className={styles.rangeInput}
-            onChange={e => setPages(Number(e.target.value))}
+            onChange={(e) => setPages(Number(e.target.value))}
             style={{ '--progress': `${pagesProgress}%` } as React.CSSProperties}
           />
           <div className={styles.indicatorGroup}>
@@ -85,7 +87,7 @@ export const PriceCalculator: FC = () => {
             max={MEMBERS.length - 1}
             value={members}
             className={styles.rangeInput}
-            onChange={e => setMembers(Number(e.target.value))}
+            onChange={(e) => setMembers(Number(e.target.value))}
             style={{ '--progress': `${membersProgress}%` } as React.CSSProperties}
           />
           <div className={styles.indicatorGroup}>

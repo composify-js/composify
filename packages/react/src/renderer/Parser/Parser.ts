@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/** biome-ignore-all lint/suspicious/noExplicitAny: for arbitrary values */
 import { Parser } from 'acorn';
 import jsx from 'acorn-jsx';
-import { type SparseNode, type Node } from '../NodeManager';
+import type { Node, SparseNode } from '../NodeManager';
 
 const parser = Parser.extend(jsx({ allowNamespaces: false }));
 
@@ -11,11 +11,11 @@ export const parse = (source: string): SparseNode => {
   });
 
   if (parsed.body.length !== 1) {
-    throw new SyntaxError('Expected a single root node, but got: ' + parsed.body.length);
+    throw new SyntaxError(`Expected a single root node, but got: ${parsed.body.length}`);
   }
 
   if (parsed.body[0].type !== 'ExpressionStatement') {
-    throw new SyntaxError('Expected an expression statement, but got: ' + parsed.body[0].type);
+    throw new SyntaxError(`Expected an expression statement, but got: ${parsed.body[0].type}`);
   }
 
   return parseNode(parsed.body[0].expression);
@@ -29,19 +29,21 @@ const parseNode = (node: any): SparseNode => {
       return {
         __composify__: true,
         type: node.openingElement.name.name,
-        props: node.openingElement.attributes.reduce((properties: Record<string, any>, attribute: any) => {
-          const key = attribute.name.name;
-          const value = parseAttribute(attribute.value);
+        props: node.openingElement.attributes.reduce(
+          (properties: Record<string, any>, attribute: any) => {
+            const key = attribute.name.name;
+            const value = parseAttribute(attribute.value);
 
-          if (value === undefined) {
+            if (value === undefined) {
+              return properties;
+            }
+
+            properties[key] = value;
+
             return properties;
-          }
-
-          return {
-            ...properties,
-            [key]: value,
-          };
-        }, {}),
+          },
+          {},
+        ),
         children,
       };
     case 'JSXFragment':
@@ -85,10 +87,9 @@ const parseAttribute = (expression: any): any => {
           return properties;
         }
 
-        return {
-          ...properties,
-          [key]: value,
-        };
+        properties[key] = value;
+
+        return properties;
       }, {});
     case 'BinaryExpression':
       switch (expression.operator) {
@@ -105,10 +106,12 @@ const parseAttribute = (expression: any): any => {
         case '%':
           return parseAttribute(expression.left) % parseAttribute(expression.right);
         case '==':
+          // biome-ignore lint/suspicious/noDoubleEquals: Allowing loose equality for compatibility
           return parseAttribute(expression.left) == parseAttribute(expression.right);
         case '===':
           return parseAttribute(expression.left) === parseAttribute(expression.right);
         case '!=':
+          // biome-ignore lint/suspicious/noDoubleEquals: Allowing loose inequality for compatibility
           return parseAttribute(expression.left) != parseAttribute(expression.right);
         case '!==':
           return parseAttribute(expression.left) !== parseAttribute(expression.right);
@@ -157,7 +160,7 @@ export const stringify = (node: Node | string): string => {
   }
 
   const attributes = stringifyAttributes(node.props);
-  const children = node.children.map(child => stringify(child)).join('');
+  const children = node.children.map((child) => stringify(child)).join('');
 
   if (node.type === 'Fragment') {
     return `<>${children}</>`;

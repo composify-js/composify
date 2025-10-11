@@ -2,7 +2,7 @@ import { defineConfig } from 'vocs';
 
 export default defineConfig({
   title: 'Composify',
-  baseUrl: 'https://composify.js.org',
+  baseUrl: process.env.VOCS_BASE_URL ?? 'https://composify.js.org',
   description: 'Server Driven UI made easy',
   iconUrl: '/brand/icon.svg',
   logoUrl: {

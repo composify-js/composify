@@ -1,8 +1,8 @@
-import { type MouseEvent, type FC, type PropsWithChildren, useCallback } from 'react';
+import { type FC, type MouseEvent, type PropsWithChildren, useCallback } from 'react';
 import { useDrag } from 'react-dnd';
-import { type Node } from '../../renderer';
+import type { Node } from '../../renderer';
 import { getClassNameFactory } from '../../utils';
-import { type TargetType } from '../Constants';
+import type { TargetType } from '../Constants';
 import { useEditing } from '../EditingContext';
 import styles from './Draggable.module.css';
 
@@ -19,7 +19,7 @@ export const Draggable: FC<PropsWithChildren<Props>> = ({ type, item, ...props }
   const [, dragRef] = useDrag(() => ({
     type,
     item,
-    collect: monitor => {
+    collect: (monitor) => {
       if (monitor.isDragging() && item.id) {
         focusBlock(item.id);
         selectBlock(item.id);
@@ -35,15 +35,16 @@ export const Draggable: FC<PropsWithChildren<Props>> = ({ type, item, ...props }
         selectBlock(item.id);
       }
     },
-    [item.id, selectBlock]
+    [item.id, selectBlock],
   );
 
   return (
     <span
+      role="button"
       data-composify-role="draggable"
-      data-composify-dragging={focusedBlock?.id == item.id}
+      data-composify-dragging={focusedBlock?.id === item.id}
       data-composify-type={type}
-      ref={node => {
+      ref={(node) => {
         if (node?.firstChild) {
           dragRef(node.firstChild as Element);
         }

@@ -19,7 +19,7 @@ export const SearchForm: FC<Props> = ({ children }) => {
           name="search"
           type="text"
           value={query}
-          onChange={e => setQuery(e.target.value)}
+          onChange={(e) => setQuery(e.target.value)}
           placeholder="Search component"
         />
         <svg

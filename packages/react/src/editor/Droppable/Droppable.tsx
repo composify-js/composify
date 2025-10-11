@@ -1,7 +1,7 @@
 import { throttle } from 'es-toolkit';
-import { type FC, type PropsWithChildren } from 'react';
+import type { FC, PropsWithChildren } from 'react';
 import { useDrop } from 'react-dnd';
-import { type Node } from '../../renderer';
+import type { Node } from '../../renderer';
 import { getClassNameFactory } from '../../utils';
 import { TargetType } from '../Constants';
 import { useEditing } from '../EditingContext';
@@ -40,7 +40,7 @@ export const Droppable: FC<Props> = ({ item, index, fullScreen, onDrop, ...props
 
       insertBlock(target, { id: item.id, index });
     },
-    collect: monitor => ({
+    collect: (monitor) => ({
       isOver: monitor.isOver() && monitor.getItemType() === TargetType.Library,
     }),
   });
@@ -49,8 +49,8 @@ export const Droppable: FC<Props> = ({ item, index, fullScreen, onDrop, ...props
     <span
       data-composify-role="droppable"
       data-composify-active={isDragging}
-      data-composify-dragging={focusedBlock?.id == item.id}
-      ref={node => {
+      data-composify-dragging={focusedBlock?.id === item.id}
+      ref={(node) => {
         dropRef(node);
       }}
       className={getClassName({

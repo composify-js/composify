@@ -1,4 +1,4 @@
-import { type FC } from 'react';
+import type { FC } from 'react';
 import { getClassNameFactory } from '../../utils';
 import { BlockLibrary } from '../BlockLibrary';
 import { EditorHeader } from '../EditorHeader';
@@ -14,6 +14,6 @@ const getClassName = getClassNameFactory('PanelLeft', styles);
 export const PanelLeft: FC<Props> = ({ title }) => (
   <section className={getClassName()}>
     <EditorHeader title={title} />
-    <SearchForm>{query => <BlockLibrary query={query} />}</SearchForm>
+    <SearchForm>{(query) => <BlockLibrary query={query} />}</SearchForm>
   </section>
 );

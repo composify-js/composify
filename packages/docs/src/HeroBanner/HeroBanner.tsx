@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { type FC } from 'react';
+import type { FC } from 'react';
 import styles from './HeroBanner.module.css';
 
 type Props = {
@@ -17,7 +17,7 @@ export const HeroBanner: FC<Props> = ({ tagline, description, actions }) => (
     <h1 className={styles.title}>{tagline}</h1>
     <p className={styles.description}>{description}</p>
     <div className={styles.buttonGroup}>
-      {actions.map(action => (
+      {actions.map((action) => (
         <a
           key={action.label}
           href={action.href}

@@ -7,7 +7,7 @@
 }
 
 .Draggable--selected[data-composify-dragging="false"][data-composify-type="Canvas"] > *::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -19,7 +19,7 @@
 }
 
 .Draggable--idle[data-composify-type="Canvas"] > *:hover:not(:has(.Draggable:hover))::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;

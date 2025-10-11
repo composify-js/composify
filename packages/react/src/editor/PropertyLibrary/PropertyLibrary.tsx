@@ -1,4 +1,4 @@
-import { type FC } from 'react';
+import type { FC } from 'react';
 import { Catalog } from '../../renderer';
 import { getClassNameFactory } from '../../utils';
 import { useEditing } from '../EditingContext';

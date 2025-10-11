@@ -48,7 +48,7 @@ export const ViewportManager: FC<Props> = ({
   ],
   children,
 }) => {
-  const initialViewport = viewports.find(viewport => viewport.initial) ?? viewports[0];
+  const initialViewport = viewports.find((viewport) => viewport.initial) ?? viewports[0];
   const [width, setWidth] = useState(initialViewport.width);
 
   return (

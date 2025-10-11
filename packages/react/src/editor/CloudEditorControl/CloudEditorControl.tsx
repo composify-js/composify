@@ -1,5 +1,5 @@
 import { type FC, useCallback, useEffect, useRef } from 'react';
-import { Bridge, getClassNameFactory, GuestEventType } from '../../utils';
+import { Bridge, GuestEventType, getClassNameFactory } from '../../utils';
 import styles from './CloudEditorControl.module.css';
 
 const getClassName = getClassNameFactory('CloudEditorControl', styles);
@@ -30,7 +30,11 @@ export const CloudEditorControl: FC<Props> = ({ getSource }) => {
 
   return (
     <div className={getClassName()}>
-      <button type="button" className={getClassName('SettingsButton')} onClick={handleClickSettings}>
+      <button
+        type="button"
+        className={getClassName('SettingsButton')}
+        onClick={handleClickSettings}
+      >
         Settings
       </button>
       <button type="button" className={getClassName('SaveButton')} onClick={handleClickSave}>

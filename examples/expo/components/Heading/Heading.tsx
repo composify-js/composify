@@ -1,5 +1,5 @@
-import { type FC, type PropsWithChildren } from 'react';
-import { Text, StyleSheet } from 'react-native';
+import type { FC, PropsWithChildren } from 'react';
+import { StyleSheet, Text } from 'react-native';
 
 type Props = PropsWithChildren<{
   level?: 1 | 2 | 3;

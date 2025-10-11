@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { type RadioPropertySpec } from '../../renderer';
+/** biome-ignore-all lint/suspicious/noExplicitAny: for arbitrary values */
+import type { RadioPropertySpec } from '../../renderer';
 import { getClassNameFactory } from '../../utils';
 import { PropertyControl } from '../PropertyControl/PropertyControl';
 import styles from './PropertyControlRadio.module.css';
@@ -25,9 +25,10 @@ export const PropertyControlRadio = ({ name, spec, ...props }: Props) => (
         spec.render(value, onChange)
       ) : (
         <div className={getClassName()}>
-          {spec.options.map((option, index) => (
+          {spec.options.map((option) => (
             <button
-              key={`${name}-${index}`}
+              key={option.value}
+              type="button"
               className={getClassName('Option', { selected: value === option.value })}
               onClick={() => onChange(option.value)}
             >

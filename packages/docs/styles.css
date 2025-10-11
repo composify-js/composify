@@ -14,7 +14,6 @@
   --docs-color-outline-variant: rgb(210, 210, 210);
   --docs-color-backdrop: rgb(30, 30, 30, 0.01);
 
-  --docs-color-primary: #3b82f6;
   --docs-color-primary-dark: #2563eb;
   --docs-color-primary-darker: #1d4ed8;
   --docs-color-primary-darkest: #1e40af;
@@ -44,7 +43,6 @@ html.dark {
   --docs-color-outline-variant: rgb(80, 80, 80);
   --docs-color-backdrop: rgb(235, 235, 235, 0.01);
 
-  --docs-color-primary: #3b82f6;
   --docs-color-primary-dark: #60a5fa;
   --docs-color-primary-darker: #93c5fd;
   --docs-color-primary-darkest: #bfdbfe;

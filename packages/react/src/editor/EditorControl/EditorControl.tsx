@@ -21,7 +21,7 @@ export const EditorControl: FC<Props> = ({ mode, setMode, renderControl, onSubmi
     (value: EditMode) => {
       setMode(value);
     },
-    [setMode]
+    [setMode],
   );
 
   const handleSubmit = useCallback(() => {

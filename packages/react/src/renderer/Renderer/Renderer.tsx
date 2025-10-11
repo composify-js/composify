@@ -1,6 +1,6 @@
 import { createElement, type FC, Fragment, type ReactNode, useMemo } from 'react';
 import * as Catalog from '../Catalog';
-import { type Node } from '../NodeManager';
+import type { Node } from '../NodeManager';
 import * as Parser from '../Parser';
 
 export type Pragma = {
@@ -27,11 +27,15 @@ const renderElement = (node: Node, pragma: Pragma): ReactNode => {
     spec?.component ?? Fragment,
     {
       ...Object.entries(node.props).reduce(
-        (acc, [key, value]) => ({
-          ...acc,
-          [key]: value && typeof value === 'object' && '__composify__' in value ? renderElement(value, pragma) : value,
-        }),
-        {} as typeof node.props
+        (acc, [key, value]) => {
+          acc[key] =
+            value && typeof value === 'object' && '__composify__' in value
+              ? renderElement(value, pragma)
+              : value;
+
+          return acc;
+        },
+        {} as typeof node.props,
       ),
     },
     node,
@@ -45,10 +49,10 @@ const renderElement = (node: Node, pragma: Pragma): ReactNode => {
                 key: node.id ?? index,
               },
             },
-            pragma
+            pragma,
           )
-        : child
-    )
+        : child,
+    ),
   );
 };
 
@@ -67,10 +71,10 @@ const renderFragment = (node: Node, pragma: Pragma): ReactNode =>
                 key: node.id ?? index,
               },
             },
-            pragma
+            pragma,
           )
-        : child
-    )
+        : child,
+    ),
   );
 
 type Props = {
@@ -79,7 +83,10 @@ type Props = {
 };
 
 export const Renderer: FC<Props> = ({ source, pragma = DEFAULT_PRAGMA }) => {
-  const content = useMemo(() => (typeof source === 'string' ? Parser.parse(source) : source), [source]);
+  const content = useMemo(
+    () => (typeof source === 'string' ? Parser.parse(source) : source),
+    [source],
+  );
 
   return renderElement(content, pragma);
 };

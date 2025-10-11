@@ -42,7 +42,7 @@ export default function EditorPage() {
     <Button variant="outline">Get started →</Button>
   </HStack>
 </VStack>
-  `.trim()
+  `.trim(),
       );
     };
 

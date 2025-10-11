@@ -1,5 +1,5 @@
 import { type FC, useCallback } from 'react';
-import { type Node } from '../../renderer';
+import type { Node } from '../../renderer';
 import { getClassNameFactory } from '../../utils';
 import { useEditing } from '../EditingContext';
 import styles from './OutlineItem.module.css';
@@ -23,10 +23,10 @@ export const OutlineItem: FC<Props> = ({ node, depth }) => {
   return (
     <>
       <li
-        role="button"
         className={getClassName({ selected: node.id === activeBlock?.id })}
         style={{ paddingLeft: `${depth * 0.75}rem` }}
         onClick={handleClick}
+        onKeyDown={handleClick}
       >
         {node.children.length > 0 ? (
           <svg
@@ -52,8 +52,10 @@ export const OutlineItem: FC<Props> = ({ node, depth }) => {
         {node.type}
       </li>
       <ol className={getClassName('Children')}>
-        {node.children.map(child =>
-          typeof child === 'string' ? null : <OutlineItem key={child.id} node={child} depth={depth + 1} />
+        {node.children.map((child) =>
+          typeof child === 'string' ? null : (
+            <OutlineItem key={child.id} node={child} depth={depth + 1} />
+          ),
         )}
       </ol>
     </>

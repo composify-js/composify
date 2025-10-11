@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/** biome-ignore-all lint/suspicious/noExplicitAny: for arbitrary values */
 type DefaultPropertySpec<Value> = {
   label: string;
   default?: Value;

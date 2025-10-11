@@ -1,4 +1,4 @@
-import { type BridgeEventType, type BridgeEvent, isBridgeEvent } from './BridgeEvent';
+import { type BridgeEvent, type BridgeEventType, isBridgeEvent } from './BridgeEvent';
 
 export type BridgeEventHandler<Event extends BridgeEvent = BridgeEvent> = (event: Event) => void;
 
@@ -29,7 +29,7 @@ export class Bridge {
 
   public on<EventType extends BridgeEventType>(
     type: EventType,
-    listener: BridgeEventHandler<Extract<BridgeEvent, { type: EventType }>>
+    listener: BridgeEventHandler<Extract<BridgeEvent, { type: EventType }>>,
   ) {
     const listeners = this.listeners.get(type) ?? new Set();
 
@@ -39,7 +39,9 @@ export class Bridge {
 
   public dispose() {
     this.abort.abort();
-    this.listeners.forEach(listeners => listeners.clear());
+    this.listeners.forEach((listeners) => {
+      listeners.clear();
+    });
     this.listeners.clear();
   }
 
@@ -59,7 +61,7 @@ export class Bridge {
     const event = message.data;
     const listeners = this.listeners.get(event.type);
 
-    listeners?.forEach(listener => {
+    listeners?.forEach((listener) => {
       try {
         listener(event);
       } catch (error: unknown) {

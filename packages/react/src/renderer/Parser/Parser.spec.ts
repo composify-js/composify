@@ -8,8 +8,8 @@ describe('Parser', () => {
           `<Lorem ipsum={true}>
           <Dolor sit="amet">consectetur</Dolor>
           <Adipiscing />
-        </Lorem>`
-        )
+        </Lorem>`,
+        ),
       ).toMatchObject({
         __composify__: true,
         type: 'Lorem',
@@ -36,8 +36,8 @@ describe('Parser', () => {
         parse(
           `<Lorem ipsum={<Dolor sit="amet">consectetur</Dolor>}>
           <Adipiscing />
-        </Lorem>`
-        )
+        </Lorem>`,
+        ),
       ).toMatchObject({
         __composify__: true,
         type: 'Lorem',
@@ -61,12 +61,14 @@ describe('Parser', () => {
 
     it('should throw error for multiple root nodes', () => {
       expect(() => parse('<div></div><span></span>')).toThrow(
-        'Adjacent JSX elements must be wrapped in an enclosing tag'
+        'Adjacent JSX elements must be wrapped in an enclosing tag',
       );
     });
 
     it('should throw error for non-expression root nodes', () => {
-      expect(() => parse('const x = 1;')).toThrow('Expected an expression statement, but got: VariableDeclaration');
+      expect(() => parse('const x = 1;')).toThrow(
+        'Expected an expression statement, but got: VariableDeclaration',
+      );
     });
   });
 

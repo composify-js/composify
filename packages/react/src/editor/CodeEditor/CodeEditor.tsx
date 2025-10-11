@@ -1,6 +1,6 @@
 import MonacoEditor, { type OnMount } from '@monaco-editor/react';
 import { debounce } from 'es-toolkit';
-import { type Plugin } from 'prettier';
+import type { Plugin } from 'prettier';
 import * as meriyahParser from 'prettier/parser-meriyah';
 import * as estreePlugin from 'prettier/plugins/estree';
 import prettier from 'prettier/standalone';
@@ -34,7 +34,7 @@ export const CodeEditor = () => {
   const editorRef = useRef<Parameters<OnMount>[0] | null>(null);
   const disableFormatting = useRef(false);
 
-  const { root, getSource, replaceRoot } = useEditing();
+  const { getSource, replaceRoot } = useEditing();
 
   const [code, setCode] = useState(getSource());
   const [message, setMessage] = useState('');
@@ -77,14 +77,14 @@ export const CodeEditor = () => {
   const debouncedUpdateSource = useMemo(() => debounce(updateSource, 1000), [updateSource]);
 
   const handleMount = useCallback<OnMount>(
-    editor => {
+    (editor) => {
       editorRef.current = editor;
       editorRef.current.onDidBlurEditorText(formatCode);
       editorRef.current.onDidPaste(formatCode);
 
       formatCode();
     },
-    [formatCode]
+    [formatCode],
   );
 
   const handleChange = useCallback(
@@ -93,7 +93,7 @@ export const CodeEditor = () => {
       setCode(value ?? '');
       debouncedUpdateSource();
     },
-    [debouncedUpdateSource]
+    [debouncedUpdateSource],
   );
 
   // Update the source when unmount
@@ -110,7 +110,7 @@ export const CodeEditor = () => {
     }
 
     prettify(getSource()).then(setCode);
-  }, [root, getSource]);
+  }, [getSource]);
 
   return (
     <section className={getClassName()}>

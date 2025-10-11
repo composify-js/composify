@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { type CustomPropertySpec } from '../../renderer';
+/** biome-ignore-all lint/suspicious/noExplicitAny: for arbitrary values */
+import type { CustomPropertySpec } from '../../renderer';
 import { PropertyControl } from '../PropertyControl';
 
 type Props<Value = any> = {

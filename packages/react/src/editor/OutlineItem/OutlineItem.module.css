@@ -21,7 +21,7 @@
 
 .OutlineItem-Icon {
   margin-right: 0.25rem;
-  fill: var(--composify-palette-on-surface-variant)
+  fill: var(--composify-palette-on-surface-variant);
 }
 
 .OutlineItem-Children {

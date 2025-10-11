@@ -1,4 +1,4 @@
-import { type TextPropertySpec } from '../../renderer';
+import type { TextPropertySpec } from '../../renderer';
 import { getClassNameFactory } from '../../utils';
 import { PropertyControl } from '../PropertyControl';
 import styles from './PropertyControlText.module.css';
@@ -23,7 +23,7 @@ export const PropertyControlText = ({ spec, ...props }: Props) => (
         type="text"
         placeholder={spec.placeholder}
         value={value}
-        onChange={event => onChange(event.target.value)}
+        onChange={(event) => onChange(event.target.value)}
         className={getClassName()}
       />
     )}

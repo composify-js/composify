@@ -1,4 +1,4 @@
-import { type FC } from 'react';
+import type { FC } from 'react';
 import { PlanItem } from '../PlanItem';
 import styles from './PlanGroup.module.css';
 
@@ -48,6 +48,8 @@ export const PlanGroup: FC = () => (
         ]}
       />
     </div>
-    <small className={styles.caption}>* Features shown in gray are planned for upcoming releases.</small>
+    <small className={styles.caption}>
+      * Features shown in gray are planned for upcoming releases.
+    </small>
   </section>
 );

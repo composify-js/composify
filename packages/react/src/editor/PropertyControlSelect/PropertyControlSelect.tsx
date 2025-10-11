@@ -1,4 +1,4 @@
-import { type SelectPropertySpec } from '../../renderer';
+import type { SelectPropertySpec } from '../../renderer';
 import { getClassNameFactory } from '../../utils';
 import { PropertyControl } from '../PropertyControl';
 import styles from './PropertyControlSelect.module.css';
@@ -22,8 +22,8 @@ export const PropertyControlSelect = <Value,>({ name, spec, ...props }: Props<Va
     renderInput={(value, onChange) => (
       <select
         className={getClassName()}
-        value={String(spec.options.findIndex(option => option.value === value))}
-        onChange={event => {
+        value={String(spec.options.findIndex((option) => option.value === value))}
+        onChange={(event) => {
           const index = Number(event.target.value);
 
           onChange(spec.options[index].value);

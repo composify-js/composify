@@ -13,7 +13,7 @@ const pragma: Pragma = {
       return createElement(Fragment, {}, children);
     }
 
-    const childrenPropSpec = (spec.props ?? {}).children;
+    const childrenPropSpec = spec.props?.children;
     const acceptsChildren = childrenPropSpec?.type === 'node';
 
     if (!node.id) {
@@ -48,8 +48,8 @@ const pragma: Pragma = {
                   ])?.flat() ?? [])
                 : children),
             ]
-          : children
-      )
+          : children,
+      ),
     );
   },
 };

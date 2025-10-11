@@ -2,8 +2,7 @@ import '@composify/react/style.css';
 import '~/components';
 
 import { Editor } from '@composify/react/editor';
-import { type LoaderFunctionArgs } from 'react-router';
-import { useLoaderData, useNavigate } from 'react-router';
+import { type LoaderFunctionArgs, useLoaderData, useNavigate } from 'react-router';
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const slug = params.slug ?? '';

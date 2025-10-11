@@ -6,8 +6,7 @@
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
-    "typecheck": "react-router typegen && tsc",
-    "lint": "eslint app --ext .ts,.tsx --fix"
+    "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
     "@composify/react": "workspace:*",

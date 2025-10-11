@@ -1,4 +1,4 @@
-import { type FC } from 'react';
+import type { FC } from 'react';
 import { getClassNameFactory } from '../../utils';
 import styles from './EditorHeader.module.css';
 

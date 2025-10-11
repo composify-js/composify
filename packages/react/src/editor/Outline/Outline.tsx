@@ -1,4 +1,4 @@
-import { type FC } from 'react';
+import type { FC } from 'react';
 import { getClassNameFactory } from '../../utils';
 import { useEditing } from '../EditingContext';
 import { OutlineItem } from '../OutlineItem';

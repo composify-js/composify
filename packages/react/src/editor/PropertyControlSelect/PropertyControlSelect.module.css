@@ -8,8 +8,9 @@
   border: 1px solid var(--composify-palette-outline);
   border-radius: 0.25rem;
   color: var(--composify-palette-on-surface);
+  background: url("data:image/svg+xml;utf8,<svg fill='gray' width='16' height='16' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><path d='M5.25 7.25L10 12l4.75-4.75z'/></svg>")
+    no-repeat right 0.5rem center;
   background-color: var(--composify-palette-surface-container-low);
-  background: url("data:image/svg+xml;utf8,<svg fill='gray' width='16' height='16' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><path d='M5.25 7.25L10 12l4.75-4.75z'/></svg>") no-repeat right 0.5rem center;
 }
 
 .PropertyControlSelect:focus {
