@@ -73,20 +73,20 @@
     "acorn": "8.15.0",
     "acorn-jsx": "5.3.2",
     "css-box-model": "1.2.1",
-    "es-toolkit": "1.39.8",
+    "es-toolkit": "1.40.0",
     "react-dnd": "16.0.1",
     "react-dnd-html5-backend": "16.0.1",
     "react-element-to-jsx-string": "17.0.1"
   },
   "devDependencies": {
-    "@ladle/react": "5.0.3",
+    "@ladle/react": "5.1.0",
     "@testing-library/react": "16.3.0",
-    "@types/react": "19.1.8",
-    "@types/react-dom": "19.1.6",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
     "prettier": "3.6.2",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "typescript": "5.9.2"
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "typescript": "5.9.3"
   },
   "peerDependencies": {
     "prettier": "*",
