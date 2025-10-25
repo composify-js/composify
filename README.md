@@ -19,25 +19,21 @@
   </p>
 </div>
 
-## 👋 Introduction
+## What is Composify?
 
-Welcome to Composify!
+Composify is a visual page builder for React that works with your own components.
 
-Composify is an open-source toolkit that lets you build pages visually, using your own production components. Think of it as a WYSIWYG editor that's powered by your component library, not some generic widget set.
+Most WYSIWYG editors force you to use their generic component set. Composify takes a different approach—you register your production components once, and then anyone on your team can use them to build pages visually. Your design system stays intact, but now marketing and content teams can compose pages without filing tickets.
 
-Engineers build components once, and Composify empowers anyone on the team—from marketing to product—to visually compose pages with them. The result is faster iteration, fewer developer bottlenecks, and a massive productivity boost for everyone.
+It's just a React component, so it works with Next.js, Remix, or any React environment. You own your data and there's no vendor lock-in.
 
-Find out more at our [website](https://composify.js.org).
+Check out the [live demo](https://composify.js.org/demo) to see it in action.
 
-## 📖 Documentation
-
-Visit [https://composify.js.org/docs](https://composify.js.org/docs) to view the full documentation.
-
-## 🚀 Getting Started
+## Getting Started
 
 ### Installation
 
-Add Composify to your project using your favorite package manager:
+Install Composify with your preferred package manager:
 
 ```bash
 # npm
@@ -50,13 +46,14 @@ $ pnpm add @composify/react
 $ yarn add @composify/react
 ```
 
-### Register your components
+### Register Your Components
 
 Before you can use a component in the `Editor` or `Renderer`, you need to register it in the `Catalog`.
 
+Let's say you have a simple text component:
+
 ```tsx
-// catalog.tsx
-import { Catalog } from '@composify/react/renderer';
+// components/Text.tsx
 import { FC } from 'react';
  
 type Props = {
@@ -67,7 +64,17 @@ type Props = {
 const Text: FC<Props> = ({ textAlign, children }) => (
   <p style={{ textAlign }}>{children}</p>
 );
- 
+
+export default Text;
+```
+
+Now register it:
+
+```tsx
+// catalog.tsx
+import { Catalog } from '@composify/react/renderer';
+import Text from '@/components/Text';
+
 Catalog.register('Text', {
   component: Text,
   props: {
@@ -90,11 +97,11 @@ Catalog.register('Text', {
 });
 ```
 
-> **Important**: Make sure this catalog file is imported at the entry point of your app (like `index.tsx` or `app.tsx`) so your components are registered.
+> **Important**: Make sure to import this catalog file at your app's entry point (like `index.tsx` or `_app.tsx`) so your components are registered before the app renders.
 
-### Render your components
+### Render Your Components
 
-Once registered, you can render any JSX content with the `Renderer` component.
+Once registered, you can render JSX from a string using the `Renderer` component:
 
 ```tsx
 // page.tsx
@@ -112,9 +119,9 @@ export const Page = () => (
 );
 ```
 
-### Edit visually
+### Edit Visually
 
-To edit JSX in a visual way, use the `Editor` component.
+To enable visual editing, use the `Editor` component:
 
 ```tsx
 // editor.tsx
@@ -133,33 +140,42 @@ export const Page = () => (
 );
 ```
 
-## 🔥 Use Cases
+The `Editor` provides a visual interface where users can drag, drop, and configure components without touching code.
 
-Composify is a versatile tool that can be used in a variety of scenarios:
+## Why Use Composify?
 
-- **Instant UI Updates**: Push UI changes without a full redeploy.
-- **Unblock Your Team**: Reduce the engineering backlog and allow non-developers to ship changes.
-- **A/B Testing and Prototyping**: Test different UI variations and build high-fidelity prototypes.
-- **Headless CMS**: Power your content with your own component library.
-- **No-Code Tools**: Empower content and marketing teams to build their own pages.
+We built Composify to solve a common problem: engineers build component libraries, but only engineers can use them effectively. Here are some scenarios where Composify helps:
 
-Find out more at our [website](https://composify.js.org/docs/use-cases/instant-ui-updates).
+- **Ship UI changes without deployments** — Need to update a landing page or promotional banner? Push changes instantly without waiting for CI/CD pipelines or redeployments.
 
-## ☁️ Composify Cloud
+- **Reduce engineering bottlenecks** — Marketing teams can update content and layouts themselves instead of creating tickets and waiting for developers. This frees up engineering time for actual feature work.
 
-For teams that want to move even faster, Composify Cloud provides a managed, hassle-free experience with features like:
+- **A/B testing made simple** — Test different UI variations without code changes or complex feature flag setups.
 
-- Managed hosting and unlimited bandwidth
-- Real-time collaboration
-- Time-travel version history
-- Pay-as-you-go pricing
+- **Rapid prototyping** — Build high-fidelity prototypes using your actual production components, not placeholder widgets. What you prototype is what you ship.
 
-Learn more about [Composify Cloud →](https://composify.js.org/cloud)
+- **Better than headless CMS** — Traditional CMSs give you generic WYSIWYG editors. Composify lets you work with your own design system, so everything stays consistent.
 
-## 🙌 Contributing
+- **No-code tools for your team** — Empower content and product teams to build their own pages using components that engineers have already built and tested.
 
-We welcome contributions from the community! Whether you're interested in fixing a bug, adding a new feature, or improving our documentation, we'd love to have your help.
+There's more detail on specific use cases in the [documentation](https://composify.js.org/docs/use-cases/instant-ui-updates).
 
-## 📄 License
+## Composify Cloud
 
-This project is licensed under the [Elastic License 2.0](LICENSE).
+If you want a hosted version with collaboration features, [Composify Cloud](https://composify.js.org/cloud) provides:
+
+- **Managed hosting** — No infrastructure to manage, unlimited bandwidth
+- **Real-time collaboration** — Multiple team members can edit the same page simultaneously
+- **Version history** — Time-travel through changes and restore previous versions
+
+## Documentation
+
+Full documentation is available at [composify.js.org/docs](https://composify.js.org/docs).
+
+## Contributing
+
+We welcome contributions to Composify! Whether you're fixing bugs, adding features, or improving docs, pull requests and issues are always welcome.
+
+## License
+
+This project is licensed under the [Elastic License 2.0](LICENSE). It's free to use for most cases, with some restrictions on offering Composify as a hosted service. See the license file for details.
