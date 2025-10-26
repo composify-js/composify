@@ -2,10 +2,10 @@
 layout: minimal
 authors: 
   - "[injung](https://github.com/mu29)"
-date: 2025-09-01
+date: 2025-10-26
 ---
 
-# Lorem Ipsum
+# Introducing Composify
 
 ::authors
 

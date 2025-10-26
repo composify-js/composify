@@ -19,7 +19,7 @@
   </p>
 </div>
 
-## What is Composify?
+## Introduction
 
 Composify is a visual page builder for React that works with your own components.
 
