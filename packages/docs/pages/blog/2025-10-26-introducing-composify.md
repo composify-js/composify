@@ -1,6 +1,6 @@
 ---
 layout: minimal
-authors: 
+authors:
   - "[injung](https://github.com/mu29)"
 date: 2025-10-26
 ---
@@ -9,5 +9,4 @@ date: 2025-10-26
 
 ::authors
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet
-
+We are very happy to introduce Composify, an open-source visual page builder that works with your own components.

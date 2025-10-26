@@ -10,7 +10,7 @@
     "lint": "expo lint"
   },
   "dependencies": {
-    "@composify/react": "0.2.0",
+    "@composify/react": "workspace:*",
     "@react-navigation/bottom-tabs": "7.4.9",
     "@react-navigation/elements": "2.6.5",
     "@react-navigation/native": "7.1.18",
@@ -27,7 +27,7 @@
     "react-native-web": "0.21.0"
   },
   "devDependencies": {
-    "@types/react": "19.1.10",
+    "@types/react": "19.1.17",
     "typescript": "5.9.3"
   },
   "private": true

@@ -10,15 +10,15 @@
   },
   "dependencies": {
     "@composify/react": "workspace:*",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
     "next": "15.4.6"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "4.1.14",
     "@types/node": "24.8.1",
-    "@types/react": "19.2.2",
-    "@types/react-dom": "19.2.2",
+    "@types/react": "19.1.17",
+    "@types/react-dom": "19.1.11",
     "tailwindcss": "4.1.14",
     "typescript": "5.9.3"
   }
