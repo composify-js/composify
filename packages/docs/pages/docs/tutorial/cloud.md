@@ -55,7 +55,7 @@ export default async function Page({
 }) {
   const { slug } = await params;
 
-  const url = `https://pages.composify.net/[org public id]/${slug}`;
+  const url = `https://pages.composify.cloud/[org public id]/${slug}`;
   const res = await fetch(url, {
     cache: 'no-store',
   });
@@ -83,7 +83,7 @@ import { useLoaderData } from 'react-router';
 export async function loader({ params }: LoaderFunctionArgs) {
   const slug = params.slug ?? '';
 
-  const url = `https://pages.composify.net/[org public id]/${slug}`;
+  const url = `https://pages.composify.cloud/[org public id]/${slug}`;
   const res = await fetch(url, {
     cache: 'no-store',
   });
