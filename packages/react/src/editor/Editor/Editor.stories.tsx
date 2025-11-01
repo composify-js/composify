@@ -1,6 +1,7 @@
 import { type FC, type PropsWithChildren, useMemo } from 'react';
 import { Catalog } from '../../renderer';
 import { Editor } from './Editor';
+import '../../preset';
 
 type StackProps = PropsWithChildren<{
   flexDirection?: 'row' | 'column';

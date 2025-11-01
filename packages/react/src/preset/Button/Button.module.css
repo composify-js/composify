@@ -1,0 +1,69 @@
+.container {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  transition-property: background-color, opacity;
+  transition-duration: 0.15s;
+}
+
+.container:disabled {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.container--variant-primary {
+  background-color: var(--composify-palette-primary);
+  color: var(--composify-palette-on-primary);
+}
+
+.container--variant-primary:hover {
+  opacity: 0.9;
+}
+
+.container--variant-secondary {
+  background-color: var(--composify-palette-secondary);
+  color: var(--composify-palette-on-secondary);
+}
+
+.container--variant-secondary:hover {
+  opacity: 0.9;
+}
+
+.container--variant-outline {
+  border: 1px solid var(--composify-palette-outline);
+  background-color: var(--composify-palette-surface);
+  color: var(--composify-palette-on-surface);
+}
+
+.container--variant-outline:hover {
+  background-color: var(--composify-palette-surface-container);
+}
+
+.container--size-xs {
+  height: 32px;
+  padding: 0 12px;
+  gap: 4px;
+  font-size: 12px;
+}
+
+.container--size-sm {
+  height: 36px;
+  padding: 0 12px;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.container--size-md {
+  height: 42px;
+  padding: 0 16px;
+  gap: 8px;
+  font-size: 14px;
+}

@@ -30,6 +30,16 @@
         "default": "./dist/editor/index.js"
       }
     },
+    "./preset": {
+      "import": {
+        "types": "./dist/preset/index.d.mts",
+        "default": "./dist/preset/index.mjs"
+      },
+      "require": {
+        "types": "./dist/preset/index.d.ts",
+        "default": "./dist/preset/index.js"
+      }
+    },
     "./renderer": {
       "import": {
         "types": "./dist/renderer/index.d.mts",
@@ -51,6 +61,8 @@
       }
     },
     "./style.css": "./dist/index.css",
+    "./editor/style.css": "./dist/editor/index.css",
+    "./preset/style.css": "./dist/preset/index.css",
     "./package.json": "./package.json"
   },
   "files": [
@@ -74,6 +86,8 @@
     "acorn-jsx": "5.3.2",
     "css-box-model": "1.2.1",
     "es-toolkit": "1.40.0",
+    "lucide-react": "0.546.0",
+    "prettier": "3.6.2",
     "react-dnd": "16.0.1",
     "react-dnd-html5-backend": "16.0.1",
     "react-element-to-jsx-string": "17.0.1"
@@ -83,13 +97,11 @@
     "@testing-library/react": "16.3.0",
     "@types/react": "19.1.17",
     "@types/react-dom": "19.1.11",
-    "prettier": "3.6.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "typescript": "5.9.3"
   },
   "peerDependencies": {
-    "prettier": "*",
     "react": "*",
     "react-dom": "*"
   }

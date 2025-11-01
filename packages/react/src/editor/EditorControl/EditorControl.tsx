@@ -1,4 +1,5 @@
 import { type FC, type ReactNode, useCallback } from 'react';
+import { Button } from '../../preset';
 import { getClassNameFactory } from '../../utils';
 import { useEditing } from '../EditingContext';
 import styles from './EditorControl.module.css';
@@ -64,9 +65,9 @@ export const EditorControl: FC<Props> = ({ mode, setMode, renderControl, onSubmi
       {renderControl ? (
         renderControl(getSource)
       ) : (
-        <button type="button" className={getClassName('SaveButton')} onClick={handleSubmit}>
+        <Button type="button" variant="primary" size="sm" onClick={handleSubmit}>
           Save
-        </button>
+        </Button>
       )}
     </div>
   );
