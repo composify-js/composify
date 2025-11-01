@@ -1,7 +1,38 @@
-import { compoundComponents } from '../../utils';
-import { SegmentFrame } from './SegmentFrame';
-import { SegmentItem } from './SegmentItem';
+import { type ReactElement, useEffect, useState } from 'react';
+import { createVariants } from '../../utils';
+import styles from './Segment.module.css';
 
-export const Segment = compoundComponents(SegmentFrame, {
-  Item: SegmentItem,
-});
+type Props<Value> = {
+  className?: string;
+  options: {
+    value: Value;
+    label?: ReactElement;
+  }[];
+  value: Value;
+  onChange: (value: Value) => void;
+};
+
+const variants = createVariants(styles);
+
+export const Segment = <Value,>({ className, options, onChange, ...props }: Props<Value>) => {
+  const [value, setValue] = useState(options[0]?.value);
+
+  useEffect(() => {
+    onChange?.(value);
+  }, [value, onChange]);
+
+  return (
+    <div className={variants('frame', { className })} {...props}>
+      {options.map((option) => (
+        <button
+          type="button"
+          key={String(option.value)}
+          className={variants('item', { active: option.value === value })}
+          onClick={() => setValue(option.value)}
+        >
+          {option.label}
+        </button>
+      ))}
+    </div>
+  );
+};
