@@ -78,6 +78,7 @@ export const WithObjectItems = () => {
             { name: 'Alice', age: 30 },
             { name: 'Bob', age: 25 },
           ],
+          optional: true,
         }}
         value={value}
         onChange={(_, next) => setValue(next)}

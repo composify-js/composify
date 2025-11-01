@@ -4,6 +4,7 @@ import styles from './Segment.module.css';
 
 type Props<Value> = {
   className?: string;
+  size: 'sm' | 'md';
   options: {
     value: Value;
     label?: ReactElement;
@@ -14,7 +15,7 @@ type Props<Value> = {
 
 const variants = createVariants(styles);
 
-export const Segment = <Value,>({ className, options, onChange, ...props }: Props<Value>) => {
+export const Segment = <Value,>({ className, size, options, onChange, ...props }: Props<Value>) => {
   const [value, setValue] = useState(options[0]?.value);
 
   useEffect(() => {
@@ -22,12 +23,12 @@ export const Segment = <Value,>({ className, options, onChange, ...props }: Prop
   }, [value, onChange]);
 
   return (
-    <div className={variants('frame', { className })} {...props}>
+    <div className={variants('segment', { className })} {...props}>
       {options.map((option) => (
         <button
           type="button"
           key={String(option.value)}
-          className={variants('item', { active: option.value === value })}
+          className={variants('option', { size, active: option.value === value })}
           onClick={() => setValue(option.value)}
         >
           {option.label}

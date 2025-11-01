@@ -25,6 +25,7 @@ const getClassName = getClassNameFactory('PropertyControlObject', styles);
 export const PropertyControlObject = ({ spec, ...props }: Props) => (
   <PropertyControl<Record<string, any>>
     {...props}
+    orientation="vertical"
     spec={spec}
     defaultValue={spec.default ?? {}}
     renderInput={(value, onChange) => {

@@ -1,5 +1,6 @@
 .PropertyControlNumber {
   flex: 1;
+  field-sizing: content;
   padding: 0.5rem;
   font-size: 0.875rem;
   line-height: 1.4;

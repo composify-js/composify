@@ -1,6 +1,6 @@
 export const createVariants =
   (styles: Record<string, string>) =>
-  (component: string, variations: { className?: string } & Record<string, unknown>) => {
+  (component: string, variations: { className?: string } & Record<string, unknown> = {}) => {
     const classNames: (string | undefined)[] = [styles[component]];
 
     for (const variation in variations) {
@@ -21,8 +21,6 @@ export const createVariants =
         classNames.push(styles[`${component}--${variation}-${value}`]);
       }
     }
-
-    console.log('classNames:', classNames);
 
     return classNames.filter(Boolean).join(' ');
   };

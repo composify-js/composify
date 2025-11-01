@@ -4,11 +4,11 @@ import styles from './Button.module.css';
 
 type Props = ComponentProps<'button'> & {
   variant: 'primary' | 'secondary' | 'outline';
-  size: 'xs' | 'sm' | 'md';
+  size: 'sm' | 'md' | 'lg';
 };
 
 const variants = createVariants(styles);
 
 export const Button: FC<Props> = ({ className, variant, size, ...props }) => (
-  <button className={variants('container', { className, variant, size })} {...props} />
+  <button className={variants('button', { className, variant, size })} {...props} />
 );

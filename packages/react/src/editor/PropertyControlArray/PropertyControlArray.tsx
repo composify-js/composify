@@ -26,6 +26,7 @@ const getClassName = getClassNameFactory('PropertyControlArray', styles);
 export const PropertyControlArray = ({ name, spec, ...props }: Props) => (
   <PropertyControl<any[]>
     {...props}
+    orientation="vertical"
     name={name}
     spec={spec}
     defaultValue={spec.default ?? []}

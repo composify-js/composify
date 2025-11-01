@@ -1,8 +1,8 @@
 .PropertyControlObject {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: 0.5rem 0.75rem 0.75rem 0.75rem;
-  border-radius: 0.25rem;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 4px;
   border: 1px solid var(--composify-palette-outline);
 }

@@ -21,6 +21,7 @@ export const PropertyControlNumber = ({ spec, ...props }: Props) => (
     renderInput={(value, onChange) => (
       <input
         type="number"
+        size={undefined}
         value={value}
         onChange={(event) => onChange(Number(event.target.value))}
         className={getClassName()}
