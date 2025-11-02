@@ -1,0 +1,1 @@
+export { compoundComponents } from './compoundComponents';
