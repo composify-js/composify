@@ -10,14 +10,8 @@ type Props = PropsWithChildren<{
   alignVertical?: 'start' | 'end' | 'center' | 'between' | 'around';
   flex?: number;
   gap?: number;
-  size?: {
-    width?: number | string;
-    minWidth?: number | string;
-    maxWidth?: number | string;
-    height?: number | string;
-    minHeight?: number | string;
-    maxHeight?: number | string;
-  };
+  width?: number | string;
+  height?: number | string;
   padding?: { top: number; right: number; bottom: number; left: number };
   margin?: { top: number; right: number; bottom: number; left: number };
   background?: string;
@@ -28,9 +22,10 @@ export const VStack: FC<Props> = ({
   alignHorizontal,
   alignVertical,
   flex,
-  size,
   padding,
+  width,
   margin,
+  height,
   gap,
   background,
   ...props
@@ -43,12 +38,6 @@ export const VStack: FC<Props> = ({
     })}
     style={{
       flex,
-      width: size?.width,
-      minWidth: size?.minWidth,
-      maxWidth: size?.maxWidth,
-      height: size?.height,
-      minHeight: size?.minHeight,
-      maxHeight: size?.maxHeight,
       paddingTop: padding?.top,
       paddingBottom: padding?.bottom,
       paddingLeft: padding?.left,
@@ -57,8 +46,10 @@ export const VStack: FC<Props> = ({
       marginBottom: margin?.bottom,
       marginLeft: margin?.left,
       marginRight: margin?.right,
-      background,
       gap,
+      width,
+      height,
+      background,
     }}
     {...props}
   />

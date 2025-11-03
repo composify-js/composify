@@ -53,53 +53,19 @@ Catalog.register('HStack', {
       type: 'number',
       optional: true,
     },
-    background: {
-      label: 'Background',
-      type: 'text',
-      default: '#EEEEEE',
+
+    width: {
+      group: 'Size',
+      label: 'Width',
+      type: 'number',
+      default: 100,
       optional: true,
     },
-    size: {
-      label: 'Size',
-      type: 'object',
-      fields: {
-        width: {
-          label: 'Width',
-          type: 'number',
-          default: 100,
-          optional: true,
-        },
-        minWidth: {
-          label: 'Min Width',
-          type: 'number',
-          optional: true,
-        },
-        maxWidth: {
-          label: 'Max Width',
-          type: 'number',
-          optional: true,
-        },
-        height: {
-          label: 'Height',
-          type: 'number',
-          default: 100,
-          optional: true,
-        },
-        minHeight: {
-          label: 'Min Height',
-          type: 'number',
-          optional: true,
-        },
-        maxHeight: {
-          label: 'Max Height',
-          type: 'number',
-          optional: true,
-        },
-      },
-      default: {
-        width: 100,
-        height: 100,
-      },
+    height: {
+      group: 'Size',
+      label: 'Height',
+      type: 'number',
+      default: 100,
       optional: true,
     },
     padding: {
@@ -156,6 +122,12 @@ Catalog.register('HStack', {
           default: 0,
         },
       },
+      optional: true,
+    },
+    background: {
+      label: 'Background',
+      type: 'text',
+      default: '#EEEEEE',
       optional: true,
     },
     children: {

@@ -9,14 +9,8 @@ type Props = PropsWithChildren<{
   alignHorizontal?: 'start' | 'end' | 'center' | 'between' | 'around';
   alignVertical?: 'stretch' | 'start' | 'end' | 'center';
   flex?: number;
-  size?: {
-    width?: number | string;
-    minWidth?: number | string;
-    maxWidth?: number | string;
-    height?: number | string;
-    minHeight?: number | string;
-    maxHeight?: number | string;
-  };
+  width?: number | string;
+  height?: number | string;
   padding?: { top: number; right: number; bottom: number; left: number };
   margin?: { top: number; right: number; bottom: number; left: number };
   gap?: number;
@@ -28,10 +22,11 @@ export const HStack: FC<Props> = ({
   alignHorizontal,
   alignVertical,
   flex,
-  size,
   padding,
   margin,
   gap,
+  width,
+  height,
   background,
   ...props
 }) => (
@@ -43,12 +38,6 @@ export const HStack: FC<Props> = ({
     })}
     style={{
       flex,
-      width: size?.width,
-      minWidth: size?.minWidth,
-      maxWidth: size?.maxWidth,
-      height: size?.height,
-      minHeight: size?.minHeight,
-      maxHeight: size?.maxHeight,
       paddingTop: padding?.top,
       paddingBottom: padding?.bottom,
       paddingLeft: padding?.left,
@@ -58,6 +47,8 @@ export const HStack: FC<Props> = ({
       marginLeft: margin?.left,
       marginRight: margin?.right,
       gap,
+      width,
+      height,
       background,
     }}
     {...props}

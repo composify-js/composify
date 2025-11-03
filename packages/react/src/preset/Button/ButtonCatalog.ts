@@ -43,7 +43,7 @@ Catalog.register('Button', {
       default: 'md',
     },
     children: {
-      label: 'Children',
+      label: 'Text',
       type: 'text',
       default: 'Button',
     },
