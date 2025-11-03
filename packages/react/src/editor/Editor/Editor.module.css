@@ -21,6 +21,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.Editor * {
+  box-sizing: border-box;
+}
+
 .Editor-Divider {
   width: 1px;
   background-color: var(--composify-palette-outline);

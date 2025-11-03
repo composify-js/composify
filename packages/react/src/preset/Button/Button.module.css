@@ -10,8 +10,9 @@
   font-weight: 500;
   line-height: 1;
   white-space: nowrap;
-  transition-property: background-color, opacity;
-  transition-duration: 0.15s;
+  transition:
+    background-color 0.15s,
+    opacity 0.15s;
 }
 
 .button:disabled {

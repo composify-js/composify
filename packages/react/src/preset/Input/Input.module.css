@@ -1,0 +1,27 @@
+.input {
+  width: 100%;
+  min-width: 0;
+  height: 32px;
+  padding: 0 8px;
+  font-size: 13px;
+  color: var(--composify-palette-on-surface);
+  border-radius: 4px;
+  border: 1px solid var(--composify-palette-outline);
+  background-color: var(--composify-palette-surface-container-low);
+  transition: border-color 0.15s;
+  outline: none;
+}
+
+.input:focus-visible {
+  border-color: var(--composify-palette-primary);
+}
+
+.input:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.input::placeholder {
+  color: var(--composify-palette-on-surface-variant);
+}

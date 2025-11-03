@@ -6,7 +6,7 @@ Catalog.register('Button', {
   props: {
     variant: {
       label: 'Variant',
-      type: 'radio',
+      type: 'select',
       options: [
         {
           label: 'Primary',
@@ -28,16 +28,16 @@ Catalog.register('Button', {
       type: 'radio',
       options: [
         {
-          label: 'Extra Small',
-          value: 'xs',
-        },
-        {
-          label: 'Small',
+          label: 'S',
           value: 'sm',
         },
         {
-          label: 'Medium',
+          label: 'M',
           value: 'md',
+        },
+        {
+          label: 'L',
+          value: 'lg',
         },
       ],
       default: 'md',

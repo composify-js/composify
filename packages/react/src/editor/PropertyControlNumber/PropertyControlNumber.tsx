@@ -1,7 +1,6 @@
+import { Input } from '../../preset';
 import type { NumberPropertySpec } from '../../renderer';
-import { getClassNameFactory } from '../../utils';
 import { PropertyControl } from '../PropertyControl';
-import styles from './PropertyControlNumber.module.css';
 
 type Props = {
   name: string;
@@ -11,20 +10,17 @@ type Props = {
   onChange?: (name: string, value?: number) => void;
 };
 
-const getClassName = getClassNameFactory('PropertyControlNumber', styles);
-
 export const PropertyControlNumber = ({ spec, ...props }: Props) => (
   <PropertyControl<number>
     {...props}
     spec={spec}
     defaultValue={spec.default ?? 0}
     renderInput={(value, onChange) => (
-      <input
+      <Input
         type="number"
         size={undefined}
         value={value}
         onChange={(event) => onChange(Number(event.target.value))}
-        className={getClassName()}
       />
     )}
   />

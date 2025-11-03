@@ -1,7 +1,6 @@
+import { Input } from '../../preset';
 import type { TextPropertySpec } from '../../renderer';
-import { getClassNameFactory } from '../../utils';
 import { PropertyControl } from '../PropertyControl';
-import styles from './PropertyControlText.module.css';
 
 type Props = {
   name: string;
@@ -11,20 +10,17 @@ type Props = {
   onChange?: (name: string, value?: string) => void;
 };
 
-const getClassName = getClassNameFactory('PropertyControlText', styles);
-
 export const PropertyControlText = ({ spec, ...props }: Props) => (
   <PropertyControl<string>
     {...props}
     spec={spec}
     defaultValue={spec.default ?? ''}
     renderInput={(value, onChange) => (
-      <input
+      <Input
         type="text"
         placeholder={spec.placeholder}
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className={getClassName()}
       />
     )}
   />
