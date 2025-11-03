@@ -1,0 +1,44 @@
+.hstack {
+  display: flex;
+  flex-direction: row;
+}
+
+.hstack--alignHorizontal-start {
+  justify-content: flex-start;
+}
+
+.hstack--alignHorizontal-center {
+  justify-content: center;
+}
+
+.hstack--alignHorizontal-end {
+  justify-content: flex-end;
+}
+
+.hstack--alignHorizontal-between {
+  justify-content: space-between;
+}
+
+.hstack--alignHorizontal-around {
+  justify-content: space-around;
+}
+
+.hstack--alignHorizontal-evenly {
+  justify-content: space-evenly;
+}
+
+.hstack--alignVertical-stretch {
+  align-items: stretch;
+}
+
+.hstack--alignVertical-start {
+  align-items: flex-start;
+}
+
+.hstack--alignVertical-center {
+  align-items: center;
+}
+
+.hstack--alignVertical-end {
+  align-items: flex-end;
+}
