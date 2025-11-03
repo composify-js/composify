@@ -2,6 +2,8 @@ import type { FC, PropsWithChildren } from 'react';
 import { createVariants } from '../../utils';
 import styles from './VStack.module.css';
 
+const variants = createVariants(styles);
+
 type Props = PropsWithChildren<{
   className?: string;
   alignHorizontal?: 'stretch' | 'start' | 'end' | 'center';
@@ -20,8 +22,6 @@ type Props = PropsWithChildren<{
   margin?: { top: number; right: number; bottom: number; left: number };
   background?: string;
 }>;
-
-const variants = createVariants(styles);
 
 export const VStack: FC<Props> = ({
   className,

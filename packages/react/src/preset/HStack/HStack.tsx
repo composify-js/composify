@@ -2,6 +2,8 @@ import type { FC, PropsWithChildren } from 'react';
 import { createVariants } from '../../utils';
 import styles from './HStack.module.css';
 
+const variants = createVariants(styles);
+
 type Props = PropsWithChildren<{
   className?: string;
   alignHorizontal?: 'start' | 'end' | 'center' | 'between' | 'around';
@@ -20,8 +22,6 @@ type Props = PropsWithChildren<{
   gap?: number;
   background?: string;
 }>;
-
-const variants = createVariants(styles);
 
 export const HStack: FC<Props> = ({
   className,

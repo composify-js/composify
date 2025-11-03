@@ -14,6 +14,7 @@ import { VStack } from './VStack';
 
 Catalog.register('VStack', {
   component: VStack,
+  category: 'Layout',
   props: {
     alignHorizontal: {
       group: 'Layout',

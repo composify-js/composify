@@ -14,6 +14,7 @@ import { HStack } from './HStack';
 
 Catalog.register('HStack', {
   component: HStack,
+  category: 'Layout',
   props: {
     alignHorizontal: {
       group: 'Layout',

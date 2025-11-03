@@ -2,6 +2,8 @@ import type { ReactNode } from 'react';
 import { createVariants } from '../../utils';
 import styles from './Segment.module.css';
 
+const variants = createVariants(styles);
+
 type Props<Value> = {
   className?: string;
   size: 'sm' | 'md';
@@ -12,8 +14,6 @@ type Props<Value> = {
   value: Value;
   onChange: (value: Value) => void;
 };
-
-const variants = createVariants(styles);
 
 export const Segment = <Value,>({
   className,

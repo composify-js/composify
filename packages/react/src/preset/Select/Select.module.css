@@ -1,0 +1,30 @@
+.select {
+  width: 100%;
+  min-width: 0;
+  height: 32px;
+  padding: 0 8px;
+  font-size: 13px;
+  color: var(--composify-palette-on-surface);
+  border-radius: 4px;
+  border: 1px solid var(--composify-palette-outline);
+  background: url("data:image/svg+xml;utf8,<svg fill='gray' width='16' height='16' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><path d='M5.25 7.25L10 12l4.75-4.75z'/></svg>")
+    no-repeat right 0.5rem center;
+  background-color: var(--composify-palette-surface-container-low);
+  transition: border-color 0.15s;
+  appearance: none;
+  outline: none;
+}
+
+.select:focus-visible {
+  border-color: var(--composify-palette-primary);
+}
+
+.select:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.select::placeholder {
+  color: var(--composify-palette-on-surface-variant);
+}
