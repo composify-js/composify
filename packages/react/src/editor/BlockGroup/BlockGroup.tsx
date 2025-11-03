@@ -22,16 +22,16 @@ export const BlockGroup: FC<Props> = ({ category, blocks }) => (
         const propertySpecs = block.props ?? {};
 
         const defaultProps = Object.entries(propertySpecs).reduce(
-          (acc, [key, value]) =>
-            value?.default && !value.optional
-              ? {
-                  ...acc,
-                  [key]:
-                    propertySpecs[key].type === 'node'
-                      ? Parser.parse(toJsxString(value.default))
-                      : value.default,
-                }
-              : acc,
+          (acc, [key, value]) => {
+            if (value?.hasDefault) {
+              acc[key] =
+                propertySpecs[key].type === 'node'
+                  ? Parser.parse(toJsxString(value.default))
+                  : value.default;
+            }
+
+            return acc;
+          },
           {} as Record<string, unknown>,
         );
 

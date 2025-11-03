@@ -1,8 +1,11 @@
 /** biome-ignore-all lint/suspicious/noExplicitAny: for arbitrary values */
+import type { ReactNode } from 'react';
+
 type DefaultPropertySpec<Value> = {
   label: string;
   default?: Value;
   optional?: boolean;
+  hasDefault?: boolean;
 };
 
 export type BooleanPropertySpec<Value> = DefaultPropertySpec<Value> & { type: 'boolean' };
@@ -34,7 +37,7 @@ export type RadioPropertySpec<Value> = DefaultPropertySpec<Value> & {
 } & (
     | {
         options: {
-          label: string;
+          label: ReactNode;
           value: Value;
         }[];
       }

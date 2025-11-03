@@ -90,6 +90,8 @@ export const clear = () => {
 };
 
 const setSpecDefault = (spec: PropertySpec<any>): void => {
+  spec.hasDefault = typeof spec.default !== 'undefined';
+
   switch (spec.type) {
     case 'array':
       spec.default ??= [];
