@@ -16,6 +16,7 @@ Catalog.register('HStack', {
   component: HStack,
   props: {
     alignHorizontal: {
+      group: 'Layout',
       label: 'Align',
       type: 'radio',
       options: [
@@ -28,6 +29,7 @@ Catalog.register('HStack', {
       default: 'start',
     },
     alignVertical: {
+      group: 'Layout',
       label: 'Distribute',
       type: 'radio',
       options: [
@@ -39,11 +41,13 @@ Catalog.register('HStack', {
       default: 'stretch',
     },
     flex: {
+      group: 'Layout',
       label: 'Flex',
       type: 'number',
       optional: true,
     },
     gap: {
+      group: 'Layout',
       label: 'Gap',
       type: 'number',
       optional: true,
@@ -98,6 +102,7 @@ Catalog.register('HStack', {
       optional: true,
     },
     padding: {
+      group: 'Layout',
       label: 'Padding',
       type: 'object',
       fields: {
@@ -125,6 +130,7 @@ Catalog.register('HStack', {
       optional: true,
     },
     margin: {
+      group: 'Layout',
       label: 'Margin',
       type: 'object',
       fields: {

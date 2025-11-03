@@ -16,6 +16,7 @@ Catalog.register('VStack', {
   component: VStack,
   props: {
     alignHorizontal: {
+      group: 'Layout',
       label: 'Align',
       type: 'radio',
       options: [
@@ -27,6 +28,7 @@ Catalog.register('VStack', {
       default: 'stretch',
     },
     alignVertical: {
+      group: 'Layout',
       label: 'Distribute',
       type: 'radio',
       options: [
@@ -39,11 +41,13 @@ Catalog.register('VStack', {
       default: 'start',
     },
     flex: {
+      group: 'Layout',
       label: 'Flex',
       type: 'number',
       optional: true,
     },
     gap: {
+      group: 'Layout',
       label: 'Gap',
       type: 'number',
       optional: true,
@@ -98,6 +102,7 @@ Catalog.register('VStack', {
       optional: true,
     },
     padding: {
+      group: 'Layout',
       label: 'Padding',
       type: 'object',
       fields: {
@@ -125,6 +130,7 @@ Catalog.register('VStack', {
       optional: true,
     },
     margin: {
+      group: 'Layout',
       label: 'Margin',
       type: 'object',
       fields: {

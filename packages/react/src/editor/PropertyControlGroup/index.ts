@@ -1,1 +1,0 @@
-export { PropertyControlGroup } from './PropertyControlGroup';

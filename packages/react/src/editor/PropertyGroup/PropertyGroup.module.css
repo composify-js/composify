@@ -1,0 +1,16 @@
+.propertyGroup {
+  padding: 12px;
+  border-bottom: 1px solid var(--composify-palette-outline);
+}
+
+.groupLabel {
+  font-weight: 600;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}

@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useState } from 'react';
+import type { ReactNode } from 'react';
 import { createVariants } from '../../utils';
 import styles from './Segment.module.css';
 
@@ -15,25 +15,24 @@ type Props<Value> = {
 
 const variants = createVariants(styles);
 
-export const Segment = <Value,>({ className, size, options, onChange, ...props }: Props<Value>) => {
-  const [value, setValue] = useState(options[0]?.value);
-
-  useEffect(() => {
-    onChange?.(value);
-  }, [value, onChange]);
-
-  return (
-    <div className={variants('segment', { className })} {...props}>
-      {options.map((option) => (
-        <button
-          type="button"
-          key={String(option.value)}
-          className={variants('option', { size, active: option.value === value })}
-          onClick={() => setValue(option.value)}
-        >
-          {option.label}
-        </button>
-      ))}
-    </div>
-  );
-};
+export const Segment = <Value,>({
+  className,
+  size,
+  options,
+  value,
+  onChange,
+  ...props
+}: Props<Value>) => (
+  <div className={variants('segment', { className })} {...props}>
+    {options.map((option) => (
+      <button
+        type="button"
+        key={String(option.value)}
+        className={variants('option', { size, active: option.value === value })}
+        onClick={() => onChange(option.value)}
+      >
+        {option.label}
+      </button>
+    ))}
+  </div>
+);
