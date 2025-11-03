@@ -1,8 +1,7 @@
 /** biome-ignore-all lint/suspicious/noExplicitAny: for arbitrary values */
+import { Segment } from '../../preset';
 import type { RadioPropertySpec } from '../../renderer';
-import { getClassNameFactory } from '../../utils';
 import { PropertyControl } from '../PropertyControl/PropertyControl';
-import styles from './PropertyControlRadio.module.css';
 
 type Props = {
   name: string;
@@ -11,8 +10,6 @@ type Props = {
   compact?: boolean;
   onChange?: (name: string, value?: any) => void;
 };
-
-const getClassName = getClassNameFactory('PropertyControlRadio', styles);
 
 export const PropertyControlRadio = ({ name, spec, ...props }: Props) => (
   <PropertyControl<any>
@@ -24,18 +21,7 @@ export const PropertyControlRadio = ({ name, spec, ...props }: Props) => (
       'render' in spec ? (
         spec.render(value, onChange)
       ) : (
-        <div className={getClassName()}>
-          {spec.options.map((option) => (
-            <button
-              key={option.value}
-              type="button"
-              className={getClassName('Option', { selected: value === option.value })}
-              onClick={() => onChange(option.value)}
-            >
-              {option.label}
-            </button>
-          ))}
-        </div>
+        <Segment size="sm" options={spec.options} value={value} onChange={onChange} />
       )
     }
   />

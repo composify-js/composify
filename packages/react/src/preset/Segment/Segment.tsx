@@ -1,4 +1,4 @@
-import { type ReactElement, useEffect, useState } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 import { createVariants } from '../../utils';
 import styles from './Segment.module.css';
 
@@ -7,7 +7,7 @@ type Props<Value> = {
   size: 'sm' | 'md';
   options: {
     value: Value;
-    label?: ReactElement;
+    label?: ReactNode;
   }[];
   value: Value;
   onChange: (value: Value) => void;

@@ -1,53 +1,5 @@
-.EditorControl {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem;
+.editorControl {
+  padding: 12px;
   border-bottom: 1px solid var(--composify-palette-outline);
   background-color: var(--composify-palette-surface);
-}
-
-.EditorControl-ModeGroup {
-  display: flex;
-  align-items: center;
-  gap: 0.0625rem;
-  padding: 0.125rem;
-  border-radius: 0.25rem;
-  border: 1px solid var(--composify-palette-outline);
-  background-color: var(--composify-palette-surface-container);
-}
-
-.EditorControl-ModeButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.4375rem 0.5rem;
-  fill: var(--composify-palette-on-surface);
-  background-color: transparent;
-  border: none;
-  border-radius: 0.25rem;
-  outline: none;
-  cursor: pointer;
-}
-
-.EditorControl-ModeButton--active {
-  fill: var(--composify-palette-on-secondary);
-  background-color: var(--composify-palette-secondary);
-}
-
-.EditorControl-SaveButton {
-  padding: 0.4375rem 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 500;
-  line-height: 1.4;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  color: var(--composify-palette-on-primary);
-  background-color: var(--composify-palette-primary);
-  border: 1px solid var(--composify-palette-primary);
-}
-
-.EditorControl-SaveButton:hover {
-  opacity: 0.9;
-  transition: opacity 0.1s linear;
 }
