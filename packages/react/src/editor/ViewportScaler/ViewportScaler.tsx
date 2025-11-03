@@ -1,9 +1,9 @@
 import { getBox } from 'css-box-model';
 import { type FC, type PropsWithChildren, useCallback, useEffect, useRef, useState } from 'react';
-import { getClassNameFactory } from '../../utils';
+import { createVariants } from '../../utils';
 import styles from './ViewportScaler.module.css';
 
-const getClassName = getClassNameFactory('ViewportScaler', styles);
+const variants = createVariants(styles);
 
 type Props = PropsWithChildren<{
   width: number;
@@ -46,10 +46,10 @@ export const ViewportScaler: FC<Props> = ({ width, children }) => {
 
   return (
     <>
-      <div ref={containerRef} className={getClassName('Container')} />
+      <div ref={containerRef} className={variants('container')} />
       <div
         ref={targetRef}
-        className={getClassName('Target')}
+        className={variants('target')}
         style={{
           width,
           height,

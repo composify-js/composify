@@ -1,14 +1,8 @@
-.ViewportManager {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
+.viewportManager {
   background-color: var(--composify-palette-surface-container);
 }
 
-.ViewportManager-Content {
-  flex: 1;
-  display: flex;
-  justify-content: center;
+.content {
   overflow: hidden;
-  margin: 2rem 1rem;
+  margin: 32px 16px;
 }

@@ -1,8 +1,9 @@
 import { type FC, useCallback, useEffect, useRef, useState } from 'react';
-import { getClassNameFactory } from '../../utils';
+import { HStack } from '../../preset';
+import { createVariants } from '../../utils';
 import styles from './ViewportControl.module.css';
 
-const getClassName = getClassNameFactory('ViewportControl', styles);
+const variants = createVariants(styles);
 
 type Props = {
   viewports: {
@@ -46,21 +47,26 @@ export const ViewportControl: FC<Props> = ({ viewports, selectedWidth, onClick }
   }, [autoScale]);
 
   return (
-    <div ref={containerRef} className={getClassName()}>
+    <HStack
+      ref={containerRef}
+      alignHorizontal="center"
+      alignVertical="center"
+      className={variants('viewportControl')}
+    >
       {viewports
         .sort((a, b) => b.width - a.width)
         .map((viewport) => (
-          <div
-            role="button"
+          <button
+            type="button"
             key={viewport.width}
-            className={getClassName('ViewportItem')}
+            className={variants('viewportItem')}
             style={{ width: viewport.width * scale }}
             onClick={() => onClick(viewport.width)}
           >
-            <div className={getClassName('Highlight')} />
-            <span className={getClassName('Label')}>{viewport.label}</span>
-          </div>
+            <div className={variants('highlight')} />
+            <span className={variants('label')}>{viewport.label}</span>
+          </button>
         ))}
-    </div>
+    </HStack>
   );
 };

@@ -1,11 +1,10 @@
-import type { FC, PropsWithChildren } from 'react';
+import type { ComponentProps, FC } from 'react';
 import { createVariants } from '../../utils';
 import styles from './VStack.module.css';
 
 const variants = createVariants(styles);
 
-type Props = PropsWithChildren<{
-  className?: string;
+type Props = ComponentProps<'div'> & {
   alignHorizontal?: 'stretch' | 'start' | 'end' | 'center';
   alignVertical?: 'start' | 'end' | 'center' | 'between' | 'around';
   flex?: number;
@@ -15,7 +14,7 @@ type Props = PropsWithChildren<{
   padding?: { top: number; right: number; bottom: number; left: number };
   margin?: { top: number; right: number; bottom: number; left: number };
   background?: string;
-}>;
+};
 
 export const VStack: FC<Props> = ({
   className,

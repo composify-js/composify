@@ -1,8 +1,8 @@
-*:has(> .ViewportScaler-Container) {
+*:has(> .container) {
   position: relative;
 }
 
-.ViewportScaler-Container {
+.container {
   position: absolute;
   top: 0;
   left: 0;
@@ -11,7 +11,7 @@
   pointer-events: none;
 }
 
-.ViewportScaler-Target {
+.target {
   position: absolute;
   top: 0;
   bottom: 0;

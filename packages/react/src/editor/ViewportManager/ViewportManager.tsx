@@ -1,10 +1,11 @@
 import { type FC, type PropsWithChildren, useState } from 'react';
-import { getClassNameFactory } from '../../utils';
+import { VStack } from '../../preset';
+import { createVariants } from '../../utils';
 import { ViewportControl } from '../ViewportControl';
 import { ViewportScaler } from '../ViewportScaler';
 import styles from './ViewportManager.module.css';
 
-const getClassName = getClassNameFactory('ViewportManager', styles);
+const variants = createVariants(styles);
 
 type Props = PropsWithChildren<{
   viewports?: {
@@ -52,11 +53,11 @@ export const ViewportManager: FC<Props> = ({
   const [width, setWidth] = useState(initialViewport.width);
 
   return (
-    <section className={getClassName()}>
+    <VStack flex={1} className={variants('viewportManager')}>
       <ViewportControl viewports={viewports} selectedWidth={width} onClick={setWidth} />
-      <div className={getClassName('Content')}>
+      <VStack flex={1} alignHorizontal="center" className={variants('content')}>
         <ViewportScaler width={width}>{children}</ViewportScaler>
-      </div>
-    </section>
+      </VStack>
+    </VStack>
   );
 };
