@@ -5,6 +5,7 @@ type DefaultPropertySpec<Value> = {
   label: string;
   default?: Value;
   optional?: boolean;
+  group?: string;
   hasDefault?: boolean;
 };
 

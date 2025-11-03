@@ -1,36 +1,16 @@
 /** biome-ignore-all lint/suspicious/noExplicitAny: for arbitrary values */
-import type { ComponentProps, ComponentType } from 'react';
-import type { PropertySpec } from '../PropertySpec';
-
-export type Block<
-  Component extends ComponentType<any> = any,
-  Props = ComponentProps<Component>,
-  Key extends keyof Props = keyof Props,
-> = {
-  name: string;
-  category?: string;
-  component: Component;
-  props: {
-    [key in Key]: PropertySpec<Props[key]>;
-  };
-};
+import type { ComponentType } from 'react';
+import { Block, type BlockConfig } from '../Block';
 
 const blocks = new Map<string, Block>();
 
 export const register = <Component extends ComponentType<any>>(
   name: string,
-  block: Omit<Block<Component>, 'name'>,
+  config: BlockConfig<Component>,
 ) => {
-  for (const spec of Object.values(block.props)) {
-    const typedSpec = spec as PropertySpec<any>;
+  const block = new Block(name, config);
 
-    setSpecDefault(typedSpec);
-  }
-
-  blocks.set(name, {
-    name,
-    ...block,
-  });
+  blocks.set(name, block);
 };
 
 export const valid = (names: string[]): boolean => {
@@ -43,10 +23,10 @@ export const missing = (names: string[]): string[] => {
 
 export const get = (name: string) => {
   if (name.toLowerCase() === name) {
-    return {
+    return new Block(name, {
       component: name,
-      props: {} as Record<string, PropertySpec<any>>,
-    };
+      props: {},
+    });
   }
 
   return blocks.get(name);
@@ -56,15 +36,11 @@ export const getAll = (query?: string) => {
   const blockList = Array.from(blocks.values())
     .filter((block) => block.name.toLowerCase().includes(query?.toLowerCase() ?? ''))
     .sort((a, b) => {
-      const aCategory = a.category ?? '~';
-      const bCategory = b.category ?? '~';
+      const aCategory = a.category === Block.UNCATEGORIZED ? '~' : a.category;
+      const bCategory = b.category === Block.UNCATEGORIZED ? '~' : b.category;
 
       return aCategory < bCategory ? -1 : 1;
-    })
-    .map((block) => ({
-      ...block,
-      category: block.category ?? 'Uncategorized',
-    }));
+    });
 
   const blocksByCategory = blockList.reduce(
     (acc, block) => {
@@ -87,46 +63,4 @@ export const getAll = (query?: string) => {
 
 export const clear = () => {
   blocks.clear();
-};
-
-const setSpecDefault = (spec: PropertySpec<any>): void => {
-  spec.hasDefault = typeof spec.default !== 'undefined';
-
-  switch (spec.type) {
-    case 'array':
-      spec.default ??= [];
-      setSpecDefault(spec.item);
-      break;
-    case 'boolean':
-      spec.default ??= false;
-      break;
-    case 'node':
-      spec.default ??= null;
-      break;
-    case 'number':
-      spec.default ??= 0;
-      break;
-    case 'object':
-      for (const field of Object.values(spec.fields)) {
-        setSpecDefault(field);
-      }
-      spec.default ??= Object.fromEntries(
-        Object.entries(spec.fields).map(([key, field]) => [key, field.default]),
-      );
-      break;
-    case 'custom':
-      break;
-    case 'radio':
-      spec.default ??= 'value' in spec.options[0] ? spec.options[0].value : spec.options[0];
-      break;
-    case 'select':
-      spec.default ??= spec.options[0]?.value;
-      break;
-    case 'text':
-    case 'textarea':
-      spec.default ??= '';
-      break;
-    default:
-      throw new Error('Unknown property spec');
-  }
 };

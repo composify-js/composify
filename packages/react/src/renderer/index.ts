@@ -1,4 +1,4 @@
-export type { Block } from './Catalog';
+export { Block } from './Block';
 export * as Catalog from './Catalog';
 export { type Node, NodeManager } from './NodeManager';
 export * as Parser from './Parser';
