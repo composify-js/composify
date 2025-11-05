@@ -5,6 +5,8 @@ import { createVariants } from '../../utils';
 import { useEditing } from '../EditingContext';
 import styles from './PropertyControl.module.css';
 
+const variants = createVariants(styles);
+
 type Props<SpecValue, Value = SpecValue> = {
   name: string;
   spec: PropertySpec<SpecValue>;
@@ -15,8 +17,6 @@ type Props<SpecValue, Value = SpecValue> = {
   onChange?: (name: string, value?: Value) => void;
   renderInput: (value: Value, onChange: (value?: Value) => void) => ReactNode;
 };
-
-const variants = createVariants(styles);
 
 export const PropertyControl = <SpecValue, Value = SpecValue>({
   name,

@@ -1,7 +1,6 @@
+import { Segment } from '../../preset';
 import type { BooleanPropertySpec } from '../../renderer';
-import { getClassNameFactory } from '../../utils';
 import { PropertyControl } from '../PropertyControl';
-import styles from './PropertyControlBoolean.module.css';
 
 type Props = {
   name: string;
@@ -11,30 +10,21 @@ type Props = {
   onChange?: (name: string, value?: boolean) => void;
 };
 
-const getClassName = getClassNameFactory('PropertyControlBoolean', styles);
-
 export const PropertyControlBoolean = ({ spec, ...props }: Props) => (
   <PropertyControl<boolean>
     {...props}
     spec={spec}
     defaultValue={spec.default ?? false}
     renderInput={(value, onChange) => (
-      <div className={getClassName('ButtonGroup')}>
-        <button
-          type="button"
-          className={getClassName('Button', { active: value === true })}
-          onClick={() => onChange(true)}
-        >
-          Yes
-        </button>
-        <button
-          type="button"
-          className={getClassName('Button', { active: value === false })}
-          onClick={() => onChange(false)}
-        >
-          No
-        </button>
-      </div>
+      <Segment
+        size="sm"
+        options={[
+          { label: 'Yes', value: true },
+          { label: 'No', value: false },
+        ]}
+        value={value}
+        onChange={onChange}
+      />
     )}
   />
 );

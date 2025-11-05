@@ -55,6 +55,11 @@
   font-size: 12px;
 }
 
+.button--size-sm > svg {
+  width: 16px;
+  height: 16px;
+}
+
 .button--size-md {
   height: 36px;
   padding: 0 12px;
@@ -62,9 +67,19 @@
   font-size: 14px;
 }
 
+.button--size-md > svg {
+  width: 18px;
+  height: 18px;
+}
+
 .button--size-lg {
   height: 42px;
   padding: 0 16px;
   gap: 8px;
   font-size: 14px;
+}
+
+.button--size-lg > svg {
+  width: 20px;
+  height: 20px;
 }

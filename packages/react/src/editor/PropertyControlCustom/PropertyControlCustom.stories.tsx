@@ -13,6 +13,7 @@ export const BasicUsage = () => {
         spec={{
           type: 'custom',
           label: 'Image',
+          default: '',
           render: (value, onChange) => (
             <>
               <style>
@@ -20,26 +21,25 @@ export const BasicUsage = () => {
               .file-input {
                 display: block;
                 width: 100%;
-                font-size: 0.875rem;
-                line-height: 1.4;
-                color: var(--docs-color-secondary);
-                border: 1px solid var(--docs-color-outline);
+                font-size: 13px;
+                color: var(--composify-palette-secondary);
+                border: 1px solid var(--composify-palette-outline);
                 border-radius: 4px;
                 cursor: pointer;
-                background-color: var(--docs-color-surface-container-low);
+                background-color: var(--composify-palette-surface-container-low);
                 padding: 0;
               }
 
               .file-input::file-selector-button {
+                height: 32px;
                 margin-right: 16px;
-                padding: 8px 16px;
+                padding: 0 16px;
                 border: 0;
                 border-top-left-radius: 4px;
                 border-bottom-left-radius: 4px;
-                font-size: 0.875rem;
-                line-height: 1.4;
+                font-size: 13px;
                 font-weight: 600;
-                background-color: var(--docs-color-secondary);
+                background-color: var(--composify-palette-secondary);
                 color: white;
                 cursor: pointer;
                 transition: opacity 0.1s;
