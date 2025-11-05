@@ -1,8 +1,8 @@
 <div align="center">
   <a href="https://composify.js.org">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/4b8714f6-6eb4-4069-bb97-78bac62a61b3">
-      <img src="https://github.com/user-attachments/assets/5391db6a-b1ee-4653-9072-a263f587f2d6" alt="Composify" width="290" />
+      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/composify-js/composify/blob/main/packages/docs/public/brand/logo-dark.png?raw=true">
+      <img src="https://github.com/composify-js/composify/blob/main/packages/docs/public/brand/logo-light.png?raw=true" alt="Composify" width="290" />
     </picture>
   </a>
   <p>Server Driven UI made easy</p>
