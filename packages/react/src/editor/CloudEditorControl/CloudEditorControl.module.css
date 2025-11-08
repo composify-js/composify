@@ -1,38 +1,4 @@
-.CloudEditorControl {
+.container {
   display: flex;
-  gap: 0.375rem;
-}
-
-.CloudEditorControl-SettingsButton {
-  padding: 0.4375rem 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 500;
-  line-height: 1.4;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  color: var(--composify-palette-on-surface);
-  background-color: var(--composify-palette-surface);
-  border: 1px solid var(--composify-palette-outline);
-}
-
-.CloudEditorControl-SettingsButton:hover {
-  background-color: var(--composify-palette-surface-container);
-  transition: background-color 0.15s linear;
-}
-
-.CloudEditorControl-SaveButton {
-  padding: 0.4375rem 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 500;
-  line-height: 1.4;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  color: var(--composify-palette-on-primary);
-  background-color: var(--composify-palette-primary);
-  border: 1px solid var(--composify-palette-primary);
-}
-
-.CloudEditorControl-SaveButton:hover {
-  opacity: 0.9;
-  transition: opacity 0.15s linear;
+  gap: 6px;
 }

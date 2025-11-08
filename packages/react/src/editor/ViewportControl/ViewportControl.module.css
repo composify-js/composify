@@ -1,4 +1,4 @@
-.viewportControl {
+.container {
   position: relative;
   height: 20px;
   overflow: hidden;
@@ -6,7 +6,7 @@
   background-color: var(--composify-palette-surface-container-low);
 }
 
-.viewportItem {
+.item {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,7 +21,7 @@
   transition: all 0.15s linear;
 }
 
-.viewportItem:first-child {
+.item:first-child {
   border: none;
   left: 0;
   right: 0;
@@ -37,7 +37,7 @@
   transition: all 0.1s linear;
 }
 
-.viewportItem:hover .highlight {
+.item:hover .highlight {
   z-index: 1;
   opacity: 0.7;
 }
@@ -51,7 +51,7 @@
   color: var(--composify-palette-on-surface);
 }
 
-.viewportItem:hover .label {
+.item:hover .label {
   z-index: 2;
   opacity: 1;
 }

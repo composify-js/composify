@@ -1,6 +1,5 @@
 /** biome-ignore-all lint/suspicious/noExplicitAny: for arbitrary values */
 import type { ObjectPropertySpec } from '../../renderer';
-import { getClassNameFactory } from '../../utils';
 import { PropertyControl } from '../PropertyControl';
 import { PropertyControlArray } from '../PropertyControlArray';
 import { PropertyControlBoolean } from '../PropertyControlBoolean';
@@ -19,8 +18,6 @@ type Props = {
   compact?: boolean;
   onChange?: (name: string, value?: Record<string, any>) => void;
 };
-
-const getClassName = getClassNameFactory('PropertyControlObject', styles);
 
 export const PropertyControlObject = ({ spec, ...props }: Props) => (
   <PropertyControl<Record<string, any>>
@@ -42,7 +39,7 @@ export const PropertyControlObject = ({ spec, ...props }: Props) => (
       };
 
       return (
-        <div className={getClassName()}>
+        <div className={styles.container}>
           {Object.entries(spec.fields).map(([fieldName, fieldSpec]) => {
             switch (fieldSpec.type) {
               case 'array':

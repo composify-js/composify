@@ -1,12 +1,12 @@
-.Draggable {
+.draggable {
   display: contents;
 }
 
-.Draggable > * {
+.draggable > * {
   position: relative;
 }
 
-.Draggable--selected[data-composify-dragging="false"][data-composify-type="Canvas"] > *::after {
+.draggable[data-selected="true"][data-dragging="false"][data-composify-type="Canvas"] > *::after {
   content: "";
   position: absolute;
   top: 0;
@@ -18,7 +18,7 @@
   pointer-events: none;
 }
 
-.Draggable--idle[data-composify-type="Canvas"] > *:hover:not(:has(.Draggable:hover))::before {
+.draggable[data-active="false"][data-composify-type="Canvas"] > *:hover:not(:has(.draggable:hover))::before {
   content: "";
   position: absolute;
   top: 0;

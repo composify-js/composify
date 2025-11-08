@@ -1,39 +1,25 @@
-.PropertyControlNode {
+.container {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   aspect-ratio: 1 / 0.6;
-  padding: 0.125rem;
-  border-radius: 0.25rem;
+  padding: 2px;
+  border-radius: 4px;
   border: 1px solid var(--composify-palette-outline);
   background-color: var(--composify-palette-surface-container-low);
   overflow: hidden;
 }
 
-.PropertyControlNode-Placeholder {
+.placeholder {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-  margin: 0;
-  font-size: 0.75rem;
-  color: var(--composify-palette-on-surface-variant);
 }
 
-.PropertyControlNode-RemoveButton {
+.remove {
   position: absolute;
-  top: 0.25rem;
-  right: 0.25rem;
-  width: 1.5rem;
-  height: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  outline: none;
-  border: none;
-  border-radius: 0.25rem;
-  background-color: var(--composify-palette-surface-container-highest);
-  color: var(--composify-palette-on-surface);
-  cursor: pointer;
+  top: 4px;
+  right: 4px;
 }

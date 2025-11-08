@@ -1,17 +1,6 @@
 import { getBox } from 'css-box-model';
-import {
-  type FC,
-  type PropsWithChildren,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
-import { getClassNameFactory } from '../../utils';
+import { type FC, type PropsWithChildren, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import styles from './ContentScaler.module.css';
-
-const getClassName = getClassNameFactory('ContentScaler', styles);
 
 type Props = PropsWithChildren<{
   width: number;
@@ -73,10 +62,10 @@ export const ContentScaler: FC<Props> = ({ width, height, children }) => {
 
   return (
     <>
-      <div ref={containerRef} className={getClassName('Container')} />
+      <div ref={containerRef} className={styles.container} />
       <div
         ref={setTarget}
-        className={getClassName('Target')}
+        className={styles.target}
         style={{
           width: targetWidth,
           height: targetHeight,

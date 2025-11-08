@@ -1,12 +1,9 @@
 import type { FC, ReactNode } from 'react';
-import { getClassNameFactory } from '../../utils';
 import { ActiveBlockControl } from '../ActiveBlockControl';
 import { type EditMode, EditorControl } from '../EditorControl';
 import { Outline } from '../Outline';
 import { PropertyLibrary } from '../PropertyLibrary';
 import styles from './PanelRight.module.css';
-
-const getClassName = getClassNameFactory('PanelRight', styles);
 
 export type Props = {
   mode: EditMode;
@@ -16,13 +13,8 @@ export type Props = {
 };
 
 export const PanelRight: FC<Props> = ({ mode, setMode, renderControl, onSubmit }) => (
-  <section className={getClassName()}>
-    <EditorControl
-      mode={mode}
-      setMode={setMode}
-      renderControl={renderControl}
-      onSubmit={onSubmit}
-    />
+  <section className={styles.container}>
+    <EditorControl mode={mode} setMode={setMode} renderControl={renderControl} onSubmit={onSubmit} />
     <ActiveBlockControl />
     <PropertyLibrary />
     <Outline />

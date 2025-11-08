@@ -34,6 +34,7 @@ export const VStack: FC<Props> = ({
       className,
       alignHorizontal,
       alignVertical,
+      ...(background?.startsWith('#') ? {} : { background }),
     })}
     style={{
       flex,
@@ -48,7 +49,7 @@ export const VStack: FC<Props> = ({
       gap,
       width,
       height,
-      background,
+      ...(background?.startsWith('#') ? { background } : {}),
     }}
     {...props}
   />

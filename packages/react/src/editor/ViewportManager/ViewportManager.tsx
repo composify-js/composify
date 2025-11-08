@@ -1,11 +1,8 @@
 import { type FC, type PropsWithChildren, useState } from 'react';
 import { VStack } from '../../preset';
-import { createVariants } from '../../utils';
 import { ViewportControl } from '../ViewportControl';
 import { ViewportScaler } from '../ViewportScaler';
 import styles from './ViewportManager.module.css';
-
-const variants = createVariants(styles);
 
 type Props = PropsWithChildren<{
   viewports?: {
@@ -53,9 +50,9 @@ export const ViewportManager: FC<Props> = ({
   const [width, setWidth] = useState(initialViewport.width);
 
   return (
-    <VStack flex={1} className={variants('viewportManager')}>
+    <VStack flex={1} className={styles.container}>
       <ViewportControl viewports={viewports} selectedWidth={width} onClick={setWidth} />
-      <VStack flex={1} alignHorizontal="center" className={variants('content')}>
+      <VStack flex={1} alignHorizontal="center" className={styles.content}>
         <ViewportScaler width={width}>{children}</ViewportScaler>
       </VStack>
     </VStack>

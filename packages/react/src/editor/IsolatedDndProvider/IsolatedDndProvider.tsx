@@ -1,10 +1,7 @@
 import { type FC, type PropsWithChildren, useMemo, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { getClassNameFactory } from '../../utils';
 import styles from './IsolatedDndProvider.module.css';
-
-const getClassName = getClassNameFactory('IsolatedDndProvider', styles);
 
 export const IsolatedDndProvider: FC<PropsWithChildren> = ({ children }) => {
   const [wrapper, setWrapper] = useState<HTMLDivElement | null>(null);
@@ -12,7 +9,7 @@ export const IsolatedDndProvider: FC<PropsWithChildren> = ({ children }) => {
   const backendOptions = useMemo(() => ({ rootElement: wrapper }), [wrapper]);
 
   return (
-    <div ref={setWrapper} className={getClassName()}>
+    <div ref={setWrapper} className={styles.container}>
       {wrapper && (
         <DndProvider backend={HTML5Backend} options={backendOptions}>
           {children}

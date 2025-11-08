@@ -1,9 +1,6 @@
 import { type FC, useCallback, useEffect, useRef, useState } from 'react';
 import { HStack } from '../../preset';
-import { createVariants } from '../../utils';
 import styles from './ViewportControl.module.css';
-
-const variants = createVariants(styles);
 
 type Props = {
   viewports: {
@@ -30,8 +27,7 @@ export const ViewportControl: FC<Props> = ({ viewports, selectedWidth, onClick }
     const nextWidthCandidate = Math.min(...widths.filter((v) => v > selectedWidth));
     const nextWidth = Math.min(nextWidthCandidate, Math.max(...widths));
 
-    const scale =
-      Math.min(box.width / nextWidth, 1) * (nextWidth === nextWidthCandidate ? 1.05 : 1);
+    const scale = Math.min(box.width / nextWidth, 1) * (nextWidth === nextWidthCandidate ? 1.05 : 1);
 
     setScale(scale);
   }, [viewports, selectedWidth]);
@@ -47,24 +43,19 @@ export const ViewportControl: FC<Props> = ({ viewports, selectedWidth, onClick }
   }, [autoScale]);
 
   return (
-    <HStack
-      ref={containerRef}
-      alignHorizontal="center"
-      alignVertical="center"
-      className={variants('viewportControl')}
-    >
+    <HStack ref={containerRef} alignHorizontal="center" alignVertical="center" className={styles.container}>
       {viewports
         .sort((a, b) => b.width - a.width)
         .map((viewport) => (
           <button
             type="button"
             key={viewport.width}
-            className={variants('viewportItem')}
+            className={styles.item}
             style={{ width: viewport.width * scale }}
             onClick={() => onClick(viewport.width)}
           >
-            <div className={variants('highlight')} />
-            <span className={variants('label')}>{viewport.label}</span>
+            <div className={styles.highlight} />
+            <span className={styles.label}>{viewport.label}</span>
           </button>
         ))}
     </HStack>

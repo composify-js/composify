@@ -1,7 +1,7 @@
-.Editor {
+.container {
   flex: 1;
   display: flex;
-  height: 100vh;
+  height: 100svh;
 
   font-family:
     system-ui,
@@ -21,11 +21,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.Editor * {
+.container * {
   box-sizing: border-box;
-}
-
-.Editor-Divider {
-  width: 1px;
-  background-color: var(--composify-palette-outline);
 }

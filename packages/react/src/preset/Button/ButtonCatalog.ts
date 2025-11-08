@@ -3,6 +3,7 @@ import { Button } from './Button';
 
 Catalog.register('Button', {
   component: Button,
+  category: 'Content',
   props: {
     variant: {
       label: 'Variant',
@@ -19,6 +20,10 @@ Catalog.register('Button', {
         {
           label: 'Outline',
           value: 'outline',
+        },
+        {
+          label: 'Ghost',
+          value: 'ghost',
         },
       ],
       default: 'primary',

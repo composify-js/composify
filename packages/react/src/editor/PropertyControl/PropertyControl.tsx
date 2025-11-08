@@ -1,5 +1,6 @@
 import { MinusIcon } from 'lucide-react';
 import { type ReactNode, useCallback } from 'react';
+import { IconButton } from '../../preset';
 import type { PropertySpec } from '../../renderer';
 import { createVariants } from '../../utils';
 import { useEditing } from '../EditingContext';
@@ -35,8 +36,7 @@ export const PropertyControl = <SpecValue, Value = SpecValue>({
     : name === 'children'
       ? activeBlock?.children[0]
       : activeBlock?.props[name];
-  const effectiveValue =
-    tentativeValue === undefined ? (spec.optional ? undefined : defaultValue) : tentativeValue;
+  const effectiveValue = tentativeValue === undefined ? (spec.optional ? undefined : defaultValue) : tentativeValue;
 
   const isEffectiveValueDefined = typeof effectiveValue !== 'undefined';
 
@@ -58,37 +58,27 @@ export const PropertyControl = <SpecValue, Value = SpecValue>({
   );
 
   return (
-    <div className={variants('frame', { orientation })}>
+    <div className={variants('container', { orientation })}>
       <div className={variants('header', { orientation, compact })}>
-        <span className={variants('label')}>{spec.label}</span>
+        <span className={styles.label}>{spec.label}</span>
         {spec.optional && orientation === 'vertical' && isEffectiveValueDefined && (
-          <button
-            data-slot="remove-button"
-            type="button"
-            className={variants('removeButton')}
-            onClick={handleClickOptional}
-          >
+          <IconButton data-slot="remove-button" size="xs" onClick={handleClickOptional}>
             <MinusIcon />
-          </button>
+          </IconButton>
         )}
       </div>
-      <div className={variants('input')}>
+      <div className={styles.input}>
         {isEffectiveValueDefined ? (
           <>
             {renderInput(effectiveValue, handleChange)}
             {spec.optional && orientation === 'horizontal' && (
-              <button
-                data-slot="remove-button"
-                type="button"
-                className={variants('removeButton')}
-                onClick={handleClickOptional}
-              >
+              <IconButton data-slot="remove-button" size="xs" onClick={handleClickOptional}>
                 <MinusIcon />
-              </button>
+              </IconButton>
             )}
           </>
         ) : (
-          <button type="button" className={variants('addButton')} onClick={handleClickOptional}>
+          <button type="button" className={styles.button} onClick={handleClickOptional}>
             Add..
           </button>
         )}

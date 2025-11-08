@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-radius: 4px;
+  padding: 4px;
+  overflow: hidden;
+}
+
+.preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 124px;
+  height: 124px;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid var(--composify-palette-outline);
+  background-color: var(--composify-palette-surface-container-low);
+  transition: border 0.15s;
+}
+
+.preview:hover {
+  border: 1px solid var(--composify-palette-primary);
+}
+
+.name {
+  align-self: stretch;
+  margin: 0 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

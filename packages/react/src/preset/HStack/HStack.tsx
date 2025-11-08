@@ -34,6 +34,7 @@ export const HStack: FC<Props> = ({
       className,
       alignHorizontal,
       alignVertical,
+      ...(background?.startsWith('#') ? {} : { background }),
     })}
     style={{
       flex,
@@ -49,6 +50,7 @@ export const HStack: FC<Props> = ({
       width,
       height,
       background,
+      ...(background?.startsWith('#') ? { background } : {}),
     }}
     {...props}
   />

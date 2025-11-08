@@ -8,8 +8,10 @@
   border-radius: 4px;
   border: 1px solid var(--composify-palette-outline);
   background-color: var(--composify-palette-surface-container-low);
-  transition: border-color 0.15s;
   outline: none;
+  transition:
+    border-color 0.15s,
+    opacity 0.15s;
 }
 
 .input:focus-visible {

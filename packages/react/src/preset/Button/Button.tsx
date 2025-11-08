@@ -3,7 +3,7 @@ import { createVariants } from '../../utils';
 import styles from './Button.module.css';
 
 type Props = ComponentProps<'button'> & {
-  variant: 'primary' | 'secondary' | 'outline';
+  variant: 'primary' | 'secondary' | 'outline' | 'ghost';
   size: 'sm' | 'md' | 'lg';
 };
 

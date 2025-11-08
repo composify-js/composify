@@ -1,5 +1,6 @@
-.editorControl {
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 12px;
-  border-bottom: 1px solid var(--composify-palette-outline);
-  background-color: var(--composify-palette-surface);
 }

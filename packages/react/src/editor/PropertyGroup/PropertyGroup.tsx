@@ -2,7 +2,6 @@
 import type { FC } from 'react';
 import { VStack } from '../../preset';
 import type { PropertySpec } from '../../renderer';
-import { createVariants } from '../../utils';
 import { PropertyControlArray } from '../PropertyControlArray';
 import { PropertyControlBoolean } from '../PropertyControlBoolean';
 import { PropertyControlCustom } from '../PropertyControlCustom';
@@ -15,17 +14,15 @@ import { PropertyControlText } from '../PropertyControlText';
 import { PropertyControlTextArea } from '../PropertyControlTextArea';
 import styles from './PropertyGroup.module.css';
 
-const variants = createVariants(styles);
-
 type Props = {
   group: string;
   items: Record<string, PropertySpec<any>>;
 };
 
 export const PropertyGroup: FC<Props> = ({ group, items }) => (
-  <VStack className={variants('propertyGroup')}>
-    <span className={variants('groupLabel')}>{group}</span>
-    <div className={variants('contentGrid')}>
+  <VStack className={styles.container}>
+    <span className={styles.label}>{group}</span>
+    <div className={styles.grid}>
       {Object.entries(items).map(([name, spec]) => {
         switch (spec.type) {
           case 'array':

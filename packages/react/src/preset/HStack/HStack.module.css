@@ -42,3 +42,27 @@
 .hstack--alignVertical-end {
   align-items: flex-end;
 }
+
+.hstack--background-surface {
+  background-color: var(--composify-palette-surface);
+}
+
+.hstack--background-surface-container {
+  background-color: var(--composify-palette-surface-container);
+}
+
+.hstack--background-surface-container-low {
+  background-color: var(--composify-palette-surface-container-low);
+}
+
+.hstack--background-surface-container-lowest {
+  background-color: var(--composify-palette-surface-container-lowest);
+}
+
+.hstack--background-surface-container-high {
+  background-color: var(--composify-palette-surface-container-high);
+}
+
+.hstack--background-surface-container-highest {
+  background-color: var(--composify-palette-surface-container-highest);
+}

@@ -1,19 +1,11 @@
-.Outline {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem 0.75rem;
+.title {
+  padding: 8px 12px;
   background-color: var(--composify-palette-surface-container);
+  border-top: 1px solid var(--composify-palette-outline);
   border-bottom: 1px solid var(--composify-palette-outline);
 }
 
-.Outline-Title {
-  margin: 0;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--composify-palette-on-surface);
-}
-
-.Outline-List {
+.list {
   margin: 0;
   padding: 0;
   list-style: none;

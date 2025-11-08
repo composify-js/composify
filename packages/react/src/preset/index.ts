@@ -1,6 +1,11 @@
 export { Button } from './Button';
+export { Grid } from './Grid';
 export { HStack } from './HStack';
+export { IconButton } from './IconButton';
 export { Input } from './Input';
 export { Segment } from './Segment';
 export { Select } from './Select';
+export { Separator } from './Separator';
+export { Text } from './Text';
+export { Textarea } from './Textarea';
 export { VStack } from './VStack';

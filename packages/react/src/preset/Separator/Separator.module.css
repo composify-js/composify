@@ -1,0 +1,14 @@
+.separator {
+  background-color: var(--composify-palette-outline);
+  flex-shrink: 0;
+}
+
+.separator--orientation-horizontal {
+  height: 1px;
+  width: 100%;
+}
+
+.separator--orientation-vertical {
+  width: 1px;
+  height: 100%;
+}

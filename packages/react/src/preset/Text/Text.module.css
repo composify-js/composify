@@ -1,0 +1,126 @@
+.text {
+  margin: 0;
+  line-height: 1;
+}
+
+.text--size-xs {
+  font-size: 0.75rem;
+  line-height: calc(1 / 0.75);
+}
+
+.text--size-sm {
+  font-size: 0.875rem;
+  line-height: calc(1.25 / 0.875);
+}
+
+.text--size-md {
+  font-size: 1rem;
+  line-height: calc(1.5 / 1);
+}
+
+.text--size-lg {
+  font-size: 1.125rem;
+  line-height: calc(1.75 / 1.25);
+}
+
+.text--size-xl {
+  font-size: 1.25rem;
+  line-height: calc(1.75 / 1.25);
+}
+
+.text--size-2xl {
+  font-size: 1.5rem;
+  line-height: calc(2 / 1.5);
+}
+
+.text--size-3xl {
+  font-size: 1.875rem;
+  line-height: calc(2.25 / 1.875);
+}
+
+.text--size-4xl {
+  font-size: 2.25rem;
+  line-height: calc(2.5 / 2.25);
+}
+
+.text--size-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.text--size-6xl {
+  font-size: 3.75rem;
+  line-height: 1;
+}
+
+.text--align-left {
+  text-align: left;
+}
+
+.text--align-center {
+  text-align: center;
+}
+
+.text--align-right {
+  text-align: right;
+}
+
+.text--weight-thin {
+  font-weight: 100;
+}
+
+.text--weight-extralight {
+  font-weight: 200;
+}
+
+.text--weight-light {
+  font-weight: 300;
+}
+
+.text--weight-normal {
+  font-weight: 400;
+}
+
+.text--weight-medium {
+  font-weight: 500;
+}
+
+.text--weight-semibold {
+  font-weight: 600;
+}
+
+.text--weight-bold {
+  font-weight: 700;
+}
+
+.text--weight-extrabold {
+  font-weight: 800;
+}
+
+.text--weight-black {
+  font-weight: 900;
+}
+
+.text--color-primary {
+  color: var(--composify-palette-primary);
+}
+
+.text--color-on-primary {
+  color: var(--composify-palette-on-primary);
+}
+
+.text--color-secondary {
+  color: var(--composify-palette-secondary);
+}
+
+.text--color-on-secondary {
+  color: var(--composify-palette-on-secondary);
+}
+
+.text--color-on-surface {
+  color: var(--composify-palette-on-surface);
+}
+
+.text--color-on-surface-variant {
+  color: var(--composify-palette-on-surface-variant);
+}

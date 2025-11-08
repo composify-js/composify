@@ -8,13 +8,10 @@ import {
   useState,
 } from 'react';
 import { createPortal } from 'react-dom';
-import { getClassNameFactory } from '../../utils';
 import styles from './InlineFrame.module.css';
 import { InlineFrameProvider } from './InlineFrameContext';
 
 type Props = IframeHTMLAttributes<HTMLIFrameElement> & PropsWithChildren<unknown>;
-
-const getClassName = getClassNameFactory('InlineFrame', styles);
 
 export const InlineFrame: FC<Props> = ({ children, ...rest }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -82,7 +79,7 @@ export const InlineFrame: FC<Props> = ({ children, ...rest }) => {
           <body></body>
         </html>
       `.trim()}
-      className={getClassName()}
+      className={styles.container}
       onLoad={() => setIframeLoaded(true)}
     >
       {iframeLoaded && renderFrameContents()}

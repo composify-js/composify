@@ -1,4 +1,4 @@
-.PanelRight {
+.container {
   display: flex;
   flex-direction: column;
   width: 288px;

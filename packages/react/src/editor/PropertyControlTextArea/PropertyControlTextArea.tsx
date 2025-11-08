@@ -1,7 +1,6 @@
+import { Textarea } from '../../preset';
 import type { TextAreaPropertySpec } from '../../renderer';
-import { getClassNameFactory } from '../../utils';
 import { PropertyControl } from '../PropertyControl';
-import styles from './PropertyControlTextArea.module.css';
 
 type Props = {
   name: string;
@@ -11,20 +10,17 @@ type Props = {
   onChange?: (name: string, value?: string) => void;
 };
 
-const getClassName = getClassNameFactory('PropertyControlTextArea', styles);
-
 export const PropertyControlTextArea = ({ spec, ...props }: Props) => (
   <PropertyControl<string>
     {...props}
     spec={spec}
     defaultValue={spec.default ?? ''}
     renderInput={(value, onChange) => (
-      <textarea
+      <Textarea
         rows={3}
         placeholder={spec.placeholder}
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className={getClassName()}
       />
     )}
   />

@@ -1,12 +1,12 @@
-.CodeEditor {
+.container {
   position: relative;
   display: flex;
   flex: 1;
   overflow: hidden;
-  padding-top: 1.25rem;
+  padding-top: 20px;
 }
 
-.CodeEditor-Message {
+.message {
   position: absolute;
   top: 0;
   left: 0;
@@ -17,8 +17,6 @@
   justify-content: flex-end;
   margin: 0;
   padding: 0 0.5rem;
-  height: 1.25rem;
-  font-size: 0.6875rem;
-  color: var(--composify-palette-on-surface-variant);
+  height: 20px;
   border-bottom: 1px solid var(--composify-palette-outline);
 }

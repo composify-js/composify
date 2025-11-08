@@ -17,11 +17,7 @@ export const ComposifyEditorProvider: FC<PropsWithChildren<ComposifyEditorContex
 }) => {
   const contextValues = useMemo(() => ({ isLibrary, isVisualEditor }), [isLibrary, isVisualEditor]);
 
-  return (
-    <ComposifyEditorContext.Provider value={contextValues}>
-      {children}
-    </ComposifyEditorContext.Provider>
-  );
+  return <ComposifyEditorContext.Provider value={contextValues}>{children}</ComposifyEditorContext.Provider>;
 };
 
 export const useComposifyEditor = () => useContext(ComposifyEditorContext);

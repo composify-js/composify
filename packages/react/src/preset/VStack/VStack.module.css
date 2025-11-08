@@ -42,3 +42,27 @@
 .vstack--alignVertical-evenly {
   justify-content: space-evenly;
 }
+
+.vstack--background-surface {
+  background-color: var(--composify-palette-surface);
+}
+
+.vstack--background-surface-container {
+  background-color: var(--composify-palette-surface-container);
+}
+
+.vstack--background-surface-container-low {
+  background-color: var(--composify-palette-surface-container-low);
+}
+
+.vstack--background-surface-container-lowest {
+  background-color: var(--composify-palette-surface-container-lowest);
+}
+
+.vstack--background-surface-container-high {
+  background-color: var(--composify-palette-surface-container-high);
+}
+
+.vstack--background-surface-container-highest {
+  background-color: var(--composify-palette-surface-container-highest);
+}

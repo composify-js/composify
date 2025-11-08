@@ -1,17 +1,15 @@
-.frame {
+.container {
   display: flex;
   grid-column: 1 / -1;
 }
 
-.frame--orientation-horizontal {
+.container--orientation-horizontal {
   gap: 8px;
-  align-items: center;
 }
 
-.frame--orientation-vertical {
+.container--orientation-vertical {
   gap: 4px;
   flex-direction: column;
-  align-items: stretch;
 }
 
 .header {
@@ -23,6 +21,7 @@
 
 .header--orientation-horizontal {
   flex: 1;
+  margin-top: 3px;
 }
 
 .header--compact {
@@ -37,6 +36,7 @@
 
 .input {
   display: flex;
+  align-items: center;
   flex: 2;
   gap: 4px;
 }
@@ -45,7 +45,7 @@
   flex: 1;
 }
 
-.addButton {
+.button {
   display: inline-flex;
   align-items: center;
   height: 32px;
@@ -57,24 +57,4 @@
   color: var(--composify-palette-on-surface-variant);
   background-color: var(--composify-palette-surface-container-low);
   cursor: pointer;
-}
-
-.removeButton {
-  display: inline-flex;
-  align-self: center;
-  align-items: center;
-  justify-content: center;
-  width: 26px;
-  height: 26px;
-  outline: none;
-  border: none;
-  border-radius: 4px;
-  background-color: transparent;
-  transition: background-color 0.15s;
-  cursor: pointer;
-  color: var(--composify-palette-on-surface-variant);
-}
-
-.removeButton:hover {
-  background-color: var(--composify-palette-surface-container);
 }

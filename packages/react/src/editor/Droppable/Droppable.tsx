@@ -2,7 +2,6 @@ import { throttle } from 'es-toolkit';
 import type { FC, PropsWithChildren } from 'react';
 import { useDrop } from 'react-dnd';
 import type { Node } from '../../renderer';
-import { getClassNameFactory } from '../../utils';
 import { TargetType } from '../Constants';
 import { useEditing } from '../EditingContext';
 import styles from './Droppable.module.css';
@@ -13,8 +12,6 @@ type Props = PropsWithChildren<{
   fullScreen?: boolean;
   onDrop?: (item: Node) => void;
 }>;
-
-const getClassName = getClassNameFactory('Droppable', styles);
 
 export const Droppable: FC<Props> = ({ item, index, fullScreen, onDrop, ...props }) => {
   const { isDragging, focusedBlock, relocateFocusedBlock, insertBlock } = useEditing();
@@ -48,16 +45,14 @@ export const Droppable: FC<Props> = ({ item, index, fullScreen, onDrop, ...props
   return (
     <span
       data-composify-role="droppable"
-      data-composify-active={isDragging}
-      data-composify-dragging={focusedBlock?.id === item.id}
+      data-fullscreen={!!fullScreen}
+      data-over={isOver}
+      data-active={isDragging}
+      data-dragging={focusedBlock?.id === item.id}
+      className={styles.droppable}
       ref={(node) => {
         dropRef(node);
       }}
-      className={getClassName({
-        active: isDragging,
-        over: isOver,
-        fullScreen: !!fullScreen,
-      })}
       {...props}
     />
   );

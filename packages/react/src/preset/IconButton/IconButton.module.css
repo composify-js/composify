@@ -1,0 +1,66 @@
+.iconButton {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  background-color: transparent;
+  font-family: inherit;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    opacity 0.15s,
+    background-color 0.15s;
+}
+
+.iconButton:disabled {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.iconButton:hover {
+  background-color: var(--composify-palette-surface-container);
+}
+
+.iconButton--size-xs {
+  width: 26px;
+  height: 26px;
+}
+
+.iconButton--size-xs > svg {
+  width: 14px;
+  height: 14px;
+}
+
+.iconButton--size-sm {
+  width: 32px;
+  height: 32px;
+}
+
+.iconButton--size-sm > svg {
+  width: 16px;
+  height: 16px;
+}
+
+.iconButton--size-md {
+  width: 36px;
+  height: 36px;
+}
+
+.iconButton--size-md > svg {
+  width: 18px;
+  height: 18px;
+}
+
+.iconButton--size-lg {
+  width: 42px;
+  height: 42px;
+}
+
+.iconButton--size-lg > svg {
+  width: 20px;
+  height: 20px;
+}

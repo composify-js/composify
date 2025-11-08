@@ -1,18 +1,18 @@
-.SearchForm {
+.container {
   display: flex;
-  gap: 0.5rem;
-  padding: 0.75rem;
-  background-color: var(--composify-palette-surface);
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--composify-palette-outline);
 }
 
-.SearchForm-Icon {
-  fill: var(--composify-palette-on-surface);
+.container:last-child {
+  border-bottom: 1px solid var(--composify-palette-outline);
 }
 
-.SearchForm-Input {
+.input {
   flex: 1;
   padding: 0;
-  font-size: 0.8125rem;
+  font-size: 13px;
   outline: none;
   border: none;
 }

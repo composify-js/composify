@@ -19,9 +19,7 @@ export const CloudEditor: FC<Props> = ({ viewports }) => {
         title={title}
         source="<></>"
         viewports={viewports}
-        renderControl={() =>
-          editingRef ? <CloudEditorControl getSource={editingRef.getSource} /> : null
-        }
+        renderControl={() => (editingRef ? <CloudEditorControl getSource={editingRef.getSource} /> : null)}
       />
       <CloudEditorInitializer />
       {editingRef && (

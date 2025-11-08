@@ -5,12 +5,10 @@ import * as meriyahParser from 'prettier/parser-meriyah';
 import * as estreePlugin from 'prettier/plugins/estree';
 import prettier from 'prettier/standalone';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Text } from '../../preset';
 import { Catalog, NodeManager, Parser } from '../../renderer';
-import { getClassNameFactory } from '../../utils';
 import { useEditing } from '../EditingContext';
 import styles from './CodeEditor.module.css';
-
-const getClassName = getClassNameFactory('CodeEditor', styles);
 
 const prettify = async (value: string) => {
   const formattedCode = await prettier
@@ -113,8 +111,10 @@ export const CodeEditor = () => {
   }, [getSource]);
 
   return (
-    <section className={getClassName()}>
-      <p className={getClassName('Message')}>{message}</p>
+    <section className={styles.container}>
+      <Text size="xs" color="on-surface-variant" className={styles.message}>
+        {message}
+      </Text>
       <MonacoEditor
         language="javascript"
         value={code}

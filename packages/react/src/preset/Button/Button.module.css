@@ -10,6 +10,7 @@
   font-weight: 500;
   line-height: 1;
   white-space: nowrap;
+  cursor: pointer;
   transition:
     background-color 0.15s,
     opacity 0.15s;
@@ -45,7 +46,16 @@
 }
 
 .button--variant-outline:hover {
-  background-color: var(--composify-palette-surface-button);
+  background-color: var(--composify-palette-surface-container);
+}
+
+.button--variant-ghost {
+  background-color: transparent;
+  color: var(--composify-palette-on-surface);
+}
+
+.button--variant-ghost:hover {
+  opacity: 0.7;
 }
 
 .button--size-sm {

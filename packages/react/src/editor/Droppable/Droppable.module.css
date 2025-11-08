@@ -1,40 +1,38 @@
-.Droppable:only-child {
+/** biome-ignore-all lint/complexity/noImportantStyles: to override styles */
+.droppable:only-child {
   position: static;
   width: 100%;
   height: 100%;
 }
 
-.Droppable--active {
+.droppable[data-active="true"] {
   display: block;
   position: static;
-  min-width: 1rem;
-  min-height: 1rem;
+  min-width: 16px;
+  min-height: 16px;
 }
 
-.Droppable--active {
+.droppable[data-active="true"] {
   border: 1px dotted var(--composify-palette-primary);
 }
 
-.Droppable[data-composify-active="false"]:empty {
+.droppable[data-active="false"]:empty {
   display: none;
 }
 
-.Droppable--active[data-composify-dragging="true"]:not(:only-child),
-[data-composify-role="draggable"][data-composify-dragging="true"]
-  .Droppable--active:not(:only-child),
-[data-composify-role="draggable"][data-composify-dragging="true"] + .Droppable--active,
-.Droppable--active:not(:only-child):has(
-    + [data-composify-role="draggable"][data-composify-dragging="true"]
-  ) {
+.droppable[data-active="true"][data-dragging="true"]:not(:only-child),
+[data-composify-role="draggable"][data-dragging="true"] .droppable[data-active="true"]:not(:only-child),
+[data-composify-role="draggable"][data-dragging="true"] + .droppable[data-active="true"],
+.droppable[data-active="true"]:not(:only-child):has(+ [data-composify-role="draggable"][data-dragging="true"]) {
   display: none;
 }
 
-.Droppable--over {
+.droppable[data-over="true"] {
   background-color: var(--composify-palette-primary);
   opacity: 0.8;
 }
 
-.Droppable--fullScreen {
+.droppable[data-fullscreen="true"] {
   display: block !important;
   position: fixed !important;
   width: auto !important;

@@ -1,11 +1,8 @@
 import { CodeXmlIcon, MonitorIcon, SquareSplitHorizontalIcon } from 'lucide-react';
 import { type FC, type ReactNode, useCallback } from 'react';
-import { Button, HStack, Segment } from '../../preset';
-import { createVariants } from '../../utils';
+import { Button, Segment } from '../../preset';
 import { useEditing } from '../EditingContext';
 import styles from './EditorControl.module.css';
-
-const variants = createVariants(styles);
 
 export type EditMode = 'visual' | 'code' | 'split';
 
@@ -33,7 +30,7 @@ export const EditorControl: FC<Props> = ({ mode, setMode, renderControl, onSubmi
   }, [getSource, onSubmit]);
 
   return (
-    <HStack className={variants('editorControl')} alignHorizontal="between" alignVertical="center">
+    <div className={styles.container}>
       <Segment
         size="sm"
         options={[
@@ -51,6 +48,6 @@ export const EditorControl: FC<Props> = ({ mode, setMode, renderControl, onSubmi
           Save
         </Button>
       )}
-    </HStack>
+    </div>
   );
 };
