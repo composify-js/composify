@@ -39,6 +39,11 @@
       "quoteStyle": "single"
     }
   },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
+  },
   "assist": {
     "actions": {
       "source": {

@@ -66,9 +66,7 @@ describe('Parser', () => {
     });
 
     it('should throw error for non-expression root nodes', () => {
-      expect(() => parse('const x = 1;')).toThrow(
-        'Expected an expression statement, but got: VariableDeclaration',
-      );
+      expect(() => parse('const x = 1;')).toThrow('Expected an expression statement, but got: VariableDeclaration');
     });
   });
 

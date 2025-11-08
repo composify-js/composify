@@ -70,9 +70,7 @@ export class NodeManager {
       throw new Error('Parent node not found');
     }
 
-    parent.children = parent.children.filter(
-      (child) => typeof child === 'string' || child.id !== id,
-    );
+    parent.children = parent.children.filter((child) => typeof child === 'string' || child.id !== id);
 
     if (node.implicit.parentPropKey) {
       parent.props[node.implicit.parentPropKey] = null;
@@ -141,9 +139,7 @@ export class NodeManager {
       throw new Error('Parent node not found');
     }
 
-    const index = parent.children.findIndex(
-      (child) => typeof child !== 'string' && child.id === id,
-    );
+    const index = parent.children.findIndex((child) => typeof child !== 'string' && child.id === id);
     const duplicated = this.populate(node);
 
     this.insert(duplicated, {
@@ -219,9 +215,7 @@ export class NodeManager {
 
   public stringify = (source?: PopulatedNode): string => {
     const root = source ?? this.root;
-    const children = root.children.map((child) =>
-      typeof child === 'string' ? child : this.stringify(child),
-    );
+    const children = root.children.map((child) => (typeof child === 'string' ? child : this.stringify(child)));
     const name = `${root.type}:${root.id}`;
 
     if (children.length > 0) {
@@ -245,10 +239,7 @@ export class NodeManager {
     });
   };
 
-  private populate = (
-    node: Node,
-    options?: { parent: string; implicit?: string },
-  ): PopulatedNode => {
+  private populate = (node: Node, options?: { parent: string; implicit?: string }): PopulatedNode => {
     const id = this.generateRandomId();
     const implicit: PopulatedNode['implicit'] = {
       ...(options?.implicit ? { parentPropKey: options.implicit } : {}),

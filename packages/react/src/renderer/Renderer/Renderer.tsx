@@ -29,9 +29,7 @@ const renderElement = (node: Node, pragma: Pragma): ReactNode => {
       ...Object.entries(node.props).reduce(
         (acc, [key, value]) => {
           acc[key] =
-            value && typeof value === 'object' && '__composify__' in value
-              ? renderElement(value, pragma)
-              : value;
+            value && typeof value === 'object' && '__composify__' in value ? renderElement(value, pragma) : value;
 
           return acc;
         },
@@ -83,10 +81,7 @@ type Props = {
 };
 
 export const Renderer: FC<Props> = ({ source, pragma = DEFAULT_PRAGMA }) => {
-  const content = useMemo(
-    () => (typeof source === 'string' ? Parser.parse(source) : source),
-    [source],
-  );
+  const content = useMemo(() => (typeof source === 'string' ? Parser.parse(source) : source), [source]);
 
   return renderElement(content, pragma);
 };

@@ -15,14 +15,7 @@ type Props = {
   recommended?: boolean;
 };
 
-export const PlanItem: FC<Props> = ({
-  title,
-  description,
-  price,
-  interval,
-  features,
-  recommended,
-}) => (
+export const PlanItem: FC<Props> = ({ title, description, price, interval, features, recommended }) => (
   <div className={clsx(styles.container, { [styles.recommended]: recommended })}>
     <h3 className={styles.title}>{title}</h3>
     <p className={styles.description}>{description}</p>

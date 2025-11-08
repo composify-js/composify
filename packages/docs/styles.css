@@ -109,6 +109,16 @@ html.dark {
   }
 }
 
+/* Footer */
+.vocs_Footer {
+  max-width: unset;
+  padding: 1.5rem;
+}
+
+.vocs_Footer:not([data-layout="docs"]) {
+  align-items: stretch;
+}
+
 /* Landing layout */
 .vocs_DocsLayout[data-layout="landing"] .vocs_DocsLayout_content {
   max-width: unset;
@@ -153,16 +163,6 @@ html.dark {
 
 .vocs_DocsLayout[data-layout="demo"] .vocs_Footer {
   display: none;
-}
-
-/* Footer */
-.vocs_Footer {
-  max-width: unset;
-  padding: 1.5rem;
-}
-
-.vocs_Footer:not([data-layout="docs"]) {
-  align-items: stretch;
 }
 
 /* Preview */

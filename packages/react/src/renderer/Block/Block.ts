@@ -83,9 +83,7 @@ export class Block<
         for (const field of Object.values(spec.fields)) {
           this.setSpecDefault(field);
         }
-        spec.default ??= Object.fromEntries(
-          Object.entries(spec.fields).map(([key, field]) => [key, field.default]),
-        );
+        spec.default ??= Object.fromEntries(Object.entries(spec.fields).map(([key, field]) => [key, field.default]));
         break;
       case 'custom':
         break;

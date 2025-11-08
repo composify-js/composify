@@ -1,11 +1,13 @@
-import clsx from 'clsx';
 import styles from './Footer.module.css';
 
 export const Footer = () => (
   <section className={styles.container}>
     <div className={styles.column}>
-      <img src="/brand/logo-light.svg" alt="Logo" className={clsx(styles.logo, styles.light)} />
-      <img src="/brand/logo-dark.svg" alt="Logo" className={clsx(styles.logo, styles.dark)} />
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcSet="/brand/logo-dark.svg" />
+        <source media="(prefers-color-scheme: light)" srcSet="/brand/logo-light.svg" />
+        <img src="/brand/logo-light.svg" alt="Logo" />
+      </picture>
       <p className={styles.copyright}>
         © {new Date().getFullYear()} Hills Inc.
         <br />

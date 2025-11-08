@@ -4,10 +4,7 @@ import { Block, type BlockConfig } from '../Block';
 
 const blocks = new Map<string, Block>();
 
-export const register = <Component extends ComponentType<any>>(
-  name: string,
-  config: BlockConfig<Component>,
-) => {
+export const register = <Component extends ComponentType<any>>(name: string, config: BlockConfig<Component>) => {
   const block = new Block(name, config);
 
   blocks.set(name, block);

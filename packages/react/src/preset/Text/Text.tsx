@@ -5,26 +5,10 @@ import styles from './Text.module.css';
 type Props = PropsWithChildren<{
   className?: string;
   level?: 1 | 2 | 3 | 4 | 5 | 6;
-  color?:
-    | 'primary'
-    | 'on-primary'
-    | 'secondary'
-    | 'on-secondary'
-    | 'on-surface'
-    | 'on-surface-variant'
-    | string;
+  color?: 'primary' | 'on-primary' | 'secondary' | 'on-secondary' | 'on-surface' | 'on-surface-variant' | string;
   size?: 'xs' | 'sm' | 'md' | 'lg' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
   align?: 'left' | 'center' | 'right';
-  weight?:
-    | 'thin'
-    | 'extralight'
-    | 'light'
-    | 'normal'
-    | 'medium'
-    | 'semibold'
-    | 'bold'
-    | 'extrabold'
-    | 'black';
+  weight?: 'thin' | 'extralight' | 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold' | 'black';
 }>;
 
 const variants = createVariants(styles);

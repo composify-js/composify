@@ -14,9 +14,7 @@ export const Button = ({ variant, children }: Props) => {
         variant === 'primary' ? styles.primary : styles.outline,
       ]}
     >
-      <Text
-        style={[styles.buttonText, variant === 'primary' ? styles.primaryText : styles.outlineText]}
-      >
+      <Text style={[styles.buttonText, variant === 'primary' ? styles.primaryText : styles.outlineText]}>
         {children}
       </Text>
     </Pressable>

@@ -39,9 +39,7 @@ export const PriceCalculator: FC = () => {
   const effectiveSeats = parseInt(MEMBERS[members].replace(/\D/g, ''), 10);
 
   const proPrice =
-    29 +
-    Math.max((effectivePages - 30) * PAGES_PRICE, 0) +
-    Math.max((effectiveSeats - 3) * MEMBERS_PRICE, 0);
+    29 + Math.max((effectivePages - 30) * PAGES_PRICE, 0) + Math.max((effectiveSeats - 3) * MEMBERS_PRICE, 0);
   const businessPrice = 99 + Math.max((effectivePages - 100) * PAGES_PRICE, 0);
 
   const price = effectivePages <= 1 && effectiveSeats <= 1 ? 0 : Math.min(proPrice, businessPrice);

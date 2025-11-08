@@ -29,21 +29,18 @@ const parseNode = (node: any): SparseNode => {
       return {
         __composify__: true,
         type: node.openingElement.name.name,
-        props: node.openingElement.attributes.reduce(
-          (properties: Record<string, any>, attribute: any) => {
-            const key = attribute.name.name;
-            const value = parseAttribute(attribute.value);
+        props: node.openingElement.attributes.reduce((properties: Record<string, any>, attribute: any) => {
+          const key = attribute.name.name;
+          const value = parseAttribute(attribute.value);
 
-            if (value === undefined) {
-              return properties;
-            }
-
-            properties[key] = value;
-
+          if (value === undefined) {
             return properties;
-          },
-          {},
-        ),
+          }
+
+          properties[key] = value;
+
+          return properties;
+        }, {}),
         children,
       };
     case 'JSXFragment':

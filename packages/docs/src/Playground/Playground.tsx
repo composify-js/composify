@@ -89,9 +89,7 @@ export const Playground: FC<Props> = ({ mode, viewports }) => {
         </div>
         {mode === 'landing' && !isLibrary && !isVisualEditor && <Backdrop />}
       </div>
-      {mode === 'landing' && (
-        <p className={styles.description}>Make a change, hit save, and... tada! 🎉</p>
-      )}
+      {mode === 'landing' && <p className={styles.description}>Make a change, hit save, and... tada! 🎉</p>}
     </section>
   );
 };

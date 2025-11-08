@@ -166,9 +166,7 @@ describe('NodeManager', () => {
 
       nodeManager.insert(newNode, { id: rootId, index: childrenCount + 10 });
 
-      expect(childNodeAt(nodeManager.root, nodeManager.root.children.length - 1).type).toBe(
-        newNode.type,
-      );
+      expect(childNodeAt(nodeManager.root, nodeManager.root.children.length - 1).type).toBe(newNode.type);
     });
 
     it('should do nothing if target id does not exist', () => {
@@ -285,9 +283,7 @@ describe('NodeManager', () => {
 
       assert(originalNode, 'Target node should not be undefined');
 
-      const originalNodeIndex = nodeManager.root.children.findIndex(
-        (c) => typeof c !== 'string' && c.id === nodeId,
-      );
+      const originalNodeIndex = nodeManager.root.children.findIndex((c) => typeof c !== 'string' && c.id === nodeId);
       const duplicatedNode = childNodeAt(nodeManager.root, originalNodeIndex + 1);
 
       expect(duplicatedNode).toBeDefined();
@@ -439,9 +435,7 @@ describe('NodeManager', () => {
       };
       const nodeManager = subject(root);
 
-      expect(nodeManager.collectTypes()).toEqual(
-        expect.arrayContaining(['Container', 'Button', 'Input', 'Text']),
-      );
+      expect(nodeManager.collectTypes()).toEqual(expect.arrayContaining(['Container', 'Button', 'Input', 'Text']));
       expect(nodeManager.collectTypes()).toHaveLength(4);
     });
 
@@ -489,9 +483,7 @@ describe('NodeManager', () => {
       const nodeManager = subject(root);
       const types = nodeManager.collectTypes();
 
-      expect(types).toEqual(
-        expect.arrayContaining(['Layout', 'Header', 'Navigation', 'Link', 'Main', 'Article']),
-      );
+      expect(types).toEqual(expect.arrayContaining(['Layout', 'Header', 'Navigation', 'Link', 'Main', 'Article']));
       expect(types).toHaveLength(6);
     });
 
@@ -573,9 +565,7 @@ describe('NodeManager', () => {
       const nodeManager = subject(root);
       const types = nodeManager.collectTypes();
 
-      expect(types).toEqual(
-        expect.arrayContaining(['Form', 'Header', 'Title', 'Sidebar', 'Menu', 'Item', 'Field']),
-      );
+      expect(types).toEqual(expect.arrayContaining(['Form', 'Header', 'Title', 'Sidebar', 'Menu', 'Item', 'Field']));
       expect(types).toHaveLength(7);
     });
 
@@ -689,9 +679,7 @@ describe('NodeManager', () => {
       const nodeManager = subject(root);
       const types = nodeManager.collectTypes();
 
-      expect(types).toEqual(
-        expect.arrayContaining(['Dialog', 'Title', 'Button', 'Content', 'Text']),
-      );
+      expect(types).toEqual(expect.arrayContaining(['Dialog', 'Title', 'Button', 'Content', 'Text']));
       expect(types).toHaveLength(5);
     });
 

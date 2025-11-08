@@ -1,11 +1,4 @@
-import {
-  createContext,
-  type FC,
-  type PropsWithChildren,
-  useContext,
-  useMemo,
-  useState,
-} from 'react';
+import { createContext, type FC, type PropsWithChildren, useContext, useMemo, useState } from 'react';
 
 type SourceContextValues = {
   source: string;
@@ -21,10 +14,7 @@ type Props = {
   source: string;
 };
 
-export const SourceProvider: FC<PropsWithChildren<Props>> = ({
-  source: initialSource,
-  children,
-}) => {
+export const SourceProvider: FC<PropsWithChildren<Props>> = ({ source: initialSource, children }) => {
   const [source, setSource] = useState<string>(initialSource);
 
   const contextValues = useMemo(

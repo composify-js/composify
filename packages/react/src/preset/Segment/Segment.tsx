@@ -15,14 +15,7 @@ type Props<Value> = {
   onChange: (value: Value) => void;
 };
 
-export const Segment = <Value,>({
-  className,
-  size,
-  options,
-  value,
-  onChange,
-  ...props
-}: Props<Value>) => (
+export const Segment = <Value,>({ className, size, options, value, onChange, ...props }: Props<Value>) => (
   <div className={variants('segment', { className })} {...props}>
     {options.map((option) => (
       <button

@@ -1,13 +1,7 @@
 import type { FC, PropsWithChildren } from 'react';
 
 export type Props = PropsWithChildren<{
-  alignHorizontal?:
-    | 'flex-start'
-    | 'flex-end'
-    | 'center'
-    | 'space-between'
-    | 'space-around'
-    | 'space-evenly';
+  alignHorizontal?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   alignVertical?: 'flex-start' | 'flex-end' | 'center' | 'stretch';
   size?: {
     width?: number | string;
