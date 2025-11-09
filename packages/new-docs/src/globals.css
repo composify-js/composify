@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "nextra-theme-docs/style.css";
 
+@variant dark (&:where(.dark, .dark *));
+
 body {
   --nextra-content-width: 80rem;
 }
