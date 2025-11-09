@@ -5,18 +5,48 @@ date: 2025-09-01
 
 # Introduction
 
-Composify is an open source toolkit for building server-driven user interfaces with ease.
-It allows developers to create reusable components that can be visually composed into pages by non-developers, such as marketers or product managers.
-This approach accelerates the development process, reduces bottlenecks, and enhances team productivity.
+Composify is an open-source visual editor that works directly with your production components, designed to simplify Server-Driven UI development.
 
-## Server Driven UI
+You register your existing React components, and Composify provides a drag-and-drop editor that anyone on your team—developers, marketers, designers—can use to compose pages visually. What you see in the editor is exactly what renders in production.
 
-Sed eu magna interdum, dapibus lorem quis, mattis felis. Sed id magna vel lacus blandit volutpat. Proin dignissim turpis ac quam vulputate, lacinia finibus tortor convallis. Duis vitae nisl mi. Curabitur dapibus semper nunc et finibus. Aliquam erat volutpat. Integer ullamcorper pellentesque accumsan. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam sapien dolor, luctus quis semper at, hendrerit vel neque. Etiam tempus massa non odio volutpat, vel ultrices lacus pretium.
+**Key characteristics:**
 
-Integer eu hendrerit urna. Sed euismod bibendum nibh, sit amet convallis ligula maximus sed. Nam a metus justo. Donec tempor posuere urna, sit amet malesuada risus. Nulla felis ligula, auctor et ipsum at, egestas tempor purus. Cras vitae gravida magna, sed vulputate purus. In sodales ac purus nec suscipit. Sed in pharetra lorem. Nullam volutpat congue arcu sit amet tempor. Pellentesque faucibus neque vitae orci fringilla, ullamcorper ullamcorper augue tincidunt. Pellentesque nisi ex, feugiat sed est et, imperdiet congue est. Nullam suscipit imperdiet mi, sed aliquam nulla. Suspendisse gravida fringilla aliquet. Suspendisse potenti.
+- **Drop-in integration**: No rewrites, no migration plans. You can start building with it today.
+- **Zero lock-in**: Just a React library. You own your data and infrastructure.
+- **No component drift**: Uses your actual production components, not a separate copy.
+- **JSX-native**: Renders plain JSX strings, exactly like React. No custom DSL.
 
-## What Composify Does
+## Core Features
 
-Suspendisse eget hendrerit nunc. Donec scelerisque orci ultricies tellus efficitur, eu imperdiet risus cursus. Proin tempor ultricies felis, non vestibulum nisi. Fusce vitae congue nisi, et consequat leo. Nulla id nulla eleifend, elementum ligula et, molestie eros. Mauris faucibus rutrum urna, eu sodales mauris molestie eget. Vivamus sit amet magna metus. Suspendisse potenti. Phasellus orci ligula, fermentum a erat a, venenatis pharetra metus. Nullam semper mauris accumsan lorem tempor pellentesque. Pellentesque porttitor bibendum ipsum nec ultrices.
+- **Component Registration**: Define what's editable by registering your React components with a simple catalog. Specify prop types, defaults, and validation—Composify handles the rest.
+- **Direct JSX Rendering**: The renderer parses JSX strings and renders them using React's standard rendering. No abstraction layer, no proprietary format. Just JSX.
+- **Visual Editor**: A drag-and-drop interface that works with your registered components. Non-developers can build pages without touching code, while developers maintain full control over the component catalog.
 
-Donec lorem ante, pellentesque tristique varius egestas, placerat vitae diam. Vestibulum id tempor neque. Sed aliquam felis vitae orci pharetra, ut consequat tortor aliquam. Morbi mattis venenatis nisi. Vivamus molestie justo et efficitur vestibulum. Praesent tincidunt mi in arcu tristique laoreet eget eu dui. Duis egestas nulla metus, sit amet tempus nisl vulputate sed. Integer sit amet metus euismod libero luctus tempor non in ipsum. In sit amet tempus tellus. Integer elementum leo et arcu commodo tincidunt. Integer non odio risus. Donec nec ex dignissim, porttitor lorem ut, tincidunt nisl.
+## How is Composify different?
+
+There are other visual builders like [Plasmic](https://www.plasmic.app/), [Builder.io](https://www.builder.io/), and [Puck](https://puckeditor.com/). They're powerful tools, but come with trade-offs:
+
+| Aspect | Traditional Builders | Composify |
+|--------|---------------------|-----------|
+| **Integration** | May require rewrites especially for child rendering | Works with existing components as-is |
+| **Rendering** | Proprietary format or abstraction layer | Direct JSX rendering via React |
+| **Infrastructure** | Often requires their hosting/backend | Bring your own backend, or use optional cloud |
+| **Transparency** | Black-box rendering | Fully open-source, readable codebase |
+
+Composify is built for teams that want visual editing capabilities without rebuilding their component library or coupling to a proprietary platform.
+
+## When to use Composify
+
+Composify works best when you:
+
+- Already have a component library you want to reuse
+- Want to enable non-developers to build pages without waiting on engineering
+- Need server-driven UI capabilities for instant updates without redeployment
+- Want to avoid vendor lock-in and maintain full control over your stack
+- Need to test layouts or run A/B experiments with different page structures
+
+## Getting started
+
+Ready to try Composify? Check out the [Getting Started](/docs/getting-started) guide or explore the [Component Registration](/docs/catalog) documentation.
+
+For teams looking for hosted infrastructure and collaboration features, see [Composify Cloud](/cloud).
