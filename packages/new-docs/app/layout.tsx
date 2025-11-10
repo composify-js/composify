@@ -1,9 +1,10 @@
+import '@app/globals.css';
+
 import { TopNavigation } from '@app/parcel-layout';
 import type { Metadata, Viewport } from 'next';
+import { Head } from 'nextra/components';
 import { getPageMap } from 'nextra/page-map';
 import { Layout } from 'nextra-theme-docs';
-import '@app/globals.css';
-import { Head } from 'nextra/components';
 
 export const metadata: Metadata = {
   title: {
@@ -11,15 +12,7 @@ export const metadata: Metadata = {
     default: 'Composify - Server Driven UI made easy',
   },
   description: 'Server Driven UI made easy',
-  keywords: [
-    'composify',
-    'server driven ui',
-    'sdui',
-    'react',
-    'visual editor',
-    'wysiwyg',
-    'no code',
-  ],
+  keywords: ['composify', 'server driven ui', 'sdui', 'react', 'visual editor', 'wysiwyg', 'no code'],
   openGraph: {
     title: 'Composify',
     description: 'Server Driven UI made easy',

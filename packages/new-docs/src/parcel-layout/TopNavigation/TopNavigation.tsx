@@ -7,17 +7,21 @@ export const TopNavigation = () => (
       <>
         <Image
           width={158}
-          height={34.8}
+          height={34.87}
           className="hidden dark:block"
           src="/brand/logo-dark.svg"
           alt="Logo"
+          loading="eager"
+          priority={true}
         />
         <Image
           width={158}
-          height={34.8}
+          height={34.87}
           className="block dark:hidden"
           src="/brand/logo-light.svg"
           alt="Logo"
+          loading="eager"
+          priority={true}
         />
       </>
     }
