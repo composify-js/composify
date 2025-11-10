@@ -7,10 +7,10 @@ import { type FC, useEffect, useRef, useState } from 'react';
 import { useSource } from '../SourceContext';
 import styles from './Playground.module.css';
 
-const PLAYGROUND_WIDTH = 1354;
+const PLAYGROUND_WIDTH = 1232;
 
 export const Playground: FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const previewRef = useRef<HTMLDivElement>(null);
 
   const [scale, setScale] = useState(1);
   const [aspectRatio, setAspectRatio] = useState(1.75);
@@ -26,11 +26,11 @@ export const Playground: FC = () => {
     };
 
     const autoScale = () => {
-      if (!containerRef.current) {
+      if (!previewRef.current) {
         return;
       }
 
-      const box = getBox(containerRef.current);
+      const box = getBox(previewRef.current);
       const scale = Math.min(box.contentBox.width / PLAYGROUND_WIDTH, 1);
 
       setScale(scale);
@@ -43,8 +43,8 @@ export const Playground: FC = () => {
       });
     });
 
-    if (containerRef.current) {
-      resizeObserver.observe(containerRef.current);
+    if (previewRef.current) {
+      resizeObserver.observe(previewRef.current);
     }
 
     return () => {
@@ -54,13 +54,7 @@ export const Playground: FC = () => {
 
   return (
     <section className={styles.container}>
-      <div
-        ref={containerRef}
-        className={styles.preview}
-        style={{
-          aspectRatio,
-        }}
-      >
+      <div ref={previewRef} className={styles.preview} style={{ aspectRatio }}>
         <div
           className={styles.viewport}
           style={{

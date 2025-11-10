@@ -3,12 +3,7 @@
   background-color: var(--composify-palette-surface);
 }
 
-.docsMode {
-  padding: 0;
-}
-
 .preview {
-  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;

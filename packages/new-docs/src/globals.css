@@ -67,8 +67,10 @@ body {
   padding-right: 0 !important;
 }
 
-.nextra-navbar-blur {
-  border: none;
+@media (width >= 48rem) {
+  .nextra-navbar-blur {
+    border: none;
+  }
 }
 
 .nextra-toc {

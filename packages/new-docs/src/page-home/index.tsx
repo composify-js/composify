@@ -22,6 +22,16 @@ const INITIAL_SOURCE = `
       </HStack>
     </VStack>
     <Playground />
+    <VStack gap={4} padding={{ top: 64, bottom: 24, left: 24, right: 24 }} background="surface">
+      <Text level={2} size="4xl" weight="bold" tracking="tight" leading="tighter" color="on-surface">
+        Visual editing, powered by your components.
+      </Text>
+      <Text size="xl" leading="normal" color="on-surface">
+        Write components once, let anyone build with them through a visual interface.
+        <br />
+        Perfect for Server Driven UI, no-code website builders, and design tools.
+      </Text>
+    </VStack>
   </VStack>
 `;
 
