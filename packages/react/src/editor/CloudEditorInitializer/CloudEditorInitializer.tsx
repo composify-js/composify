@@ -1,5 +1,5 @@
+import { Bridge, GuestEventType } from '@composify/react/utils';
 import { type FC, useEffect, useState } from 'react';
-import { Bridge, GuestEventType } from '../../utils';
 
 export const CloudEditorInitializer: FC = () => {
   const [initialized, setInitialized] = useState(false);

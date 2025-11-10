@@ -1,6 +1,7 @@
 /** biome-ignore-all lint/suspicious/noExplicitAny: for arbitrary values */
-import { Segment } from '../../preset';
-import type { RadioPropertySpec } from '../../renderer';
+
+import type { RadioPropertySpec } from '@composify/react/renderer';
+import { Segment } from '@composify/react/ui';
 import { PropertyControl } from '../PropertyControl/PropertyControl';
 
 type Props = {

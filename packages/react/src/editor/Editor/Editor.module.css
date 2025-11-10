@@ -24,3 +24,8 @@
 .container * {
   box-sizing: border-box;
 }
+
+.separator {
+  width: 1px;
+  background-color: var(--composify-palette-outline);
+}

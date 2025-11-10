@@ -1,5 +1,4 @@
 import { type FC, useCallback, useEffect, useRef, useState } from 'react';
-import { HStack } from '../../preset';
 import styles from './ViewportControl.module.css';
 
 type Props = {
@@ -43,7 +42,7 @@ export const ViewportControl: FC<Props> = ({ viewports, selectedWidth, onClick }
   }, [autoScale]);
 
   return (
-    <HStack ref={containerRef} alignHorizontal="center" alignVertical="center" className={styles.container}>
+    <div ref={containerRef} className={styles.container}>
       {viewports
         .sort((a, b) => b.width - a.width)
         .map((viewport) => (
@@ -58,6 +57,6 @@ export const ViewportControl: FC<Props> = ({ viewports, selectedWidth, onClick }
             <span className={styles.label}>{viewport.label}</span>
           </button>
         ))}
-    </HStack>
+    </div>
   );
 };

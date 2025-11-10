@@ -1,6 +1,6 @@
+import { Catalog, type Node } from '@composify/react/renderer';
 import { cleanup, render } from '@testing-library/react';
 import { createElement, type ReactNode } from 'react';
-import { Catalog, type Node } from '../../renderer';
 import { Renderer } from './Renderer';
 
 describe('Renderer', () => {

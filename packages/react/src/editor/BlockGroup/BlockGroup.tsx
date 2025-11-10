@@ -1,6 +1,6 @@
+import type { Block } from '@composify/react/renderer';
+import { Text } from '@composify/react/ui';
 import type { FC } from 'react';
-import { Text } from '../../preset';
-import type { Block } from '../../renderer';
 import { BlockItem } from '../BlockItem';
 import styles from './BlockGroup.module.css';
 

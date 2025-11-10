@@ -1,5 +1,5 @@
+import { Text } from '@composify/react/ui';
 import type { FC } from 'react';
-import { Text } from '../../preset';
 import { useEditing } from '../EditingContext';
 import { OutlineItem } from '../OutlineItem';
 import styles from './Outline.module.css';

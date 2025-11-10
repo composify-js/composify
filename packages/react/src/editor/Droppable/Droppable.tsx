@@ -1,7 +1,7 @@
+import type { Node } from '@composify/react/renderer';
 import { throttle } from 'es-toolkit';
 import type { FC, PropsWithChildren } from 'react';
 import { useDrop } from 'react-dnd';
-import type { Node } from '../../renderer';
 import { TargetType } from '../Constants';
 import { useEditing } from '../EditingContext';
 import styles from './Droppable.module.css';

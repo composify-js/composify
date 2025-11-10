@@ -1,5 +1,5 @@
+import { Catalog, type Pragma, Renderer } from '@composify/react/renderer';
 import { Children, createElement, Fragment } from 'react';
-import { Catalog, type Pragma, Renderer } from '../../renderer';
 import { TargetType } from '../Constants';
 import { Draggable } from '../Draggable';
 import { Droppable } from '../Droppable';

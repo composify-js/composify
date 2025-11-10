@@ -1,8 +1,9 @@
 /** biome-ignore-all lint/suspicious/noExplicitAny: for arbitrary values */
 /** biome-ignore-all lint/suspicious/noArrayIndexKey: array item should use index as a key */
+
+import type { ArrayPropertySpec } from '@composify/react/renderer';
+import { Button, IconButton } from '@composify/react/ui';
 import { MinusIcon, PlusIcon } from 'lucide-react';
-import { Button, IconButton } from '../../preset';
-import type { ArrayPropertySpec } from '../../renderer';
 import { PropertyControl } from '../PropertyControl';
 import { PropertyControlBoolean } from '../PropertyControlBoolean';
 import { PropertyControlCustom } from '../PropertyControlCustom';

@@ -1,5 +1,5 @@
+import { Catalog } from '@composify/react/renderer';
 import type { FC } from 'react';
-import { Catalog } from '../../renderer';
 import { useEditing } from '../EditingContext';
 import { PropertyGroup } from '../PropertyGroup';
 

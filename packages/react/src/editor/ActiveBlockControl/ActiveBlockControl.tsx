@@ -1,5 +1,5 @@
+import { IconButton, Text } from '@composify/react/ui';
 import { CopyIcon, TrashIcon } from 'lucide-react';
-import { IconButton, Text } from '../../preset';
 import { useEditing } from '../EditingContext';
 import styles from './ActiveBlockControl.module.css';
 

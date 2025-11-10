@@ -1,8 +1,8 @@
+import type { PropertySpec } from '@composify/react/renderer';
+import { IconButton } from '@composify/react/ui';
+import { createVariants } from '@composify/react/utils';
 import { MinusIcon } from 'lucide-react';
 import { type ReactNode, useCallback } from 'react';
-import { IconButton } from '../../preset';
-import type { PropertySpec } from '../../renderer';
-import { createVariants } from '../../utils';
 import { useEditing } from '../EditingContext';
 import styles from './PropertyControl.module.css';
 

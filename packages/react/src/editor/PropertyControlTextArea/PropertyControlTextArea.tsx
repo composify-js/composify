@@ -1,5 +1,5 @@
-import { Textarea } from '../../preset';
-import type { TextAreaPropertySpec } from '../../renderer';
+import type { TextAreaPropertySpec } from '@composify/react/renderer';
+import { Textarea } from '@composify/react/ui';
 import { PropertyControl } from '../PropertyControl';
 
 type Props = {
