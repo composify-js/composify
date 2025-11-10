@@ -27,7 +27,7 @@ export const Editor = forwardRef<EditingRef, Props>(({ title, source, viewports,
           <main className={styles.container}>
             <PanelLeft title={title} />
             {mode !== 'code' && <VisualEditor viewports={viewports} />}
-            {mode === 'split' && <div style={styles.separator} />}
+            {mode === 'split' && <div className={styles.separator} />}
             {mode !== 'visual' && <CodeEditor />}
             <PanelRight mode={mode} setMode={setMode} renderControl={renderControl} onSubmit={onSubmit} />
           </main>
