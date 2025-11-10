@@ -47,7 +47,7 @@ export const KeyDownDetector = () => {
     const handleClick = (event: MouseEvent) => {
       const target = event.target as HTMLElement | null;
 
-      if (target) {
+      if (target?.closest('[draggable="true"]')) {
         event.preventDefault();
       }
     };
