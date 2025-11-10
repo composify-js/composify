@@ -8,8 +8,8 @@ import { Layout } from 'nextra-theme-docs';
 
 export const metadata: Metadata = {
   title: {
-    template: 'Composify - %s',
-    default: 'Composify - Server Driven UI made easy',
+    template: '%s | Composify',
+    default: 'Server Driven UI made easy | Composify',
   },
   description: 'Server Driven UI made easy',
   keywords: ['composify', 'server driven ui', 'sdui', 'react', 'visual editor', 'wysiwyg', 'no code'],

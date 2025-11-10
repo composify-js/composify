@@ -22,7 +22,7 @@ const INITIAL_SOURCE = `
       </HStack>
     </VStack>
     <Playground />
-    <VStack gap={4} padding={{ top: 64, bottom: 24, left: 24, right: 24 }} background="surface">
+    <VStack gap={8} padding={{ top: 64, bottom: 24, left: 24, right: 24 }} background="surface">
       <Text level={2} size="4xl" weight="bold" tracking="tight" leading="tighter" color="on-surface">
         Visual editing, powered by your components.
       </Text>
