@@ -48,7 +48,9 @@ const pragma: Pragma = {
                   ])?.flat() ?? [])
                 : children),
             ]
-          : children,
+          : children.length > 0
+            ? children
+            : undefined,
       ),
     );
   },
