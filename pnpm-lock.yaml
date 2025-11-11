@@ -216,6 +216,12 @@ importers:
       '@radix-ui/react-slot':
         specifier: 1.2.3
         version: 1.2.3(@types/react@19.1.17)(react@19.1.0)
+      '@shikijs/langs':
+        specifier: 3.15.0
+        version: 3.15.0
+      '@shikijs/themes':
+        specifier: 3.15.0
+        version: 3.15.0
       css-box-model:
         specifier: 1.2.1
         version: 1.2.1
@@ -237,6 +243,9 @@ importers:
       react-dom:
         specifier: 19.1.0
         version: 19.1.0(react@19.1.0)
+      shiki:
+        specifier: 3.15.0
+        version: 3.15.0
       tailwind-merge:
         specifier: 3.3.1
         version: 3.3.1

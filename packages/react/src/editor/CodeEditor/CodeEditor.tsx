@@ -129,6 +129,9 @@ export const CodeEditor = () => {
           scrollbar: {
             vertical: 'hidden',
           },
+          stickyScroll: {
+            enabled: false,
+          },
           guides: {
             indentation: true,
           },

@@ -41,6 +41,9 @@ const INITIAL_SOURCE = `
               No rewrites, no special wrappers. Just register your components, and they're instantly editable.
             </Body>
           </VStack>
+          <FeatureItem>
+            <CodeSnippet language="tsx" content="dropInIntegration" />
+          </FeatureItem>
         </VStack>
         <VStack className={['rounded-md', 'border']}>
           <VStack className={['p-32', 'gap-6']}>
@@ -51,6 +54,9 @@ const INITIAL_SOURCE = `
               Everything is stored as human-readable JSX strings. Not JSON, not a proprietary format.
             </Body>
           </VStack>
+          <FeatureItem>
+            <CodeSnippet language="tsx" content="jsxEverywhere" />
+          </FeatureItem>
         </VStack>
         <VStack className={['rounded-md', 'border']}>
           <VStack className={['p-32', 'gap-6']}>

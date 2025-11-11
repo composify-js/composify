@@ -1,7 +1,8 @@
 export { CloudEditor } from './CloudEditor';
+export { CodeEditor } from './CodeEditor';
 export { useComposifyEditor } from './ComposifyEditorContext';
+export { EditingProvider } from './EditingContext';
 export { Editor } from './Editor';
-
 export { PropertyControlArray } from './PropertyControlArray';
 export { PropertyControlBoolean } from './PropertyControlBoolean';
 export { PropertyControlCustom } from './PropertyControlCustom';
@@ -11,3 +12,4 @@ export { PropertyControlRadio } from './PropertyControlRadio';
 export { PropertyControlSelect } from './PropertyControlSelect';
 export { PropertyControlText } from './PropertyControlText';
 export { PropertyControlTextArea } from './PropertyControlTextArea';
+export { VisualEditor } from './VisualEditor';
