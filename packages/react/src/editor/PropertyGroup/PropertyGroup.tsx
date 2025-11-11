@@ -1,5 +1,4 @@
 /** biome-ignore-all lint/suspicious/noExplicitAny: for arbitrary props */
-
 import type { PropertySpec } from '@composify/react/renderer';
 import type { FC } from 'react';
 import { PropertyControlArray } from '../PropertyControlArray';
