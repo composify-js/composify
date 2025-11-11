@@ -35,6 +35,10 @@ Catalog.register('Heading', {
       type: 'select',
       options: [
         {
+          label: 'Semibold',
+          value: 'semibold',
+        },
+        {
           label: 'Bold',
           value: 'bold',
         },

@@ -4,11 +4,11 @@ export const variants = tv({
   base: ['margin-0', 'text-foreground-variant'],
   variants: {
     size: {
-      sm: 'text-sm',
-      md: 'text-base',
-      lg: 'text-lg',
-      xl: 'text-xl',
-      '2xl': 'text-2xl',
+      sm: 'text-sm/18',
+      md: 'text-base/22',
+      lg: 'text-lg/24',
+      xl: 'text-xl/28',
+      '2xl': 'text-2xl/32',
     },
     align: {
       left: 'text-left',

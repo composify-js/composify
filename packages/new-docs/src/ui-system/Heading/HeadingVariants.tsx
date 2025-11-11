@@ -11,6 +11,7 @@ export const variants = tv({
       '5xl': 'text-5xl',
     },
     weight: {
+      semibold: 'font-semibold',
       bold: 'font-bold',
       extrabold: 'font-extrabold',
     },
