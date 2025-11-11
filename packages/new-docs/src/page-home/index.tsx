@@ -5,14 +5,14 @@ import { SourceProvider, SourceRenderer } from './SourceContext';
 
 const INITIAL_SOURCE = `
   <VStack>
-    <VStack gap={4} padding={{ top: 64, bottom: 24, left: 24, right: 24 }} background="surface">
-      <Text level={1} size="5xl" weight="extrabold" tracking="tight" leading="tighter" color="on-surface">
+    <VStack className={['gap-4', 'p-24', 'pt-64', 'bg-surface']}>
+      <Heading level={1} size="5xl" weight="extrabold">
         Server Driven UI made easy
-      </Text>
-      <Text size="2xl" color="on-surface">
+      </Heading>
+      <Body size="2xl" className={['text-foreground']}>
         Bring visual editing to your components — no rewrites needed.
-      </Text>
-      <HStack gap={8} margin={{ top: 16 }}>
+      </Body>
+      <HStack className={['gap-8', 'mt-16']}>
         <ButtonCta variant="primary" size="lg" href="/docs">
           Learn more ›
         </ButtonCta>
@@ -22,15 +22,15 @@ const INITIAL_SOURCE = `
       </HStack>
     </VStack>
     <Playground />
-    <VStack gap={8} padding={{ top: 64, bottom: 24, left: 24, right: 24 }} background="surface">
-      <Text level={2} size="4xl" weight="bold" tracking="tight" leading="tighter" color="on-surface">
+    <VStack className={['gap-8', 'p-24', 'pt-64', 'bg-surface']}>
+      <Heading level={2} size="4xl" weight="bold">
         Visual editing, powered by your components.
-      </Text>
-      <Text size="xl" leading="normal" color="on-surface">
+      </Heading>
+      <Body size="xl" className={['text-foreground']}>
         Write components once, let anyone build with them through a visual interface.
         <br />
         Perfect for Server Driven UI, no-code website builders, and design tools.
-      </Text>
+      </Body>
     </VStack>
   </VStack>
 `;

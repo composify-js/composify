@@ -14,6 +14,7 @@
     "@composify/react": "workspace:*",
     "@radix-ui/react-slot": "1.2.3",
     "css-box-model": "1.2.1",
+    "lucide-react": "0.546.0",
     "next": "15.4.6",
     "nextra": "4.6.0",
     "nextra-theme-docs": "4.6.0",

@@ -1,0 +1,70 @@
+import { Catalog } from '@composify/react/renderer';
+import { AlignCenterIcon, AlignLeftIcon, AlignRightIcon } from 'lucide-react';
+import { Body } from './Body';
+
+Catalog.register('Body', {
+  component: Body,
+  category: 'Content',
+  props: {
+    size: {
+      label: 'Size',
+      type: 'select',
+      options: [
+        {
+          label: 'Small',
+          value: 'sm',
+        },
+        {
+          label: 'Medium',
+          value: 'md',
+        },
+        {
+          label: 'Large',
+          value: 'lg',
+        },
+        {
+          label: 'Extra Large',
+          value: 'xl',
+        },
+        {
+          label: '2 XL',
+          value: '2xl',
+        },
+      ],
+      default: 'md',
+    },
+    align: {
+      label: 'Text Align',
+      type: 'radio',
+      options: [
+        {
+          label: <AlignLeftIcon />,
+          value: 'left',
+        },
+        {
+          label: <AlignCenterIcon />,
+          value: 'center',
+        },
+        {
+          label: <AlignRightIcon />,
+          value: 'right',
+        },
+      ],
+      default: 'left',
+    },
+    className: {
+      label: 'Class Names',
+      type: 'array',
+      item: {
+        label: 'Class Name',
+        type: 'text',
+      },
+      optional: true,
+    },
+    children: {
+      label: 'Text',
+      type: 'textarea',
+      default: 'Body',
+    },
+  },
+});
