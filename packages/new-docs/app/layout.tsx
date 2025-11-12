@@ -1,10 +1,8 @@
 import '@app/globals.css';
 
-import { TopNavigation } from '@app/parcel-layout';
 import type { Metadata, Viewport } from 'next';
 import { Head } from 'nextra/components';
-import { getPageMap } from 'nextra/page-map';
-import { Layout } from 'nextra-theme-docs';
+import type { FC, PropsWithChildren } from 'react';
 
 export const metadata: Metadata = {
   title: {
@@ -61,25 +59,13 @@ export const viewport: Viewport = {
   colorScheme: 'light dark',
 };
 
-export default async function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en" dir="ltr" suppressHydrationWarning={true}>
-      <Head backgroundColor={{ dark: 'rgb(17, 17, 17)', light: 'rgb(255, 255, 255)' }} />
-      <body>
-        <Layout
-          navbar={<TopNavigation />}
-          pageMap={await getPageMap()}
-          editLink={null}
-          feedback={{ content: null }}
-          docsRepositoryBase="https://github.com/composify-js/composify/tree/main/packages/docs"
-        >
-          {children}
-        </Layout>
-      </body>
-    </html>
-  );
-}
+type Props = PropsWithChildren;
+
+const RootLayout: FC<Props> = ({ children }) => (
+  <html lang="en" dir="ltr" suppressHydrationWarning={true}>
+    <Head backgroundColor={{ dark: 'rgb(17, 17, 17)', light: 'rgb(255, 255, 255)' }} />
+    <body>{children}</body>
+  </html>
+);
+
+export default RootLayout;

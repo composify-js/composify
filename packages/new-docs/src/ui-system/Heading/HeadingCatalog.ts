@@ -49,19 +49,19 @@ Catalog.register('Heading', {
       ],
       default: 'bold',
     },
+    children: {
+      label: 'Text',
+      type: 'textarea',
+      default: 'Heading',
+    },
     className: {
-      label: 'Class Names',
+      label: 'Classes',
       type: 'array',
       item: {
         label: 'Class Name',
         type: 'text',
       },
       optional: true,
-    },
-    children: {
-      label: 'Text',
-      type: 'textarea',
-      default: 'Heading',
     },
   },
 });

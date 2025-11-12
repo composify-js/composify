@@ -42,7 +42,7 @@ Catalog.register('VStack', {
       default: 'start',
     },
     className: {
-      label: 'Class Names',
+      label: 'Classes',
       type: 'array',
       item: {
         label: 'Class Name',

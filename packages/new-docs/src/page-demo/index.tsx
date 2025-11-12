@@ -1,10 +1,10 @@
 'use client';
 
 import '@app/parcel-landing/catalog';
-import { SourceProvider, SourceRenderer } from '@app/parcel-landing';
+import { Editor } from '@composify/react/editor';
 
 const INITIAL_SOURCE = `
-  <VStack>
+  <VStack className={['max-w-7xl', 'mx-auto']}>
     <VStack className={['gap-4', 'p-24', 'pt-64', 'bg-surface']}>
       <Heading level={1} size="5xl" weight="extrabold">
         Server Driven UI made easy
@@ -111,10 +111,4 @@ const INITIAL_SOURCE = `
   </VStack>
 `.trim();
 
-export const HomePage = () => (
-  <main className="content-container">
-    <SourceProvider source={INITIAL_SOURCE}>
-      <SourceRenderer />
-    </SourceProvider>
-  </main>
-);
+export const DemoPage = () => <Editor title="Demo" source={INITIAL_SOURCE} />;

@@ -42,7 +42,7 @@ Catalog.register('HStack', {
       default: 'stretch',
     },
     className: {
-      label: 'Class Names',
+      label: 'Classes',
       type: 'array',
       item: {
         label: 'Class Name',

@@ -21,4 +21,10 @@ export default {
     type: 'page',
     title: 'Cloud',
   },
+  demo: {
+    display: 'hidden',
+    theme: {
+      layout: 'full',
+    },
+  },
 };
