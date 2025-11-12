@@ -1,7 +1,6 @@
 /** biome-ignore-all lint/security/noDangerouslySetInnerHtml: code highlighting */
 import tsx from '@shikijs/langs/tsx';
 import typescript from '@shikijs/langs/typescript';
-import oneDarkPro from '@shikijs/themes/one-dark-pro';
 import oneLight from '@shikijs/themes/one-light';
 import { createHighlighterCoreSync } from 'shiki/core';
 import { createJavaScriptRegexEngine } from 'shiki/engine/javascript';
@@ -47,7 +46,7 @@ Catalog.register('ButtonCta', {
 };
 
 const shiki = createHighlighterCoreSync({
-  themes: [oneDarkPro, oneLight],
+  themes: [oneLight],
   langs: [tsx, typescript],
   engine: createJavaScriptRegexEngine(),
 });
@@ -61,7 +60,7 @@ export const CodeSnippet = ({ language, content }: Props) => {
   const html = shiki.codeToHtml(CODE_MAP[content], {
     lang: language,
     themes: {
-      dark: 'one-dark-pro',
+      dark: 'one-light',
       light: 'one-light',
     },
   });

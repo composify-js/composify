@@ -11,6 +11,7 @@ const FullscreenLayout: FC<Props> = async ({ children }) => (
     navbar={null}
     pageMap={await getPageMap()}
     editLink={null}
+    darkMode={false}
     feedback={{ content: null }}
     docsRepositoryBase="https://github.com/composify-js/composify/tree/main/packages/docs"
   >

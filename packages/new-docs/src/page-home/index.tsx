@@ -68,6 +68,7 @@ const INITIAL_SOURCE = `
             </Body>
           </VStack>
           <FeatureItem>
+            <iframe src="/demo" />
           </FeatureItem>
         </VStack>
         <VStack className={['rounded-md', 'border']}>
