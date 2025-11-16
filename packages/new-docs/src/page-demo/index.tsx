@@ -68,6 +68,14 @@ const INITIAL_SOURCE = `
             </Body>
           </VStack>
           <FeatureItem>
+            <Image
+              width={4397}
+              height={2358}
+              src="/assets/feature-split-view.png"
+              alt="Visual + Code Editing"
+              loading="eager"
+              priority={true}
+            />
           </FeatureItem>
         </VStack>
         <VStack className={['rounded-md', 'border']}>
@@ -80,6 +88,14 @@ const INITIAL_SOURCE = `
             </Body>
           </VStack>
           <FeatureItem>
+            <Image
+              width={885}
+              height={737}
+              src="/assets/feature-multi-viewport.png"
+              alt="Multi-viewport preview"
+              loading="eager"
+              priority={true}
+            />
           </FeatureItem>
         </VStack>
         <VStack className={['rounded-md', 'border']}>
@@ -92,6 +108,15 @@ const INITIAL_SOURCE = `
             </Body>
           </VStack>
           <FeatureItem>
+            <Image
+              width={512}
+              height={512}
+              className="m-auto w-1/2 h-1/2"
+              src="/assets/feature-typescript.svg"
+              alt="Full TypeScript support"
+              loading="eager"
+              priority={true}
+            />
           </FeatureItem>
         </VStack>
         <VStack className={['rounded-md', 'border']}>
@@ -104,6 +129,7 @@ const INITIAL_SOURCE = `
             </Body>
           </VStack>
           <FeatureItem>
+            <FrameworkList />
           </FeatureItem>
         </VStack>
       </Grid>

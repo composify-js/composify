@@ -67,6 +67,7 @@ export const CodeSnippet = ({ language, content }: Props) => {
 
   return (
     <div
+      className="p-16 outline-none [&_*]:!bg-transparent"
       dangerouslySetInnerHTML={{ __html: html }}
       contentEditable={true}
       spellCheck={false}
