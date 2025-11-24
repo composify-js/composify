@@ -22,7 +22,8 @@ Catalog.register('Heading', {
       label: 'Size',
       type: 'select',
       options: [
-        { label: 'XL', value: 'xl' },
+        { label: 'Large', value: 'lg' },
+        { label: 'Extra Large', value: 'xl' },
         { label: '2XL', value: '2xl' },
         { label: '3XL', value: '3xl' },
         { label: '4XL', value: '4xl' },

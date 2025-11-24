@@ -138,9 +138,7 @@ const INITIAL_SOURCE = `
 `.trim();
 
 export const HomePage = () => (
-  <main className="content-container">
-    <SourceProvider source={INITIAL_SOURCE}>
-      <SourceRenderer />
-    </SourceProvider>
-  </main>
+  <SourceProvider source={INITIAL_SOURCE}>
+    <SourceRenderer />
+  </SourceProvider>
 );

@@ -27,7 +27,7 @@
   --background: oklch(1 0 0);
   --background-variant: oklch(0.991 0.0012 250.7);
   --foreground: oklch(0.13 0.028 261.692);
-  --foreground-variant: oklch(0.278 0.033 256.848);
+  --foreground-variant: oklch(0.3977 0 0);
   --primary: oklch(0.623 0.214 259.815);
   --primary-dark: #2563eb;
   --primary-foreground: oklch(1 0 0);
@@ -62,11 +62,6 @@ body {
   --nextra-content-width: 80rem;
 }
 
-.content-container {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
 @media (width >= 48rem) {
   .nextra-navbar-blur {
     border: none;
@@ -79,8 +74,8 @@ body {
 
 .content-container {
   max-width: var(--nextra-content-width);
-  padding-left: max(env(safe-area-inset-left), 1.5rem);
-  padding-right: max(env(safe-area-inset-right), 1.5rem);
+  padding-left: 0;
+  padding-right: 0;
   margin: 0 auto;
 }
 
