@@ -16,8 +16,14 @@ export const variants = tv({
       bold: 'font-bold',
       extrabold: 'font-extrabold',
     },
+    align: {
+      left: 'text-left',
+      center: 'text-center',
+      right: 'text-right',
+    },
   },
   defaultVariants: {
     weight: 'bold',
+    align: 'left',
   },
 });

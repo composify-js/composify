@@ -5,7 +5,7 @@ import { SourceProvider, SourceRenderer } from '@app/parcel-landing';
 
 const INITIAL_SOURCE = `
   <VStack>
-    <VStack className={['gap-4', 'p-24', 'pt-64', 'bg-surface']}>
+    <VStack className={['gap-4', 'p-24', 'pt-64', 'bg-background']}>
       <Heading level={1} size="5xl" weight="extrabold">
         Server Driven UI made easy
       </Heading>
@@ -22,7 +22,7 @@ const INITIAL_SOURCE = `
       </HStack>
     </VStack>
     <Playground />
-    <VStack className={['gap-8', 'p-24', 'pt-64', 'bg-surface']}>
+    <VStack className={['gap-8', 'p-24', 'mt-40', 'bg-background']}>
       <Heading level={2} size="4xl" weight="bold">
         Visual editing, powered by your components.
       </Heading>
@@ -133,6 +133,19 @@ const INITIAL_SOURCE = `
           </FeatureItem>
         </VStack>
       </Grid>
+    </VStack>
+    <VStack alignHorizontal="center" className={['px-24', 'py-128', 'gap-8']}>
+      <Heading level={2} size="4xl" weight="bold" align="center">
+        Unlock the full potential of your team
+      </Heading>
+      <Body size="xl" align="center" className={['text-foreground', 'mb-32']}>
+        Move from idea to production in minutes.
+        <br />
+        Build faster, collaborate better, and ship with confidence.
+      </Body>
+      <ButtonCta variant="primary" size="xl" href="/docs">
+        Start Building ›
+      </ButtonCta>
     </VStack>
   </VStack>
 `.trim();

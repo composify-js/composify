@@ -1,4 +1,5 @@
 import { Catalog } from '@composify/react/renderer';
+import { AlignCenterIcon, AlignLeftIcon, AlignRightIcon } from 'lucide-react';
 import { Heading } from './Heading';
 
 Catalog.register('Heading', {
@@ -49,6 +50,16 @@ Catalog.register('Heading', {
         },
       ],
       default: 'bold',
+    },
+    align: {
+      label: 'Text Align',
+      type: 'radio',
+      options: [
+        { label: <AlignLeftIcon />, value: 'left' },
+        { label: <AlignCenterIcon />, value: 'center' },
+        { label: <AlignRightIcon />, value: 'right' },
+      ],
+      default: 'left',
     },
     children: {
       label: 'Text',

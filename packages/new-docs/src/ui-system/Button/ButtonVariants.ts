@@ -29,6 +29,7 @@ export const variants = tv({
       sm: ['px-12', 'h-36', 'gap-6', 'text-sm', "[&_svg:not([class*='size-'])]:size-14"],
       md: ['px-16', 'h-42', 'gap-8', 'text-sm', "[&_svg:not([class*='size-'])]:size-16"],
       lg: ['px-20', 'h-46', 'gap-10', 'text-base', "[&_svg:not([class*='size-'])]:size-18"],
+      xl: ['px-24', 'h-52', 'gap-12', 'text-lg', "[&_svg:not([class*='size-'])]:size-20"],
     },
   },
 });
