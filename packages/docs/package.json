@@ -12,8 +12,8 @@
     "@composify/react": "workspace:*",
     "clsx": "2.1.1",
     "css-box-model": "1.2.1",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "react": "19.1.2",
+    "react-dom": "19.1.2",
     "vocs": "1.1.0"
   },
   "devDependencies": {

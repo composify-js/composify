@@ -13,8 +13,8 @@
     "@react-router/node": "7.9.4",
     "@react-router/serve": "7.9.4",
     "isbot": "5.1.31",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "react": "19.1.2",
+    "react-dom": "19.1.2",
     "react-router": "7.9.4"
   },
   "devDependencies": {
