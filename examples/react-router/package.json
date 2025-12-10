@@ -12,10 +12,12 @@
     "@composify/react": "workspace:*",
     "@react-router/node": "7.9.4",
     "@react-router/serve": "7.9.4",
-    "isbot": "5.1.31",
+    "isbot": "5.1.32",
+    "lucide-react": "0.556.0",
     "react": "19.1.2",
     "react-dom": "19.1.2",
-    "react-router": "7.9.4"
+    "react-router": "7.9.4",
+    "tailwind-variants": "3.2.2"
   },
   "devDependencies": {
     "@react-router/dev": "7.9.4",

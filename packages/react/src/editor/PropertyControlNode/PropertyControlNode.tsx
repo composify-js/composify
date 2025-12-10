@@ -1,8 +1,8 @@
+import { type Node, type NodePropertySpec, Parser, Renderer } from '@composify/react/renderer';
+import { IconButton, Text } from '@composify/react/ui';
 import { XIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 import toJsxString from 'react-element-to-jsx-string';
-import { IconButton, Text } from '../../preset';
-import { type Node, type NodePropertySpec, Parser, Renderer } from '../../renderer';
 import { ContentScaler } from '../ContentScaler';
 import { Droppable } from '../Droppable';
 import { useEditing } from '../EditingContext';

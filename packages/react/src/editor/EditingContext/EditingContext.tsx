@@ -1,3 +1,4 @@
+import { type Node, NodeManager, Parser } from '@composify/react/renderer';
 import {
   createContext,
   forwardRef,
@@ -9,7 +10,6 @@ import {
   useState,
   useSyncExternalStore,
 } from 'react';
-import { type Node, NodeManager, Parser } from '../../renderer';
 
 type EditingContextValues = {
   root: Node;

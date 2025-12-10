@@ -1,15 +1,29 @@
 @import "tailwindcss";
 
-@theme {
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-foreground-variant: var(--foreground-variant);
   --font-sans:
     system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue;
 }
 
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --foreground-variant: #525252;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --foreground-variant: #a3a3a3;
+  }
+}
+
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
-
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
+  background: var(--background);
+  color: var(--foreground);
 }

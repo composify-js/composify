@@ -1,8 +1,14 @@
 .container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   background-color: var(--composify-palette-surface-container);
 }
 
 .content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
   overflow: hidden;
   margin: 32px 16px;
 }

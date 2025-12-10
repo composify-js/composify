@@ -1,1 +1,0 @@
-export { FeatureItem } from './FeatureItem';

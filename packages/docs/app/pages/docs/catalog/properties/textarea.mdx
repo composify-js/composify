@@ -1,0 +1,63 @@
+import '@composify/react/style.css';
+import { PropertyControlTextArea } from '@composify/react/editor';
+import { useState } from 'react';
+
+export const BasicUsage = () => {
+  const [value, setValue] = useState('');
+
+  return (
+    <PropertyControlTextArea
+      name="example"
+      spec={{
+        label: 'Description',
+        type: 'textarea',
+        placeholder: 'Type something...',
+      }}
+      value={value}
+      onChange={(_, next) => setValue(next ?? '')}
+    />
+  );
+};
+
+
+# Textarea Property
+
+The **textarea** property is for multi-line strings. Use it for longer content like descriptions, messages, or paragraphs.
+
+:::code-group
+<div data-title="Preview">
+  <BasicUsage />
+</div>
+
+```tsx [Code]
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    description: {
+      label: 'Description',
+      type: 'textarea',// [!code hl]
+      placeholder: 'Type something...',// [!code hl]
+    },
+  },
+});
+```
+:::
+
+## Optional Parameters
+
+### `placeholder`
+
+Show hint text in the input field when it's empty.
+
+```tsx
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    description: {
+      label: 'Description',
+      type: 'textarea',
+      placeholder: 'Type something...',// [!code hl]
+    },
+  },
+});
+```

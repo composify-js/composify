@@ -1,6 +1,6 @@
+import type { Node } from '@composify/react/renderer';
 import { ChevronDownIcon, MinusIcon } from 'lucide-react';
 import { type FC, useCallback } from 'react';
-import type { Node } from '../../renderer';
 import { useEditing } from '../EditingContext';
 import styles from './OutlineItem.module.css';
 

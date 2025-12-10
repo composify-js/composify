@@ -1,4 +1,4 @@
-import '@/components';
+import '@/components/catalog';
 
 import { Renderer } from '@composify/react/renderer';
 import { notFound } from 'next/navigation';

@@ -19,7 +19,10 @@
     "preserveWatchOutput": true,
     "skipLibCheck": true,
     "strict": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "paths": {
+      "@composify/react/*": ["./src/*"]
+    }
   },
   "exclude": ["dist", "esm", "build", "node_modules"]
 }

@@ -1,7 +1,7 @@
+import { type Block, type Node, Parser, Renderer } from '@composify/react/renderer';
+import { Text } from '@composify/react/ui';
 import type { ReactNode } from 'react';
 import toJsxString from 'react-element-to-jsx-string';
-import { Text } from '../../preset';
-import { type Block, type Node, Parser, Renderer } from '../../renderer';
 import { TargetType } from '../Constants';
 import { ContentScaler } from '../ContentScaler';
 import { Draggable } from '../Draggable';

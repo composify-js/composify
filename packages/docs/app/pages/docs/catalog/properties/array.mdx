@@ -1,0 +1,73 @@
+import '@composify/react/style.css';
+import { PropertyControlArray } from '@composify/react/editor';
+import { useState } from 'react';
+
+export const BasicUsage = () => {
+  const [value, setValue] = useState(['']);
+
+  return (
+    <PropertyControlArray
+      name="example"
+      spec={{
+        label: 'Tags',
+        type: 'array',
+        item: {
+          label: 'Tag',
+          type: 'text',
+        },
+      }}
+      value={value}
+      onChange={(_, next) => setValue(next ?? [])}
+    />
+  );
+};
+
+# Array Property
+
+An **array** property stores a list of values. It requires an `item` spec that describes what each entry looks like. The `item` spec can be any other property type (`text`, `number`, `select`, etc.), and you can even nest objects and arrays inside.
+
+In the editor, users can add or remove items. If you want new items to start with a default value, add a `default` key to your `item` spec.
+
+:::code-group
+<div data-title="Preview">
+  <BasicUsage />
+</div>
+
+```tsx [Code]
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    tags: {
+      label: 'Tags',
+      type: 'array',// [!code hl]
+      item: {// [!code hl]
+        label: 'Tag'// [!code hl]
+        type: 'text',// [!code hl]
+      },// [!code hl]
+    },
+  },
+});
+```
+:::
+
+## Required Parameters
+
+### `item`
+
+The `item` spec defines the property type for each entry in the array. Like any other property, it needs at least a `label` and a `type`. The `type` tells the editor which input to render for each item.
+
+```tsx
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    tags: {
+      label: 'Tags',
+      type: 'array',
+      item: {// [!code hl]
+        label: 'Tag',// [!code hl]
+        type: 'text',// [!code hl]
+      },// [!code hl]
+    },
+  },
+});
+```

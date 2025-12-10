@@ -1,1 +1,0 @@
-export { FeatureItemCompact } from './FeatureItemCompact';

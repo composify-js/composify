@@ -30,16 +30,6 @@
         "default": "./dist/editor/index.js"
       }
     },
-    "./preset": {
-      "import": {
-        "types": "./dist/preset/index.d.mts",
-        "default": "./dist/preset/index.mjs"
-      },
-      "require": {
-        "types": "./dist/preset/index.d.ts",
-        "default": "./dist/preset/index.js"
-      }
-    },
     "./renderer": {
       "import": {
         "types": "./dist/renderer/index.d.mts",
@@ -62,7 +52,6 @@
     },
     "./style.css": "./dist/index.css",
     "./editor/style.css": "./dist/editor/index.css",
-    "./preset/style.css": "./dist/preset/index.css",
     "./package.json": "./package.json"
   },
   "files": [
@@ -86,7 +75,7 @@
     "acorn-jsx": "5.3.2",
     "css-box-model": "1.2.1",
     "es-toolkit": "1.40.0",
-    "lucide-react": "0.546.0",
+    "lucide-react": "0.556.0",
     "prettier": "3.6.2",
     "react-dnd": "16.0.1",
     "react-dnd-html5-backend": "16.0.1",

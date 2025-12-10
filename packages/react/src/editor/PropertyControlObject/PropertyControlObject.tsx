@@ -1,5 +1,5 @@
 /** biome-ignore-all lint/suspicious/noExplicitAny: for arbitrary values */
-import type { ObjectPropertySpec } from '../../renderer';
+import type { ObjectPropertySpec } from '@composify/react/renderer';
 import { PropertyControl } from '../PropertyControl';
 import { PropertyControlArray } from '../PropertyControlArray';
 import { PropertyControlBoolean } from '../PropertyControlBoolean';

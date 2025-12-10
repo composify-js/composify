@@ -1,6 +1,6 @@
+import { type Node, Parser } from '@composify/react/renderer';
+import { Bridge, GuestEventType, HostEventType } from '@composify/react/utils';
 import { type FC, useEffect } from 'react';
-import { type Node, Parser } from '../../renderer';
-import { Bridge, GuestEventType, HostEventType } from '../../utils';
 
 type Props = {
   setTitle: (title: string) => void;

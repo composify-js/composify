@@ -1,5 +1,5 @@
-import { Textarea } from '../../preset';
-import type { TextAreaPropertySpec } from '../../renderer';
+import type { TextAreaPropertySpec } from '@composify/react/renderer';
+import { Textarea } from '@composify/react/ui';
 import { PropertyControl } from '../PropertyControl';
 
 type Props = {
@@ -17,7 +17,7 @@ export const PropertyControlTextArea = ({ spec, ...props }: Props) => (
     defaultValue={spec.default ?? ''}
     renderInput={(value, onChange) => (
       <Textarea
-        rows={3}
+        rows={5}
         placeholder={spec.placeholder}
         value={value}
         onChange={(event) => onChange(event.target.value)}

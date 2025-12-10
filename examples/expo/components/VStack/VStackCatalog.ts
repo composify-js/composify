@@ -3,87 +3,61 @@ import { VStack } from './VStack';
 
 Catalog.register('VStack', {
   component: VStack,
+  category: 'Layout',
   props: {
-    flex: {
-      label: 'Flex',
-      type: 'number',
-      default: 1,
-      optional: true,
-    },
-    gap: {
-      label: 'Gap',
-      type: 'number',
-      default: 0,
-      optional: true,
-    },
     alignVertical: {
-      label: 'Horizontal',
+      group: 'Layout',
+      label: 'Distribute',
       type: 'select',
       options: [
-        { label: 'Start', value: 'flex-start' },
-        { label: 'End', value: 'flex-end' },
+        { label: 'Start', value: 'start' },
         { label: 'Center', value: 'center' },
-        { label: 'Space Between', value: 'space-between' },
-        { label: 'Space Around', value: 'space-around' },
-        { label: 'Space Evenly', value: 'space-evenly' },
+        { label: 'End', value: 'end' },
+        { label: 'Space Between', value: 'between' },
+        { label: 'Space Around', value: 'around' },
       ],
-      default: 'flex-start',
-      optional: true,
+      default: 'start',
     },
     alignHorizontal: {
-      label: 'Vertical',
+      group: 'Layout',
+      label: 'Align',
       type: 'select',
       options: [
-        { label: 'Start', value: 'flex-start' },
-        { label: 'End', value: 'flex-end' },
+        { label: 'Start', value: 'start' },
         { label: 'Center', value: 'center' },
+        { label: 'End', value: 'end' },
         { label: 'Stretch', value: 'stretch' },
       ],
       default: 'stretch',
+    },
+    flex: {
+      group: 'Layout',
+      label: 'Flex',
+      type: 'number',
       optional: true,
     },
-    size: {
-      label: 'Size',
-      type: 'object',
-      fields: {
-        width: {
-          label: 'Width',
-          type: 'number',
-          default: 100,
-          optional: true,
-        },
-        minWidth: {
-          label: 'Min Width',
-          type: 'number',
-          optional: true,
-        },
-        maxWidth: {
-          label: 'Max Width',
-          type: 'number',
-          optional: true,
-        },
-        height: {
-          label: 'Height',
-          type: 'number',
-          default: 100,
-          optional: true,
-        },
-        minHeight: {
-          label: 'Min Height',
-          type: 'number',
-          optional: true,
-        },
-        maxHeight: {
-          label: 'Max Height',
-          type: 'number',
-          optional: true,
-        },
-      },
-      default: {
-        height: 100,
-      },
+    gap: {
+      group: 'Layout',
+      label: 'Gap',
+      type: 'number',
+      optional: true,
+    },
+    width: {
+      group: 'Size',
+      label: 'Width',
+      type: 'number',
+      default: 100,
+      optional: true,
+    },
+    height: {
+      group: 'Size',
+      label: 'Height',
+      type: 'number',
+      default: 100,
+      optional: true,
     },
     padding: {
+      group: 'Layout',
       label: 'Padding',
       type: 'object',
       fields: {
@@ -111,6 +85,7 @@ Catalog.register('VStack', {
       optional: true,
     },
     margin: {
+      group: 'Layout',
       label: 'Margin',
       type: 'object',
       fields: {
@@ -138,9 +113,9 @@ Catalog.register('VStack', {
       optional: true,
     },
     backgroundColor: {
-      label: 'Background Color',
+      label: 'Background',
       type: 'text',
-      default: '#ffffff',
+      default: '#EEEEEE',
       optional: true,
     },
     children: {

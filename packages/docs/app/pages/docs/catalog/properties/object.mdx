@@ -1,0 +1,88 @@
+import '@composify/react/style.css';
+import { PropertyControlObject } from '@composify/react/editor';
+import { useState } from 'react';
+
+export const BasicUsage = () => {
+  const [value, setValue] = useState({ label: 'Click me', primary: true });
+
+  return (
+    <PropertyControlObject
+      name="example"
+      spec={{
+        label: 'Actions',
+        type: 'object',
+        fields: {
+          label: { label: 'Label' , type: 'text' },
+          primary: { label: 'Primary', type: 'boolean' },
+        },
+      }}
+      value={value}
+      onChange={(_, next) => setValue(next ?? {})}
+    />
+  );
+};
+
+# Object Property
+
+An **object** property groups multiple controls together into a structured package. Define its structure in the `fields` option. Each field is another property spec, so you can use `text`, `number`, `boolean`, or even nest other objects and arrays.
+
+:::code-group
+<div data-title="Preview">
+  <BasicUsage />
+</div>
+
+```tsx [Code]
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    actions: {
+      label: 'Actions',
+      type: 'object',// [!code hl]
+      fields: {// [!code hl]
+        label: {// [!code hl]
+          label: 'Label',// [!code hl]
+          type: 'text',// [!code hl]
+        },// [!code hl]
+        primary: {// [!code hl]
+          label: 'Primary',// [!code hl]
+          type: 'boolean',// [!code hl]
+        },// [!code hl]
+      },// [!code hl]
+    },
+  },
+});
+```
+:::
+
+## Required Parameters
+
+### `fields`
+
+The `fields` option defines the shape of your object. Each key becomes a new control in the editor, described by its own property spec.
+
+```tsx
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    actions: {
+      label: 'Actions',
+      type: 'object',
+      fields: {// [!code hl]
+        label: {// [!code hl]
+          label: 'Label',// [!code hl]
+          type: 'text',// [!code hl]
+        },// [!code hl]
+        primary: {// [!code hl]
+          label: 'Primary',// [!code hl]
+          type: 'boolean',// [!code hl]
+        },// [!code hl]
+      },// [!code hl]
+    },
+  },
+});
+```
+
+Like any other property, each field needs:
+
+- A `label` to display in the UI
+- A `type` that decides which input control to show

@@ -44,7 +44,16 @@ export const KeyDownDetector = () => {
       }
     };
 
+    const handleClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null;
+
+      if (target?.closest('[draggable="true"]')) {
+        event.preventDefault();
+      }
+    };
+
     windows.forEach((window) => {
+      window.addEventListener('click', handleClick, true);
       window.addEventListener('mouseup', handleMouseUp);
       window.addEventListener('mousemove', handleMouseMove);
       window.addEventListener('dragstart', handleDragStart);
@@ -54,6 +63,7 @@ export const KeyDownDetector = () => {
 
     return () => {
       windows.forEach((window) => {
+        window.removeEventListener('click', handleClick, true);
         window.removeEventListener('mouseup', handleMouseUp);
         window.removeEventListener('mousemove', handleMouseMove);
         window.removeEventListener('dragstart', handleDragStart);

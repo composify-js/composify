@@ -1,32 +1,27 @@
 import type { FC, PropsWithChildren } from 'react';
+import { tv, type VariantProps } from 'tailwind-variants';
 
-type Props = PropsWithChildren<{
-  color?: string;
-  weight?: 'light' | 'normal';
-  margin?: {
-    top?: number;
-    bottom?: number;
-    left?: number;
-    right?: number;
-  };
-}>;
+const variants = tv({
+  base: ['margin-0', 'text-foreground-variant'],
+  variants: {
+    size: {
+      sm: 'text-sm',
+      md: 'text-base',
+      lg: 'text-lg',
+      xl: 'text-xl',
+      '2xl': 'text-2xl',
+    },
+    align: {
+      left: 'text-left',
+      center: 'text-center',
+      right: 'text-right',
+    },
+  },
+  defaultVariants: {
+    align: 'left',
+  },
+});
 
-const FONT_WEIGHT_BY_WEIGHT = {
-  light: 'font-light',
-  normal: 'font-normal',
-};
+type Props = PropsWithChildren<VariantProps<typeof variants>>;
 
-export const Body: FC<Props> = ({ color = '#1E1E1E', weight = 'normal', margin, children }) => (
-  <p
-    className={`text-xl ${FONT_WEIGHT_BY_WEIGHT[weight]}`}
-    style={{
-      color,
-      marginTop: margin?.top,
-      marginBottom: margin?.bottom,
-      marginLeft: margin?.left,
-      marginRight: margin?.right,
-    }}
-  >
-    {children}
-  </p>
-);
+export const Body: FC<Props> = ({ size, align, ...props }) => <p className={variants({ size, align })} {...props} />;

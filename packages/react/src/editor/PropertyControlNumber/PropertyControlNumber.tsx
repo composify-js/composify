@@ -1,5 +1,5 @@
-import { Input } from '../../preset';
-import type { NumberPropertySpec } from '../../renderer';
+import type { NumberPropertySpec } from '@composify/react/renderer';
+import { Input } from '@composify/react/ui';
 import { PropertyControl } from '../PropertyControl';
 
 type Props = {

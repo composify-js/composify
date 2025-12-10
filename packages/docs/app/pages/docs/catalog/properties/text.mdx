@@ -1,0 +1,62 @@
+import '@composify/react/style.css';
+import { PropertyControlText } from '@composify/react/editor';
+import { useState } from 'react';
+
+export const BasicUsage = () => {
+  const [value, setValue] = useState('');
+
+  return (
+    <PropertyControlText
+      name="example"
+      spec={{
+        label: 'Title',
+        type: 'text',
+        placeholder: 'Type something...',
+      }}
+      value={value}
+      onChange={(_, next) => setValue(next ?? '')}
+    />
+  );
+};
+
+# Text Property
+
+A **text** property is a plain string, used for titles, labels, names, or any short text.
+
+:::code-group
+<div data-title="Preview">
+  <BasicUsage />
+</div>
+
+```tsx [Code]
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    title: {
+      label: 'Title',
+      type: 'text',// [!code hl]
+      placeholder: 'Type something...',// [!code hl]
+    },
+  },
+});
+```
+:::
+
+## Optional Parameters
+
+### `placeholder`
+
+Show hint text in the input field when it's empty.
+
+```tsx
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    title: {
+      label: 'Title',
+      type: 'text',
+      placeholder: 'Type something...',// [!code hl]
+    },
+  },
+});
+```

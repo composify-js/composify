@@ -1,0 +1,55 @@
+import '@app/parcel-landing/catalog';
+import { Renderer } from '@composify/react/renderer';
+
+export const source = `
+  <VStack className={['rounded-md', 'border']}>
+    <VStack className={['flex-1', 'p-32', 'gap-6']}>
+      <Heading level={3} size="2xl" weight="semibold">
+        Drop-in Integration
+      </Heading>
+      <Body size="lg">
+        No rewrites, no special wrappers. Just register your components, and they're instantly editable.
+      </Body>
+    </VStack>
+    <FeaturePreview>
+      <CodeSnippet language="tsx" content="dropInIntegration" />
+    </FeaturePreview>
+  </VStack>
+`;
+
+
+# Renderer
+
+The **Renderer** takes a JSX string and renders it as a live UI, using components registered in your [Catalog](/docs/catalog).
+
+:::code-group
+<div data-title="Preview">
+  <Renderer source={source} />
+</div>
+
+```tsx [Code]
+import { Renderer } from '@composify/react/renderer';
+
+const source = `
+  <VStack className={['rounded-md', 'border']}>
+    <VStack className={['flex-1', 'p-32', 'gap-6']}>
+      <Heading level={3} size="2xl" weight="semibold">
+        Drop-in Integration
+      </Heading>
+      <Body size="lg">
+        No rewrites, no special wrappers. Just register your components, and they're instantly editable.
+      </Body>
+    </VStack>
+    <FeaturePreview>
+      <CodeSnippet language="tsx" content="dropInIntegration" />
+    </FeaturePreview>
+  </VStack>
+`;
+
+export function Example() {
+  return <Renderer source={source} />;
+}
+```
+:::
+
+For a complete walkthrough on setting up the Catalog and integrating the full editor, see the [Getting Started guide](/docs/getting-started).

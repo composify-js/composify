@@ -1,25 +1,42 @@
-import { createElement, type FC, type PropsWithChildren } from 'react';
+import type { FC, JSX, PropsWithChildren } from 'react';
+import { tv, type VariantProps } from 'tailwind-variants';
 
-type Props = PropsWithChildren<{
-  level?: 1 | 2 | 3;
-  weight?: 'semibold' | 'bold' | 'extrabold';
-}>;
+const variants = tv({
+  base: ['margin-0', 'text-foreground', 'leading-tight', 'tracking-tight'],
+  variants: {
+    size: {
+      lg: 'text-lg',
+      xl: 'text-xl',
+      '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl',
+      '5xl': 'text-5xl',
+    },
+    weight: {
+      semibold: 'font-semibold',
+      bold: 'font-bold',
+      extrabold: 'font-extrabold',
+    },
+    align: {
+      left: 'text-left',
+      center: 'text-center',
+      right: 'text-right',
+    },
+  },
+  defaultVariants: {
+    weight: 'bold',
+    align: 'left',
+  },
+});
 
-const TEXT_SIZE_BY_LEVEL = {
-  1: 'text-4xl',
-  2: 'text-3xl',
-  3: 'text-2xl',
+type Props = PropsWithChildren<
+  {
+    level: number;
+  } & VariantProps<typeof variants>
+>;
+
+export const Heading: FC<Props> = ({ level, size, weight, align, ...props }) => {
+  const HeadingTag = `h${level}` as keyof JSX.IntrinsicElements;
+
+  return <HeadingTag className={variants({ size, weight, align })} {...props} />;
 };
-
-const FONT_WEIGHT_BY_WEIGHT = {
-  semibold: 'font-semibold',
-  bold: 'font-bold',
-  extrabold: 'font-extrabold',
-};
-
-export const Heading: FC<Props> = ({ level = 1, weight = 'extrabold', children }) =>
-  createElement(
-    `h${level}`,
-    { className: `text-neutral-900 ${FONT_WEIGHT_BY_WEIGHT[weight]} ${TEXT_SIZE_BY_LEVEL[level]}` },
-    children,
-  );

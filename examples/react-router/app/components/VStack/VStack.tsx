@@ -1,44 +1,56 @@
 import type { FC, PropsWithChildren } from 'react';
+import { tv, type VariantProps } from 'tailwind-variants';
 
-export type Props = PropsWithChildren<{
-  alignVertical?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
-  alignHorizontal?: 'flex-start' | 'flex-end' | 'center' | 'stretch';
-  size?: {
+const variants = tv({
+  base: ['flex', 'flex-col'],
+  variants: {
+    alignHorizontal: {
+      center: 'items-center',
+      end: 'items-end',
+      start: 'items-start',
+      stretch: 'items-stretch',
+    },
+    alignVertical: {
+      center: 'justify-center',
+      end: 'justify-end',
+      start: 'justify-start',
+      between: 'justify-between',
+      around: 'justify-around',
+    },
+  },
+});
+
+type Props = PropsWithChildren<
+  {
+    flex?: number;
+    gap?: number;
     width?: number | string;
-    minWidth?: number | string;
-    maxWidth?: number | string;
     height?: number | string;
-    minHeight?: number | string;
-    maxHeight?: number | string;
-  };
-  padding?: { top: number; right: number; bottom: number; left: number };
-  margin?: { top: number; right: number; bottom: number; left: number };
-  backgroundColor?: string;
-  gap?: number;
-}>;
+    padding?: { top: number; right: number; bottom: number; left: number };
+    margin?: { top: number; right: number; bottom: number; left: number };
+    background?: string;
+  } & VariantProps<typeof variants>
+>;
 
 export const VStack: FC<Props> = ({
-  alignVertical,
-  alignHorizontal,
-  size,
+  flex,
+  gap,
+  width,
+  height,
   padding,
   margin,
-  gap,
-  backgroundColor,
-  children,
+  background,
+  alignHorizontal,
+  alignVertical,
+  ...props
 }) => (
   <div
+    className={variants({ alignHorizontal, alignVertical })}
     style={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: alignHorizontal,
-      justifyContent: alignVertical,
-      width: size?.width,
-      minWidth: size?.minWidth,
-      maxWidth: size?.maxWidth,
-      height: size?.height,
-      minHeight: size?.minHeight,
-      maxHeight: size?.maxHeight,
+      flex,
+      gap,
+      width,
+      height,
       paddingTop: padding?.top,
       paddingBottom: padding?.bottom,
       paddingLeft: padding?.left,
@@ -47,10 +59,8 @@ export const VStack: FC<Props> = ({
       marginBottom: margin?.bottom,
       marginLeft: margin?.left,
       marginRight: margin?.right,
-      gap,
-      backgroundColor,
+      background,
     }}
-  >
-    {children}
-  </div>
+    {...props}
+  />
 );

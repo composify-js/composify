@@ -19,6 +19,10 @@ export const ContentScaler: FC<Props> = ({ width, height, children }) => {
     }
 
     const original = target.children[0] as HTMLElement;
+    if (!original) {
+      return width;
+    }
+
     const originalBox = getBox(original).contentBox;
 
     return originalBox.width;
@@ -30,6 +34,10 @@ export const ContentScaler: FC<Props> = ({ width, height, children }) => {
     }
 
     const original = target.children[0] as HTMLElement;
+    if (!original) {
+      return height;
+    }
+
     const originalBox = getBox(original).contentBox;
 
     return originalBox.height;

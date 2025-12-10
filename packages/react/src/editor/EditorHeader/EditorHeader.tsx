@@ -1,5 +1,5 @@
+import { Text } from '@composify/react/ui';
 import type { FC } from 'react';
-import { Text } from '../../preset';
 import styles from './EditorHeader.module.css';
 
 type Props = {

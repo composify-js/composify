@@ -1,5 +1,4 @@
 import { forwardRef, useState } from 'react';
-import { Separator } from '../../preset';
 import { CodeEditor } from '../CodeEditor';
 import { EditingProvider, type EditingRef } from '../EditingContext';
 import type { EditMode } from '../EditorControl';
@@ -28,7 +27,7 @@ export const Editor = forwardRef<EditingRef, Props>(({ title, source, viewports,
           <main className={styles.container}>
             <PanelLeft title={title} />
             {mode !== 'code' && <VisualEditor viewports={viewports} />}
-            {mode === 'split' && <Separator orientation="vertical" />}
+            {mode === 'split' && <div className={styles.separator} />}
             {mode !== 'visual' && <CodeEditor />}
             <PanelRight mode={mode} setMode={setMode} renderControl={renderControl} onSubmit={onSubmit} />
           </main>

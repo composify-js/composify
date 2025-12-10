@@ -1,3 +1,4 @@
+import { resolve } from 'node:path';
 import { defineConfig } from 'vocs';
 
 export default defineConfig({
@@ -40,86 +41,101 @@ export default defineConfig({
   ),
   topNav: [
     { text: 'Docs', link: '/docs' },
+    { text: 'Blog', link: '/blog' },
     { text: 'Cloud', link: '/cloud' },
   ],
-  sidebar: [
-    {
-      text: 'Introduction',
-      link: '/docs',
-    },
-    {
-      text: 'Background',
-      link: '/docs/background',
-    },
-    {
-      text: 'Getting Started',
-      link: '/docs/getting-started',
-    },
-    {
-      text: 'Tutorial',
-      collapsed: false,
-      items: [
-        { text: 'Prerequisites', link: '/docs/tutorial/prerequisites' },
-        { text: 'Next.js', link: '/docs/tutorial/nextjs' },
-        { text: 'React Router', link: '/docs/tutorial/react-router' },
-        { text: 'Expo', link: '/docs/tutorial/expo' },
-        { text: 'Cloud', link: '/docs/tutorial/cloud' },
-      ],
-    },
-    {
-      text: 'Catalog',
-      collapsed: true,
-      items: [
-        { text: 'Overview', link: '/docs/catalog' },
-        {
-          text: 'Properties',
-          items: [
-            { text: 'Boolean property', link: '/docs/catalog/properties/boolean' },
-            { text: 'Number property', link: '/docs/catalog/properties/number' },
-            { text: 'Text property', link: '/docs/catalog/properties/text' },
-            { text: 'Textarea property', link: '/docs/catalog/properties/textarea' },
-            { text: 'Radio property', link: '/docs/catalog/properties/radio' },
-            { text: 'Select property', link: '/docs/catalog/properties/select' },
-            { text: 'Node property', link: '/docs/catalog/properties/node' },
-            { text: 'Array property', link: '/docs/catalog/properties/array' },
-            { text: 'Object property', link: '/docs/catalog/properties/object' },
-            { text: 'Custom property', link: '/docs/catalog/properties/custom' },
-          ],
-        },
-      ],
-    },
-    {
-      text: 'Editor',
-      collapsed: true,
-      items: [
-        { text: 'Overview', link: '/docs/editor' },
-        { text: 'Custom viewports', link: '/docs/editor/custom-viewports' },
-        { text: 'Custom controls', link: '/docs/editor/custom-controls' },
-      ],
-    },
-    {
-      text: 'Renderer',
-      collapsed: true,
-      items: [{ text: 'Overview', link: '/docs/renderer' }],
-    },
-    {
-      text: 'Use Cases',
-      collapsed: true,
-      items: [
-        { text: 'Instant UI Updates', link: '/docs/use-cases/instant-ui-updates' },
-        { text: 'AB Testing and Prototyping', link: '/docs/use-cases/ab-testing-and-prototyping' },
-        { text: 'Headless CMS', link: '/docs/use-cases/headless-cms' },
-        { text: 'No-Code Tools', link: '/docs/use-cases/no-code-tools' },
-        { text: 'Unblock Your Team', link: '/docs/use-cases/unblock-your-team' },
-        { text: 'Design Tools', link: '/docs/use-cases/design-tools' },
-      ],
-    },
-  ],
+  sidebar: {
+    '/docs': [
+      {
+        text: 'Introduction',
+        link: '/docs',
+      },
+      {
+        text: 'Background',
+        link: '/docs/background',
+      },
+      {
+        text: 'Getting Started',
+        link: '/docs/getting-started',
+      },
+      {
+        text: 'Tutorial',
+        collapsed: false,
+        items: [
+          { text: 'Prerequisites', link: '/docs/tutorial/prerequisites' },
+          { text: 'Next.js', link: '/docs/tutorial/nextjs' },
+          { text: 'React Router', link: '/docs/tutorial/react-router' },
+          { text: 'Expo', link: '/docs/tutorial/expo' },
+          { text: 'Cloud', link: '/docs/tutorial/cloud' },
+        ],
+      },
+      {
+        text: 'Catalog',
+        collapsed: true,
+        items: [
+          { text: 'Overview', link: '/docs/catalog' },
+          {
+            text: 'Properties',
+            items: [
+              { text: 'Boolean property', link: '/docs/catalog/properties/boolean' },
+              { text: 'Number property', link: '/docs/catalog/properties/number' },
+              { text: 'Text property', link: '/docs/catalog/properties/text' },
+              { text: 'Textarea property', link: '/docs/catalog/properties/textarea' },
+              { text: 'Radio property', link: '/docs/catalog/properties/radio' },
+              { text: 'Select property', link: '/docs/catalog/properties/select' },
+              { text: 'Node property', link: '/docs/catalog/properties/node' },
+              { text: 'Array property', link: '/docs/catalog/properties/array' },
+              { text: 'Object property', link: '/docs/catalog/properties/object' },
+              { text: 'Custom property', link: '/docs/catalog/properties/custom' },
+            ],
+          },
+        ],
+      },
+      {
+        text: 'Editor',
+        collapsed: true,
+        items: [
+          { text: 'Overview', link: '/docs/editor' },
+          { text: 'Custom viewports', link: '/docs/editor/custom-viewports' },
+          { text: 'Custom controls', link: '/docs/editor/custom-controls' },
+        ],
+      },
+      {
+        text: 'Renderer',
+        collapsed: true,
+        items: [{ text: 'Overview', link: '/docs/renderer' }],
+      },
+      {
+        text: 'Use Cases',
+        collapsed: true,
+        items: [
+          { text: 'Instant UI Updates', link: '/docs/use-cases/instant-ui-updates' },
+          { text: 'AB Testing and Prototyping', link: '/docs/use-cases/ab-testing-and-prototyping' },
+          { text: 'Headless CMS', link: '/docs/use-cases/headless-cms' },
+          { text: 'No-Code Tools', link: '/docs/use-cases/no-code-tools' },
+          { text: 'Unblock Your Team', link: '/docs/use-cases/unblock-your-team' },
+          { text: 'Design Tools', link: '/docs/use-cases/design-tools' },
+        ],
+      },
+    ],
+    '/blog': [
+      {
+        text: '2025',
+        items: [{ text: 'Introducing Composify', link: '/blog/2025-10-26-introducing-composify' }],
+      },
+    ],
+  },
   socials: [
     {
       icon: 'github',
       link: 'https://github.com/composify-js/composify',
     },
   ],
-  rootDir: '',
+  rootDir: 'app',
+  aiCta: false,
+  vite: {
+    resolve: {
+      alias: [{ find: '@app', replacement: resolve(process.cwd(), 'src') }],
+    },
+  },
 });

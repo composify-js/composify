@@ -1,6 +1,6 @@
+import type { Node } from '@composify/react/renderer';
 import { type FC, type MouseEvent, type PropsWithChildren, useCallback } from 'react';
 import { useDrag } from 'react-dnd';
-import type { Node } from '../../renderer';
 import type { TargetType } from '../Constants';
 import { useEditing } from '../EditingContext';
 import styles from './Draggable.module.css';

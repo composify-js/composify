@@ -1,0 +1,105 @@
+import '@composify/react/style.css';
+import { PropertyControlCustom } from '@composify/react/editor';
+import { useState } from 'react';
+
+export const BasicUsage = () => {
+  const [value, setValue] = useState('');
+
+  return (
+    <PropertyControlCustom
+      name="example"
+      spec={{
+        type: 'custom',
+        label: 'Image',
+        render: (value, onChange) => (
+          <>
+            <style>
+              {`
+                .file-input {
+                  font-size: 12px;
+                  line-height: 1.4;
+                  color: var(--secondary);
+                  border: 1px solid var(--border);
+                  border-radius: 4px;
+                  cursor: pointer;
+                  background-color: var(--background-variant);
+                }
+
+                .file-input::file-selector-button {
+                  margin-right: 16px;
+                  padding: 8px 16px;
+                  font-size: 12px;
+                  line-height: 1.4;
+                  background-color: var(--secondary);
+                  color: var(--secondary-foreground);
+                  cursor: pointer;
+                  transition: opacity 0.1s linear;
+                }
+
+                .file-input:hover::file-selector-button {
+                  opacity: 0.9;
+                }
+            `}
+            </style>
+            <input
+              type="file"
+              className="file-input"
+              value={value}
+              onChange={event => onChange(event.target.files?.[0].name ?? '')}
+            />
+          </>
+        ),
+      }}
+      value={value}
+      onChange={(_, next) => setValue(next)}
+    />
+  );
+};
+
+# Custom Property
+
+When none of the built-in property types fit your needs, the **custom** property lets you build your own control. Render anything from a file picker to a color slider to a full form.
+
+:::code-group
+<div data-title="Preview">
+  <BasicUsage />
+</div>
+
+```tsx [Code]
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    counter: {
+      label: 'Counter',
+      type: 'custom',// [!code hl]
+      render: (value, onChange) => (// [!code hl]
+        <FileUploadInput value={value} onChange={onChange} />// [!code hl]
+      ),// [!code hl]
+    },
+  },
+});
+```
+:::
+
+## Required Parameters
+
+### `render`
+
+A custom property requires a `render` function. This function receives the current `value` and an `onChange` callback to update it.
+
+Inside, you can return any React element and wire up the `onChange` callback to pass back new values.
+
+```tsx
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    image: {
+      label: 'Image',
+      type: 'custom',
+      render: (value, onChange) => (// [!code hl]
+        <FileUploadInput value={value} onChange={onChange} />// [!code hl]
+      ),// [!code hl]
+    },
+  },
+});
+```

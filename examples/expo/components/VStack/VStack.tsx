@@ -1,69 +1,85 @@
 import type { FC, PropsWithChildren } from 'react';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 type Props = PropsWithChildren<{
   flex?: number;
-  alignVertical?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
-  alignHorizontal?: 'flex-start' | 'flex-end' | 'center' | 'stretch';
-  size?: {
-    width?: number;
-    minWidth?: number;
-    maxWidth?: number;
-    height?: number;
-    minHeight?: number;
-    maxHeight?: number;
-  };
-  padding?: {
-    top: number;
-    right: number;
-    bottom: number;
-    left: number;
-  };
-  margin?: {
-    top: number;
-    right: number;
-    bottom: number;
-    left: number;
-  };
-  backgroundColor?: string;
   gap?: number;
+  alignVertical?: 'start' | 'center' | 'end' | 'between' | 'around';
+  alignHorizontal?: 'start' | 'center' | 'end' | 'stretch';
+  width?: number;
+  height?: number;
+  padding?: { top: number; right: number; bottom: number; left: number };
+  margin?: { top: number; right: number; bottom: number; left: number };
+  backgroundColor?: string;
 }>;
 
 export const VStack: FC<Props> = ({
   flex,
-  alignVertical,
-  alignHorizontal,
-  size,
+  gap,
+  alignVertical = 'start',
+  alignHorizontal = 'stretch',
+  width,
+  height,
   padding,
   margin,
-  gap,
   backgroundColor,
   children,
 }) => (
   <View
-    style={{
-      flex,
-      flexDirection: 'column',
-      alignItems: alignHorizontal,
-      justifyContent: alignVertical,
-      width: size?.width,
-      minWidth: size?.minWidth,
-      maxWidth: size?.maxWidth,
-      height: size?.height,
-      minHeight: size?.minHeight,
-      maxHeight: size?.maxHeight,
-      paddingTop: padding?.top,
-      paddingBottom: padding?.bottom,
-      paddingLeft: padding?.left,
-      paddingRight: padding?.right,
-      marginTop: margin?.top,
-      marginBottom: margin?.bottom,
-      marginLeft: margin?.left,
-      marginRight: margin?.right,
-      gap,
-      backgroundColor,
-    }}
+    style={[
+      styles.base,
+      styles[`justify-${alignVertical}`],
+      styles[`align-${alignHorizontal}`],
+      {
+        flex,
+        gap,
+        width,
+        height,
+        paddingTop: padding?.top,
+        paddingRight: padding?.right,
+        paddingBottom: padding?.bottom,
+        paddingLeft: padding?.left,
+        marginTop: margin?.top,
+        marginRight: margin?.right,
+        marginBottom: margin?.bottom,
+        marginLeft: margin?.left,
+        backgroundColor,
+      },
+    ]}
   >
     {children}
   </View>
 );
+
+const styles = StyleSheet.create({
+  base: {
+    flexDirection: 'column',
+  },
+  'justify-start': {
+    justifyContent: 'flex-start',
+  },
+  'justify-center': {
+    justifyContent: 'center',
+  },
+  'justify-end': {
+    justifyContent: 'flex-end',
+  },
+  'justify-between': {
+    justifyContent: 'space-between',
+  },
+  'justify-around': {
+    justifyContent: 'space-around',
+  },
+  'align-start': {
+    alignItems: 'flex-start',
+  },
+  'align-center': {
+    alignItems: 'center',
+  },
+  'align-end': {
+    alignItems: 'flex-end',
+  },
+  'align-stretch': {
+    alignItems: 'stretch',
+  },
+});

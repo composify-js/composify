@@ -1,4 +1,4 @@
-import '~/components';
+import '~/components/catalog';
 
 import { Renderer } from '@composify/react/renderer';
 import { type LoaderFunctionArgs, useLoaderData } from 'react-router';
@@ -12,11 +12,11 @@ export async function loader({ params }: LoaderFunctionArgs) {
     throw new Response('', { status: 404 });
   }
 
-  return { slug, source: content };
+  return { slug, content };
 }
 
 export default function Page() {
-  const { slug, source } = useLoaderData<typeof loader>();
+  const { slug, content } = useLoaderData<typeof loader>();
 
   return (
     <main className="p-4">
@@ -27,7 +27,7 @@ export default function Page() {
         </a>
       </section>
       <section className="border rounded-sm border-neutral-200">
-        <Renderer source={source} />
+        <Renderer source={content} />
       </section>
     </main>
   );

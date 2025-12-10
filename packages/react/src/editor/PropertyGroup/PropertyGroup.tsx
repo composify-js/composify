@@ -1,7 +1,6 @@
 /** biome-ignore-all lint/suspicious/noExplicitAny: for arbitrary props */
+import type { PropertySpec } from '@composify/react/renderer';
 import type { FC } from 'react';
-import { VStack } from '../../preset';
-import type { PropertySpec } from '../../renderer';
 import { PropertyControlArray } from '../PropertyControlArray';
 import { PropertyControlBoolean } from '../PropertyControlBoolean';
 import { PropertyControlCustom } from '../PropertyControlCustom';
@@ -20,7 +19,7 @@ type Props = {
 };
 
 export const PropertyGroup: FC<Props> = ({ group, items }) => (
-  <VStack className={styles.container}>
+  <div className={styles.container}>
     <span className={styles.label}>{group}</span>
     <div className={styles.grid}>
       {Object.entries(items).map(([name, spec]) => {
@@ -50,5 +49,5 @@ export const PropertyGroup: FC<Props> = ({ group, items }) => (
         }
       })}
     </div>
-  </VStack>
+  </div>
 );

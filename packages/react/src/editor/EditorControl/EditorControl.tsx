@@ -1,6 +1,6 @@
+import { Button, Segment } from '@composify/react/ui';
 import { CodeXmlIcon, MonitorIcon, SquareSplitHorizontalIcon } from 'lucide-react';
 import { type FC, type ReactNode, useCallback } from 'react';
-import { Button, Segment } from '../../preset';
 import { useEditing } from '../EditingContext';
 import styles from './EditorControl.module.css';
 

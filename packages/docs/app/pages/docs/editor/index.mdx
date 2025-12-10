@@ -1,0 +1,91 @@
+import '@app/parcel-landing/catalog';
+import { Editor } from '@composify/react';
+import { SourceProvider, Playground } from '@app/parcel-landing';
+
+export const source = `
+  <Grid columns={1} className={['gap-24', 'md:grid-cols-2']}>
+    <VStack className={['rounded-md', 'border']}>
+      <VStack className={['flex-1', 'p-32', 'gap-6']}>
+        <Heading level={3} size="2xl" weight="semibold">
+          Drop-in Integration
+        </Heading>
+        <Body size="lg">
+          No rewrites, no special wrappers. Just register your components, and they're instantly editable.
+        </Body>
+      </VStack>
+      <FeaturePreview>
+        <CodeSnippet language="tsx" content="dropInIntegration" />
+      </FeaturePreview>
+    </VStack>
+    <VStack className={['rounded-md', 'border']}>
+      <VStack className={['flex-1', 'p-32', 'gap-6']}>
+        <Heading level={3} size="2xl" weight="semibold">
+          JSX Everywhere
+        </Heading>
+        <Body size="lg">
+          Everything is stored as human-readable JSX strings. Not JSON, not a proprietary format.
+        </Body>
+      </VStack>
+      <FeaturePreview>
+        <CodeSnippet language="tsx" content="jsxEverywhere" />
+      </FeaturePreview>
+    </VStack>
+  </Grid>
+`;
+
+# Editor
+
+The **Editor** lets you build pages visually with your own JSX components.
+
+:::code-group
+<div data-title="Preview">
+  <SourceProvider source={source}>
+    <Playground plain={true} />
+  </SourceProvider>
+</div>
+
+```tsx [Code]
+import { Editor } from "@composify/react/editor";
+
+const source = `
+  <Grid columns={1} className={['gap-24', 'md:grid-cols-2']}>
+    <VStack className={['rounded-md', 'border']}>
+      <VStack className={['flex-1', 'p-32', 'gap-6']}>
+        <Heading level={3} size="2xl" weight="semibold">
+          Drop-in Integration
+        </Heading>
+        <Body size="lg">
+          No rewrites, no special wrappers. Just register your components, and they're instantly editable.
+        </Body>
+      </VStack>
+      <FeaturePreview>
+        <CodeSnippet language="tsx" content="dropInIntegration" />
+      </FeaturePreview>
+    </VStack>
+    <VStack className={['rounded-md', 'border']}>
+      <VStack className={['flex-1', 'p-32', 'gap-6']}>
+        <Heading level={3} size="2xl" weight="semibold">
+          JSX Everywhere
+        </Heading>
+        <Body size="lg">
+          Everything is stored as human-readable JSX strings. Not JSON, not a proprietary format.
+        </Body>
+      </VStack>
+      <FeaturePreview>
+        <CodeSnippet language="tsx" content="jsxEverywhere" />
+      </FeaturePreview>
+    </VStack>
+  </Grid>
+`;
+
+export function Example() {
+  return <Editor title="Home Page" source={source} />;
+}
+```
+:::
+
+While basic interactions like drag-and-drop, resizing, and property editing are designed to be intuitive, here are a few key features:
+
+- **Dynamic viewport**: Simulate different screen sizes and orientations, like in Chrome DevTools.
+- **Code editor**: Switch to the **Code** tab to edit JSX directly. Changes are instantly reflected on the visual canvas.
+- **Split view**: Use **Split** mode to view the visual and code editors side-by-side. Tweak code and see the results update in real time.

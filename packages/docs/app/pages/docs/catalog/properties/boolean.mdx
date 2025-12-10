@@ -1,0 +1,41 @@
+import '@composify/react/style.css';
+import { PropertyControlBoolean } from '@composify/react/editor';
+import { useState } from 'react';
+
+export const BasicUsage = () => {
+  const [value, setValue] = useState(false);
+
+  return (
+    <PropertyControlBoolean
+      name="example"
+      spec={{
+        label: 'Visible',
+        type: 'boolean',
+      }}
+      value={value}
+      onChange={(_, next) => setValue(next)}
+    />
+  );
+};
+
+# Boolean Property
+
+A **boolean** property is a simple `true`/`false` toggle. Use it for showing or hiding a component, enabling a feature, or any other on/off switch.
+
+:::code-group
+<div data-title="Preview">
+  <BasicUsage />
+</div>
+
+```tsx [Code]
+Catalog.register('Sample', {
+  component: Sample,
+  props: {
+    visible: {
+      label: 'Visible',
+      type: 'boolean',// [!code hl]
+    },
+  },
+});
+```
+:::

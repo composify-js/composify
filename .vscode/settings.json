@@ -1,4 +1,5 @@
 {
+  "css.lint.unknownAtRules": "ignore",
   "cSpell.words": ["composify"],
   "editor.formatOnSave": true,
   "editor.tabSize": 2,

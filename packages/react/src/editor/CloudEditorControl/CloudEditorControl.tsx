@@ -1,6 +1,6 @@
+import { Button } from '@composify/react/ui';
+import { Bridge, GuestEventType } from '@composify/react/utils';
 import { type FC, useCallback, useEffect, useRef } from 'react';
-import { Button } from '../../preset';
-import { Bridge, GuestEventType } from '../../utils';
 import styles from './CloudEditorControl.module.css';
 
 type Props = {

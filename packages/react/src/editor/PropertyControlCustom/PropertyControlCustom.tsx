@@ -1,5 +1,5 @@
 /** biome-ignore-all lint/suspicious/noExplicitAny: for arbitrary values */
-import type { CustomPropertySpec } from '../../renderer';
+import type { CustomPropertySpec } from '@composify/react/renderer';
 import { PropertyControl } from '../PropertyControl';
 
 type Props<Value = any> = {

@@ -1,4 +1,4 @@
-import '@/components';
+import '@/components/catalog';
 
 import { Renderer } from '@composify/react/renderer';
 import { useLocalSearchParams } from 'expo-router';
@@ -16,14 +16,7 @@ export default function Page() {
       });
       const { content } = await res.json().catch(() => ({}));
 
-      setSource(
-        content ??
-          `
-<VStack flex={1} alignHorizontal="center" alignVertical="center">
-  <Heading level={3} weight="semibold">Not Found</Heading>
-</VStack>
-  `.trim(),
-      );
+      setSource(content ?? '<VStack />');
     };
 
     fetchData();

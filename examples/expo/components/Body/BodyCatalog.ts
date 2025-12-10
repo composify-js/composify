@@ -3,57 +3,32 @@ import { Body } from './Body';
 
 Catalog.register('Body', {
   component: Body,
+  category: 'Content',
   props: {
-    children: {
-      label: 'Content',
-      type: 'text',
-      default: 'Bring visual editing to your components — no rewrites needed.',
-    },
-    color: {
-      label: 'Text Color',
-      type: 'text',
-      default: '#1E1E1E',
-    },
-    weight: {
-      label: 'Font Weight',
+    size: {
+      label: 'Size',
       type: 'radio',
       options: [
-        {
-          label: 'Light',
-          value: 'light',
-        },
-        {
-          label: 'Normal',
-          value: 'normal',
-        },
+        { label: 'Small', value: 'sm' },
+        { label: 'Medium', value: 'md' },
+        { label: 'Large', value: 'lg' },
       ],
-      default: 'normal',
+      default: 'md',
     },
-    margin: {
-      label: 'Margin',
-      type: 'object',
-      fields: {
-        top: {
-          label: 'Top',
-          type: 'number',
-          default: 0,
-        },
-        bottom: {
-          label: 'Bottom',
-          type: 'number',
-          default: 0,
-        },
-        left: {
-          label: 'Left',
-          type: 'number',
-          default: 0,
-        },
-        right: {
-          label: 'Right',
-          type: 'number',
-          default: 0,
-        },
-      },
+    align: {
+      label: 'Alignment',
+      type: 'radio',
+      options: [
+        { label: 'Left', value: 'left' },
+        { label: 'Center', value: 'center' },
+        { label: 'Right', value: 'right' },
+      ],
+      default: 'left',
+    },
+    children: {
+      label: 'Content',
+      type: 'textarea',
+      default: 'Body',
     },
   },
 });

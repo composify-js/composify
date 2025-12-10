@@ -1,3 +1,5 @@
+import { Catalog, NodeManager, Parser } from '@composify/react/renderer';
+import { Text } from '@composify/react/ui';
 import MonacoEditor, { type OnMount } from '@monaco-editor/react';
 import { debounce } from 'es-toolkit';
 import type { Plugin } from 'prettier';
@@ -5,8 +7,6 @@ import * as meriyahParser from 'prettier/parser-meriyah';
 import * as estreePlugin from 'prettier/plugins/estree';
 import prettier from 'prettier/standalone';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Text } from '../../preset';
-import { Catalog, NodeManager, Parser } from '../../renderer';
 import { useEditing } from '../EditingContext';
 import styles from './CodeEditor.module.css';
 
@@ -128,6 +128,9 @@ export const CodeEditor = () => {
           fontSize: 14,
           scrollbar: {
             vertical: 'hidden',
+          },
+          stickyScroll: {
+            enabled: false,
           },
           guides: {
             indentation: true,

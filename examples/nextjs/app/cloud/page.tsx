@@ -1,7 +1,7 @@
 'use client';
 
+import '@/components/catalog';
 import '@composify/react/style.css';
-import '@/components';
 
 import { CloudEditor } from '@composify/react/editor';
 

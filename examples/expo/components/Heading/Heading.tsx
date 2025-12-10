@@ -2,32 +2,13 @@ import type { FC, PropsWithChildren } from 'react';
 import { StyleSheet, Text } from 'react-native';
 
 type Props = PropsWithChildren<{
-  level?: 1 | 2 | 3;
+  size?: 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl';
   weight?: 'semibold' | 'bold' | 'extrabold';
+  align?: 'left' | 'center' | 'right';
 }>;
 
-const TEXT_SIZE_BY_LEVEL = {
-  1: 48,
-  2: 36,
-  3: 24,
-} as const;
-
-const FONT_WEIGHT_BY_WEIGHT = {
-  semibold: '600',
-  bold: '700',
-  extrabold: '800',
-} as const;
-
-export const Heading: FC<Props> = ({ level = 1, weight = 'extrabold', children }) => (
-  <Text
-    style={[
-      styles.heading,
-      {
-        fontSize: TEXT_SIZE_BY_LEVEL[level],
-        fontWeight: FONT_WEIGHT_BY_WEIGHT[weight],
-      },
-    ]}
-  >
+export const Heading: FC<Props> = ({ size = 'lg', weight = 'semibold', align = 'left', children }) => (
+  <Text style={[styles.heading, styles[`size-${size}`], styles[`weight-${weight}`], styles[`align-${align}`]]}>
     {children}
   </Text>
 );
@@ -35,5 +16,41 @@ export const Heading: FC<Props> = ({ level = 1, weight = 'extrabold', children }
 const styles = StyleSheet.create({
   heading: {
     color: '#1E1E1E',
+  },
+  'size-lg': {
+    fontSize: 18,
+  },
+  'size-xl': {
+    fontSize: 20,
+  },
+  'size-2xl': {
+    fontSize: 24,
+  },
+  'size-3xl': {
+    fontSize: 30,
+  },
+  'size-4xl': {
+    fontSize: 36,
+  },
+  'size-5xl': {
+    fontSize: 48,
+  },
+  'weight-semibold': {
+    fontWeight: '600',
+  },
+  'weight-bold': {
+    fontWeight: '700',
+  },
+  'weight-extrabold': {
+    fontWeight: '800',
+  },
+  'align-left': {
+    textAlign: 'left',
+  },
+  'align-center': {
+    textAlign: 'center',
+  },
+  'align-right': {
+    textAlign: 'right',
   },
 });

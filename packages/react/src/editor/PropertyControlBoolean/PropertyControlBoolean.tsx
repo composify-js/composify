@@ -1,5 +1,5 @@
-import { Segment } from '../../preset';
-import type { BooleanPropertySpec } from '../../renderer';
+import type { BooleanPropertySpec } from '@composify/react/renderer';
+import { Segment } from '@composify/react/ui';
 import { PropertyControl } from '../PropertyControl';
 
 type Props = {

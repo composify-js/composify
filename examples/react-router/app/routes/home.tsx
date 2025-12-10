@@ -1,14 +1,10 @@
-import '~/components';
-
 export default function HomePage() {
   return (
-    <main className="p-4">
-      <section className="flex items-end justify-between mb-4">
-        <h1 className="text-2xl">Welcome to Composify 👋</h1>
-        <a href="/editor/test" className="text-blue-500 hover:underline">
-          Edit /test page
-        </a>
-      </section>
+    <main className="flex flex-col items-center justify-center min-h-screen gap-4">
+      <h1 className="text-3xl font-bold">Composify + React Router</h1>
+      <p className="text-neutral-600">
+        Visit <a href="/editor/foo" className="text-blue-500 hover:underline">/editor/foo</a> to start editing
+      </p>
     </main>
   );
 }

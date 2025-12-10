@@ -1,41 +1,45 @@
-import EditorPage from './client';
+'use client';
 
-export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+import '@/components/catalog';
+import '@composify/react/style.css';
 
-  const res = await fetch(`http://localhost:9000/documents/${slug}`, {
-    cache: 'no-store',
-  });
-  const { content } = await res.json().catch(() => ({}));
+import { Editor } from '@composify/react/editor';
+import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-  return (
-    <EditorPage
-      slug={slug}
-      content={
-        content ??
-        `
-<VStack
-  alignVertical="center"
-  alignHorizontal="stretch"
-  padding={{ top: 16, bottom: 16, left: 16, right: 16 }}
-  gap={4}
->
-  <Heading level={1} weight="extrabold">Server Driven UI made easy</Heading>
-  <Body color="#1E1E1E" weight="normal">
-    Bring visual editing to your components — no rewrites needed.
-  </Body>
-  <HStack
-    alignVertical="stretch"
-    alignHorizontal="flex-start"
-    gap={4}
-    margin={{ top: 16 }}
-  >
-    <Button variant="primary">Learn More ›</Button>
-    <Button variant="outline">Get started →</Button>
-  </HStack>
-</VStack>
-`.trim()
-      }
-    />
-  );
+export default function EditorPage() {
+  const params = useParams<{ slug: string }>();
+  const [source, setSource] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch(`http://localhost:9000/documents/${params.slug}`)
+      .then((res) => res.json())
+      .then((data) => setSource(data.content || '<VStack />'))
+      .catch(() => setSource('<VStack />'));
+  }, [params.slug]);
+
+  if (!source) {
+    return null;
+  }
+
+  const handleSubmit = async (value: string) => {
+    await fetch(`http://localhost:9000/documents/${params.slug}`, {
+      method: 'DELETE',
+    }).catch(() => null);
+
+    await fetch('http://localhost:9000/documents', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: params.slug,
+        content: value,
+      }),
+    });
+
+    alert('Saved!');
+  };
+
+  return <Editor title={`Editing: ${params.slug}`} source={source} onSubmit={handleSubmit} />;
 }

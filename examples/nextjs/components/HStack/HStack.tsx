@@ -1,44 +1,56 @@
 import type { FC, PropsWithChildren } from 'react';
+import { tv, type VariantProps } from 'tailwind-variants';
 
-export type Props = PropsWithChildren<{
-  alignHorizontal?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
-  alignVertical?: 'flex-start' | 'flex-end' | 'center' | 'stretch';
-  size?: {
+const variants = tv({
+  base: ['flex', 'flex-row'],
+  variants: {
+    alignHorizontal: {
+      center: 'justify-center',
+      end: 'justify-end',
+      start: 'justify-start',
+      between: 'justify-between',
+      around: 'justify-around',
+    },
+    alignVertical: {
+      start: 'items-start',
+      center: 'items-center',
+      end: 'items-end',
+      stretch: 'items-stretch',
+    },
+  },
+});
+
+type Props = PropsWithChildren<
+  {
+    flex?: number;
+    gap?: number;
     width?: number | string;
-    minWidth?: number | string;
-    maxWidth?: number | string;
     height?: number | string;
-    minHeight?: number | string;
-    maxHeight?: number | string;
-  };
-  padding?: { top: number; right: number; bottom: number; left: number };
-  margin?: { top: number; right: number; bottom: number; left: number };
-  backgroundColor?: string;
-  gap?: number;
-}>;
+    padding?: { top: number; right: number; bottom: number; left: number };
+    margin?: { top: number; right: number; bottom: number; left: number };
+    background?: string;
+  } & VariantProps<typeof variants>
+>;
 
 export const HStack: FC<Props> = ({
-  alignVertical,
-  alignHorizontal,
-  size,
+  flex,
+  gap,
+  width,
+  height,
   padding,
   margin,
-  gap,
-  backgroundColor,
-  children,
+  background,
+  alignHorizontal,
+  alignVertical,
+  ...props
 }) => (
   <div
+    className={variants({ alignHorizontal, alignVertical })}
     style={{
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: alignVertical,
-      justifyContent: alignHorizontal,
-      width: size?.width,
-      minWidth: size?.minWidth,
-      maxWidth: size?.maxWidth,
-      height: size?.height,
-      minHeight: size?.minHeight,
-      maxHeight: size?.maxHeight,
+      flex,
+      gap,
+      width,
+      height,
       paddingTop: padding?.top,
       paddingBottom: padding?.bottom,
       paddingLeft: padding?.left,
@@ -47,10 +59,8 @@ export const HStack: FC<Props> = ({
       marginBottom: margin?.bottom,
       marginLeft: margin?.left,
       marginRight: margin?.right,
-      gap,
-      backgroundColor,
+      background,
     }}
-  >
-    {children}
-  </div>
+    {...props}
+  />
 );

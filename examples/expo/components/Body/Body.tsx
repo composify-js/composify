@@ -2,41 +2,34 @@ import type { FC, PropsWithChildren } from 'react';
 import { StyleSheet, Text } from 'react-native';
 
 type Props = PropsWithChildren<{
-  color?: string;
-  weight?: 'light' | 'normal';
-  margin?: {
-    top?: number;
-    bottom?: number;
-    left?: number;
-    right?: number;
-  };
+  size?: 'sm' | 'md' | 'lg';
+  align?: 'left' | 'center' | 'right';
 }>;
 
-const FONT_WEIGHT_BY_WEIGHT = {
-  light: '300',
-  normal: '400',
-} as const;
-
-export const Body: FC<Props> = ({ color = '#1E1E1E', weight = 'normal', margin, children }) => (
-  <Text
-    style={[
-      styles.body,
-      {
-        color,
-        fontWeight: FONT_WEIGHT_BY_WEIGHT[weight],
-        marginTop: margin?.top,
-        marginBottom: margin?.bottom,
-        marginLeft: margin?.left,
-        marginRight: margin?.right,
-      },
-    ]}
-  >
-    {children}
-  </Text>
+export const Body: FC<Props> = ({ size = 'md', align = 'left', children }) => (
+  <Text style={[styles.body, styles[`size-${size}`], styles[`align-${align}`]]}>{children}</Text>
 );
 
 const styles = StyleSheet.create({
   body: {
+    color: '#525252',
+  },
+  'size-sm': {
+    fontSize: 14,
+  },
+  'size-md': {
+    fontSize: 16,
+  },
+  'size-lg': {
     fontSize: 18,
+  },
+  'align-left': {
+    textAlign: 'left',
+  },
+  'align-center': {
+    textAlign: 'center',
+  },
+  'align-right': {
+    textAlign: 'right',
   },
 });

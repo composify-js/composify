@@ -1,5 +1,5 @@
-import { Select } from '../../preset';
-import type { SelectPropertySpec } from '../../renderer';
+import type { SelectPropertySpec } from '@composify/react/renderer';
+import { Select } from '@composify/react/ui';
 import { PropertyControl } from '../PropertyControl';
 
 type Props<Value> = {
