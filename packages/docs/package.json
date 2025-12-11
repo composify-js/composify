@@ -27,6 +27,7 @@
   "devDependencies": {
     "@types/react": "19.1.17",
     "tailwindcss": "4.1.15",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "vite-plugin-radar": "0.10.1"
   }
 }

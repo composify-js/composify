@@ -243,6 +243,9 @@ importers:
       typescript:
         specifier: 5.9.3
         version: 5.9.3
+      vite-plugin-radar:
+        specifier: 0.10.1
+        version: 0.10.1(vite@7.2.2(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.1))
 
   packages/react:
     dependencies:
@@ -8079,6 +8082,11 @@ packages:
     resolution: {integrity: sha512-EbKSKh+bh1E1IFxeO0pg1n4dvoOTt0UDiXMd/qn++r98+jPO1xtJilvXldeuQ8giIB5IkpjCgMleHMNEsGH6pg==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
+
+  vite-plugin-radar@0.10.1:
+    resolution: {integrity: sha512-a1PEDWgbuh7Wms8d/KHY5v7YM2w/mw2ShnlZSiIeAqr+sRQJf6POZE5Vg4eTXhoaWhKH89rl1llznHGNX9CMMQ==}
+    peerDependencies:
+      vite: ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
 
   vite-tsconfig-paths@5.1.4:
     resolution: {integrity: sha512-cYj0LRuLV2c2sMqhqhGpaO3LretdtMn/BVX4cPLanIZuwwrkVl+lK84E/miEXkCHWXuq65rhNN4rXsBcOB3S4w==}
@@ -17985,6 +17993,10 @@ snapshots:
       - terser
       - tsx
       - yaml
+
+  vite-plugin-radar@0.10.1(vite@7.2.2(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.1)):
+    dependencies:
+      vite: 7.2.2(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.1)
 
   vite-tsconfig-paths@5.1.4(typescript@5.9.3)(vite@6.4.1(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.1)):
     dependencies:

@@ -1,4 +1,5 @@
 import { resolve } from 'node:path';
+import { VitePluginRadar } from 'vite-plugin-radar';
 import { defineConfig } from 'vocs';
 
 export default defineConfig({
@@ -137,5 +138,12 @@ export default defineConfig({
     resolve: {
       alias: [{ find: '@app', replacement: resolve(process.cwd(), 'src') }],
     },
+    plugins: [
+      VitePluginRadar({
+        analytics: {
+          id: 'G-H5385774J9',
+        },
+      }),
+    ],
   },
 });
