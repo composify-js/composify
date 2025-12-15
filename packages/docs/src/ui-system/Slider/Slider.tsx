@@ -1,37 +1,3 @@
-// import type { FC } from 'react';
-// import { variants } from './SliderVariants';
-
-// type Props = {
-//   className?: string[];
-//   min: number;
-//   max: number;
-//   step?: number;
-//   value: number;
-//   onChange: (value: number) => void;
-// };
-
-// export const Slider: FC<Props> = ({ className, min, max, step = 1, value, onChange }) => {
-//   const styles = variants();
-//   const progress = ((value - min) / (max - min)) * 100;
-
-//   return (
-//     <div className={styles.root({ className })}>
-//       <div className={styles.track()}>
-//         <div className={styles.fill()} style={{ width: `${progress}%` }} />
-//         <div className={styles.thumb()} style={{ left: `${progress}%` }} />
-//         <input
-//           type="range"
-//           className={styles.input()}
-//           min={min}
-//           max={max}
-//           step={step}
-//           value={value}
-//           onChange={(e) => onChange(Number(e.target.value))}
-//         />
-//       </div>
-//     </div>
-//   );
-// };
 import type { FC } from 'react';
 import { variants } from './SliderVariants';
 

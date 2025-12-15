@@ -30,7 +30,7 @@ const INITIAL_SOURCE = `
         Perfect for Server Driven UI, no-code website builders, and design tools.
       </Body>
       <Grid columns={1} className={['gap-24', 'md:grid-cols-2']}>
-      <VStack className={['rounded-sm', 'border']}>
+        <VStack className={['rounded-sm', 'border']}>
           <VStack className={['flex-1', 'p-32', 'gap-6']}>
             <Heading level={3} size="2xl" weight="semibold">
               Drop-in Integration
@@ -43,7 +43,7 @@ const INITIAL_SOURCE = `
             <CodeSnippet language="tsx" content="dropInIntegration" />
           </FeaturePreview>
         </VStack>
-      <VStack className={['rounded-sm', 'border']}>
+        <VStack className={['rounded-sm', 'border']}>
           <VStack className={['flex-1', 'p-32', 'gap-6']}>
             <Heading level={3} size="2xl" weight="semibold">
               JSX Everywhere
@@ -56,7 +56,7 @@ const INITIAL_SOURCE = `
             <CodeSnippet language="tsx" content="jsxEverywhere" />
           </FeaturePreview>
         </VStack>
-      <VStack className={['rounded-sm', 'border']}>
+        <VStack className={['rounded-sm', 'border']}>
           <VStack className={['flex-1', 'p-32', 'gap-6']}>
             <Heading level={3} size="2xl" weight="semibold">
               Visual + Code Editing
@@ -69,7 +69,7 @@ const INITIAL_SOURCE = `
             <EditorControl />
           </FeaturePreview>
         </VStack>
-      <VStack className={['rounded-sm', 'border']}>
+        <VStack className={['rounded-sm', 'border']}>
           <VStack className={['flex-1', 'p-32', 'gap-6']}>
             <Heading level={3} size="2xl" weight="semibold">
               Multi-viewport Preview
@@ -82,7 +82,7 @@ const INITIAL_SOURCE = `
             <ViewportControl />
           </FeaturePreview>
         </VStack>
-      <VStack className={['rounded-sm', 'border']}>
+        <VStack className={['rounded-sm', 'border']}>
           <VStack className={['flex-1', 'p-32', 'gap-6']}>
             <Heading level={3} size="2xl" weight="semibold">
               Full TypeScript Support
@@ -103,7 +103,7 @@ const INITIAL_SOURCE = `
             />
           </FeaturePreview>
         </VStack>
-      <VStack className={['rounded-sm', 'border']}>
+        <VStack className={['rounded-sm', 'border']}>
           <VStack className={['flex-1', 'p-32', 'gap-6']}>
             <Heading level={3} size="2xl" weight="semibold">
               Framework Agnostic

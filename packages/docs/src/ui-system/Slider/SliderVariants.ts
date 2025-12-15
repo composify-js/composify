@@ -1,35 +1,3 @@
-// import { tv } from 'tailwind-variants';
-
-// export const variants = tv({
-//   slots: {
-//     root: ['w-full'],
-//     track: ['relative', 'h-8', 'rounded-sm', 'bg-muted', 'overflow-hidden'],
-//     fill: ['absolute', 'h-full', 'bg-primary', 'rounded-sm'],
-//     thumb: [
-//       'absolute',
-//       'top-1/2',
-//       '-translate-y-1/2',
-//       '-translate-x-1/2',
-//       'size-16',
-//       'rounded-full',
-//       'bg-primary',
-//       'cursor-grab',
-//       'active:cursor-grabbing',
-//       'transition-transform',
-//       'hover:scale-110',
-//     ],
-//     input: [
-//       'absolute',
-//       'inset-0',
-//       'w-full',
-//       'h-full',
-//       'opacity-0',
-//       'cursor-pointer',
-//       'm-0',
-//     ],
-//   },
-// });
-
 import { tv } from 'tailwind-variants';
 
 export const variants = tv({

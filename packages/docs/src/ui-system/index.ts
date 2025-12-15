@@ -1,3 +1,4 @@
+export { Accordion } from './Accordion';
 export { Badge } from './Badge';
 export { Body } from './Body';
 export { Button } from './Button';

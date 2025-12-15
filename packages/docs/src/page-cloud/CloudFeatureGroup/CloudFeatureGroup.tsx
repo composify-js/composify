@@ -3,16 +3,15 @@ import type { FC } from 'react';
 import { CloudFeatureItem } from '../CloudFeatureItem';
 
 export const CloudFeatureGroup: FC<unknown> = () => (
-  <VStack
-    id="features"
-    className={['px-24', 'pt-64', 'pb-24', 'gap-0', 'bg-background', 'max-md:px-16', 'max-md:pt-48']}
-  >
-    <Heading level={2} size="4xl" className={['tracking-tight']}>
-      Supercharge your editor.
-    </Heading>
-    <Body size="xl" className={['text-foreground', 'mt-8', 'mb-48']}>
-      Start building in seconds. Get features that make your team faster.
-    </Body>
+  <VStack id="features" className={['p-24', 'pt-64', 'gap-48', 'bg-background', 'max-md:p-16', 'max-md:pt-48']}>
+    <VStack className={['gap-8']}>
+      <Heading level={2} size="4xl">
+        Supercharge your editor.
+      </Heading>
+      <Body size="xl" className={['text-foreground']}>
+        Start building in seconds. Get features that make your team faster.
+      </Body>
+    </VStack>
     <Grid columns={2} className={['gap-24', 'max-md:grid-cols-1']}>
       <CloudFeatureItem
         emoji="🌐"
