@@ -4,6 +4,7 @@ import type { FC } from 'react';
 
 export const FreeSetupSection: FC<unknown> = () => (
   <VStack
+    id="setup"
     alignHorizontal="center"
     className={[
       'gap-32',

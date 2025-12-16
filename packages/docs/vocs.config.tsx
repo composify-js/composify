@@ -43,6 +43,7 @@ export default defineConfig({
   topNav: [
     { text: 'Docs', link: '/docs' },
     { text: 'Blog', link: '/blog' },
+    { text: 'Showcase', link: '/showcase' },
     { text: 'Cloud', link: '/cloud' },
   ],
   sidebar: {

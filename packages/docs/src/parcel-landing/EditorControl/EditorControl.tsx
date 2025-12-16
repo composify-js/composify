@@ -9,6 +9,7 @@ export const EditorControl: FC<unknown> = () => {
 
   return (
     <Segment
+      size="xl"
       options={[
         { label: <MonitorIcon />, value: 'visual' },
         { label: <SquareSplitHorizontalIcon />, value: 'split' },

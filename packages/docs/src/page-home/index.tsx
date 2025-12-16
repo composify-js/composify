@@ -15,7 +15,7 @@ const INITIAL_SOURCE = `
           Learn more ›
         </ButtonCta>
         <ButtonCta variant="outline" size="lg" href="/demo">
-          View Demo →
+          View demo →
         </ButtonCta>
       </HStack>
     </VStack>
@@ -128,7 +128,7 @@ const INITIAL_SOURCE = `
         Build faster, collaborate better, and ship with confidence.
       </Body>
       <ButtonCta variant="primary" size="xl" href="/docs">
-        Start Building ›
+        Start building ›
       </ButtonCta>
     </VStack>
   </VStack>

@@ -2,30 +2,47 @@ import { tv } from 'tailwind-variants';
 
 export const variants = tv({
   slots: {
-    frame: ['inline-flex', 'items-center', 'justify-center', 'p-3', 'rounded-md', 'border', 'bg-surface-container-low'],
+    frame: ['inline-flex', 'items-center', 'justify-center', 'gap-1', 'border', 'bg-background'],
     option: [
       'flex-1',
       'inline-flex',
       'items-center',
       'justify-center',
-      'h-44',
-      'px-14',
       'bg-transparent',
       'text-xs',
-      'font-medium',
+      'font-semibold',
       'whitespace-nowrap',
-      'rounded-sm',
       'border-none',
       'outline-none',
       'text-on-surface-variant',
       'cursor-pointer',
-      'transition-all',
-      '[&_svg]:size-24',
-      '[&>:not(svg)]:text-base',
-      '[&>:not(svg)]:leading-none',
     ],
   },
   variants: {
+    size: {
+      md: {
+        frame: ['p-2', 'rounded-sm'],
+        option: [
+          'h-30',
+          'px-10',
+          'rounded-[3px]',
+          '[&_svg]:size-16',
+          '[&>:not(svg)]:text-sm',
+          '[&>:not(svg)]:leading-none',
+        ],
+      },
+      xl: {
+        frame: ['p-3', 'rounded-md'],
+        option: [
+          'h-44',
+          'px-14',
+          'rounded-sm',
+          '[&_svg]:size-24',
+          '[&>:not(svg)]:text-base',
+          '[&>:not(svg)]:leading-none',
+        ],
+      },
+    },
     active: {
       true: {
         option: ['bg-secondary', 'text-secondary-foreground'],

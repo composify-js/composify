@@ -1,7 +1,9 @@
 import './Body/BodyCatalog';
+import './Button/ButtonCatalog';
 import './Caption/CaptionCatalog';
 import './Grid/GridCatalog';
 import './Heading/HeadingCatalog';
 import './Image/ImageCatalog';
+import './Link/LinkCatalog';
 import './HStack/HStackCatalog';
 import './VStack/VStackCatalog';

@@ -5,6 +5,7 @@ import { variants } from './ButtonVariants';
 
 type Props = ComponentProps<'button'> &
   VariantProps<typeof variants> & {
+    className?: string[];
     asChild?: boolean;
   };
 

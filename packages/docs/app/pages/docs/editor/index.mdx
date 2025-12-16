@@ -1,5 +1,6 @@
 import '@app/parcel-landing/catalog';
 import { Editor } from '@composify/react';
+import { VStack } from '@app/ui-system';
 import { SourceProvider, Playground } from '@app/parcel-landing';
 
 export const source = `
@@ -39,9 +40,11 @@ The **Editor** lets you build pages visually with your own JSX components.
 
 :::code-group
 <div data-title="Preview">
-  <SourceProvider source={source}>
-    <Playground plain={true} />
-  </SourceProvider>
+  <VStack className={['border', 'rounded-sm', 'overflow-hidden']}>
+    <SourceProvider source={source}>
+      <Playground plain={true} />
+    </SourceProvider>
+  </VStack>
 </div>
 
 ```tsx [Code]

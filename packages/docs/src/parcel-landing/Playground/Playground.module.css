@@ -3,10 +3,6 @@
   background-color: var(--composify-palette-surface);
 }
 
-.plain {
-  padding: 0;
-}
-
 .preview {
   display: flex;
   justify-content: center;
@@ -15,6 +11,15 @@
   border: 1px solid var(--composify-palette-outline);
   border-radius: 4px;
   overflow: hidden;
+}
+
+.plain {
+  padding: 0;
+}
+
+.plain > .preview {
+  border: none;
+  border-radius: 0;
 }
 
 .viewport {

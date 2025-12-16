@@ -15,7 +15,7 @@ const INITIAL_SOURCE = `
           Learn more ›
         </ButtonCta>
         <ButtonCta variant="outline" size="lg" href="/demo">
-          View Demo →
+          View demo →
         </ButtonCta>
       </HStack>
     </VStack>
@@ -118,7 +118,7 @@ const INITIAL_SOURCE = `
         </VStack>
       </Grid>
     </VStack>
-    <VStack alignHorizontal="center" className={['gap-8', 'px-24', 'py-196']}>
+    <VStack alignHorizontal="center" className={['gap-8', 'px-24', 'py-196', 'max-md:py-128']}>
       <Heading level={2} size="4xl" weight="bold" align="center">
         Unlock the full potential of your team
       </Heading>
@@ -128,7 +128,7 @@ const INITIAL_SOURCE = `
         Build faster, collaborate better, and ship with confidence.
       </Body>
       <ButtonCta variant="primary" size="xl" href="/docs">
-        Start Building ›
+        Start building ›
       </ButtonCta>
     </VStack>
   </VStack>
