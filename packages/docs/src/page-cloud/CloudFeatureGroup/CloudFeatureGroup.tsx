@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import { CloudFeatureItem } from '../CloudFeatureItem';
 
 export const CloudFeatureGroup: FC<unknown> = () => (
-  <VStack id="features" className={['p-24', 'pt-64', 'gap-48', 'bg-background', 'max-md:p-16', 'max-md:pt-48']}>
+  <VStack id="features" className={['px-24', 'py-56', 'gap-48', 'bg-background', 'max-md:px-16', 'max-md:py-48']}>
     <VStack className={['gap-8']}>
       <Heading level={2} size="4xl">
         Supercharge your editor.
