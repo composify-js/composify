@@ -118,17 +118,51 @@ const INITIAL_SOURCE = `
         </VStack>
       </Grid>
     </VStack>
-    <VStack alignHorizontal="center" className={['gap-8', 'px-24', 'max-md:px-16', 'py-196', 'max-md:py-128']}>
-      <Heading level={2} size="4xl" weight="bold" align="center">
-        Unlock the full potential of your team
-      </Heading>
-      <Body size="xl" align="center" className={['text-foreground', 'mb-32']}>
-        Move from idea to production in minutes.
-        <br />
-        Build faster, collaborate better, and ship with confidence.
-      </Body>
-      <ButtonCta variant="primary" size="xl" href="/docs">
-        Start building ›
+    <VStack alignHorizontal="center" className={['gap-40', 'px-24', 'max-md:px-16', 'py-196', 'max-md:py-128']}>
+      <VStack className={['gap-8']}>
+        <Heading level={2} size="4xl" weight="bold" align="center">
+          See what you can build
+        </Heading>
+        <Body size="xl" align="center" className={['max-w-[610px]', 'text-foreground']}>
+          Browse examples and discover what's possible with Server Driven UI. From landing pages to blog, all built with real components.
+        </Body>
+      </VStack>
+      <Grid columns={4} className={['gap-16', 'max-lg:grid-cols-2', 'max-md:grid-cols-1']}>
+        <VStack className={['gap-8', 'p-24', 'rounded-sm', 'border', 'bg-background']}>
+          <Heading level={3} size="lg" weight="semibold">
+            Marketing Campaigns
+          </Heading>
+          <Body className={['text-foreground']}>
+            Launch seasonal sales, flash deals, and product highlights. Update banners and pricing in real-time without bothering engineers.
+          </Body>
+        </VStack>
+        <VStack className={['gap-8', 'p-24', 'rounded-sm', 'border', 'bg-background']}>
+          <Heading level={3} size="lg" weight="semibold">
+            Landing Pages
+          </Heading>
+          <Body className={['text-foreground']}>
+            Build conversion-focused pages with hero sections, feature grids, and CTAs. Perfect for product launches and signups.
+          </Body>
+        </VStack>
+        <VStack className={['gap-8', 'p-24', 'rounded-sm', 'border', 'bg-background']}>
+          <Heading level={3} size="lg" weight="semibold">
+            Rapid Prototyping
+          </Heading>
+          <Body className={['text-foreground']}>
+            Test new ideas without waiting for dev cycles. Create beta announcements, feature previews, and A/B test variants instantly.
+          </Body>
+        </VStack>
+        <VStack className={['gap-8', 'p-24', 'rounded-sm', 'border', 'bg-background']}>
+          <Heading level={3} size="lg" weight="semibold">
+            Editorial Content
+          </Heading>
+          <Body className={['text-foreground']}>
+            Craft rich blog posts, announcements, and help articles. Mix text, images, and callouts with full editorial control.
+          </Body>
+        </VStack>
+      </Grid>
+      <ButtonCta variant="primary" size="xl" href="/showcase">
+        View examples →
       </ButtonCta>
     </VStack>
   </VStack>

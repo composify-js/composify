@@ -12,12 +12,12 @@ export const ShowcaseHeroBanner: FC<unknown> = () => (
     <HStack className={['gap-8', 'mt-16']}>
       <Button variant="primary" size="lg" asChild={true}>
         <Link href="#promotion" plain={true}>
-          Start browsing ›
+          View examples ›
         </Link>
       </Button>
       <Button variant="outline" size="lg" asChild={true}>
         <Link href="/docs" plain={true}>
-          View docs →
+          Read the docs →
         </Link>
       </Button>
     </HStack>

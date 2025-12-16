@@ -7,7 +7,7 @@ export const FreeSetupSection: FC<unknown> = () => (
     id="setup"
     alignHorizontal="center"
     className={[
-      'gap-32',
+      'gap-40',
       'bg-background-variant/70',
       'mx-24',
       'max-md:mx-16',
