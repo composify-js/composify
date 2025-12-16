@@ -11,7 +11,7 @@ export const FAQSection: FC<unknown> = () => (
         Commonly asked questions about Composify Cloud.
       </Body>
     </VStack>
-    <VStack className={['border', 'px-24', 'py-4', 'rounded-sm']}>
+    <VStack className={['border', 'px-24', 'max-md:px-20', 'py-4', 'max-md:py-2', 'rounded-sm']}>
       <Accordion summary="How is Composify Cloud different from the open-source version?">
         The core editor and renderer are identical. Cloud adds managed hosting, real-time collaboration, and version
         history, so you don't have to build that infrastructure yourself.

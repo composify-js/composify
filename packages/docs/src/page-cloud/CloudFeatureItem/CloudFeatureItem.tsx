@@ -9,7 +9,9 @@ type Props = {
 };
 
 export const CloudFeatureItem: FC<Props> = ({ emoji, title, description, planned }) => (
-  <VStack className={['relative', 'p-24', 'items-start', 'rounded-sm', 'border', 'bg-background-variant']}>
+  <VStack
+    className={['relative', 'p-24', 'max-md:p-20', 'items-start', 'rounded-sm', 'border', 'bg-background-variant']}
+  >
     {planned && <Badge className={['absolute', 'top-16', 'right-16']}>Coming soon!</Badge>}
     <VStack alignHorizontal="center" className={['p-8', 'rounded-sm', 'border', 'bg-muted', 'aspect-square']}>
       <Body size="3xl">{emoji}</Body>
