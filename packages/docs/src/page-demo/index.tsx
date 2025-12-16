@@ -118,7 +118,7 @@ const INITIAL_SOURCE = `
         </VStack>
       </Grid>
     </VStack>
-    <VStack alignHorizontal="center" className={['gap-8', 'px-24', 'py-196', 'max-md:py-128']}>
+    <VStack alignHorizontal="center" className={['gap-8', 'px-24', 'max-md:px-16', 'py-196', 'max-md:py-128']}>
       <Heading level={2} size="4xl" weight="bold" align="center">
         Unlock the full potential of your team
       </Heading>

@@ -25,10 +25,9 @@ export const FreeSetupSection: FC<unknown> = () => (
       <Heading level={2} size="4xl" weight="bold" align="center" className={['max-md:text-3xl']}>
         Let us set it up for you.
       </Heading>
-      <Body size="xl" align="center" className={['text-foreground', 'max-md:text-lg']}>
-        We'll set up Composify in your repo, <span className="text-primary">for free</span>.
-        <br />
-        Try it out. If it's not for you, just close the PR.
+      <Body size="xl" align="center" className={['max-w-[400px]', 'text-foreground', 'max-md:text-lg']}>
+        We'll set up Composify in your repo, <span className="text-primary">for free</span>. Try it out. If it's not for
+        you, just close the PR.
       </Body>
     </VStack>
     <ButtonCta
