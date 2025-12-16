@@ -21,6 +21,7 @@ export default defineConfig({
     },
   },
   theme: {
+    colorScheme: 'light',
     accentColor: '#3B82F6',
     variables: {
       content: {
