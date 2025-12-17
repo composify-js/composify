@@ -1,0 +1,1 @@
+export { PromotionCountdown } from './PromotionCountdown';

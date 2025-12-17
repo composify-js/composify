@@ -1,266 +1,150 @@
 import '@app/parcel-landing/catalog';
+import './catalog';
 
 import { VStack } from '@app/ui-system';
 import { Example } from './Example';
 import { ShowcaseHeroBanner } from './ShowcaseHeroBanner';
 
 const PROMOTION_SOURCE = `
-<VStack className={['bg-white']}>
-  <VStack className={['p-16', 'bg-orange-500', 'text-white']}>
-    <HStack alignHorizontal="center" alignVertical="center" className={['gap-16']}>
-      <Body size="sm" className={['font-medium', 'text-secondary-foreground']}>Holiday Sale: Up to 30% off selected items!</Body>
-    </HStack>
+  <VStack className={['bg-white']}>
+    <PromotionCountdown
+      message="Holiday Sale: Up to 30% off selected items!"
+      endDate="${new Date(Date.now() + (86400 * 1000) / 2).toISOString()}"
+    />
+    <PromotionHeroBanner
+      tagline="Holiday Collection"
+      title="Gifts they'll love"
+      description="Discover our curated selection of premium tech gifts. Free shipping on orders over $50."
+      primaryCta={{
+        label: "Shop now",
+        href: "#"
+      }}
+      secondaryCta={{
+        label: "View all deals",
+        href: "#"
+      }}
+      imageSrc="https://images.unsplash.com/photo-1491933382434-500287f9b54b?w=600&h=500&fit=crop"
+    />
+    <PromotionProductGrid
+      title="Featured Products"
+      viewAll={{
+        label: "View all →",
+        href: "#"
+      }}
+      products={[
+        { imageSrc: "https://images.unsplash.com/photo-1624258919367-5dc28f5dc293?w=600&h=600&fit=crop", category: "Audio", name: "AirPods Pro", price: "$199", originalPrice: "$249" },
+        { imageSrc: "https://images.unsplash.com/photo-1624096104992-9b4fa3a279dd?w=600&h=600&fit=crop", category: "Wearables", name: "Apple Watch Series 9", price: "$299", originalPrice: "$399" },
+        { imageSrc: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&h=600&fit=crop", category: "Tablets", name: "iPad Pro 12.9", price: "$999", originalPrice: "$1,199" },
+        { imageSrc: "https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?w=600&h=600&fit=crop", category: "Desktop", name: "iMac 24", price: "$1,049", originalPrice: "$1,499" }
+      ]}
+    />
   </VStack>
-  <VStack className={['p-24', 'py-48', 'max-md:px-16']}>
-    <HStack className={['gap-48', 'items-center', 'max-md:flex-col']}>
-      <VStack className={['flex-1', 'gap-16']}>
-        <Caption className={['text-orange-500', 'font-semibold', 'tracking-wide', 'uppercase']}>
-          Holiday Collection
-        </Caption>
-        <Heading level={1} size="5xl" weight="extrabold">
-          Gifts they'll love
-        </Heading>
-        <Body size="lg" className={['text-foreground', 'max-w-md']}>
-          Discover our curated selection of premium tech gifts. Free shipping on orders over $50.
-        </Body>
-        <HStack className={['gap-12', 'mt-8']}>
-          <Link href="#" plain={true} className={['inline-flex', 'items-center', 'justify-center', 'px-24', 'py-12', 'rounded-sm', 'font-medium', 'bg-orange-500', 'text-white', 'hover:bg-orange-600']}>Shop now</Link>
-          <Link href="#" plain={true} className={['inline-flex', 'items-center', 'justify-center', 'px-24', 'py-12', 'rounded-sm', 'font-medium', 'border', 'border-neutral-300', 'text-foreground', 'hover:bg-neutral-50']}>View all deals</Link>
-        </HStack>
-      </VStack>
-      <Image src="https://images.unsplash.com/photo-1491933382434-500287f9b54b?w=600&h=500&fit=crop" alt="Holiday gifts" className="flex-1 rounded-lg max-w-md" />
-    </HStack>
-  </VStack>
-  <VStack className={['gap-32', 'p-24', 'pt-36', 'bg-neutral-50', 'max-md:px-16']}>
-    <HStack alignVertical="center" alignHorizontal="between">
-      <Heading level={2} size="2xl" weight="bold">
-        Featured Products
-      </Heading>
-      <Link href="#" plain={true} className={['text-sm', 'font-medium', 'text-orange-500', 'hover:text-orange-600']}>View all →</Link>
-    </HStack>
-    <Grid columns={4} className={['gap-24', 'max-md:grid-cols-2']}>
-      <VStack className={['gap-16', 'group']}>
-        <VStack className={['bg-white', 'rounded-lg', 'border', 'overflow-hidden', 'aspect-square', 'items-center', 'justify-center']}>
-          <Image src="https://images.unsplash.com/photo-1624258919367-5dc28f5dc293?w=600&h=600&fit=crop" alt="AirPods Pro" className="w-full h-full object-contain" />
-        </VStack>
-        <VStack className={['gap-4']}>
-          <Caption className={['text-neutral-500']}>Audio</Caption>
-          <Body className={['font-medium']}>AirPods Pro</Body>
-          <HStack className={['gap-8', 'items-center']}>
-            <Body className={['font-bold', 'text-orange-500']}>$199</Body>
-            <Body size="sm" className={['text-neutral-400', 'line-through']}>$249</Body>
-          </HStack>
-        </VStack>
-      </VStack>
-      <VStack className={['gap-16', 'group']}>
-        <VStack className={['bg-white', 'rounded-lg', 'border', 'overflow-hidden', 'aspect-square', 'items-center', 'justify-center']}>
-          <Image src="https://images.unsplash.com/photo-1624096104992-9b4fa3a279dd?w=600&h=600&fit=crop" alt="Apple Watch" className="w-full h-full object-contain" />
-        </VStack>
-        <VStack className={['gap-4']}>
-          <Caption className={['text-neutral-500']}>Wearables</Caption>
-          <Body className={['font-medium']}>Apple Watch Series 9</Body>
-          <HStack className={['gap-8', 'items-center']}>
-            <Body className={['font-bold', 'text-orange-500']}>$299</Body>
-            <Body size="sm" className={['text-neutral-400', 'line-through']}>$399</Body>
-          </HStack>
-        </VStack>
-      </VStack>
-      <VStack className={['gap-16', 'group']}>
-        <VStack className={['bg-white', 'rounded-lg', 'border', 'overflow-hidden', 'aspect-square', 'items-center', 'justify-center']}>
-          <Image src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&h=600&fit=crop" alt="iPad Pro" className="w-full h-full object-contain" />
-        </VStack>
-        <VStack className={['gap-4']}>
-          <Caption className={['text-neutral-500']}>Tablets</Caption>
-          <Body className={['font-medium']}>iPad Pro 12.9"</Body>
-          <HStack className={['gap-8', 'items-center']}>
-            <Body className={['font-bold', 'text-orange-500']}>$999</Body>
-            <Body size="sm" className={['text-neutral-400', 'line-through']}>$1,199</Body>
-          </HStack>
-        </VStack>
-      </VStack>
-      <VStack className={['gap-16', 'group']}>
-        <VStack className={['bg-white', 'rounded-lg', 'border', 'overflow-hidden', 'aspect-square', 'items-center', 'justify-center']}>
-          <Image src="https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?w=600&h=600&fit=crop" alt="iMac" className="w-full h-full object-contain" />
-        </VStack>
-        <VStack className={['gap-4']}>
-          <Caption className={['text-neutral-500']}>Desktop</Caption>
-          <Body className={['font-medium']}>iMac 24"</Body>
-          <HStack className={['gap-8', 'items-center']}>
-            <Body className={['font-bold', 'text-orange-500']}>$1,049</Body>
-            <Body size="sm" className={['text-neutral-400', 'line-through']}>$1,499</Body>
-          </HStack>
-        </VStack>
-      </VStack>
-    </Grid>
-  </VStack>
-</VStack>`.trim();
+`.trim();
 
 const LANDING_SOURCE = `
-<VStack className={['bg-violet-50']}>
-  <VStack className={['gap-48', 'p-24', 'pt-64', 'pb-64', 'max-md:px-16']}>
-    <VStack alignHorizontal="center" className={['gap-16', 'text-center']}>
-      <Caption className={['text-violet-600', 'font-semibold', 'tracking-wider', 'uppercase']}>
-        Analytics Platform
-      </Caption>
-      <Heading level={1} size="5xl" weight="extrabold" align="center">
-        Understand your users like never before
-      </Heading>
-      <Body size="xl" align="center" className={['text-foreground', 'max-w-pred']}>
-        Real-time analytics that help you make data-driven decisions.
-        <br />
-        Track user behavior, measure conversions, and optimize your product.
-      </Body>
-      <HStack className={['gap-8', 'mt-8']}>
-        <Link href="#" plain={true} className={['inline-flex', 'items-center', 'justify-center', 'px-24', 'py-12', 'rounded-sm', 'font-medium', 'bg-violet-600', 'text-white', 'hover:bg-violet-700']}>Start free trial ›</Link>
-        <Link href="#" plain={true} className={['inline-flex', 'items-center', 'justify-center', 'px-24', 'py-12', 'rounded-sm', 'font-medium', 'border', 'border-violet-300', 'bg-white', 'text-violet-600', 'hover:bg-violet-100']}>Book a demo →</Link>
-      </HStack>
+  <VStack className={['bg-violet-50']}>
+    <LandingHero
+      tagline="Analytics Platform"
+      title="Understand your users like never before"
+      description="Real-time analytics that help you make data-driven decisions. Track user behavior, measure conversions, and optimize your product."
+      primaryCta={{
+        label: "Start free trial ›",
+        href: "#"
+      }}
+      secondaryCta={{
+        label: "Book a demo →",
+        href: "#"
+      }}
+      centered={true}
+    />
+    <VStack className={['gap-48', 'p-24', 'pt-48', 'bg-white', 'max-md:px-16']}>
+      <VStack alignHorizontal="center" className={['gap-8', 'text-center']}>
+        <Heading level={2} size="4xl" weight="bold" align="center">
+          Everything you need to grow
+        </Heading>
+        <Body size="lg" align="center" className={['text-foreground']}>
+          Powerful features that help you understand, engage, and retain your users.
+        </Body>
+      </VStack>
+      <Grid columns={3} className={['gap-16', 'max-md:grid-cols-1']}>
+        <LandingFeatureCard icon="📊" title="Real-time Dashboard" description="Monitor your metrics as they happen. No more waiting for batch updates." accentColor="violet" />
+        <LandingFeatureCard icon="🔍" title="Funnel Analysis" description="Identify drop-off points and optimize your conversion flow." accentColor="violet" />
+        <LandingFeatureCard icon="📈" title="Custom Reports" description="Build and share reports tailored to your team's needs." accentColor="violet" />
+      </Grid>
     </VStack>
   </VStack>
-  <VStack className={['gap-48', 'p-24', 'pt-48', 'bg-white', 'max-md:px-16']}>
-    <VStack alignHorizontal="center" className={['gap-8', 'text-center']}>
-      <Heading level={2} size="4xl" weight="bold" align="center">
-        Everything you need to grow
-      </Heading>
-      <Body size="lg" align="center" className={['text-foreground', 'max-w-pred']}>
-        Powerful features that help you understand, engage, and retain your users.
-      </Body>
-    </VStack>
-    <Grid columns={3} className={['gap-16', 'max-md:grid-cols-1']}>
-      <VStack className={['gap-12', 'p-24', 'rounded-sm', 'border', 'border-violet-200']}>
-        <VStack className={['w-48', 'h-48', 'rounded-sm', 'bg-violet-100', 'items-center', 'justify-center']}>
-          <Body className={['text-violet-600', 'text-2xl']}>📊</Body>
-        </VStack>
-        <VStack className={['gap-8']}>
-          <Heading level={3} size="xl" weight="semibold">
-            Real-time Dashboard
-          </Heading>
-          <Body className={['text-foreground']}>
-            Monitor your metrics as they happen. No more waiting for batch updates.
-          </Body>
-        </VStack>
-      </VStack>
-      <VStack className={['gap-12', 'p-24', 'rounded-sm', 'border', 'border-violet-200']}>
-        <VStack className={['w-48', 'h-48', 'rounded-sm', 'bg-violet-100', 'items-center', 'justify-center']}>
-          <Body className={['text-violet-600', 'text-2xl']}>🔍</Body>
-        </VStack>
-        <VStack className={['gap-8']}>
-          <Heading level={3} size="xl" weight="semibold">
-            Funnel Analysis
-          </Heading>
-          <Body className={['text-foreground']}>
-            Identify drop-off points and optimize your conversion flow.
-          </Body>
-        </VStack>
-      </VStack>
-      <VStack className={['gap-12', 'p-24', 'rounded-sm', 'border', 'border-violet-200']}>
-        <VStack className={['w-48', 'h-48', 'rounded-sm', 'bg-violet-100', 'items-center', 'justify-center']}>
-          <Body className={['text-violet-600', 'text-2xl']}>📈</Body>
-        </VStack>
-        <VStack className={['gap-8']}>
-          <Heading level={3} size="xl" weight="semibold">
-            Custom Reports
-          </Heading>
-          <Body className={['text-foreground']}>
-            Build and share reports tailored to your team's needs.
-          </Body>
-        </VStack>
-      </VStack>
-    </Grid>
-  </VStack>
-</VStack>`.trim();
+`.trim();
 
 const PROTOTYPING_SOURCE = `
-<VStack className={['gap-24', 'p-24', 'bg-background', 'max-md:px-16']}>
-  <HStack alignVertical="center" className={['gap-8']}>
-    <Caption className={['px-8', 'py-4', 'bg-red-100', 'text-red-800', 'rounded-sm', 'font-medium']}>
-      Beta
-    </Caption>
-    <Caption className={['text-foreground']}>
-      We're testing a new feature
-    </Caption>
-  </HStack>
-  <VStack className={['gap-12']}>
-    <Heading level={2} size="3xl" weight="bold">
-      Try our new AI assistant
-    </Heading>
-    <Body size="lg" className={['text-foreground', 'max-w-pred']}>
-      We've been working on an AI-powered assistant to help you analyze your data faster. It's still in beta, but we'd love your feedback.
-    </Body>
-  </VStack>
-  <VStack className={['gap-16', 'p-24', 'rounded-sm', 'border', 'border-dashed']}>
-    <Body className={['text-foreground']}>
-      "Show me the top 10 countries by revenue this month"
-    </Body>
-    <VStack className={['gap-8', 'p-16', 'bg-muted', 'rounded-sm']}>
-      <Caption className={['text-foreground', 'font-medium']}>
-        AI Response Preview
+  <VStack className={['gap-24', 'p-24', 'bg-background', 'max-md:px-16']}>
+    <HStack alignVertical="center" className={['gap-8']}>
+      <Caption className={['px-8', 'py-4', 'bg-red-100', 'text-red-800', 'rounded-sm', 'font-medium']}>
+        Beta
       </Caption>
-      <Body size="sm" className={['text-foreground', 'opacity-70']}>
-        Here's a breakdown of your top 10 countries by revenue for November 2024...
+      <Caption className={['text-foreground']}>
+        We're testing a new feature
+      </Caption>
+    </HStack>
+    <VStack className={['gap-12']}>
+      <Heading level={2} size="3xl" weight="bold">
+        Try our new AI assistant
+      </Heading>
+      <Body size="lg" className={['text-foreground', 'max-w-pred']}>
+        We've been working on an AI-powered assistant to help you analyze your data faster. It's still in beta, but we'd love your feedback.
       </Body>
     </VStack>
+    <VStack className={['gap-16', 'p-24', 'rounded-sm', 'border', 'border-dashed']}>
+      <Body className={['text-foreground']}>
+        "Show me the top 10 countries by revenue this month"
+      </Body>
+      <VStack className={['gap-8', 'p-16', 'bg-muted', 'rounded-sm']}>
+        <Caption className={['text-foreground', 'font-medium']}>
+          AI Response Preview
+        </Caption>
+        <Body size="sm" className={['text-foreground', 'opacity-70']}>
+          Here's a breakdown of your top 10 countries by revenue for November 2024...
+        </Body>
+      </VStack>
+    </VStack>
+    <HStack className={['gap-8']}>
+      <Link href="#" plain={true} className={['inline-flex', 'items-center', 'justify-center', 'px-16', 'py-8', 'rounded-sm', 'font-medium', 'bg-red-500', 'text-white', 'hover:bg-red-600']}>Try it now ›</Link>
+      <Link href="#" plain={true} className={['inline-flex', 'items-center', 'justify-center', 'px-16', 'py-8', 'rounded-sm', 'font-medium', 'border', 'text-foreground', 'hover:bg-muted']}>Give feedback →</Link>
+    </HStack>
   </VStack>
-  <HStack className={['gap-8']}>
-    <Link href="#" plain={true} className={['inline-flex', 'items-center', 'justify-center', 'px-16', 'py-8', 'rounded-sm', 'font-medium', 'bg-red-500', 'text-white', 'hover:bg-red-600']}>Try it now ›</Link>
-    <Link href="#" plain={true} className={['inline-flex', 'items-center', 'justify-center', 'px-16', 'py-8', 'rounded-sm', 'font-medium', 'border', 'text-foreground', 'hover:bg-muted']}>Give feedback →</Link>
-  </HStack>
-</VStack>`.trim();
+`.trim();
 
 const CONTENTS_SOURCE = `
-<VStack className={['gap-24', 'p-24', 'bg-background', 'max-md:px-16']}>
-  <VStack className={['gap-8']}>
-    <Heading level={2} size="3xl" weight="bold">
-      From the blog
-    </Heading>
-    <Body size="lg" className={['text-foreground']}>
-      Insights on product analytics, growth, and building better products.
-    </Body>
-  </VStack>
-  <Grid columns={2} className={['gap-24', 'max-md:grid-cols-1']}>
-    <VStack className={['gap-12', 'p-24', 'rounded-sm', 'border']}>
-      <Caption className={['text-foreground', 'opacity-60']}>
-        Dec 10, 2024 • 5 min read
-      </Caption>
-      <VStack className={['gap-8']}>
-        <Heading level={3} size="xl" weight="semibold">
-          How to reduce churn with cohort analysis
-        </Heading>
-        <Body className={['text-foreground']}>
-          Learn how leading SaaS companies use cohort analysis to identify at-risk users before they leave.
-        </Body>
-      </VStack>
-      <Link href="#" plain={true} className={['inline-flex', 'items-center', 'justify-center', 'px-12', 'py-6', 'rounded-sm', 'text-sm', 'font-medium', 'bg-muted', 'text-foreground', 'hover:bg-muted/80']}>Read more →</Link>
-    </VStack>
-    <VStack className={['gap-12', 'p-24', 'rounded-sm', 'border']}>
-      <Caption className={['text-foreground', 'opacity-60']}>
-        Dec 5, 2024 • 8 min read
-      </Caption>
-      <VStack className={['gap-8']}>
-        <Heading level={3} size="xl" weight="semibold">
-          The metrics that actually matter for growth
-        </Heading>
-        <Body className={['text-foreground']}>
-          Stop tracking vanity metrics. Here are the numbers that successful teams obsess over.
-        </Body>
-      </VStack>
-      <Link href="#" plain={true} className={['inline-flex', 'items-center', 'justify-center', 'px-12', 'py-6', 'rounded-sm', 'text-sm', 'font-medium', 'bg-muted', 'text-foreground', 'hover:bg-muted/80']}>Read more →</Link>
-    </VStack>
-  </Grid>
-</VStack>`.trim();
+  <BlogPostList
+    title="From the blog"
+    description="Insights on product analytics, growth, and building better products."
+    columns={2}
+    posts={[
+      {
+        date: "Dec 10, 2024",
+        readTime: "5 min read",
+        title: "How to reduce churn with cohort analysis",
+        excerpt: "Learn how leading SaaS companies use cohort analysis to identify at-risk users before they leave.",
+        href: "#"
+      },
+      {
+        date: "Dec 5, 2024",
+        readTime: "8 min read",
+        title: "The metrics that actually matter for growth",
+        excerpt: "Stop tracking vanity metrics. Here are the numbers that successful teams obsess over.",
+        href: "#"
+      }
+    ]}
+  />
+`.trim();
 
 const ARTICLE_SOURCE = `
 <VStack className={['gap-32', 'p-24', 'pt-48', 'bg-background', 'max-md:px-16']}>
-  <VStack alignHorizontal="center" className={['gap-16', 'max-w-[720px]', 'mx-auto']}>
-    <Caption className={['text-foreground', 'opacity-60']}>
-      Dec 10, 2024 • 5 min read
-    </Caption>
-    <Heading level={1} size="4xl" weight="bold" align="center">
-      How to reduce churn with cohort analysis
-    </Heading>
-    <Body size="lg" align="center" className={['text-foreground']}>
-      Learn how leading SaaS companies use cohort analysis to identify at-risk users before they leave.
-    </Body>
-  </VStack>
+  <ArticleHeader
+    date="Dec 10, 2024"
+    readTime="5 min read"
+    title="How to reduce churn with cohort analysis"
+    excerpt="Learn how leading SaaS companies use cohort analysis to identify at-risk users before they leave."
+  />
   <VStack className={['gap-24', 'max-w-[720px]', 'mx-auto']}>
     <Body size="lg" className={['text-foreground']}>
       Cohort analysis is one of the most powerful tools for understanding user behavior over time. Instead of looking at all users as one group, you segment them based on when they signed up or performed a specific action.

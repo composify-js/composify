@@ -16,7 +16,7 @@ export const Example: FC<Props> = ({ id, name, source }) => {
       <HStack
         alignVertical="center"
         alignHorizontal="between"
-        className={['p-16', 'border-b', 'bg-background-variant']}
+        className={['p-16', 'gap-8', 'border-b', 'bg-background-variant']}
       >
         <Body size="md" className={['font-medium', 'text-foreground']}>
           {name}

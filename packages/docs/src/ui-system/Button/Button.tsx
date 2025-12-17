@@ -3,7 +3,7 @@ import type { ComponentProps, FC } from 'react';
 import type { VariantProps } from 'tailwind-variants';
 import { variants } from './ButtonVariants';
 
-type Props = ComponentProps<'button'> &
+type Props = Omit<ComponentProps<'button'>, 'className'> &
   VariantProps<typeof variants> & {
     className?: string[];
     asChild?: boolean;
