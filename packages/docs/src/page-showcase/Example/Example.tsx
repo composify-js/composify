@@ -36,7 +36,7 @@ export const Example: FC<Props> = ({ id, name, source }) => {
           <SourceRenderer />
         ) : (
           <>
-            <VStack className={['flex', 'max-lg:hidden']}>
+            <VStack className={['flex', 'max-lg:hidden', 'aspect-3/2', 'overflow-scroll']}>
               <SourceEditor />
             </VStack>
             <VStack className={['hidden', 'max-lg:flex']}>
