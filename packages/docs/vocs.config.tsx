@@ -39,6 +39,8 @@ export default defineConfig({
       <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
       <meta name="apple-mobile-web-app-title" content="Composify" />
       <link rel="manifest" href="/site.webmanifest" />
+      <meta property="og:image" content="https://composify.js.org/brand/opengraph.png" />
+      <meta property="twitter:image" content="https://composify.js.org/brand/opengraph.png" />
     </>
   ),
   topNav: [
