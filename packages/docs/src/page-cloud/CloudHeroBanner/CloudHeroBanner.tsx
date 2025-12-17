@@ -11,7 +11,7 @@ export const CloudHeroBanner: FC<unknown> = () => (
     </Body>
     <HStack className={['gap-8', 'mt-16']}>
       <Button variant="primary" size="lg" asChild={true}>
-        <Link href="https://app.composify.cloud" plain={true}>
+        <Link href="https://app.composify.cloud" target="_blank" plain={true}>
           Start free ›
         </Link>
       </Button>
