@@ -56,7 +56,7 @@
 
 .mockTitle {
   margin: 0;
-  font-size: 4rem;
+  font-size: 2rem;
   font-weight: 600;
   color: var(--composify-palette-on-surface);
 }

@@ -2,7 +2,7 @@ import '@app/parcel-landing/catalog';
 import { Editor } from '@composify/react/editor';
 
 const INITIAL_SOURCE = `
-  <VStack>
+  <VStack className={['bg-background']}>
     <VStack className={['gap-6', 'p-24', 'pt-64', 'bg-background', 'max-md:px-16']}>
       <Heading level={1} size="5xl" weight="extrabold">
         Server Driven UI made easy
